@@ -1,0 +1,23 @@
+{
+  "name": "ngpress",
+  "description": "Angular front-end template for wordpress api.",
+  "main": "index.js",
+  "authors": [
+    "Jota Teles <josetelesmaciel@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/teles/ngpress",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7"
+  },
+  "devDependencies": {
+    "angular-ui-router": "^0.3.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "ngpress",
+  "version": "1.0.0",
+  "description": "Angular front-end template for wordpress api.",
+  "main": "index.js",
+  "dependencies": {
+    "bower": "^1.7.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teles/ngpress.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teles/ngpress/issues"
+  },
+  "homepage": "https://github.com/teles/ngpress#readme"
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="ngpress">
+	<head>
+	    <meta name="fragment" content="!">
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	    <script src="/bower_components/angular/angular.min.js" type="application/javascript"></script>
+	    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js" type="application/javascript"></script>
+	    <script src="/js/ngpress.js" type="application/javascript"></script>
+	    <script src="/js/components/ajax/ajax.module.js" type="application/javascript"></script>
+	    <script src="/js/components/ajax/models/ajax.model.js" type="application/javascript"></script>
+
+	    <script type="text/javascript">
+	    	(function(){
+
+	    		angular.module('ngpress').controller('IndexController', IndexController);
+	    		
+	    		function IndexController(Ajax){
+	    			var vc = this;
+
+					var wordpressEndpoint = 'https://public-api.wordpress.com/rest/v1.1/sites/<site-url>/posts/?number=10';
+	    			
+	    			function testWordpress(siteUrl){
+	    				var url = wordpressEndpoint.replace('<site-url>', siteUrl);
+	    				return Ajax.get(url);
+	    			}
+
+	    			var teste = testWordpress('efeitoecausa.wordpress.com');
+	    			teste.success(function(result){
+	    				vc.result = result;
+	    			})
+
+	    		}
+
+	    	})();
+
+	    </script>
+	</head>    
+
+
+
+	<body ng-controller='IndexController as vc'>
+		<p ng-repeat='post in vc.result.posts'>
+			
+			{{ post.excerpt }}
+
+		</p>
+	</body>
+</html>
