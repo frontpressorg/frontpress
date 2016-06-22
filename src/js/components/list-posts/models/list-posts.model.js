@@ -4,7 +4,7 @@
 
 	angular.module('ngpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
 
-	function ListPostsModel(){
+	function ListPostsModel(PostsApi){
 		var model = {
 			postsList: null,
 			loadPosts: loadPosts,
@@ -13,8 +13,13 @@
 			isLoadingPosts: null,
 		}
 
+		return model;
+
 		function loadPosts(){
 			model.isLoadingPosts = true;
+			
+			var allPostsPromise = PostsApi.getAllPosts().promise;
+			console.log(allPostsPromise);
 		}
 	}
 

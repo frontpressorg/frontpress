@@ -9,7 +9,7 @@
 		}
 
         var provider = {
-            $get: SheetApi,
+            $get: PostsApi,
             configure: configure
         };
         return provider;
@@ -27,7 +27,7 @@
         	}
 
         	function getAllPosts(){
-        		
+        		return AjaxModel.get('https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?number=2');
         	}
 
         	return restApi;
