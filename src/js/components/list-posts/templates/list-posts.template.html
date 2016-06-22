@@ -1,4 +1,9 @@
 <div> 
-	<p ng-repeat='post in vc.vm.postsList' ng-bind-html='post.excerpt | trustAsHtml '>		
-	</p>
+	<p ng-if='vc.vm.isLoadingPosts'>Carregando posts</p>
+	<div ng-repeat='post in vc.vm.postsList'>
+		<h2><a ng-bind-html='post.title | trustAsHtml' ng-href='{[{post.slug}]}'></a></h2>
+		<p ng-bind='post.date | date :  "dd/MM/y"'></p>
+		<img ng-src='{[{post.featured_image}]}' style='max-width: 250px;'>
+		<p ng-bind-html='post.excerpt | trustAsHtml '></p>
+	</div>
 </div>
