@@ -22,7 +22,7 @@
         PostsApi.$inject = ['AjaxModel'];
 
         function PostsApi(AjaxModel){
-            var sampleUrl = "https://public-api.wordpress.com/rest/v1.1/sites/focoemnegocios.wordpress.com/posts/";
+            var sampleUrl = configure.wordpressBaseUrl + "/posts";
         	var restApi = {
         		getAllPosts: getAllPosts,
                 getPostBySlug: getPostBySlug
@@ -30,15 +30,20 @@
 
         	function getAllPosts(){
                 var params = {
-                    number: 10
+                    number: 10,
+                    context: 'embed'
                 };
                 return AjaxModel.get(sampleUrl, params);
             }
 
-            function getPostBySlug(slug){
-                var url = sampleUrl + 'slug:<post-slug>';
-                url = url.replace('<post-slug>', slug);
-        		return AjaxModel.get(url);
+            function getPostBySlug(postSlug){
+                var params = {
+                    slug: postSlug,
+                };
+
+                // var url = sampleUrl + '/slug:<post-slug>';
+                // url = url.replace('<post-slug>', slug);
+        		return AjaxModel.get(sampleUrl, params);
             }
 
         	return restApi;
