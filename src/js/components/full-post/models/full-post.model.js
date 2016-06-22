@@ -1,5 +1,5 @@
 (function(){
-	
+
 	"use strict";
 
 	angular.module('ngpress.components.full-post').factory('FullPostModel', FullPostModel);
@@ -33,7 +33,9 @@
 			var postPromise = PostsApi.getPostBySlug(slug);
 			postPromise.success(function(result){
 				model.setTitle(result.title);
-				console.log(model);
+				model.setContent(result.content);
+				model.setFeaturedImage(result.featured_image);
+				model.isLoadingFullPost = false;
 			});
 		}
 

@@ -3,9 +3,10 @@
 
 	angular.module('ngpress.views.post').controller('PostController', PostController);
 
-    function PostController(FullPostModel, $routeParams){
-    	var vc = this;    	
-    	console.log($routeParams);
+    function PostController(FullPostModel, $stateParams){
+    	var vc = this;
+    	var postSlug = $stateParams.postSlug;
+    	FullPostModel.loadFullPostBySlug(postSlug);
 	}
 
 })();

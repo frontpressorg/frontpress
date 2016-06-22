@@ -19,10 +19,10 @@
             configure.wordpressBaseUrl = wordpressBaseUrl;
         }
 
-        PostsApi.$inject = ['AjaxModel'];        
+        PostsApi.$inject = ['AjaxModel'];
 
         function PostsApi(AjaxModel){
-            var sampleUrl = "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/";
+            var sampleUrl = "https://public-api.wordpress.com/rest/v1.1/sites/focoemnegocios.wordpress.com/posts/";
         	var restApi = {
         		getAllPosts: getAllPosts,
                 getPostBySlug: getPostBySlug
@@ -44,5 +44,5 @@
         	return restApi;
         }
 	}
-	
+
 })();

@@ -1,6 +1,9 @@
 <div>
 	<p ng-if='vc.vm.isLoadingFullPost'>carregando...</p>
 	<div ng-if='vc.vm.isLoadingFullPost === false'>
-		<p ng-bind='vc.vm.title'></p>		
+		<h1 ng-bind-html='vc.vm.title | trustAsHtml' ng-href='{[{post.slug}]}'></h1>
+		<p ng-bind='vc.vm.date | date :  "dd/MM/y"'></p>
+		<img ng-src='{[{vc.vm.featuredImage}]}' style='max-width: 800px;'>
+		<div ng-bind-html='vc.vm.content | trustAsHtml '></div>
 	</div>
-</div> 
+</div>
