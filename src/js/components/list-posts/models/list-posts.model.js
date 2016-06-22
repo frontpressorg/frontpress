@@ -22,7 +22,7 @@
 			
 			allPostsPromise.success(function(result){
 				model.postsList = result.posts;
-				model.isLoadingPosts = false;
+				model.isLoadingPosts = false;				
 			});
 		}
 	}
