@@ -1,8 +1,8 @@
 # Frontpress
 
-Full front-end angular template for wordpress api. 
+Full front-end AngularJS template for WordPress API. 
 
-> Oh! It's not another wordpress theme! It's a full website using wordpress api! I can't believe, sweet lord!! :raised_hands:
+> Oh! It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
 
 ## Clone, install and run
 
