@@ -2,7 +2,18 @@
 	"folders":
 	[
 		{
+			"file_exclude_patterns":
+			[
+				"*.scssc"
+			],
+			"folder_exclude_patterns":
+			[
+				"build",
+				"node_modules",
+				"assets"
+			],
+			"name": "NgPress",
 			"path": "."
-		}
+		},
 	]
 }
