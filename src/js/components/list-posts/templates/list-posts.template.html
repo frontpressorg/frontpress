@@ -1,1 +1,4 @@
-<div> list posts </div>
+<div> 
+	<p ng-repeat='post in vc.vm.postsList' ng-bind-html='post.excerpt | trustAsHtml '>		
+	</p>
+</div>

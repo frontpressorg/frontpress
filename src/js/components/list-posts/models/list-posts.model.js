@@ -18,8 +18,11 @@
 		function loadPosts(){
 			model.isLoadingPosts = true;
 			
-			var allPostsPromise = PostsApi.getAllPosts().promise;
-			console.log(allPostsPromise);
+			var allPostsPromise = PostsApi.getAllPosts();
+			
+			allPostsPromise.success(function(result){
+				model.postsList = result.posts;
+			});
 		}
 	}
 
