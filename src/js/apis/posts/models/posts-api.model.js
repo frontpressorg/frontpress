@@ -41,9 +41,10 @@
                     slug: postSlug,
                 };
 
-                // var url = sampleUrl + '/slug:<post-slug>';
-                // url = url.replace('<post-slug>', slug);
-        		return AjaxModel.get(sampleUrl, params);
+                var url = sampleUrl + 'slug:<post-slug>';
+                url = url.replace('<post-slug>', postSlug);
+                console.log(url);
+        		return AjaxModel.get(url);
             }
 
         	return restApi;
