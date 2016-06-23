@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="ngpress">
+<html lang="pt-br" ng-app="ngpress" ng-controller='FrontPressController as vc'>
 	<head>
 	    <meta name="fragment" content="!">
 	    <meta charset="UTF-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	    <title ng-bind='vc.blog.name'></title>
         <!-- inject:css -->
         <!-- endinject -->
-	</head>    
+	</head>
 	<body ng-controller='HomeController as vc'>
 		<base href="/">
 		<ui-view></ui-view>
 	</body>
     <!-- inject:js -->
-    <!-- endinject -->	
+    <!-- endinject -->
 </html>
