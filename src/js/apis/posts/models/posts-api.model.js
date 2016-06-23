@@ -22,7 +22,7 @@
         PostsApi.$inject = ['AjaxModel'];
 
         function PostsApi(AjaxModel){
-            var sampleUrl = configure.wordpressBaseUrl + "/posts";
+            var sampleUrl = configure.wordpressBaseUrl + "/posts/";
         	var restApi = {
         		getAllPosts: getAllPosts,
                 getPostBySlug: getPostBySlug

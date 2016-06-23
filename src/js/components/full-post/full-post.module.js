@@ -1,7 +1,7 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.components.full-post', []);
+	angular.module('ngpress.components.full-post', ['ngpress.filters']);
 
 })();
