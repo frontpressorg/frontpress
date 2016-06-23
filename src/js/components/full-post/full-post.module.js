@@ -2,6 +2,6 @@
 
 	"use strict";
 
-	angular.module('ngpress.components.full-post', ['ngpress.filters']);
+	angular.module('frontpress.components.full-post', ['frontpress.filters']);
 
 })();

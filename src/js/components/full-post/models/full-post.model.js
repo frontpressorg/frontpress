@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	angular.module('ngpress.components.full-post').factory('FullPostModel', FullPostModel);
+	angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
 
 	function FullPostModel(PostsApi){
 		var model = {

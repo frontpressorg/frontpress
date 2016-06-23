@@ -1,5 +1,5 @@
 (function(){
 	"use strict";
 
-	angular.module('ngpress.views.post', ['ngpress.components.full-post', 'ui.router']);
+	angular.module('frontpress.views.post', ['frontpress.components.full-post', 'ui.router']);
 })();

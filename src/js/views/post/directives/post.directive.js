@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	angular.module('ngpress.views.post').directive('postView', PostViewDirective);
+	angular.module('frontpress.views.post').directive('postView', PostViewDirective);
 
 	function PostViewDirective(){
 		var directive = {
@@ -15,5 +15,5 @@
 		};
 		return directive;
 	}
-	
+
 })();

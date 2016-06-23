@@ -1,12 +1,12 @@
 {
-  "name": "ngpress",
-  "description": "Angular front-end template for wordpress api.",
+  "name": "FrontPress",
+  "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
   "authors": [
     "Jota Teles <josetelesmaciel@gmail.com>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/teles/ngpress",
+  "homepage": "https://github.com/teles/frontpress",
   "ignore": [
     "**/.*",
     "node_modules",

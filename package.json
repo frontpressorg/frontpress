@@ -1,7 +1,7 @@
 {
-  "name": "ngpress",
+  "name": "FrontPress",
   "version": "1.0.0",
-  "description": "Angular front-end template for wordpress api.",
+  "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
   "dependencies": {
     "bower": "^1.7.9"
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teles/ngpress.git"
+    "url": "git+https://github.com/teles/frontpress.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/teles/ngpress/issues"
+    "url": "https://github.com/teles/frontpress/issues"
   },
-  "homepage": "https://github.com/teles/ngpress#readme"
+  "homepage": "https://github.com/teles/frontpress#readme"
 }

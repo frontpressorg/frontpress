@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    angular.module('ngpress.components.ajax').factory('AjaxModel', function($http){
+    angular.module('frontpress.components.ajax').factory('AjaxModel', function($http){
 
         var model = {
             get: get,

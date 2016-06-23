@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	angular.module('ngpress.views.home').directive('homeView', HomeViewDirective);
+	angular.module('frontpress.views.home').directive('homeView', HomeViewDirective);
 
 	function HomeViewDirective(){
 		var directive = {
@@ -15,5 +15,5 @@
 		};
 		return directive;
 	}
-	
+
 })();

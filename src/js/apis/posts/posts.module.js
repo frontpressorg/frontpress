@@ -1,7 +1,7 @@
 (function(){
 
 	"use strict";
-	
-	angular.module('ngpress.apis.posts', ['ngpress.components.ajax']);
+
+	angular.module('frontpress.apis.posts', ['frontpress.components.ajax']);
 
 })();

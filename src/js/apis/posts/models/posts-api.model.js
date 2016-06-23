@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('ngpress.apis.posts').provider('PostsApi', PostsApi);
+	angular.module('frontpress.apis.posts').provider('PostsApi', PostsApi);
 
 	function PostsApi(){
 		var configure = {

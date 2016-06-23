@@ -1,8 +1,8 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.components.full-post').controller('FullPostDirectiveController', FullPostDirectiveController);
+	angular.module('frontpress.components.full-post').controller('FullPostDirectiveController', FullPostDirectiveController);
 
 	function FullPostDirectiveController(FullPostModel){
 		var vc = this;

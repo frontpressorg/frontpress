@@ -2,6 +2,6 @@
 
 	"use strict";
 
-	angular.module('ngpress.apis.blog', ['ngpress.components.ajax']);
+	angular.module('frontpress.apis.blog', ['frontpress.components.ajax']);
 
 })();

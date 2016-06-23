@@ -1,8 +1,8 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
+	angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
 
 	function ListPostsModel(PostsApi){
 		var model = {
@@ -17,12 +17,12 @@
 
 		function loadPosts(){
 			model.isLoadingPosts = true;
-			
+
 			var allPostsPromise = PostsApi.getAllPosts();
-			
+
 			allPostsPromise.success(function(result){
 				model.postsList = result.posts;
-				model.isLoadingPosts = false;				
+				model.isLoadingPosts = false;
 			});
 		}
 	}

@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress.views.home').config(configHome);
+	angular.module('frontpress.views.home').config(configHome);
 
     configHome.$inject = ["$stateProvider", "$urlRouterProvider"];
 

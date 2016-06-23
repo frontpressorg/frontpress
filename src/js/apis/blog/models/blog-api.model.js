@@ -1,6 +1,6 @@
 (function(){
 
-	angular.module('ngpress.apis.blog').provider('BlogApi', BlogApi);
+	angular.module('frontpress.apis.blog').provider('BlogApi', BlogApi);
 
 	function BlogApi(){
 		var configure = {

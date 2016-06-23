@@ -2,6 +2,6 @@
 
 	"use strict";
 
-	angular.module('ngpress.components.blog-information', []);
+	angular.module('frontpress.components.blog-information', []);
 
 })();

@@ -1,7 +1,7 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.filters', []);
+	angular.module('frontpress.filters', []);
 
 })();

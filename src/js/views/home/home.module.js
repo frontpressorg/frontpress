@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress.views.home', ['ngpress.components.list-posts', 'ui.router']);
+	angular.module('frontpress.views.home', ['frontpress.components.list-posts', 'ui.router']);
 
 })();

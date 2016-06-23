@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress').controller('FrontPressController', FrontPressController);
+	angular.module('frontpress').controller('FrontPressController', FrontPressController);
 
     function FrontPressController(BlogInformationModel){
     	var vc = this;

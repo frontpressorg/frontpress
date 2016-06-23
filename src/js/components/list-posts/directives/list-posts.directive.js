@@ -1,8 +1,8 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.components.list-posts').directive('listPosts', ListPostsDirective);
+	angular.module('frontpress.components.list-posts').directive('listPosts', ListPostsDirective);
 
 	function ListPostsDirective(){
 		var directive = {

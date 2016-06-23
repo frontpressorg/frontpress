@@ -2,6 +2,6 @@
 
 	"use strict";
 
-	angular.module('ngpress.components.list-posts', ['ngpress.apis.posts', 'ngpress.filters']);
+	angular.module('frontpress.components.list-posts', ['frontpress.apis.posts', 'frontpress.filters']);
 
 })();

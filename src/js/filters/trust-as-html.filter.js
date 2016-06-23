@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress.filters').filter('trustAsHtml', TrustAsHtml);
+	angular.module('frontpress.filters').filter('trustAsHtml', TrustAsHtml);
 
 	TrustAsHtml.$inject = ['$sce'];
 

@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	angular.module('ngpress.components.blog-information').factory('BlogInformationModel', BlogInformationModel);
+	angular.module('frontpress.components.blog-information').factory('BlogInformationModel', BlogInformationModel);
 
 	function BlogInformationModel(BlogApi){
 		var model = {

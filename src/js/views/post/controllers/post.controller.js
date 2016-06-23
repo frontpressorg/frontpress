@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress.views.post').controller('PostController', PostController);
+	angular.module('frontpress.views.post').controller('PostController', PostController);
 
     function PostController(FullPostModel, $stateParams){
     	var vc = this;

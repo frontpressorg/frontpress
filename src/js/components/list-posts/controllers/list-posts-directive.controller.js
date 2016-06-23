@@ -1,8 +1,8 @@
 (function(){
-	
+
 	"use strict";
 
-	angular.module('ngpress.components.list-posts').controller('ListPostsDirectiveController', ListPostsDirectiveController);
+	angular.module('frontpress.components.list-posts').controller('ListPostsDirectiveController', ListPostsDirectiveController);
 
 	function ListPostsDirectiveController(ListPostsModel){
 		var vc = this;

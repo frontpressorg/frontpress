@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('ngpress.views.post').config(configPost);
+	angular.module('frontpress.views.post').config(configPost);
 
     configPost.$inject = ["$stateProvider"];
 
