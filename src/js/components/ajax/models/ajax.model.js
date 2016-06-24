@@ -1,51 +1,38 @@
-(function(){
-    'use strict';
+(function() {
+  'use strict';
 
-    angular.module('frontpress.components.ajax').factory('AjaxModel', function($http){
+  angular.module('frontpress.components.ajax').factory('AjaxModel', AjaxModel);
 
-        var model = {
-            get: get,
-            post: post,
-            put: put,
-        };
+  function AjaxModel($http) {
+    function get(url, params) {
+      return request(url, params, 'GET');
+    }
 
-        return model;
+    function post(url, params) {
+      return request(url, params, 'POST');
+    }
 
-        function get(url, params){
-            if(!params){
-                params = {};
-            }
-            var promise = $http({
-                method: 'GET',
-                url: url,
-                params: params
-            });
-            return promise;
-        }
+    function put(url, params) {
+      return request(url, params, 'PUT');
+    }
 
-        function post(url, params){
-            if(!params){
-                params = {};
-            }
-            var promise = $http({
-                method: 'POST',
-                url: url,
-                data: params
-            });
-            return promise;
-        }
+    function request(url, params, method) {
+      params = params || {};
 
-        function put(url, params){
-            if(!params){
-                params = {};
-            }
+      var promise = $http({
+        url: url,
+        method: method,
+        params: params
+      });
 
-            var promise = $http({
-                method: 'PUT',
-                url: url,
-                data: params
-            });
-            return promise;
-        }
-    });
+      return promise;
+    }
+
+    return {
+      get: get,
+      post: post,
+      put: put,
+    };
+
+  }
 })();

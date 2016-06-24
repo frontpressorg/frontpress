@@ -1,39 +1,36 @@
-(function(){
+(function() {
+  'use strict';
 
-	angular.module('frontpress.apis.blog').provider('BlogApi', BlogApi);
+  angular.module('frontpress.apis.blog').provider('BlogApi', BlogApi);
 
-	function BlogApi(){
-		var configure = {
-			wordpressBaseUrl: null,
-			setWordpressBaseUrl: setWordpressBaseUrl,
-		}
+  function BlogApi() {
+    BlogApi.$inject = ['AjaxModel'];
 
-        var provider = {
-            $get: BlogApi,
-            configure: configure
-        };
-        return provider;
+    var configure = {
+      wordpressBaseUrl: null,
+      setWordpressBaseUrl: setWordpressBaseUrl,
+    }
 
+    function setWordpressBaseUrl(wordpressBaseUrl) {
+      configure.wordpressBaseUrl = wordpressBaseUrl;
+    }
 
-        function setWordpressBaseUrl(wordpressBaseUrl){
-            configure.wordpressBaseUrl = wordpressBaseUrl;
-        }
+    function blogApi(AjaxModel) {
+      var sampleUrl = configure.wordpressBaseUrl;
 
-        BlogApi.$inject = ['AjaxModel'];
+      function getBlogInformation() {
+        return AjaxModel.get(sampleUrl);
+      }
 
-        function BlogApi(AjaxModel){
-            var sampleUrl = configure.wordpressBaseUrl;
+      return {
+        getBlogInformation: getBlogInformation,
+      };
+    }
 
-            var restApi = {
-        		getBlogInformation: getBlogInformation,
-        	};
-
-        	function getBlogInformation(){
-                return AjaxModel.get(sampleUrl);
-            }
-
-        	return restApi;
-        }
-	}
+    return {
+      $get: blogApi,
+      configure: configure
+    }
+  }
 
 })();
