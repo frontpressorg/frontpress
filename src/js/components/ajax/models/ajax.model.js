@@ -4,6 +4,13 @@
   angular.module('frontpress.components.ajax').factory('AjaxModel', AjaxModel);
 
   function AjaxModel($http) {
+
+    var model = {
+      get: get,
+      post: post,
+      put: put,
+    };
+
     function get(url, params) {
       return request(url, params, 'GET');
     }
@@ -28,11 +35,7 @@
       return promise;
     }
 
-    return {
-      get: get,
-      post: post,
-      put: put,
-    };
+    return model;
 
   }
 })();

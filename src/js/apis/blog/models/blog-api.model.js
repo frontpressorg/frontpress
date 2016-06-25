@@ -27,10 +27,12 @@
       };
     }
 
-    return {
+    var restApi = {
       $get: blogApi,
-      configure: configure
+      configure: configure      
     }
+
+    return restApi;
   }
 
 })();
