@@ -1,30 +1,35 @@
 (function(){
 
-	"use strict";
+    "use strict";
 
-	angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
+    angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
 
-	function ListPostsModel(PostsApi){
-		var model = {
-			postsList: null,
-			loadPosts: loadPosts,
-			pageSize: 10,
-			pageNumber: 1,
-			isLoadingPosts: null,
-		}
+    function ListPostsModel(PostsApi){
+        var model = {
+            postsList: null,
+            loadPosts: loadPosts,
+            pageSize: 10,
+            pageNumber: 1,
+            isLoadingPosts: null,
+        }
 
-		return model;
+        return model;
 
-		function loadPosts(){
-			model.isLoadingPosts = true;
+        function loadPosts(){
+            model.isLoadingPosts = true;
 
-			var allPostsPromise = PostsApi.getAllPosts();
+            var allPostsParams = {
+                pageSize: 10,
+                pageNumber: 1
+            };
 
-			allPostsPromise.success(function(result){
-				model.postsList = result.posts;
-				model.isLoadingPosts = false;
-			});
-		}
-	}
+            var allPostsPromise = PostsApi.getAllPosts(allPostsParams);
+
+            allPostsPromise.success(function(result){
+                model.postsList = result.posts;
+                model.isLoadingPosts = false;
+            });
+        }
+    }
 
 })();
