@@ -15,15 +15,10 @@
 
         return model;
 
-        function loadPosts(){
+        function loadPosts(params){
             model.isLoadingPosts = true;
 
-            var allPostsParams = {
-                pageSize: 10,
-                pageNumber: 1
-            };
-
-            var allPostsPromise = PostsApi.getAllPosts(allPostsParams);
+            var allPostsPromise = PostsApi.getAllPosts(params);
 
             allPostsPromise.success(function(result){
                 model.postsList = result.posts;
