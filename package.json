@@ -4,7 +4,8 @@
   "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
   "dependencies": {
-    "bower": "^1.7.9"
+    "bower": "^1.7.9",
+    "gulp-concat": "^2.6.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
