@@ -34,8 +34,8 @@
                 var params = {};
 
                 if(configs){
-                    if(configs.pageSize) params.number = configs.pageSize;
-                    if(configs.pageNumber) params.page = configs.pageNumber;
+                    if(configs.pageSize) params.number = parseInt(configs.pageSize);
+                    if(configs.pageNumber) params.page = parseInt(configs.pageNumber);
                     if(configs.context) params.context = configs.context;
                 }
                 return params;

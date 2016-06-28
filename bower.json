@@ -15,7 +15,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.7"
+    "angular": "^1.5.7",
+    "ngInfiniteScroll": "^1.2.2"
   },
   "devDependencies": {
     "angular-ui-router": "^0.3.1"

@@ -21,7 +21,11 @@
             var allPostsPromise = PostsApi.getAllPosts(params);
 
             allPostsPromise.success(function(result){
-                model.postsList = result.posts;
+                if(model.postsList){
+                    model.postsList = model.postsList.concat(result.posts);                    
+                } else {
+                    model.postsList = result.posts;                                        
+                }
                 model.isLoadingPosts = false;
             });
         }
