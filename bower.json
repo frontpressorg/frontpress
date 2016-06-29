@@ -1,5 +1,5 @@
 {
-  "name": "FrontPress",
+  "name": "frontpress",
   "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
   "authors": [
