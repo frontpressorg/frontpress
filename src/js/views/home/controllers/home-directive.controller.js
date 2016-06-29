@@ -9,7 +9,7 @@
         vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
         var firstNextPageNumber = 2;
         var params = {
-            pageSize: 10,
+            pageSize: 6,
             context: 'embed',
             pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
         };
