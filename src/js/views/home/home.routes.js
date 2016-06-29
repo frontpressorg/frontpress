@@ -10,13 +10,13 @@
         var stateHome = {
             url: '/',
             template: '<home-view></home-view>',
-            controller: 'HomeController as vc'
+            controller: 'HomeRouteController as vc'
         };
 
         var stateHomePagination = {
             url: '/page/{pageNumber:[0-9]{1,}}',
             template: '<home-view></home-view>',
-            controller: 'HomeController as vc'
+            controller: 'HomeRouteController as vc'
         };
 
         $stateProvider.state('home', stateHome);
