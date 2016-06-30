@@ -6,12 +6,12 @@
     function HomeDirectiveController($stateParams, ListPostsModel, $state){
         var vc = this;
         vc.vm = ListPostsModel;
-        vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
         var firstNextPageNumber = 2;
+        vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
         var params = {
             pageSize: 6,
             context: 'embed',
-            pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
+            pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : firstNextPageNumber
         };
 
         vc.vm.loadPosts(params);
@@ -20,8 +20,7 @@
             var nextPageNumber = params.pageNumber ? params.pageNumber++ : firstNextPageNumber;
             var paginationOptions = {notify: false};
             vc.vm.loadPosts(params);
-            $state.go('home-pagination', {pageNumber:nextPageNumber}, paginationOptions);
-            console.log('chamei pelo loadMorePostsAndPaginate e o isLoadingPosts é '+ vc.vm.isLoadingPosts);
+            $state.go('home-pagination', {pageNumber: nextPageNumber}, paginationOptions);
         }
     }
 
