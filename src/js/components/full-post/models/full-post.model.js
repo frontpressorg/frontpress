@@ -14,6 +14,9 @@
 			setFeaturedImage: setFeaturedImage,
 			loadFullPostBySlug: loadFullPostBySlug,
 			isLoadingFullPost: false,
+			date: null,
+			setDate: setDate
+			//Data, url curta, título, tags e categorias			
 		};
 
 		function setTitle(title){
@@ -24,6 +27,10 @@
 			model.content = content;
 		}
 
+		function setDate(date){
+			model.date = date;
+		}
+
 		function setFeaturedImage(featuredImage){
 			model.featuredImage = featuredImage;
 		}
@@ -32,11 +39,12 @@
 			var defer = $q.defer();
 
 			model.isLoadingFullPost = true;
-			var postPromise = PostsApi.getPostBySlug(slug);
+			var postPromise = PostsApi.getPostBySlug(slug, configs);
 			postPromise.success(function(result){
 				model.setTitle(result.title);
 				model.setContent(result.content);
 				model.setFeaturedImage(result.featured_image);
+				model.setDate(result.date);
 				model.isLoadingFullPost = false;
 				defer.resolve();
 			});

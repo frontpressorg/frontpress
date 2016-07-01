@@ -37,6 +37,7 @@
                     if(configs.pageSize) params.number = parseInt(configs.pageSize);
                     if(configs.pageNumber) params.page = parseInt(configs.pageNumber);
                     if(configs.context) params.context = configs.context;
+                    if(configs.fields) params.fields = configs.fields;
                 }
                 return params;
             }
@@ -46,10 +47,9 @@
                 return AjaxModel.get(sampleUrl, params);
             }
 
-            function getPostBySlug(postSlug){
-                var params = {
-                    slug: postSlug,
-                };
+            function getPostBySlug(postSlug, configs){
+                var params = _parseConfigsToParams(configs);
+                params.slug = postSlug;                
 
                 var url = sampleUrl + 'slug:<post-slug>';
                 url = url.replace('<post-slug>', postSlug);

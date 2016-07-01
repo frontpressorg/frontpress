@@ -9,7 +9,7 @@
     	var fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);
         MetadataManagerModel.init();
     	
-    	fullPostPromise.then(function(){
+    	fullPostPromise.then(function(result){
     		MetadataManagerModel.setPageTitle(FullPostModel.title);    		
     	});
 	}
