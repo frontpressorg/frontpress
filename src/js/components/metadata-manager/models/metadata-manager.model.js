@@ -6,16 +6,18 @@
 
 	function MetadataManagerModel(){
 		var model = {
-			pageTitle: null,
-			pageDescription: null,
-			setPageTitle: setPageTitle,
-			setPageDescription: setPageDescription,
-			isIndex: true,
+			init: init,
 			isFollow: true,
-			setIsIndex: setIsIndex,
+			isIndex: true,
+			pageCanonical: null,
+			pageDescription: null,
+			pageRobots: null,	
+			pageTitle: null,
 			setIsFollow: setIsFollow,
-			pageRobots: null,		
-			init: init	
+			setIsIndex: setIsIndex,
+			setPageCanonical: setPageCanonical,
+			setPageDescription: setPageDescription,
+			setPageTitle: setPageTitle,
 		};
 
 		function setPageTitle(pageTitle){
@@ -40,6 +42,10 @@
         	var isIndexString = model.isIndex ? 'index' : 'noindex';
         	var isFollowString = model.isFollow ? 'follow' : 'nofollow';
         	model.pageRobots = '{0}, {1}'.format(isIndexString, isFollowString);					
+		}
+
+		function setPageCanonical(pageCanonical){
+			model.pageCanonical = pageCanonical;
 		}
 
 		function init(){
