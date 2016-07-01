@@ -4,7 +4,7 @@
 
 	angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
 
-	function FullPostModel(PostsApi){
+	function FullPostModel(PostsApi, $q){
 		var model = {
 			title: null,
 			content: null,
@@ -29,6 +29,8 @@
 		}
 
 		function loadFullPostBySlug(slug){
+			var defer = $q.defer();
+
 			model.isLoadingFullPost = true;
 			var postPromise = PostsApi.getPostBySlug(slug);
 			postPromise.success(function(result){
@@ -36,7 +38,9 @@
 				model.setContent(result.content);
 				model.setFeaturedImage(result.featured_image);
 				model.isLoadingFullPost = false;
+				defer.resolve();
 			});
+			return defer.promise;
 		}
 
 		return model;

@@ -3,10 +3,8 @@
 
 	angular.module('frontpress').controller('FrontPressController', FrontPressController);
 
-    function FrontPressController(BlogInformationModel){
+    function FrontPressController(){
     	var vc = this;
-    	BlogInformationModel.loadBlogInformation();
-    	vc.blog = BlogInformationModel;
 	}
 
 })();

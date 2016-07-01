@@ -22,9 +22,11 @@
         return AjaxModel.get(sampleUrl);
       }
 
-      return {
+      var restApi = {
         getBlogInformation: getBlogInformation,
       };
+      
+      return restApi;
     }
 
     var restApi = {
