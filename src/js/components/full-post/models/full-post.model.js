@@ -39,7 +39,7 @@
 			var defer = $q.defer();
 
 			model.isLoadingFullPost = true;
-			var postPromise = PostsApi.getPostBySlug(slug, configs);
+			var postPromise = PostsApi.getPostBySlug(slug);
 			postPromise.success(function(result){
 				model.setTitle(result.title);
 				model.setContent(result.content);
