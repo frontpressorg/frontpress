@@ -11,7 +11,7 @@
 			restrict: 'E',
 			controllerAs: 'vc',
 			bindToController: true,
-			controller: 'PostController'
+			controller: 'PostDirectiveController'
 		};
 		return directive;
 	}

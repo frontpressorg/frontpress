@@ -1,9 +1,9 @@
 (function(){
 	'use strict';
 
-	angular.module('frontpress.views.post').controller('PostController', PostController);
+	angular.module('frontpress.views.post').controller('PostDirectiveController', PostDirectiveController);
 
-    function PostController(FullPostModel, $stateParams, MetadataManagerModel){
+    function PostDirectiveController(FullPostModel, $stateParams, MetadataManagerModel){
     	var vc = this;
     	var postSlug = $stateParams.postSlug;
     	var fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);

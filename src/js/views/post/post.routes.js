@@ -10,7 +10,7 @@
         var statePost = {
             url: '/:postSlug',
             template: '<post-view></post-view>',
-            controller: 'PostController as vc'
+            controller: 'PostRouteController as vc'
         };
 
         $stateProvider.state('post', statePost);
