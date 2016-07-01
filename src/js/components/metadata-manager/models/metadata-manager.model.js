@@ -36,16 +36,6 @@
 			_setPageRobots();
 		}
 
-		// TODO: descobrir melhor jeito de adicionar essa função em um value do angular
-		if (!String.prototype.format) {
-			String.prototype.format = function() {
-				var args = arguments;
-				return this.replace(/{(\d+)}/g, function(match, number) {
-					return typeof args[number] != 'undefined' ? args[number] : match;
-				});
-			};
-		}
-
 		function _setPageRobots(){
         	var isIndexString = model.isIndex ? 'index' : 'noindex';
         	var isFollowString = model.isFollow ? 'follow' : 'nofollow';
