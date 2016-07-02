@@ -10,7 +10,8 @@ module.exports = function() {
   var angularCopy = gulp.src([
     './assets/angular/angular.js',
     './assets/angular-ui-router/release/angular-ui-router.min.js',
-    './assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js'
+    './assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+    './assets/defiant/dist/defiant.min.js',
   ])
   .pipe(concat('lib/external.js'))
   .pipe(gulp.dest(javascriptDestFolder));
