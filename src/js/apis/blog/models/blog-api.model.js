@@ -1,40 +1,24 @@
 (function() {
   'use strict';
 
-  angular.module('frontpress.apis.blog').provider('BlogApi', BlogApi);
+  angular.module('frontpress.apis.blog').factory('BlogApi', BlogApi);
 
-  function BlogApi() {
-    BlogApi.$inject = ['AjaxModel'];
-
-    var configure = {
-      wordpressBaseUrl: null,
-      setWordpressBaseUrl: setWordpressBaseUrl,
-    }
-
-    function setWordpressBaseUrl(wordpressBaseUrl) {
-      configure.wordpressBaseUrl = wordpressBaseUrl;
-    }
-
-    function blogApi(AjaxModel) {
-      var sampleUrl = configure.wordpressBaseUrl;
-
-      function getBlogInformation() {
-        return AjaxModel.get(sampleUrl);
-      }
-
-      var restApi = {
-        getBlogInformation: getBlogInformation,
-      };
-      
-      return restApi;
-    }
+  BlogApi.$inject = ['AjaxModel', '$Frontpress'];
+  
+  function BlogApi(AjaxModel, $Frontpress) {
+    var baseUrl = $Frontpress.restApiUrl;
 
     var restApi = {
-      $get: blogApi,
-      configure: configure      
+      getBlogInformation: getBlogInformation,
+    };
+    
+    return restApi;
+
+    function getBlogInformation() {
+      return AjaxModel.get(baseUrl);
     }
 
-    return restApi;
   }
+  
 
 })();

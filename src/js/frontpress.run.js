@@ -17,7 +17,6 @@
     	}
 
     	extendStringPrototype();
-
     }
 
 })();

@@ -8,7 +8,7 @@
         var model = {
             postsList: null,
             loadPosts: loadPosts,
-            pageSize: 10,
+            pageSize: null,
             pageNumber: 1,
             isLoadingPosts: null,
         }
@@ -24,6 +24,7 @@
             var allPostsPromise = PostsApi.getAllPosts(params, configs);
 
             allPostsPromise.success(function(result){
+                console.log(result);
                 if(model.postsList){
                     model.postsList = model.postsList.concat(result.posts);                    
                 } else {

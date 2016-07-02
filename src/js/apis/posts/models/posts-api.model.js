@@ -1,59 +1,41 @@
 (function(){
 
-    angular.module('frontpress.apis.posts').provider('PostsApi', PostsApi);
+    angular.module('frontpress.apis.posts').factory('PostsApi', PostsApi);
 
-    function PostsApi(){
-        var configure = {
-            wordpressBaseUrl: null,
-            setWordpressBaseUrl: setWordpressBaseUrl,
-        }
+    PostsApi.$inject = ['AjaxModel', '$Frontpress'];
 
-        var provider = {
-            $get: PostsApi,
-            configure: configure
+    function PostsApi(AjaxModel, $Frontpress){
+        var postsBaseUrl = $Frontpress.restApiUrl + '/posts/';
+        
+        var restApi = {
+            getAllPosts: getAllPosts,
+            getPostBySlug: getPostBySlug
         };
-        return provider;
 
+        return restApi;
 
-        function setWordpressBaseUrl(wordpressBaseUrl){
-            configure.wordpressBaseUrl = wordpressBaseUrl;
+        function _parseConfigsToParams(configs){
+            var params = {};
+
+            if(configs){
+                if(configs.pageSize) params.number = parseInt(configs.pageSize);
+                if(configs.pageNumber) params.page = parseInt(configs.pageNumber);
+                if(configs.context) params.context = configs.context;
+                if(configs.fields) params.fields = configs.fields;
+            }
+            return params;
         }
 
-        PostsApi.$inject = ['AjaxModel'];
-        // API documentation
-        //https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/posts/
+        function getAllPosts(configs){
+            var postsListUrl = postsBaseUrl;
+            var params = _parseConfigsToParams(configs);
+            return AjaxModel.get(postsListUrl, params);
+        }
 
-        function PostsApi(AjaxModel){
-            var sampleUrl = configure.wordpressBaseUrl + "/posts/";
-            var restApi = {
-                getAllPosts: getAllPosts,
-                getPostBySlug: getPostBySlug
-            }
-
-            function _parseConfigsToParams(configs){
-                var params = {};
-
-                if(configs){
-                    if(configs.pageSize) params.number = parseInt(configs.pageSize);
-                    if(configs.pageNumber) params.page = parseInt(configs.pageNumber);
-                    if(configs.context) params.context = configs.context;
-                    if(configs.fields) params.fields = configs.fields;
-                }
-                return params;
-            }
-
-            function getAllPosts(configs){
-                var params = _parseConfigsToParams(configs);
-                return AjaxModel.get(sampleUrl, params);
-            }
-
-            function getPostBySlug(postSlug, configs){             
-                var url = sampleUrl + 'slug:<post-slug>';
-                url = url.replace('<post-slug>', postSlug);
-                return AjaxModel.get(url, configs);
-            }
-
-            return restApi;
+        function getPostBySlug(postSlug, configs){             
+            var postUrl = postsBaseUrl + 'slug:<post-slug>';
+            postUrl = postUrl.replace('<post-slug>', postSlug);
+            return AjaxModel.get(postUrl, configs);
         }
     }
 
