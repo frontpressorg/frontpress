@@ -20,6 +20,8 @@
 			setTitle: setTitle,
 			tagNames: null,
 			title: null,	
+			slug: null,
+			setSlug: setSlug
 		};
 
 		function setTitle(title){
@@ -46,12 +48,16 @@
 			model.tagNames = tagNames;
 		}
 
+		function setSlug(slug){
+			model.slug = slug;
+		}
+
 		function loadFullPostBySlug(slug){
 			var defer = $q.defer();
 
 			model.isLoadingFullPost = true;
 			var configs = {
-				fields: 'ID,title,featured_image,data,categories,tags,content'
+				fields: 'ID,title,featured_image,data,categories,tags,content,slug'
 			};
 
 			var postPromise = PostsApi.getPostBySlug(slug, configs);
@@ -64,6 +70,7 @@
 				model.setDate(result.date);				
 				model.setCategoryNames(categoryNames);
 				model.setTagNames(tagNames);
+				model.setSlug(result.slug);
 				model.isLoadingFullPost = false;
 				defer.resolve();
 			});
