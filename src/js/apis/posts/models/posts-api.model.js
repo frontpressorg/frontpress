@@ -47,13 +47,10 @@
                 return AjaxModel.get(sampleUrl, params);
             }
 
-            function getPostBySlug(postSlug, configs){
-                var params = _parseConfigsToParams(configs);
-                params.slug = postSlug;                
-
+            function getPostBySlug(postSlug, configs){             
                 var url = sampleUrl + 'slug:<post-slug>';
                 url = url.replace('<post-slug>', postSlug);
-                return AjaxModel.get(url);
+                return AjaxModel.get(url, configs);
             }
 
             return restApi;

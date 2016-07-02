@@ -50,7 +50,11 @@
 			var defer = $q.defer();
 
 			model.isLoadingFullPost = true;
-			var postPromise = PostsApi.getPostBySlug(slug);
+			var configs = {
+				fields: 'ID,title,featured_image,data,categories,tags,content'
+			};
+
+			var postPromise = PostsApi.getPostBySlug(slug, configs);
 			postPromise.success(function(result){
 				var categoryNames = JSON.search(result.categories, '//name');
 				var tagNames = JSON.search(result.tags,'//name');

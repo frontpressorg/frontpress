@@ -17,8 +17,11 @@
 
         function loadPosts(params){
             model.isLoadingPosts = true;
+            var configs = {
+                fields: 'ID,title,date,featured_image,excerpt'
+            };
 
-            var allPostsPromise = PostsApi.getAllPosts(params);
+            var allPostsPromise = PostsApi.getAllPosts(params, configs);
 
             allPostsPromise.success(function(result){
                 if(model.postsList){
