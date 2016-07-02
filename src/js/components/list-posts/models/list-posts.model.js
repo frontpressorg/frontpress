@@ -24,7 +24,6 @@
             var allPostsPromise = PostsApi.getAllPosts(params, configs);
 
             allPostsPromise.success(function(result){
-                console.log(result);
                 if(model.postsList){
                     model.postsList = model.postsList.concat(result.posts);                    
                 } else {
