@@ -12,6 +12,7 @@ module.exports = function() {
     './assets/angular-ui-router/release/angular-ui-router.min.js',
     './assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
     './assets/defiant/dist/defiant.min.js',
+    './assets/angular-disqus/src/angular-disqus.js',
   ])
   .pipe(concat('lib/external.js'))
   .pipe(gulp.dest(javascriptDestFolder));
