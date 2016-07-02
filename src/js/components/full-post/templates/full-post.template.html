@@ -5,5 +5,13 @@
 		<p ng-bind='vc.vm.date | date :  "dd/MM/y"'></p>
 		<img ng-src='{[{vc.vm.featuredImage}]}' style='max-width: 800px;'>
 		<div ng-bind-html='vc.vm.content | trustAsHtml '></div>
+		<div>
+			<span><strong>tags:</strong></span>
+			<span ng-repeat='tagName in vc.vm.tagNames' rel='tag'>{[{tagName}]} </span>
+		</div>
+		<div>
+			<span><strong>categories:</strong></span>
+			<span ng-repeat='categoryName in vc.vm.categoryNames' rel='category tag'>{[{categoryName}]} </span>
+		</div>		
 	</div>
 </div>
