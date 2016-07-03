@@ -3,14 +3,14 @@
 
 	angular.module('frontpress.views.post').controller('PostDirectiveController', PostDirectiveController);
 
-    function PostDirectiveController(FullPostModel, $stateParams, MetadataManagerModel){
+    function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel){
     	var vc = this;
         var postSlug = $stateParams.postSlug;
         var fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);
-        MetadataManagerModel.init();
+        PageHeadModel.init();
         
         fullPostPromise.then(function(result){
-            MetadataManagerModel.setPageTitle(FullPostModel.title);                     
+            PageHeadModel.setPageTitle(FullPostModel.title);                     
             vc.disqusId = FullPostModel.slug;
     	});
 	}

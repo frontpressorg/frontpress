@@ -2,9 +2,9 @@
 	
 	"use strict";
 
-	angular.module('frontpress.components.metadata-manager').factory('MetadataManagerModel', MetadataManagerModel);
+	angular.module('frontpress.components.page-head').factory('PageHeadModel', PageHeadModel);
 
-	function MetadataManagerModel(){
+	function PageHeadModel(){
 		var model = {
 			init: init,
 			isFollow: true,
