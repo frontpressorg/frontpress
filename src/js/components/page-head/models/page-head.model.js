@@ -18,6 +18,10 @@
 			setPageCanonical: setPageCanonical,
 			setPageDescription: setPageDescription,
 			setPageTitle: setPageTitle,
+			setRelPrev: setRelPrev,
+			setRelNext: setRelNext,
+			relNext: null,
+			relPrev: null
 		};
 
 		function setPageTitle(pageTitle){
@@ -26,6 +30,14 @@
 
 		function setPageDescription(pageDescription){
 			model.pageDescription = pageDescription;
+		}
+
+		function setRelNext(relNext){
+			model.relNext = relNext;
+		}
+
+		function setRelPrev(relPrev){
+			model.relPrev = relPrev;
 		}
 
 		function setIsIndex(isIndex){

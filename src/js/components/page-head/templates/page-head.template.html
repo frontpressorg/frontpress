@@ -3,4 +3,6 @@
 <meta name="description" content="{[{vc.vm.pageDescription}]}">
 <meta name="robots" content="{[{vc.vm.pageRobots}]}">	
 <!-- <link rel="canonical" href="{[{vc.vm.pageCanonical}]}"> -->
+<link rel="prev" ng-href="{[{vc.vm.relPrev}]}" ng-if="vc.vm.relPrev">
+<link rel="next" ng-href="{[{vc.vm.relNext}]}" ng-if="vc.vm.relNext">
 <ng-transclude></ng-transclude>

@@ -4,7 +4,7 @@
 
 	angular.module('frontpress.components.pagination').factory('PaginationModel', PaginationModel);
 
-	function PaginationModel(){
+	function PaginationModel(PageHeadModel){
 		var model = {
 			lastPageNumber: null,
 			pages: null,
@@ -19,10 +19,12 @@
 
 		function setNextPage(nextPage){
 			model.nextPage = nextPage;
+			PageHeadModel.setRelNext(nextPage.href);
 		}
 
 		function setPrevPage(prevPage){
 			model.prevPage = prevPage;
+			PageHeadModel.setRelPrev(prevPage.href);
 		}
 
         function generatePaginationFromCurrentPageNumber(currentPageNumber){
@@ -32,7 +34,7 @@
             if(currentPageNumber > 1){
             	var prevPageNumber = currentPageNumber - 1;
             	var prevPage = {
-            		href: '/pagina/{0}'.format(prevPageNumber),
+            		href: '/page/{0}'.format(prevPageNumber),
             		number: prevPageNumber
             	};
             	model.setPrevPage(prevPage);
@@ -42,7 +44,7 @@
             	var paginationPageNumber = currentPageNumber + i;
             	if(paginationPageNumber <= model.lastPageNumber) {
 	                var paginationPage = {
-	                    href: '/pagina/{0}'.format(paginationPageNumber),
+	                    href: '/page/{0}'.format(paginationPageNumber),
 	                    number: paginationPageNumber
 	                };
 	                paginationPages.push(paginationPage);            		
@@ -52,7 +54,7 @@
             if(currentPageNumber < model.lastPageNumber){
             	var nextPageNumber = currentPageNumber + 1;
             	var nextPage = {
-            		href: '/pagina/{0}'.format(nextPageNumber),
+            		href: '/page/{0}'.format(nextPageNumber),
             		number: nextPageNumber
             	};
             	model.setNextPage(nextPage);
