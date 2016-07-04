@@ -29,7 +29,8 @@
         _setPageMetaData();
 
         function loadMorePostsAndPaginate(){
-            var nextPageNumber = params.pageNumber ? params.pageNumber++ : firstNextPageNumber;
+            params.pageNumber++;
+            var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
             var paginationOptions = {notify: false};
             vc.vm.loadPosts(params);
             _setPageMetaData();
