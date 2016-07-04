@@ -28,7 +28,6 @@
 		}
 
         function generatePaginationFromCurrentPageNumber(currentPageNumber){
-        	console.log(currentPageNumber);
             var paginationPages = [];
 
             if(currentPageNumber > 1){
@@ -40,7 +39,7 @@
             	model.setPrevPage(prevPage);
             }
 
-            for(var i=0; i <= model.paginationSize; i++){
+            for(var i=1; i <= model.paginationSize; i++){
             	var paginationPageNumber = currentPageNumber + i;
             	if(paginationPageNumber <= model.lastPageNumber) {
 	                var paginationPage = {
