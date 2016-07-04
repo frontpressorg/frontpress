@@ -1,3 +1,5 @@
 <div>
-	<a ng-repeat='page in vc.vm.pages' ng-bind='page.number' ng-href='{[{page.href}]}'></a>
+	<a ng-href='{[{vc.vm.prevPage.href}]}' ng-if='vc.vm.prevPage'>&lt;&lt;</a>
+	<a ng-repeat='page in vc.vm.pages' ng-bind='page.number' ng-href='{[{page.href}]}'></a>		
+	<a ng-href='{[{vc.vm.nextPage.href}]}' ng-if='vc.vm.nextPage'>&gt;&gt;</a>
 </div>

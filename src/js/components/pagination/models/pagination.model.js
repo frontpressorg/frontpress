@@ -10,13 +10,36 @@
 			pages: null,
 			paginationSize: 4,
 			generatePaginationFromCurrentPageNumber: generatePaginationFromCurrentPageNumber,
-			setLastPageNumber: setLastPageNumber
+			setLastPageNumber: setLastPageNumber,
+			prevPage: null,
+			nextPage: null,
+			setPrevPage: setPrevPage,
+			setNextPage: setNextPage,
 		};
 
-        function generatePaginationFromCurrentPageNumbergeneratePaginationFromCurrentPageNumber(nextPageNumber){
+		function setNextPage(nextPage){
+			model.nextPage = nextPage;
+		}
+
+		function setPrevPage(prevPage){
+			model.prevPage = prevPage;
+		}
+
+        function generatePaginationFromCurrentPageNumber(currentPageNumber){
+        	console.log(currentPageNumber);
             var paginationPages = [];
+
+            if(currentPageNumber > 1){
+            	var prevPageNumber = currentPageNumber - 1;
+            	var prevPage = {
+            		href: '/pagina/{0}'.format(prevPageNumber),
+            		number: prevPageNumber
+            	};
+            	model.setPrevPage(prevPage);
+            }
+
             for(var i=0; i <= model.paginationSize; i++){
-            	var paginationPageNumber = nextPageNumber + i + 1;
+            	var paginationPageNumber = currentPageNumber + i;
             	if(paginationPageNumber <= model.lastPageNumber) {
 	                var paginationPage = {
 	                    href: '/pagina/{0}'.format(paginationPageNumber),
@@ -25,6 +48,16 @@
 	                paginationPages.push(paginationPage);            		
             	}
             };
+
+            if(currentPageNumber < model.lastPageNumber){
+            	var nextPageNumber = currentPageNumber + 1;
+            	var nextPage = {
+            		href: '/pagina/{0}'.format(nextPageNumber),
+            		number: nextPageNumber
+            	};
+            	model.setNextPage(nextPage);
+            }            
+
             model.pages = paginationPages;
         }		
 
