@@ -22,7 +22,6 @@
         loadPostsPromise.then(function(){
             var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
             PaginationModel.setLastPageNumber(totalPagesNumber);
-            console.log(params.pageNumber);
             _setPaginationPages(params.pageNumber);          
         });
 

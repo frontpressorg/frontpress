@@ -5,6 +5,7 @@
 
     function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel){
     	var vc = this;
+        vc.vm = FullPostModel;
         var postSlug = $stateParams.postSlug;
         var fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);
         PageHeadModel.init();
