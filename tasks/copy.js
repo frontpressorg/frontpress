@@ -25,6 +25,8 @@ module.exports = function() {
     './src/js/**/*.run.js',
     './src/js/**/*.factory.js',
     './src/js/**/*.directive.js',
+    './src/js/**/*.value.js',
+    './src/js/**/*.constant.js',
     './src/js/**/*.js'
   ])
   .pipe(concat('app.js'))

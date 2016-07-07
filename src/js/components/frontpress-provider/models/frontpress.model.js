@@ -2,12 +2,13 @@
 	"use strict";
 	angular.module('frontpress.components.frontpress-provider').provider('$Frontpress', FrontpressProvider);
 	
-	function FrontpressProvider(){
+	function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 		var configure = {
 			restApiUrl: null,
 			setRestApiUrl: setRestApiUrl,
 			pageSize: null,
-			setPageSize: setPageSize
+			setPageSize: setPageSize,
+			load: load
 		};
 
 		function setPageSize(pageSize){
@@ -18,10 +19,18 @@
 			configure.restApiUrl = restApiUrl;
 		}
 
+		function load(){
+			// falta uma sanidadezinha aqui 
+			configure.setRestApiUrl(FrontpressConfigurationFile.restApiUrl);
+			configure.setPageSize(FrontpressConfigurationFile.pageSize);
+			$disqusProvider.setShortname(FrontpressConfigurationFile.disqusShortname);
+		}
+
 		var provider = {
 			$get: Frontpress,
 			configure: configure
 		};
+
 
 		return provider;
 

@@ -8,7 +8,7 @@ module.exports = function() {
         'src/styl/**/*.styl'
     ];
 
-    runSequence('copy', 'styl', 'inject', 'connect', 'open');
+    runSequence('ngConfig','copy', 'styl', 'inject', 'connect', 'open');
 
     gulp.watch(files, ['build']);
 };
