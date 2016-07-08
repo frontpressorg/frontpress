@@ -8,7 +8,9 @@
 			setRestApiUrl: setRestApiUrl,
 			pageSize: null,
 			setPageSize: setPageSize,
-			load: load
+			load: load,
+			overrides: null,
+			setOverrides: setOverrides
 		};
 
 		function setPageSize(pageSize){
@@ -19,11 +21,27 @@
 			configure.restApiUrl = restApiUrl;
 		}
 
+		function setOverrides(overrides){
+			configure.overrides = overrides;
+		}
+
 		function load(){
-			// falta uma sanidadezinha aqui 
-			configure.setRestApiUrl(FrontpressConfigurationFile.restApiUrl);
-			configure.setPageSize(FrontpressConfigurationFile.pageSize);
-			$disqusProvider.setShortname(FrontpressConfigurationFile.disqusShortname);
+
+			var configsToFunctions = {
+				restApiUrl: configure.setRestApiUrl,
+				pageSize: configure.setPageSize,
+				disqusShortname: $disqusProvider.setShortname,
+				overrides: configure.setOverrides
+			};
+
+			for(var config in configsToFunctions){
+				configsToFunctions[config](FrontpressConfigurationFile[config]);
+			}		
+
+            if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
+                throw '[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.';
+            }
+
 		}
 
 		var provider = {
@@ -37,7 +55,8 @@
 		function Frontpress(){
 			var model = {
 				pageSize: configure.pageSize,
-				restApiUrl: configure.restApiUrl
+				restApiUrl: configure.restApiUrl,
+				overrides: configure.overrides
 			};
 
 			return model;

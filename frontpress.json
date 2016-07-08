@@ -1,8 +1,8 @@
 {
   "restApiUrl": "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com",
   "pageSize": "5",
-  "disqusShortname": "jotateles",
+  "disqusShortname": "frontpress",
   "overrides": {
-    "title": "Teste de título com override"
+    "title": "Frontpress - This title is overwritten by frontpress.json configuration file."
   }
 }
