@@ -43,7 +43,12 @@
 
         function _setPageMetaData(){
             blogInformationPromise.success(function(result){
-                PageHeadModel.setPageTitle(result.name);
+                if(angular.isUndefined($Frontpress.overrides) || angular.isUndefined($Frontpress.overrides.title)){
+                    PageHeadModel.setPageTitle(result.name);                    
+                } else {                    
+                    PageHeadModel.setPageTitle($Frontpress.overrides.title);                    
+                }
+
                 PageHeadModel.setPageDescription(result.description);
                 var canonical = $location.url();
                 PageHeadModel.setPageCanonical(canonical);
