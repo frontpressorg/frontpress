@@ -18,10 +18,10 @@
 			setPageCanonical: setPageCanonical,
 			setPageDescription: setPageDescription,
 			setPageTitle: setPageTitle,
-			setRelPrev: setRelPrev,
-			setRelNext: setRelNext,
-			relNext: null,
-			relPrev: null
+			setRelPrevNumber: setRelPrevNumber,
+			setRelNextNumber: setRelNextNumber,
+			relNextNumber: null,
+			relPrevNumber: null
 		};
 
 		function setPageTitle(pageTitle){
@@ -32,12 +32,12 @@
 			model.pageDescription = pageDescription;
 		}
 
-		function setRelNext(relNext){
-			model.relNext = relNext;
+		function setRelNextNumber(relNextNumber){
+			model.relNextNumber = relNextNumber;
 		}
 
-		function setRelPrev(relPrev){
-			model.relPrev = relPrev;
+		function setRelPrevNumber(relPrevNumber){
+			model.relPrevNumber = relPrevNumber;
 		}
 
 		function setIsIndex(isIndex){

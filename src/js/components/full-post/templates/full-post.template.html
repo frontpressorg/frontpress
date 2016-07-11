@@ -2,7 +2,7 @@
 	<p ng-if='vc.vm.isLoadingFullPost'>carregando...</p>
 	
 	<div ng-if='vc.vm.isLoadingFullPost === false'>
-		<h1 ng-bind-html='vc.vm.title | trustAsHtml' ng-href='{[{post.slug}]}'></h1>
+		<h1 ng-bind-html='vc.vm.title | trustAsHtml' ui-sref='post({postSlug:post.slug})'></h1>
 		
 		<p ng-bind='vc.vm.date | date :  "dd/MM/y"'></p>
 

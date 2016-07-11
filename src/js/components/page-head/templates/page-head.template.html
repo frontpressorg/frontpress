@@ -3,6 +3,6 @@
 <meta name="description" content="{[{vc.vm.pageDescription}]}">
 <meta name="robots" content="{[{vc.vm.pageRobots}]}">	
 <!-- <link rel="canonical" href="{[{vc.vm.pageCanonical}]}"> -->
-<link rel="prev" ng-href="{[{vc.vm.relPrev}]}" ng-if="vc.vm.relPrev">
-<link rel="next" ng-href="{[{vc.vm.relNext}]}" ng-if="vc.vm.relNext">
+<link rel="prev" ui-sref="home-pagination({pageNumber:vc.vm.relPrevNumber})" ng-if="vc.vm.relPrevNumber">
+<link rel="next" ui-sref="home-pagination({pageNumber:vc.vm.relNextNumber})" ng-if="vc.vm.relNextNumber">
 <ng-transclude></ng-transclude>

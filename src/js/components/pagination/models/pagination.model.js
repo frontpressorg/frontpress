@@ -11,20 +11,20 @@
 			paginationSize: 4,
 			generatePaginationFromCurrentPageNumber: generatePaginationFromCurrentPageNumber,
 			setLastPageNumber: setLastPageNumber,
-			prevPage: null,
-			nextPage: null,
-			setPrevPage: setPrevPage,
-			setNextPage: setNextPage,
+			prevPageNumber: null,
+			nextPageNumber: null,
+			setPrevPageNumber: setPrevPageNumber,
+			setNextPageNumber: setNextPageNumber,
 		};
 
-		function setNextPage(nextPage){
-			model.nextPage = nextPage;
-			PageHeadModel.setRelNext(nextPage.href);
+		function setNextPageNumber(nextPageNumber){
+			model.nextPageNumber = nextPageNumber;
+			PageHeadModel.setRelNextNumber(nextPageNumber);
 		}
 
-		function setPrevPage(prevPage){
-			model.prevPage = prevPage;
-			PageHeadModel.setRelPrev(prevPage.href);
+		function setPrevPageNumber(prevPageNumber){
+			model.prevPageNumber = prevPageNumber;
+			PageHeadModel.setRelPrevNumber(prevPageNumber);
 		}
 
         function generatePaginationFromCurrentPageNumber(currentPageNumber){
@@ -32,18 +32,13 @@
 
             if(currentPageNumber > 1){
             	var prevPageNumber = currentPageNumber - 1;
-            	var prevPage = {
-            		href: '/page/{0}'.format(prevPageNumber),
-            		number: prevPageNumber
-            	};
-            	model.setPrevPage(prevPage);
+            	model.setPrevPageNumber(prevPageNumber);
             }
 
             for(var i=1; i <= model.paginationSize; i++){
             	var paginationPageNumber = currentPageNumber + i;
             	if(paginationPageNumber <= model.lastPageNumber) {
 	                var paginationPage = {
-	                    href: '/page/{0}'.format(paginationPageNumber),
 	                    number: paginationPageNumber
 	                };
 	                paginationPages.push(paginationPage);            		
@@ -52,11 +47,7 @@
 
             if(currentPageNumber < model.lastPageNumber){
             	var nextPageNumber = currentPageNumber + 1;
-            	var nextPage = {
-            		href: '/page/{0}'.format(nextPageNumber),
-            		number: nextPageNumber
-            	};
-            	model.setNextPage(nextPage);
+            	model.setNextPageNumber(nextPageNumber);
             }            
 
             model.pages = paginationPages;
