@@ -50,7 +50,9 @@
                 }
 
                 PageHeadModel.setPageDescription(result.description);
-                var canonical = $location.url();
+                
+                var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, '');
+
                 PageHeadModel.setPageCanonical(canonical);
             });                    
         }
