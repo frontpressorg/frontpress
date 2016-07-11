@@ -4,7 +4,7 @@
 
 	angular.module('frontpress.components.page-head').factory('PageHeadModel', PageHeadModel);
 
-	function PageHeadModel(){
+	function PageHeadModel($location){
 		var model = {
 			init: init,
 			isFollow: true,
@@ -61,6 +61,7 @@
 		}
 
 		function init(){
+			model.setPageCanonical($location.absUrl());
 			_setPageRobots();
 		}
 
