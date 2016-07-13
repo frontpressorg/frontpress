@@ -13,50 +13,24 @@ Full front-end AngularJS template for WordPress API.
 3. ``` gulp ```
 4. Take a look on [http://localhost:4000/](http://localhost:4000/)
 
-## :warning: 2. Provide a frontpress.json configuration file
+## :warning: 2. Configure
 
-Create a file on your projects root folder named ``frontpress.json`` to configure your own project.
+The first time you run the app, you'll need to create a ``frontpress.json`` configuration file. 
+Go the the project's directory and run the command:
+
+````bash
+gulp init
+````
+![](https://s32.postimg.org/yyw7ezwed/Captura_de_tela_de_2016_07_13_07_57_19.png)
+![](https://s32.postimg.org/jsq5o26dh/Captura_de_tela_de_2016_07_13_07_57_34.png)
+
 
 **OR** you can copy this repository file ``frontpress.json.sample`` and rename it to ``frontpress.json``.
 
-
-## Configuration file ``frontpress.json``
-
-There are a few options you can configure on your ``frontpress.json`` file.
-
-| Property name   	| What it is?                                                            	| Sample value                                                           	| Is required? 	|
-|-----------------	|------------------------------------------------------------------------	|------------------------------------------------------------------------	|--------------	|
-| restApiUrl      	| The root of your wordpress rest endpoint url.                          	| https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com 	| true         	|
-| pageSize        	| How many posts by page.                                                	| 5                                                                      	| false        	|
-| disqusShortname 	| Your disqus shortname                                                  	| frontpress                                                             	| false        	|
-| overrides       	| An object with propeties to override default values from endpoint api. 	| Take a look the table bellow                                           	| false        	|
+You may find more [information about frontpress.json on this wiki page](https://github.com/teles/frontpress/wiki/frontpress.json).
 
 
-### Overrides
-
-Overrides are part of frontpress.json file and it is object with propeties to override default values from endpoint api. For instance, even if your blog's titlé is 'My blog Title', here you can override this value.
-
-| Override property | What is it?                      | Sample value.                                                                   |
-|-------------------|----------------------------------|---------------------------------------------------------------------------------|
-| title             | Blog title, homepage title tag | "Frontpress - This title is overwritten by frontpress.json configuration file." |
-
-**None** of overrides values are required.
-
-**Sample** ``frontpress.json``` file:
-
-````javascript
-{
-  "restApiUrl": "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com",
-  "pageSize": "5",
-  "disqusShortname": "frontpress",
-  "overrides": {
-    "title": "Frontpress - This title is overwritten by frontpress.json configuration file."
-  }
-}
-````
-
-
-## API Documentation
+## Wordpress Rest API Documentation
 
 We support the 1.1 and 1.2 version of WordPress Rest API. Supported resources are:
 
