@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var inquirer = require('inquirer');
 var fs = require('fs');
 
+
 module.exports = function() {
 
     var questions = [{
@@ -10,7 +11,7 @@ module.exports = function() {
         message: 'Wordpress rest api url:',
         default: 'https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com'
     },{
-		type: 'confirm',
+        type: 'confirm',
         name: 'useDiqus',
         message: 'Do you want to use disqus on this blog?',
         default: true
@@ -25,21 +26,14 @@ module.exports = function() {
     function processResponses(responses){
         fs.writeFile('./frontpress.json', JSON.stringify(responses), { overwrite: true }, function (err) {
           if (err) throw err;
-          console.log('Thanks for using frontpress!');
         });
     }
 
-    var task;
-
-    if (fs.existsSync('./frontpress.json') === false) {
-        console.log('Let\'s start by settings you blog information.');
-        task = inquirer.prompt(questions).then(processResponses);
-    }
-
-
-	return task;
-
-
-
-
+    var task = gulp.task('init', function(done) {
+        inquirer.prompt(questions).then(function(responses){
+            processResponses(responses);
+            done();
+        });
+    });
+    return task;
 }
