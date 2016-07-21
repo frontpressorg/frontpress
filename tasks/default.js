@@ -5,12 +5,7 @@ module.exports = function() {
 
 
 	return gulp.task('default', function (done) {
-	    gulp.start('init')
-	        .on('end', function () { 	  			
-	    		console.log('oiii');
-	    		runSequence('ngConfig','copy', 'inject', 'connect', 'open');
-	    		done();
-	    });
+	    runSequence('ngConfig','copy', 'inject', 'connect', 'open');
 	});
 
 	
