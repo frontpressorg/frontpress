@@ -1,5 +1,5 @@
 (function(){
 	"use strict";
 
-	angular.module('frontpress.views.post', ['frontpress.components.full-post', 'ui.router', 'frontpress.components.page-head', 'ngDisqus']);
+	angular.module('frontpress.views.post', ['frontpress.components.full-post', 'frontpress.components.share', 'ui.router', 'frontpress.components.page-head', 'ngDisqus']);
 })();
