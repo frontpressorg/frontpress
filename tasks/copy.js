@@ -2,6 +2,9 @@ var gulp = require('gulp');
 var gulpCopy = require('gulp-copy');
 var merge = require('merge-stream');
 var concat = require('gulp-concat');
+var ifGulp = require('gulp-if')
+var util = require('gulp-util')
+var uglify = require('gulp-uglify')
 
 module.exports = function() {
     var javascriptDestFolder = './build/js';
@@ -14,6 +17,7 @@ module.exports = function() {
         './assets/angular-disqus/src/angular-disqus.js',
     ])
     .pipe(concat('lib/external.js'))
+    .pipe(ifGulp(util.env.production, uglify()))
     .pipe(gulp.dest(javascriptDestFolder));
 
     var jsCopy = gulp.src([
@@ -29,6 +33,7 @@ module.exports = function() {
         './src/js/**/*.js'
     ])
     .pipe(concat('app.js'))
+    .pipe(ifGulp(util.env.production, uglify({mangle: false})))
     .pipe(gulp.dest(javascriptDestFolder));
 
     var imagesCopy = gulp.src([
