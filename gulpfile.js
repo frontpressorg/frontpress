@@ -1,5 +1,2 @@
-// Tasks are in `tasks/` 
+// All gulp tasks are in `tasks/`
 require('gulp-load-tasks')();
- 
-// Load from a different directory: 
-// require('gulp-load-tasks')('gulp_tasks'); 
