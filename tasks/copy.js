@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 var ifGulp = require('gulp-if')
 var util = require('gulp-util')
 var uglify = require('gulp-uglify')
+var iife = require("gulp-iife");
 
 module.exports = function() {
     var javascriptDestFolder = './build/js';
@@ -32,6 +33,7 @@ module.exports = function() {
         './src/js/**/*.constant.js',
         './src/js/**/*.js'
     ])
+    .pipe(iife({ prependSemicolon: false }))
     .pipe(concat('app.js'))
     .pipe(ifGulp(util.env.production, uglify({mangle: false})))
     .pipe(gulp.dest(javascriptDestFolder));

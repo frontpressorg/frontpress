@@ -1,12 +1,6 @@
-(function(){
+angular.module('frontpress.components.list-posts').controller('ListPostsDirectiveController', ListPostsDirectiveController);
 
-	"use strict";
-
-	angular.module('frontpress.components.list-posts').controller('ListPostsDirectiveController', ListPostsDirectiveController);
-
-	function ListPostsDirectiveController(ListPostsModel){
-		var vc = this;
-        vc.vm = ListPostsModel;
-	}
-
-})();
+function ListPostsDirectiveController(ListPostsModel){
+	var vc = this;
+    vc.vm = ListPostsModel;
+}

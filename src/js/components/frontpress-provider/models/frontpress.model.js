@@ -1,67 +1,61 @@
-(function(){
-	"use strict";
-	angular.module('frontpress.components.frontpress-provider').provider('$Frontpress', FrontpressProvider);
-	
-	function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
-		var configure = {
-			restApiUrl: null,
-			setRestApiUrl: setRestApiUrl,
-			pageSize: null,
-			setPageSize: setPageSize,
-			load: load,
-			overrides: null,
-			setOverrides: setOverrides
+angular.module('frontpress.components.frontpress-provider').provider('$Frontpress', FrontpressProvider);
+
+function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
+	var configure = {
+		restApiUrl: null,
+		setRestApiUrl: setRestApiUrl,
+		pageSize: null,
+		setPageSize: setPageSize,
+		load: load,
+		overrides: null,
+		setOverrides: setOverrides
+	};
+
+	function setPageSize(pageSize){
+		configure.pageSize = pageSize;
+	}
+
+	function setRestApiUrl(restApiUrl){
+		configure.restApiUrl = restApiUrl;
+	}
+
+	function setOverrides(overrides){
+		configure.overrides = overrides;
+	}
+
+	function load(){
+
+		var configsToFunctions = {
+			restApiUrl: configure.setRestApiUrl,
+			pageSize: configure.setPageSize,
+			disqusShortname: $disqusProvider.setShortname,
+			overrides: configure.setOverrides
 		};
 
-		function setPageSize(pageSize){
-			configure.pageSize = pageSize;
+		for(var config in configsToFunctions){
+			configsToFunctions[config](FrontpressConfigurationFile[config]);
 		}
 
-		function setRestApiUrl(restApiUrl){
-			configure.restApiUrl = restApiUrl;
-		}
+        if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
+            throw '[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.';
+        }
 
-		function setOverrides(overrides){
-			configure.overrides = overrides;
-		}
+	}
 
-		function load(){
+	var provider = {
+		$get: Frontpress,
+		configure: configure
+	};
 
-			var configsToFunctions = {
-				restApiUrl: configure.setRestApiUrl,
-				pageSize: configure.setPageSize,
-				disqusShortname: $disqusProvider.setShortname,
-				overrides: configure.setOverrides
-			};
+	return provider;
 
-			for(var config in configsToFunctions){
-				configsToFunctions[config](FrontpressConfigurationFile[config]);
-			}		
-
-            if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
-                throw '[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.';
-            }
-
-		}
-
-		var provider = {
-			$get: Frontpress,
-			configure: configure
+	function Frontpress(){
+		var model = {
+			pageSize: configure.pageSize,
+			restApiUrl: configure.restApiUrl,
+			overrides: configure.overrides
 		};
 
-
-		return provider;
-
-		function Frontpress(){
-			var model = {
-				pageSize: configure.pageSize,
-				restApiUrl: configure.restApiUrl,
-				overrides: configure.overrides
-			};
-
-			return model;
-		}
-	}	
-
-})();
-
+		return model;
+	}
+}

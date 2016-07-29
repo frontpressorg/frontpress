@@ -1,12 +1,6 @@
-(function(){
-	
-	"use strict";
+angular.module('frontpress.components.page-head').controller('PageHeadController', PageHeadController);
 
-	angular.module('frontpress.components.page-head').controller('PageHeadController', PageHeadController);
-
-	function PageHeadController(PageHeadModel){
-		var vc = this;
-		vc.vm =	PageHeadModel;
-	}
-
-})();
+function PageHeadController(PageHeadModel){
+	var vc = this;
+	vc.vm =	PageHeadModel;
+}

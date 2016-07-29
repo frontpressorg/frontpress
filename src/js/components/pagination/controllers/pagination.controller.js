@@ -1,12 +1,6 @@
-(function(){	
+angular.module('frontpress.components.pagination').controller('PaginationController', PaginationController);
 
-	"use strict";
-
-	angular.module('frontpress.components.pagination').controller('PaginationController', PaginationController);
-
-	function PaginationController(PaginationModel){
-		var vc = this;
-		vc.vm = PaginationModel;
-	}
-
-})();
+function PaginationController(PaginationModel){
+	var vc = this;
+	vc.vm = PaginationModel;
+}
