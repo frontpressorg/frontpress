@@ -6,7 +6,7 @@ function AjaxModel($http) {
         get: get,
         post: post,
         put: put,
-    };
+    };    
 
     function get(url, params) {
         return request(url, params, 'GET');
