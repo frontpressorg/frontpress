@@ -1,7 +1,1 @@
-(function(){
-	
-	"use strict";
-
-	angular.module('frontpress.components.page-head', []);
-
-})();
+angular.module('frontpress.components.page-head', []);

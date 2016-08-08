@@ -1,17 +1,12 @@
-(function(){
-	'use strict';
+angular.module('frontpress.filters').filter('trustAsHtml', TrustAsHtml);
 
-	angular.module('frontpress.filters').filter('trustAsHtml', TrustAsHtml);
+TrustAsHtml.$inject = ['$sce'];
 
-	TrustAsHtml.$inject = ['$sce'];
+function TrustAsHtml($sce){
 
-	function TrustAsHtml($sce){
-
-		function filter(text){
-			return $sce.trustAsHtml(text);
-		}
-
-		return filter;
+	function filter(text){
+		return $sce.trustAsHtml(text);
 	}
 
-})();
+	return filter;
+}

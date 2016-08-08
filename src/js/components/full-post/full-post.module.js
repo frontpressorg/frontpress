@@ -1,7 +1,1 @@
-(function(){
-
-	"use strict";
-
-	angular.module('frontpress.components.full-post', ['frontpress.filters']);
-
-})();
+angular.module('frontpress.components.full-post', ['frontpress.filters']);

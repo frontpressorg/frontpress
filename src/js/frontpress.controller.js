@@ -1,10 +1,5 @@
-(function(){
-	'use strict';
+angular.module('frontpress').controller('FrontPressController', FrontPressController);
 
-	angular.module('frontpress').controller('FrontPressController', FrontPressController);
-
-    function FrontPressController(){
-    	var vc = this;
-	}
-
-})();
+function FrontPressController(){
+	var vc = this;
+}

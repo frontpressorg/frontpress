@@ -9,7 +9,7 @@ module.exports = function() {
 	configs.FrontpressConfigurationFile = json;
 	configs = JSON.stringify(configs);
 
-	var jsFileTemplateWrapper = '(function(){\n\n// file generated using ngConfig\n\n"use strict";\n\n<%= module %>\n\n})();';
+	var jsFileTemplateWrapper = '// file generated using ngConfig\n\n<%= module %>';
 
 	var ngConfigOptions = {
 		pretty: 4,
