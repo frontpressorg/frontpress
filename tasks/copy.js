@@ -22,6 +22,7 @@ module.exports = function() {
     .pipe(gulp.dest(javascriptDestFolder));
 
     var jsCopy = gulp.src([
+        './src/js/frontpress.template-cache.js',
         './src/js/frontpress.js',
         './src/js/frontpress.config.js',
         './src/js/*.js',
