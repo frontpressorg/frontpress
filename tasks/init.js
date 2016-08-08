@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var inquirer = require('inquirer');
 var fs = require('fs');
 
-
 module.exports = function() {
 
     var questions = [{
@@ -23,8 +22,11 @@ module.exports = function() {
         message: 'Nice! Your disqus shortname:'
     }];
 
-    function processResponses(responses){
-        fs.writeFile('./frontpress.json', JSON.stringify(responses), { overwrite: true }, function (err) {
+    function processResponses(responses) {
+        var file = './frontpress.json';
+        response = JSON.stringify(responses);
+
+        fs.writeFile(file, response, { overwrite: true }, function(err) {
           if (err) throw err;
         });
     }
@@ -35,5 +37,6 @@ module.exports = function() {
             done();
         });
     });
+
     return task;
 }

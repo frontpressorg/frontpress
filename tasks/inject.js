@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var inject = require('gulp-inject');
 
 module.exports = function() {
-
 	var staticFilesList = [
 		'./build/css/**/*.css',
 		'./build/js/lib/external.js',
@@ -19,5 +18,3 @@ module.exports = function() {
 		.pipe(inject(gulp.src(staticFilesList, {read: true}), injectOptions))
 		.pipe(gulp.dest('./build'));
 };
-
-
