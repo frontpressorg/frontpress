@@ -1,6 +1,6 @@
 angular.module("frontpress").run(frontpressRun);
 
-function frontpressRun(SlugToIdModel){
+function frontpressRun(SlugsMapModel){
 
 	function extendStringPrototype(){
 		if (!String.prototype.format) {
@@ -31,15 +31,33 @@ function frontpressRun(SlugToIdModel){
 						}
 					}
 				}
-				return filteredArray;
-				
+				return filteredArray;				
 			};
 		}
+
+
+		if (!Array.prototype.uniq) {
+			Array.prototype.uniq = function() {
+				var seen = {};
+				var out = [];
+				var len =this.length;
+				var j = 0;
+				for(var i = 0; i < len; i++) {
+					var item = this[i];
+					if(seen[item] !== 1) {
+						seen[item] = 1;
+						out[j++] = item;
+					}
+				}
+				return out;
+			}			
+		}
+
 	}	
-	
+
 	extendStringPrototype();
 	extendArrayPrototype();
 
-	SlugToIdModel.teste();
+	SlugsMapModel.load();
 
 }

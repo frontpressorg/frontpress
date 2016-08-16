@@ -1,1 +1,0 @@
-angular.module('frontpress.components.slug-to-id', ['frontpress.apis.posts']);
