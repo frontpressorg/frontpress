@@ -3,7 +3,7 @@ var watch = require('gulp-watch');
 
 module.exports = function() {
 	
-	return watch('./src/**/*.html', function(){
+	return watch(['./src/**/*.{html,js}' ], function(){
 		gulp.run(['templateCache', 'copy']);
 	});
 };
