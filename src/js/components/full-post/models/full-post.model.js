@@ -7,7 +7,7 @@ function FullPostModel(PostsApi, $q){
 		date: null,
 		featuredImage: null,
 		isLoadingFullPost: false,
-		loadFullPostBySlug: loadFullPostBySlug,
+		loadFullPostById: loadFullPostById,
 		setCategoryNames: setCategoryNames,
 		setContent: setContent,
 		setDate: setDate,
@@ -17,7 +17,9 @@ function FullPostModel(PostsApi, $q){
 		tagNames: null,
 		title: null,
 		slug: null,
-		setSlug: setSlug
+		setSlug: setSlug,
+		id: null,
+		setId: setId
 	};
 
 	function setTitle(title){
@@ -48,7 +50,11 @@ function FullPostModel(PostsApi, $q){
 		model.slug = slug;
 	}
 
-	function loadFullPostBySlug(slug){
+	function setId(id){
+		model.id = id;
+	}
+
+	function loadFullPostById(id){
 		var defer = $q.defer();
 
 		model.isLoadingFullPost = true;
@@ -56,7 +62,7 @@ function FullPostModel(PostsApi, $q){
 			fields: 'ID,title,featured_image,data,categories,tags,content,slug'
 		};
 
-		var postPromise = PostsApi.getPostBySlug(slug, configs);
+		var postPromise = PostsApi.getPostById(id, configs);
 		postPromise.success(function(result){
 			var categoryNames = JSON.search(result.categories, '//name');
 			var tagNames = JSON.search(result.tags,'//name');

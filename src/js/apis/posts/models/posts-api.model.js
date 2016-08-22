@@ -7,7 +7,8 @@ function PostsApi(AjaxModel, $Frontpress){
 
     var restApi = {
         getAllPosts: getAllPosts,
-        getPostBySlug: getPostBySlug
+        getPostBySlug: getPostBySlug,
+        getPostById: getPostById
     };
 
     return restApi;
@@ -35,4 +36,10 @@ function PostsApi(AjaxModel, $Frontpress){
         postUrl = postUrl.replace('<post-slug>', postSlug);
         return AjaxModel.get(postUrl, configs);
     }
+
+    function getPostById(postId, configs){
+        var postUrl = postsBaseUrl + '<post-id>';
+        postUrl = postUrl.replace('<post-id>', postId);
+        return AjaxModel.get(postUrl, configs);
+    }    
 }
