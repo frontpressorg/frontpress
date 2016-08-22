@@ -19,6 +19,7 @@ function SlugsMapModel($cacheFactory, PostsApi){
 		}
 		
 		var concatenatedCache = originalCache.concat(incrementalCache);
+		concatenatedCache = concatenatedCache.removeDuplicatedObjectsByField("ID");
 		cache.put("slugs", concatenatedCache);	
 	}
 

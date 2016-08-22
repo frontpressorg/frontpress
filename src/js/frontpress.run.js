@@ -14,6 +14,28 @@ function frontpressRun(SlugsMapModel){
 	}
 
 	function extendArrayPrototype(){
+
+		if (!Array.prototype.removeDuplicatedObjectsByField) {
+			Array.prototype.removeDuplicatedObjectsByField = function(field){			
+			    this.sort(
+			        function compare(a,b) {
+			            if (a[field] < b[field])
+			                return -1;
+			            if (a[field] > b[field])
+			                return 1;
+			            return 0;
+			        }
+			    );
+
+			    var u = [];
+			    this.reduce(function (a, b) {
+			        if (a[field] !== b[field]) u.push(b);
+			        return b;
+			    }, []);
+			    return u;
+			}
+		}
+
 		if (!Array.prototype.filterToProperties) {
 			Array.prototype.filterToProperties = function() {
 
