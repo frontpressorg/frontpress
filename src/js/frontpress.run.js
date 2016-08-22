@@ -27,9 +27,9 @@ function frontpressRun(SlugsMapModel){
 						var argument = arguments[j];
 						if(typeof item[argument] !== "undefined"){
 							filteredItem[argument] = item[argument];
-							filteredArray.push(filteredItem);							
 						}
 					}
+					filteredArray.push(filteredItem);							
 				}
 				return filteredArray;				
 			};
@@ -57,7 +57,5 @@ function frontpressRun(SlugsMapModel){
 
 	extendStringPrototype();
 	extendArrayPrototype();
-
-	SlugsMapModel.load();
 
 }

@@ -1,6 +1,6 @@
 angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
 
-function ListPostsModel(PostsApi, $q){
+function ListPostsModel(PostsApi, $q, SlugsMapModel){
     var model = {
         postsList: null,
         loadPosts: loadPosts,
@@ -29,6 +29,9 @@ function ListPostsModel(PostsApi, $q){
 
         allPostsPromise.success(function(result){
             model.totalPostsNumber = result.found;
+            
+            SlugsMapModel.updateFromPosts(result.posts);
+
             if(model.postsList){
                 model.postsList = model.postsList.concat(result.posts);
             } else {

@@ -5,12 +5,25 @@ SlugsMapModel.$inject = ["$cacheFactory", "PostsApi"];
 function SlugsMapModel($cacheFactory, PostsApi){
 	var model = {
 		load: load,
+		updateFromPosts: updateFromPosts
 	};
 
 	var cache = $cacheFactory("slugsCache");
 
-	function _addToCache(arrayToAdd){
-		cache.put("slugs", arrayToAdd);
+	function _addToCache(incrementalCache){
+		var originalCache = cache.get("slugs");
+		
+		if(typeof originalCache === "undefined"){
+			originalCache = [];
+		}
+		
+		var concatenatedCache = originalCache.concat(incrementalCache);
+		cache.put("slugs", concatenatedCache);	
+	}
+
+	function updateFromPosts(postsArray){
+		var filteredArray = postsArray.filterToProperties("ID", "slug");
+		_addToCache(filteredArray);		
 	}
 
 	function load(pageSize, pageNumber){
@@ -19,7 +32,7 @@ function SlugsMapModel($cacheFactory, PostsApi){
 
 		allPostsPromise.success(function(result){
 			var filteredArray = result.posts.filterToProperties("ID", "slug");
-			_addToCache(filteredArray);			
+			_addToCache(filteredArray);		
 		});		
 	}
 
