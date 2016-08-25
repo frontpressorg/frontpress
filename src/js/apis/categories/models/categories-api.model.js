@@ -1,13 +1,13 @@
-angular.module('frontpress.apis.categories').factory('TagsApi', TagsApi);
+angular.module('frontpress.apis.categories').factory('CategoriesApi', CategoriesApi);
 
-TagsApi.$inject = ['AjaxModel', '$Frontpress'];
+CategoriesApi.$inject = ['AjaxModel', '$Frontpress'];
 
-function TagsApi(AjaxModel, $Frontpress){
-    var tagsBaseUrl = $Frontpress.restApiUrl + '/posts/';
+function CategoriesApi(AjaxModel, $Frontpress){
+    var categoriesBaseUrl = $Frontpress.restApiUrl + '/posts/';
 
     var restApi = {
-        getAllTags: getAllTags,
-        getTagByPostId: getTagByPostId,
+        getAllCategories: getAllCategories,
+        getCategoriesByPostId: getCategoriesByPostId,
     };
 
     return restApi;
@@ -24,14 +24,14 @@ function TagsApi(AjaxModel, $Frontpress){
         return params;
     }
 
-    function getAllTags(configs){
-        var tagsListUrl = tagsBaseUrl;
+    function getAllCategories(configs){
+        var categoriesListUrl = categoriesBaseUrl;
         var params = _parseConfigsToParams(configs);
-        return AjaxModel.get(tagsListUrl, params);
+        return AjaxModel.get(categoriesListUrl, params);
     }
 
-    function getTagByPostId(postId, configs){
-        var postUrl = tagsBaseUrl + '<post-id>?fields=tags';
+    function getCategoriesByPostId(postId, configs){
+        var postUrl = categoriesBaseUrl + '<post-id>?fields=categories';
         postUrl = postUrl.replace('<post-id>', postId);
         return AjaxModel.get(postUrl, configs);
     }    

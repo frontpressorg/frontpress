@@ -1,0 +1,7 @@
+<div>
+	<p ng-if='vc.vm.isLoadingCategories'>carregando categorias...</p>
+	<p ng-if="vc.vm.isLoadingCategories === false">
+		<span><strong>categorias:</strong></span>
+		<span ng-repeat='categoryName in vc.vm.categoryNames' rel='tag'>{[{categoryName}]} </span>		
+	</p>
+</div>

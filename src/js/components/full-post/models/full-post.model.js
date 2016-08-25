@@ -1,6 +1,6 @@
 angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
 
-function FullPostModel(PostsApi, TagsApi, $q){
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 	var model = {
 		categoryNames: null,
 		content: null,
@@ -8,8 +8,10 @@ function FullPostModel(PostsApi, TagsApi, $q){
 		featuredImage: null,
 		isLoadingFullPost: false,
 		isLoadingTags: false,
+		isLoadingCategories: false,
 		loadFullPostById: loadFullPostById,
 		loadFullPostTagsById: loadFullPostTagsById,
+		loadFullPostCategoriesById: loadFullPostCategoriesById,
 		setCategoryNames: setCategoryNames,
 		setContent: setContent,
 		setDate: setDate,
@@ -65,13 +67,11 @@ function FullPostModel(PostsApi, TagsApi, $q){
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
-		postPromise.success(function(result){
-			var categoryNames = JSON.search(result.categories, '//name');			
+		postPromise.success(function(result){			
 			model.setTitle(result.title);
 			model.setContent(result.content);
 			model.setFeaturedImage(result.featured_image);
-			model.setDate(result.date);
-			model.setCategoryNames(categoryNames);			
+			model.setDate(result.date);		
 			model.setSlug(result.slug);
 			model.isLoadingFullPost = false;
 			defer.resolve();
@@ -94,6 +94,21 @@ function FullPostModel(PostsApi, TagsApi, $q){
 
 		return defer.promise;	
 	}
+
+	function loadFullPostCategoriesById(id){
+		var defer = $q.defer();		
+
+		var categoriesPromise = CategoriesApi.getCategoriesByPostId(id);
+
+		categoriesPromise.success(function(result){
+			var categoryNames = JSON.search(result.categories,'//name');
+			model.setCategoryNames(categoryNames);
+			model.isLoadingCategories = false;
+			defer.resolve();
+		});	
+
+		return defer.promise;	
+	}	
 
 	return model;
 }
