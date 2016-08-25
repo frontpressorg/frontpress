@@ -1,13 +1,15 @@
 angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
 
-function FullPostModel(PostsApi, $q){
+function FullPostModel(PostsApi, TagsApi, $q){
 	var model = {
 		categoryNames: null,
 		content: null,
 		date: null,
 		featuredImage: null,
 		isLoadingFullPost: false,
+		isLoadingTags: false,
 		loadFullPostById: loadFullPostById,
+		loadFullPostTagsById: loadFullPostTagsById,
 		setCategoryNames: setCategoryNames,
 		setContent: setContent,
 		setDate: setDate,
@@ -59,24 +61,38 @@ function FullPostModel(PostsApi, $q){
 
 		model.isLoadingFullPost = true;
 		var configs = {
-			fields: 'ID,title,featured_image,data,categories,tags,content,slug'
+			fields: 'ID,title,featured_image,data,categories,content,slug'
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
 		postPromise.success(function(result){
-			var categoryNames = JSON.search(result.categories, '//name');
-			var tagNames = JSON.search(result.tags,'//name');
+			var categoryNames = JSON.search(result.categories, '//name');			
 			model.setTitle(result.title);
 			model.setContent(result.content);
 			model.setFeaturedImage(result.featured_image);
 			model.setDate(result.date);
-			model.setCategoryNames(categoryNames);
-			model.setTagNames(tagNames);
+			model.setCategoryNames(categoryNames);			
 			model.setSlug(result.slug);
 			model.isLoadingFullPost = false;
 			defer.resolve();
 		});
+
 		return defer.promise;
+	}
+
+	function loadFullPostTagsById(id){
+		var defer = $q.defer();		
+
+		var tagsPromise = TagsApi.getTagByPostId(id);
+
+		tagsPromise.success(function(result){
+			var tagNames = JSON.search(result.tags,'//name');
+			model.setTagNames(tagNames);
+			model.isLoadingTags = false;
+			defer.resolve();
+		});	
+
+		return defer.promise;	
 	}
 
 	return model;

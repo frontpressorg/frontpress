@@ -7,10 +7,17 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     var cachedSlugs = SlugsMapModel.getCachedSlugs();	
     var postId = JSON.search(cachedSlugs, '//*[slug="{0}"]/ID'.format(postSlug))[0]; 
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
+    var postTagsPromise = FullPostModel.loadFullPostTagsById(postId);
     PageHeadModel.init();
 
     fullPostPromise.then(function(result){
         PageHeadModel.setPageTitle(FullPostModel.title);
         vc.disqusId = FullPostModel.slug;
 	});
+
+    postTagsPromise.then(function(result){
+        console.log(result);
+    })
+
+
 }

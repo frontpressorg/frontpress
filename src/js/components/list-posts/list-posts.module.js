@@ -1,1 +1,1 @@
-angular.module('frontpress.components.list-posts', ['frontpress.apis.posts', 'frontpress.filters', 'frontpress.components.slugs-map']);
+angular.module('frontpress.components.list-posts', ['frontpress.filters', 'frontpress.components.slugs-map']);

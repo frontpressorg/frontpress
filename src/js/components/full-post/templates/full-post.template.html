@@ -12,10 +12,7 @@
 
         <share url="{{ post.slug }}" title="{{ vc.vm.title }}"></share>
 
-		<div>
-			<span><strong>tags:</strong></span>
-			<span ng-repeat='tagName in vc.vm.tagNames' rel='tag'>{[{tagName}]} </span>
-		</div>
+        <full-post-tag-list></full-post-tag-list>
 
 		<div>
 			<span><strong>categories:</strong></span>

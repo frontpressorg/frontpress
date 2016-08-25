@@ -1,0 +1,7 @@
+<div>
+	<p ng-if='vc.vm.isLoadingTags'>carregando tags...</p>
+	<p ng-if="vc.vm.isLoadingTags === false">
+		<span><strong>tags:</strong></span>
+		<span ng-repeat='tagName in vc.vm.tagNames' rel='tag'>{[{tagName}]} </span>		
+	</p>
+</div>

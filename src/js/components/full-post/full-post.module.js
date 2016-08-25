@@ -1,1 +1,1 @@
-angular.module('frontpress.components.full-post', ['frontpress.filters']);
+angular.module('frontpress.components.full-post', ['frontpress.filters', 'frontpress.apis.tags', 'frontpress.apis.posts']);
