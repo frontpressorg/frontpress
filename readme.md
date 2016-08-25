@@ -16,7 +16,7 @@ Full front-end AngularJS template for WordPress API.
 ## :warning: 2. Configure
 
 The first time you run the app, you'll need to create a ``frontpress.json`` configuration file. 
-Go to the project's directory and run the command:
+Open the project's directory and run the following command:
 
 ````bash
 gulp init
