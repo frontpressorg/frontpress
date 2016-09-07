@@ -2,26 +2,18 @@ var gulp = require('gulp');
 var gulpCopy = require('gulp-copy');
 var merge = require('merge-stream');
 var concat = require('gulp-concat');
-var ifGulp = require('gulp-if')
-var util = require('gulp-util')
-var uglify = require('gulp-uglify')
-var iife = require("gulp-iife");
+var ifGulp = require('gulp-if');
+var util = require('gulp-util');
+var uglify = require('gulp-uglify');
+var iife = require('gulp-iife');
+var argv = process.argv;
 
 module.exports = function() {
+    var jsCopy = false;
+    var dependenciesCopy = false;
     var javascriptDestFolder = './build/js';
 
-    var angularCopy = gulp.src([
-        './assets/angular/angular.js',
-        './assets/angular-ui-router/release/angular-ui-router.min.js',
-        './assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
-        './assets/defiant/dist/defiant.min.js',
-        './assets/angular-disqus/src/angular-disqus.js',
-    ])
-    .pipe(concat('lib/external.js'))
-    .pipe(ifGulp(util.env.production, uglify()))
-    .pipe(gulp.dest(javascriptDestFolder));
-
-    var jsCopy = gulp.src([
+    var devFilesList = [
         './src/js/frontpress.template-cache.js',
         './src/js/frontpress.js',
         './src/js/frontpress.config.js',
@@ -33,11 +25,34 @@ module.exports = function() {
         './src/js/**/*.value.js',
         './src/js/**/*.constant.js',
         './src/js/**/*.js'
-    ])
-    .pipe(iife({ prependSemicolon: false }))
-    .pipe(concat('app.js'))
-    .pipe(ifGulp(util.env.production, uglify({mangle: false})))
-    .pipe(gulp.dest(javascriptDestFolder));
+    ];
+
+    var dependenciesFiles = [
+        './assets/angular/angular.js',
+        './assets/angular-ui-router/release/angular-ui-router.min.js',
+        './assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js',
+        './assets/defiant/dist/defiant.min.js',
+        './assets/angular-disqus/src/angular-disqus.js',
+    ];
+
+    dependenciesCopy = gulp.src(dependenciesFiles)
+        .pipe(concat('dev/external.js'))
+        .pipe(gulp.dest(javascriptDestFolder));
+
+    jsCopy = gulp.src(devFilesList)
+        .pipe(iife({ prependSemicolon: false }))
+        .pipe(concat('dev/main.js'))
+        .pipe(gulp.dest(javascriptDestFolder));
+
+    if (argv.indexOf('--production') !== -1) {
+        jsCopy = gulp.src([
+            javascriptDestFolder + '/dev/external.js',
+            javascriptDestFolder + '/dev/main.js'
+        ])
+        .pipe(concat('main.js'))
+        .pipe(uglify({mangle: false}))
+        .pipe(gulp.dest(javascriptDestFolder));
+    }
 
     var imagesCopy = gulp.src([
         './src/images/**/*.*'
@@ -50,5 +65,5 @@ module.exports = function() {
     ])
     .pipe(gulp.dest('./build/js'));
 
-    return merge(angularCopy, imagesCopy, othersCopy, jsCopy);
+    return merge(dependenciesCopy, imagesCopy, othersCopy, jsCopy);
 };
