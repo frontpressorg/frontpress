@@ -21,8 +21,7 @@ Open the project's directory and run the following command:
 ````bash
 gulp init
 ````
-![](https://s32.postimg.org/yyw7ezwed/Captura_de_tela_de_2016_07_13_07_57_19.png)
-![](https://s32.postimg.org/jsq5o26dh/Captura_de_tela_de_2016_07_13_07_57_34.png)
+![](https://s22.postimg.io/y99g4teap/frontpress.jpg)
 
 
 **OR** you can copy this repository file ``frontpress.json.sample`` and rename it to ``frontpress.json``.
