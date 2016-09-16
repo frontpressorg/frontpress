@@ -1,4 +1,4 @@
-angular.module('frontpress.apis.posts').factory('MediaApi', MediaApi);
+angular.module('frontpress.apis.media').factory('MediaApi', MediaApi);
 
 MediaApi.$inject = ['AjaxModel', '$Frontpress'];
 
@@ -7,7 +7,8 @@ function MediaApi(AjaxModel, $Frontpress){
     var postsBaseUrl = $Frontpress.restApiUrl + '/posts/';
 
     var restApi = {
-        getPostThumbnailByPostId: getPostThumbnailByPostId
+        getPostThumbnailByPostId: getPostThumbnailByPostId,
+        getMediaById: getMediaById
     };
 
     return restApi;
@@ -24,9 +25,16 @@ function MediaApi(AjaxModel, $Frontpress){
         return params;
     }
 
-    function getPostThumbnailByPostId(postId){
+    function getPostThumbnailByPostId(postId, configs){
         var postUrl = postsBaseUrl + '<post-id>?fields=post_thumbnail';
         postUrl = postUrl.replace('<post-id>', postId);
         return AjaxModel.get(postUrl, configs);        
+    }
+
+    function getMediaById(mediaId, configs){
+        var mediaEndpoint = mediaBaseUrl + '<media_id>';
+        var mediaEndpoint = "https://www.vivadecora.com.br/revista/wp-json/wp/v2/media/"+mediaId // teste;
+        mediaEndpoint = mediaEndpoint.replace('<media_id>', mediaId);
+        return AjaxModel.get(mediaEndpoint);
     }
 }
