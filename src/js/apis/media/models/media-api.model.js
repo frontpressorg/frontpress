@@ -33,7 +33,7 @@ function MediaApi(AjaxModel, $Frontpress){
 
     function getMediaById(mediaId, configs){
         var mediaEndpoint = mediaBaseUrl + '<media_id>';
-        var mediaEndpoint = "https://www.vivadecora.com.br/revista/wp-json/wp/v2/media/"+mediaId // teste;
+        var mediaEndpoint = "https://www.natalia.blog.br/revista/wp-json/wp/v2/media/"+mediaId // teste;
         mediaEndpoint = mediaEndpoint.replace('<media_id>', mediaId);
         return AjaxModel.get(mediaEndpoint);
     }

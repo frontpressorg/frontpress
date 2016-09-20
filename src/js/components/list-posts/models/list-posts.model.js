@@ -32,12 +32,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel){
             
             SlugsMapModel.updateFromPosts(result.posts);            
 
-            // chain promises <-
-            // for(var i=0; i < result.posts; i++){
-            //     var post = result.posts[i];
-            //     console.log(post);
-            // }
-
             if(model.postsList){
                 model.postsList = model.postsList.concat(result.posts);
             } else {
