@@ -19,7 +19,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
     loadPostsPromise.then(function(){
         var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
-        _setPaginationPages(params.pageNumber);
+        _setPaginationPages(params.pageNumber);        
     });
 
     _setPageMetaData();

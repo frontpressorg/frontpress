@@ -15,32 +15,60 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel){
 
     function setTotalPostsNumber(totalPostsNumber){
         model.totalPostsNumber = totalPostsNumber;
-    }
+    }    
 
-    function loadPosts(params){
-        model.isLoadingPosts = true;
+    function loadPosts(params, shouldAppendFeaturedImageFromExternal){
+        model.isLoadingPosts = true;        
         var defer = $q.defer();
 
         var configs = {
             fields: 'ID,title,date,featured_image,excerpt'
+        };           
+
+        var postPromises = {
+            getAllPostsPromise: getAllPostsPromise,
+            appendFeaturedImagesToPosts: appendFeaturedImagesToPosts
         };
 
-        var allPostsPromise = PostsApi.getAllPosts(params, configs);
+        function getAllPostsPromise(){
+            var defer = $q.defer();
 
-        allPostsPromise.success(function(result){
-            model.totalPostsNumber = result.found;
+            var allPostsPromise = PostsApi.getAllPosts(params, configs);
+
+            allPostsPromise.success(function(result){                                                        
+                defer.resolve(result);
+            });            
+            return defer.promise;
+        }
+
+        function appendFeaturedImagesToPosts(){
+            var defer = $q.defer();
+
+            var featuredImagesPromise = MediaApi.getMediaById(4017);
+            featuredImagesPromise.success(function(result){
+                defer.resolve(result);
+            });
+            return defer.promise;
+        }
+
+        postPromises.getAllPostsPromise().then(function(postsResult){
+            model.totalPostsNumber = postsResult.found;
             
-            SlugsMapModel.updateFromPosts(result.posts);            
+            SlugsMapModel.updateFromPosts(postsResult.posts);            
 
             if(model.postsList){
-                model.postsList = model.postsList.concat(result.posts);
+                model.postsList = model.postsList.concat(postsResult.posts);
             } else {
-                model.postsList = result.posts;
-            }                                            
+                model.postsList = postsResult.posts;
+            }
 
-            defer.resolve();
+            defer.resolve(model.postsList);
+
             model.isLoadingPosts = false;
         });
+
         return defer.promise;
+
+        
     }
 }

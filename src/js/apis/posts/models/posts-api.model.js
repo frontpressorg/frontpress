@@ -27,6 +27,7 @@ function PostsApi(AjaxModel, $Frontpress){
 
     function getAllPosts(configs){
         var postsListUrl = postsBaseUrl;
+        // var postsListUrl = "http://natalia.blog.br/wp-json/wp/v2/posts/";
         var params = _parseConfigsToParams(configs);
         return AjaxModel.get(postsListUrl, params);
     }
