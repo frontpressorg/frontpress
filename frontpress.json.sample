@@ -1,5 +1,6 @@
 {
   "restApiUrl": "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com",
+  "apiVersion": "v1",
   "pageSize": "5",
   "disqusShortname": "frontpress",
   "overrides": {
