@@ -10,6 +10,11 @@ module.exports = function() {
         message: 'Wordpress rest api url:',
         default: 'https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com'
     },{
+        type: 'list',
+        name: 'apiVersion',
+        message: 'What wordpress api version are you using?',
+        choices: ['v1', 'v2']
+    },{
         type: 'confirm',
         name: 'useDiqus',
         message: 'Do you want to use disqus on this blog?',
@@ -34,6 +39,7 @@ module.exports = function() {
     var task = gulp.task('init', function(done) {
         inquirer.prompt(questions).then(function(responses){
             processResponses(responses);
+            apiVersion = responses.apiVersion;
             done();
         });
     });

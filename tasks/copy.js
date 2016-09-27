@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var fs = require('fs');
 var gulpCopy = require('gulp-copy');
 var merge = require('merge-stream');
 var concat = require('gulp-concat');
@@ -12,19 +13,23 @@ module.exports = function() {
     var jsCopy = false;
     var dependenciesCopy = false;
     var javascriptDestFolder = './build/js';
+    var apiVersion = JSON.parse(fs.readFileSync("./frontpress.json", "utf8")).apiVersion;
 
     var devFilesList = [
         './src/js/frontpress.template-cache.js',
         './src/js/frontpress.js',
+        './src/js/frontpress.run.js',
         './src/js/frontpress.config.js',
-        './src/js/*.js',
-        './src/js/**/*.module.js',
-        './src/js/**/*.run.js',
-        './src/js/**/*.factory.js',
-        './src/js/**/*.directive.js',
-        './src/js/**/*.value.js',
-        './src/js/**/*.constant.js',
-        './src/js/**/*.js'
+        './src/js/frontpress.controller.js',
+        './src/js/apis/'+apiVersion+'/**/*.module.js',
+        './src/js/apis/'+apiVersion+'/**/*.js',        
+        './src/js/{components,filters,views}/**/*.module.js',
+        './src/js/{components,filters,views}/**/*.run.js',
+        './src/js/{components,filters,views}/**/*.factory.js',
+        './src/js/{components,filters,views}/**/*.directive.js',
+        './src/js/{components,filters,views}/**/*.value.js',
+        './src/js/{components,filters,views}/**/*.constant.js',
+        './src/js/{components,filters,views}/**/*.js'
     ];
 
     var dependenciesFiles = [
