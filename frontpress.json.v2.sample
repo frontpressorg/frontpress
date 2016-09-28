@@ -1,0 +1,9 @@
+{
+  "restApiUrl": "https://www.vivadecora.com.br/revista/wp-json/wp/v2/",
+  "apiVersion": "v2",
+  "pageSize": "5",
+  "disqusShortname": "frontpress",
+  "overrides": {
+    "title": "Frontpress - This title is overwritten by frontpress.json configuration file."
+  }
+}
