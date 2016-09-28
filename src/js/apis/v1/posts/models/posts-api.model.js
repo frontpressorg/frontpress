@@ -1,8 +1,8 @@
 angular.module('frontpress.apis.posts').factory('PostsApi', PostsApi);
 
-PostsApi.$inject = ['AjaxModel', '$Frontpress'];
+PostsApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
 
-function PostsApi(AjaxModel, $Frontpress){
+function PostsApi(AjaxModel, $Frontpress, ConfigsToParams){
     var postsBaseUrl = $Frontpress.restApiUrl + '/posts/';
 
     var restApi = {
@@ -13,22 +13,9 @@ function PostsApi(AjaxModel, $Frontpress){
 
     return restApi;
 
-    function _parseConfigsToParams(configs){
-        var params = {};
-
-        if(configs){
-            if(configs.pageSize) params.number = parseInt(configs.pageSize);
-            if(configs.pageNumber) params.page = parseInt(configs.pageNumber);
-            if(configs.context) params.context = configs.context;
-            if(configs.fields) params.fields = configs.fields;
-        }
-        return params;
-    }
-
     function getAllPosts(configs){
         var postsListUrl = postsBaseUrl;
-        // var postsListUrl = "http://natalia.blog.br/wp-json/wp/v2/posts/";
-        var params = _parseConfigsToParams(configs);
+        var params = ConfigsToParams.parse(configs);
         return AjaxModel.get(postsListUrl, params);
     }
 

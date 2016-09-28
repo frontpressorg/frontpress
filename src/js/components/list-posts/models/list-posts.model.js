@@ -44,7 +44,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel){
         function appendFeaturedImagesToPosts(){
             var defer = $q.defer();
 
-            var featuredImagesPromise = MediaApi.getMediaById(4017);
             featuredImagesPromise.success(function(result){
                 defer.resolve(result);
             });

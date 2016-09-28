@@ -21,6 +21,8 @@ module.exports = function() {
         './src/js/frontpress.run.js',
         './src/js/frontpress.config.js',
         './src/js/frontpress.controller.js',
+        './src/js/apis/configs-to-params/**/*.module.js',
+        './src/js/apis/configs-to-params/**/*.js',          
         './src/js/apis/'+apiVersion+'/**/*.module.js',
         './src/js/apis/'+apiVersion+'/**/*.js',        
         './src/js/{components,filters,views}/**/*.module.js',
