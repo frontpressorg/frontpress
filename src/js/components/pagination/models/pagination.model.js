@@ -39,7 +39,7 @@ function PaginationModel(PageHeadModel){
                 };
                 paginationPages.push(paginationPage);
         	}
-        };
+        }
 
         if(currentPageNumber < model.lastPageNumber){
         	var nextPageNumber = currentPageNumber + 1;
