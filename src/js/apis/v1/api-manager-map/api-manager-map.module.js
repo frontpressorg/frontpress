@@ -1,0 +1,1 @@
+angular.module("frontpress.apis.api-manager-map", []);
