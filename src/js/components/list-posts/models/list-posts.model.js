@@ -1,6 +1,6 @@
 angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
 
-function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel){
+function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
     var model = {
         postsList: null,
         loadPosts: loadPosts,
@@ -51,12 +51,13 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel){
         }
 
         postPromises.getAllPostsPromise().then(function(postsResult){
-            model.totalPostsNumber = postsResult.found;
-            
-            SlugsMapModel.updateFromPosts(postsResult.posts);            
+            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, 'totalPostsNumber'));            
+            var allPosts = ApiManager.getPath(postsResult, 'allPostsPath');
+
+            SlugsMapModel.updateFromPosts(allPosts);      
 
             if(model.postsList){
-                model.postsList = model.postsList.concat(postsResult.posts);
+                model.postsList = model.postsList.concat(allPosts);
             } else {
                 model.postsList = postsResult.posts;
             }
