@@ -17,7 +17,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         model.totalPostsNumber = totalPostsNumber;
     }    
 
-    function loadPosts(params, shouldAppendFeaturedImageFromExternal){
+    function loadPosts(params){
         model.isLoadingPosts = true;        
         var defer = $q.defer();
 
@@ -59,7 +59,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
             if(model.postsList){
                 model.postsList = model.postsList.concat(allPosts);
             } else {
-                model.postsList = postsResult.posts;
+                model.postsList = allPosts;
             }
 
             defer.resolve(model.postsList);
