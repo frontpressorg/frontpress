@@ -10,28 +10,27 @@
 
 Full front-end AngularJS template for WordPress API. 
 
-## 1. Clone, install and run
+## 1. Clone, install and initial configs
 
-1. Clone or fork this repository
-2. ```npm i && bower i```
-3. ``` gulp ```
-4. Take a look on [http://localhost:4000/](http://localhost:4000/)
-
-## :warning: 2. Configure
-
-The first time you run the app, you'll need to create a ``frontpress.json`` configuration file. 
+* Clone or fork this repository
+* ```npm i && bower i```
+* The first time you run the app, you'll need to create a ``frontpress.json`` configuration file. 
 Open the project's directory and run the following command:
 
 ````bash
 gulp init
 ````
-![](https://s22.postimg.io/y99g4teap/frontpress.jpg)
-
 
 **OR** you can copy this repository file ``frontpress.json.sample`` and rename it to ``frontpress.json``.
 
 You may find more [information about frontpress.json on this wiki page](https://github.com/teles/frontpress/wiki/frontpress.json).
 
+* ```gulp templateCache```
+
+Now, just **run the app**:
+
+* ``` gulp ```
+* Take a look on [http://localhost:4000/](http://localhost:4000/)
 
 ## Wordpress Rest API Documentation
 
