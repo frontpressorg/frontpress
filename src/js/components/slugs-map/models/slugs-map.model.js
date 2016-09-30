@@ -29,7 +29,7 @@ function SlugsMapModel($cacheFactory, PostsApi){
 	}
 
 	function updateFromPosts(postsArray){
-		var filteredArray = postsArray.filterToProperties("ID", "slug");
+		var filteredArray = postsArray.filterToProperties("ID", "slug", "id");
 		_addToCache(filteredArray);		
 	}
 
