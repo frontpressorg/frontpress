@@ -1,14 +1,14 @@
 # Frontpress
 
+> Oh! It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
+
 [![Join the chat at https://gitter.im/teles/frontpress](https://badges.gitter.im/teles/frontpress.svg)](https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca)](https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade)
 
-[Projeto de melhoria da qualidade para nota no Codacy ficar A](https://github.com/teles/frontpress/projects/2)
+[Github project to grade A on codacy](https://github.com/teles/frontpress/projects/2)
 
 Full front-end AngularJS template for WordPress API. 
-
-> Oh! It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
 
 ## 1. Clone, install and run
 
