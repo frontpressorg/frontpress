@@ -32,6 +32,24 @@ Now, just **run the app**:
 * ``` gulp ```
 * Take a look on [http://localhost:4000/](http://localhost:4000/)
 
+## Tests
+
+### Initial configurations
+
+* [Install nvm](https://github.com/creationix/nvm/blob/master/README.markdown)
+* nvm install 5.0
+
+### Executing testing suite 
+Run the command ```nvm use 5.0``` a single time when starting to work in a terminal session.
+ 
+Then just run the command ```karma start --single-run``` to execute all tests. The _single-run_ parameter is optional, its already set in _karma.conf.js_. 
+
+If you want to run the tests while writing the code, you can do a ```karma start --no-single-run```
+
+> references:
+
+> https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-1
+
 ## Wordpress Rest API Documentation
 
 We support the 1.1 and 1.2 version of WordPress Rest API. Supported resources are:
