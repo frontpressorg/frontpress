@@ -1,5 +1,5 @@
 {
-  "restApiUrl": "https://www.vivadecora.com.br/revista/wp-json/wp/v2/",
+  "restApiUrl": "https://www.vivadecora.com.br/revista/wp-json",
   "apiVersion": "v2",
   "pageSize": "5",
   "disqusShortname": "frontpress",
