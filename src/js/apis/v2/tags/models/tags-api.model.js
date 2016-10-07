@@ -3,7 +3,7 @@ angular.module('frontpress.apis.categories').factory('TagsApi', TagsApi);
 TagsApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
 
 function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var tagsBaseUrl = $Frontpress.restApiUrl + '/posts/';
+    var tagsBaseUrl = $Frontpress.restApiUrl + '/wp/v2/posts/';
 
     var restApi = {
         getAllTags: getAllTags,

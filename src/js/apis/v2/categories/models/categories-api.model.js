@@ -3,7 +3,7 @@ angular.module('frontpress.apis.categories').factory('CategoriesApi', Categories
 CategoriesApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
 
 function CategoriesApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var categoriesBaseUrl = $Frontpress.restApiUrl + '/posts/';
+    var categoriesBaseUrl = $Frontpress.restApiUrl + '/wp/v2/posts/';
 
     var restApi = {
         getAllCategories: getAllCategories,

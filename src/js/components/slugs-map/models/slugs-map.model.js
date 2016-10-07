@@ -1,8 +1,8 @@
 angular.module('frontpress.components.slugs-map').factory('SlugsMapModel', SlugsMapModel);
 
-SlugsMapModel.$inject = ["$cacheFactory", "PostsApi"];
+SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "$Frontpress"];
 
-function SlugsMapModel($cacheFactory, PostsApi){
+function SlugsMapModel($cacheFactory, PostsApi, $Frontpress){
 	var model = {
 		load: load,
 		updateFromPosts: updateFromPosts,
@@ -10,6 +10,15 @@ function SlugsMapModel($cacheFactory, PostsApi){
 	};
 
 	var cache = $cacheFactory("slugsCache");
+	var propertiesToCache;
+	switch($Frontpress.apiVersion){
+		case "v2":
+			propertiesToCache = ["id", "slug"];
+		break;
+		case "v1":
+			propertiesToCache = ["ID", "slug"];
+		break;				
+	}		
 
 	function _addToCache(incrementalCache){
 		var originalCache = cache.get("slugs");
@@ -19,7 +28,16 @@ function SlugsMapModel($cacheFactory, PostsApi){
 		}
 		
 		var concatenatedCache = originalCache.concat(incrementalCache);
-		concatenatedCache = concatenatedCache.removeDuplicatedObjectsByField("ID");
+		var idProperty;
+		switch($Frontpress.apiVersion){
+			case "v2":
+				idProperty = "id";
+			break;
+			case "v1":
+				idProperty = "ID";
+			break;				
+		}			
+		concatenatedCache = concatenatedCache.removeDuplicatedObjectsByField(idProperty);
 		cache.put("slugs", concatenatedCache);	
 	}
 
@@ -28,8 +46,8 @@ function SlugsMapModel($cacheFactory, PostsApi){
 		return cachedSlugs;
 	}
 
-	function updateFromPosts(postsArray){
-		var filteredArray = postsArray.filterToProperties("ID", "slug", "id");
+	function updateFromPosts(postsArray){	
+		var filteredArray = postsArray.filterToProperties(propertiesToCache);
 		_addToCache(filteredArray);		
 	}
 
@@ -38,7 +56,7 @@ function SlugsMapModel($cacheFactory, PostsApi){
 		var allPostsPromise = PostsApi.getAllPosts(promiseParams);
 
 		allPostsPromise.success(function(result){
-			var filteredArray = result.posts.filterToProperties("ID", "slug");
+			var filteredArray = result.posts.filterToProperties(propertiesToCache);
 			_addToCache(filteredArray);		
 		});		
 	}

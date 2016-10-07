@@ -45,8 +45,8 @@ function frontpressRun(SlugsMapModel){
                     var filteredItem = {};
                     var item = this[i];
 
-                    for(var j=0; j < arguments.length; j++){
-                        var argument = arguments[j];
+                    for(var j=0; j < arguments[0].length; j++){
+                        var argument = arguments[0][j];
                         if(typeof item[argument] !== "undefined"){
                             filteredItem[argument] = item[argument];
                         }

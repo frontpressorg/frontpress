@@ -1,11 +1,23 @@
 angular.module('frontpress.views.post').controller('PostDirectiveController', PostDirectiveController);
 
-function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel){
+function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, $Frontpress){
 	var vc = this;
     vc.vm = FullPostModel;
     var postSlug = $stateParams.postSlug;
     var cachedSlugs = SlugsMapModel.getCachedSlugs();	
-    var postId = JSON.search(cachedSlugs, '//*[slug="{0}"]/ID'.format(postSlug))[0]; 
+
+    var idProperty;
+    switch($Frontpress.apiVersion){
+        case "v2":
+            idProperty = "id";
+        break;
+        case "v1":
+            idProperty = "ID";
+        break;              
+    }           
+    
+    var postId = JSON.search(cachedSlugs, '//*[slug="{0}"]/{1}'.format(postSlug, idProperty))[0]; 
+
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
     var postTagsPromise = FullPostModel.loadFullPostTagsById(postId);
     var postCategoriesPromise = FullPostModel.loadFullPostCategoriesById(postId);
