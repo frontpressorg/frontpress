@@ -1,1 +1,1 @@
-angular.module('frontpress.components.slugs-map', ['frontpress.apis.posts']);
+angular.module('frontpress.components.slugs-map', ['frontpress.apis.posts', 'frontpress.components.frontpress-provider']);
