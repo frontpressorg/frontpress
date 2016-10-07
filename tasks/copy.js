@@ -31,6 +31,7 @@ module.exports = function() {
         './src/js/{components,filters,views}/**/*.directive.js',
         './src/js/{components,filters,views}/**/*.value.js',
         './src/js/{components,filters,views}/**/*.constant.js',
+        '!**/*.tests.js',
         './src/js/{components,filters,views}/**/*.js'
     ];
 
