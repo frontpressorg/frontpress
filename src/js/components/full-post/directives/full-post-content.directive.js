@@ -18,7 +18,7 @@ function FullPostContentDirective($Frontpress){
 			}
 			return templateUrl;
 		},	
-		controller: 'FullPostContentDirectiveController',
+		controller: 'FullPostGenericDirectiveController',
 		controllerAs: 'vc',
 		bindToController: true
 	};

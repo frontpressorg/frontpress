@@ -18,7 +18,7 @@ function FullPostTitleDirective($Frontpress){
 			}
 			return templateUrl;
 		},	
-		controller: 'FullPostTitleDirectiveController',
+		controller: 'FullPostGenericDirectiveController',
 		controllerAs: 'vc',
 		bindToController: true
 	};
