@@ -6,7 +6,7 @@ function ListPostsTitleDirective($Frontpress){
 			post: "=post"
 		},
 		restrict: 'E',
-		controller: 'ListPostsTitleDirectiveController',
+		controller: 'ListPostsGenericDirectiveController',
 		controllerAs: 'vc',
 		bindToController: true,
 		templateUrl: function(){

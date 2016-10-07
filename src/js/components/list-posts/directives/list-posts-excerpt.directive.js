@@ -6,7 +6,7 @@ function ListPostsExcerptDirective($Frontpress){
 			post: "=post"
 		},
 		restrict: 'E',
-		controller: 'ListPostsExcerptDirectiveController',
+		controller: 'ListPostsGenericDirectiveController',
 		controllerAs: 'vc',
 		bindToController: true,
 		templateUrl: function(){
