@@ -24,7 +24,16 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     PageHeadModel.init();
 
     fullPostPromise.then(function(result){
-        PageHeadModel.setPageTitle(FullPostModel.title);
+        var postTitle;
+        switch($Frontpress.apiVersion){
+            case "v2":
+                postTitle = FullPostModel.title.rendered;
+            break;
+            case "v1":
+                postTitle = FullPostModel.title;
+            break;              
+        }                      
+        PageHeadModel.setPageTitle(postTitle);
         vc.disqusId = FullPostModel.slug;
 	});
 
