@@ -3,19 +3,17 @@ angular.module('frontpress.apis.media').factory('MediaApi', MediaApi);
 MediaApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
 
 function MediaApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var mediaBaseUrl = $Frontpress.restApiUrl + '/media/';
-    var postsBaseUrl = $Frontpress.restApiUrl + '/posts/';
+    var mediaBaseUrl = $Frontpress.restApiUrl + '/wp/v2/media/';
 
     var restApi = {
-        getPostThumbnailByPostId: getPostThumbnailByPostId,
+        getMediaById: getMediaById
     };
 
     return restApi;
 
-    function getPostThumbnailByPostId(postId, configs){
-        var postUrl = postsBaseUrl + '<post-id>?fields=post_thumbnail';
-        postUrl = postUrl.replace('<post-id>', postId);
-        var params = ConfigsToParams.parse(configs);
-        return AjaxModel.get(postUrl, params);        
+    function getMediaById(mediaId, configs){
+        var mediaUrl = mediaBaseUrl + '<media-id>';
+        mediaUrl = mediaUrl.replace('<media-id>', mediaId);
+        return AjaxModel.get(mediaUrl, configs);
     }
 }
