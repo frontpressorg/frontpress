@@ -9,17 +9,21 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
 
     var params = {
         pageSize: $Frontpress.pageSize,
-        context: 'embed',
         pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
     };
 
     var blogInformationPromise = BlogApi.getBlogInformation();
-    var loadPostsPromise = vc.vm.loadPosts(params);
+    var loadPostsPromise = vc.vm.loadPosts(params);   
 
-    loadPostsPromise.then(function(){
+    function _updatePosts(loadedPosts){
         var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
-        _setPaginationPages(params.pageNumber);        
+        _setPaginationPages(params.pageNumber); 
+        vc.vm.loadExternalFeaturedImages(loadedPosts);
+    }
+
+    loadPostsPromise.then(function(loadedPosts){
+        _updatePosts(loadedPosts);
     });
 
     _setPageMetaData();
@@ -28,7 +32,12 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
         params.pageNumber++;
         var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
         var paginationOptions = {notify: false};
-        vc.vm.loadPosts(params);
+        var loadPostsPromise = vc.vm.loadPosts(params);
+
+        loadPostsPromise.then(function(loadedPosts){
+            _updatePosts(loadedPosts);
+        });        
+
         _setPageMetaData();
         _setPaginationPages(params.pageNumber);
         $state.go('home-pagination', {pageNumber: nextPageNumber}, paginationOptions);

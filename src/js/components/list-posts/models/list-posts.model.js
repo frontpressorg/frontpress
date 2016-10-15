@@ -9,6 +9,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         isLoadingPosts: null,
         totalPostsNumber: null,
         setTotalPostsNumber: setTotalPostsNumber,
+        loadExternalFeaturedImages: loadExternalFeaturedImages
     }
 
     return model;
@@ -16,6 +17,36 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
     function setTotalPostsNumber(totalPostsNumber){
         model.totalPostsNumber = totalPostsNumber;
     }    
+
+    function loadExternalFeaturedImages(loadedPosts){
+        var postPromises = {
+            appendFeaturedImagesToPostsPromise: appendFeaturedImagesToPostsPromise,
+        };
+
+        function appendFeaturedImagesToPostsPromise(featuredMediaId){
+            var defer = $q.defer();
+
+            var featuredImagesPromise = MediaApi.getMediaById(featuredMediaId);
+            
+            featuredImagesPromise.success(function(result){
+                defer.resolve(result);
+            });
+
+            
+            return defer.promise;
+        }
+
+        for(var i=0; i < loadedPosts.length; i++){
+            postPromises.appendFeaturedImagesToPostsPromise(loadedPosts[i].featured_media).then(function(featuredImagesResult){
+
+                for(var j=0; j < model.postsList.length;j++){
+                    if(model.postsList[j].featured_media === featuredImagesResult.id){
+                        model.postsList[j].featured_image = featuredImagesResult.source_url;
+                    }                
+                }
+            });                        
+        }
+    }       
 
     function loadPosts(params){
         model.isLoadingPosts = true;        
@@ -27,7 +58,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
         var postPromises = {
             getAllPostsPromise: getAllPostsPromise,
-            appendFeaturedImagesToPosts: appendFeaturedImagesToPosts
         };
 
         function getAllPostsPromise(){
@@ -38,15 +68,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
             allPostsPromise.success(function(result){                                                        
                 defer.resolve(result);
             });            
-            return defer.promise;
-        }
-
-        function appendFeaturedImagesToPosts(){
-            var defer = $q.defer();
-
-            featuredImagesPromise.success(function(result){
-                defer.resolve(result);
-            });
             return defer.promise;
         }
 
