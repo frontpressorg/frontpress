@@ -19,11 +19,11 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     var postId = JSON.search(cachedSlugs, '//*[slug="{0}"]/{1}'.format(postSlug, idProperty))[0]; 
 
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
-    var postTagsPromise = FullPostModel.loadFullPostTagsById(postId);
-    var postCategoriesPromise = FullPostModel.loadFullPostCategoriesById(postId);
+
     PageHeadModel.init();
 
-    fullPostPromise.then(function(result){
+    fullPostPromise.then(function(result){        
+        
         var postTitle;
         switch($Frontpress.apiVersion){
             case "v2":
