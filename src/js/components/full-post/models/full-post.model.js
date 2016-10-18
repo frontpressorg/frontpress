@@ -2,21 +2,18 @@ angular.module('frontpress.components.full-post').factory('FullPostModel', FullP
 
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 	var model = {
-		categoryNames: null,
+		addCategory: addCategory,
+		categories: [],
+		categoriesIds: null,
 		content: null,
 		date: null,
 		featuredImage: null,
 		isLoadingFullPost: false,
-		isLoadingTags: false,
-		isLoadingCategories: false,
 		loadFullPostById: loadFullPostById,
-		loadFullPostTagsById: loadFullPostTagsById,
-		loadFullPostCategoriesById: loadFullPostCategoriesById,
-		setCategoryNames: setCategoryNames,
 		setContent: setContent,
 		setDate: setDate,
 		setFeaturedImage: setFeaturedImage,
-		setTagNames: setTagNames,
+		setCategoriesIds: setCategoriesIds,
 		setTitle: setTitle,
 		tagNames: null,
 		title: null,
@@ -25,6 +22,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 		id: null,
 		setId: setId
 	};
+
+	function addCategory(category){
+		model.categories.push(category);
+	}
 
 	function setTitle(title){
 		model.title = title;
@@ -46,16 +47,16 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 		model.categoryNames = categoryNames;
 	}
 
-	function setTagNames(tagNames){
-		model.tagNames = tagNames;
-	}
-
 	function setSlug(slug){
 		model.slug = slug;
 	}
 
 	function setId(id){
 		model.id = id;
+	}
+
+	function setCategoriesIds(categoriesIds){
+		model.categoriesIds = categoriesIds;
 	}
 
 	function loadFullPostById(id){
@@ -73,42 +74,14 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 			model.setFeaturedImage(result.featured_image);
 			model.setDate(result.date);		
 			model.setSlug(result.slug);
+			model.setCategoriesIds(result.categories);
 			model.isLoadingFullPost = false;
-			defer.resolve();
+			defer.resolve(model);
 		});
 
 		return defer.promise;
 	}
 
-	function loadFullPostTagsById(id){
-		var defer = $q.defer();		
-
-		var tagsPromise = TagsApi.getTagByPostId(id);
-
-		tagsPromise.success(function(result){
-			var tagNames = JSON.search(result.tags,'//name');
-			model.setTagNames(tagNames);
-			model.isLoadingTags = false;
-			defer.resolve();
-		});	
-
-		return defer.promise;	
-	}
-
-	function loadFullPostCategoriesById(id){
-		var defer = $q.defer();		
-
-		var categoriesPromise = CategoriesApi.getCategoriesByPostId(id);
-
-		categoriesPromise.success(function(result){
-			var categoryNames = JSON.search(result.categories,'//name');
-			model.setCategoryNames(categoryNames);
-			model.isLoadingCategories = false;
-			defer.resolve();
-		});	
-
-		return defer.promise;	
-	}	
 
 	return model;
 }

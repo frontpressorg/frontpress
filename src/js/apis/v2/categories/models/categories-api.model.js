@@ -3,11 +3,11 @@ angular.module('frontpress.apis.categories').factory('CategoriesApi', Categories
 CategoriesApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
 
 function CategoriesApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var categoriesBaseUrl = $Frontpress.restApiUrl + '/wp/v2/posts/';
+    var categoriesBaseUrl = $Frontpress.restApiUrl + '/wp/v2/categories/';
 
     var restApi = {
         getAllCategories: getAllCategories,
-        getCategoriesByPostId: getCategoriesByPostId,
+        getCategoryById: getCategoryById
     };
 
     return restApi;
@@ -18,9 +18,9 @@ function CategoriesApi(AjaxModel, $Frontpress, ConfigsToParams){
         return AjaxModel.get(categoriesListUrl, params);
     }
 
-    function getCategoriesByPostId(postId, configs){
-        var postUrl = categoriesBaseUrl + '<post-id>?fields=categories';
-        postUrl = postUrl.replace('<post-id>', postId);
-        return AjaxModel.get(postUrl, configs);
-    }    
+    function getCategoryById(categoryId, configs){
+        var categoryUrl = categoriesBaseUrl + '<category-id>';
+        categoryUrl = categoryUrl.replace('<category-id>', categoryId);
+        return AjaxModel.get(categoryUrl, configs);
+    }
 }
