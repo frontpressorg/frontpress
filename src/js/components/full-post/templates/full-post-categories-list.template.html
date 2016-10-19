@@ -1,7 +1,11 @@
 <div>
 	<p ng-if='vc.vm.isLoadingCategories'>carregando categorias...</p>
 	<p ng-if="vc.vm.isLoadingCategories === false">
-		<span><strong>categorias:</strong></span>
-		<span ng-repeat='categoryName in vc.vm.categoryNames' rel='tag'>{[{categoryName}]} </span>		
+		<span><strong>categorias:</strong></span>	
+		<span ng-if="vc.vm.categories.length == 1" rel='tag'>{[{vc.vm.categories[0].name}]} </span>		
+		<span ng-if="vc.vm.categories.length > 1" 
+			ng-repeat='category in vc.vm.categories' 
+			rel='tag'>{[{category.name}]}{{$last ? '' : ', '}}		
+		</span>		
 	</p>
 </div>

@@ -10,6 +10,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 		featuredImage: null,
 		isLoadingFullPost: false,
 		loadFullPostById: loadFullPostById,
+		isLoadingCategories: null,
 		setContent: setContent,
 		setDate: setDate,
 		setFeaturedImage: setFeaturedImage,

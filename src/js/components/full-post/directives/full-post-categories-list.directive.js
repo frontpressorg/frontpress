@@ -7,7 +7,8 @@ function FullPostCategoriesListDirective(){
 		templateUrl: '/js/components/full-post/templates/full-post-categories-list.template.html',
 		controller: 'FullPostCategoriesListDirectiveController',
 		controllerAs: 'vc',
-		bindToController: true
+		bindToController: true,
+		replace: true
 	};
 
 	return directive;
