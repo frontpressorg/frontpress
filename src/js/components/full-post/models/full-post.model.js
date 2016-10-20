@@ -3,27 +3,33 @@ angular.module('frontpress.components.full-post').factory('FullPostModel', FullP
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
 		addCategory: addCategory,
+		addTag: addTag,
 		categories: [],
 		content: null,
 		date: null,
 		featuredImage: null,
-		isLoadingFullPost: false,
-		loadFullPostById: loadFullPostById,
+		id: null,
 		isLoadingCategories: null,
+		isLoadingFullPost: false,
+		isLoadingTags: false,
+		loadFullPostById: loadFullPostById,
 		setContent: setContent,
 		setDate: setDate,
 		setFeaturedImage: setFeaturedImage,
-		setTitle: setTitle,
-		tagNames: null,
-		title: null,
-		slug: null,
+		setId: setId,
 		setSlug: setSlug,
-		id: null,
-		setId: setId
+		setTitle: setTitle,
+		slug: null,
+		tags: [],
+		title: null,
 	};
 
 	function addCategory(category){
 		model.categories.push(category);
+	}
+
+	function addTag(tag){
+		model.tags.push(tag);
 	}
 
 	function setTitle(title){
@@ -59,7 +65,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 		model.isLoadingFullPost = true;
 		var configs = {
-			fields: 'ID,title,featured_image,data,categories,content,slug'
+			fields: 'ID,title,featured_image,data,categories,content,slug,tags'
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
@@ -72,8 +78,8 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 			
 			switch($Frontpress.apiVersion){
 				case "v2":
-					var categoriesIds = result.categories;
 
+					var categoriesIds = result.categories;
 					for(var i=0; i < categoriesIds.length; i++){
 						model.isLoadingCategories = true;
 
@@ -84,12 +90,30 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 							model.isLoadingCategories = false;
 						});                        
 					}  					
+
+					var tagsIds = result.tags;
+					for(var i=0; i < tagsIds.length; i++){
+						model.isLoadingTags = true;
+
+						TagsApi.getTagById(tagsIds[i]).success(function(tagResult){
+							var tag = {};
+							tag.name = tagResult.name;
+							model.addTag(tag);
+							console.log(tag);
+							model.isLoadingTags = false;
+						});                        
+					}  						
+
 					break;
 				case "v1":
 					for (var category in result.categories){
 						model.addCategory(result.categories[category]);						
 					}
 					model.isLoadingCategories = false;
+					for (var tag in result.tags){
+						model.addTag(result.tags[tag]);						
+					}
+					model.isLoadingTags = false;					
 					break;              
 			}    				
 
