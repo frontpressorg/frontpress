@@ -79,6 +79,15 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 			switch($Frontpress.apiVersion){
 				case "v2":
 					model.setCategoriesIds(result.categories);
+
+					for(var i=0; i < model.categoriesIds.length; i++){
+						model.isLoadingCategories = true;
+
+						CategoriesApi.getCategoryById(model.categoriesIds[i]).success(function(result){
+							model.addCategory(result);
+							model.isLoadingCategories = false;
+						});                        
+					}  					
 					break;
 				case "v1":
 					for (var category in result.categories){
