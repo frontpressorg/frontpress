@@ -19,7 +19,9 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
         var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
         _setPaginationPages(params.pageNumber); 
-        vc.vm.loadExternalFeaturedImages(loadedPosts);
+        if($Frontpress.apiVersion == "v2"){
+            vc.vm.loadExternalFeaturedImages(loadedPosts);            
+        }
     });
 
     _setPageMetaData();
@@ -30,8 +32,11 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
         var paginationOptions = {notify: false};
         var loadPostsPromise = vc.vm.loadPosts(params);
 
+
         loadPostsPromise.then(function(loadedPosts){
-            vc.vm.loadExternalFeaturedImages(loadedPosts);
+            if($Frontpress.apiVersion == "v2"){
+                vc.vm.loadExternalFeaturedImages(loadedPosts);
+            }
         });        
 
         _setPageMetaData();
