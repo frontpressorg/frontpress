@@ -99,7 +99,6 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 							var tag = {};
 							tag.name = tagResult.name;
 							model.addTag(tag);
-							console.log(tag);
 							model.isLoadingTags = false;
 						});                        
 					}  						
