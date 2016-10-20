@@ -1,6 +1,6 @@
 angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
 
-function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
 		addCategory: addCategory,
 		categories: [],
@@ -74,8 +74,20 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q){
 			model.setContent(result.content);
 			model.setFeaturedImage(result.featured_image);
 			model.setDate(result.date);		
-			model.setSlug(result.slug);
-			model.setCategoriesIds(result.categories);
+			model.setSlug(result.slug);		
+			
+			switch($Frontpress.apiVersion){
+				case "v2":
+					model.setCategoriesIds(result.categories);
+					break;
+				case "v1":
+					for (var category in result.categories){
+						model.addCategory(result.categories[category]);						
+					}
+					model.isLoadingCategories = false;
+					break;              
+			}    				
+
 			model.isLoadingFullPost = false;
 			defer.resolve(model);
 		});

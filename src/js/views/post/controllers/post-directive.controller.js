@@ -21,15 +21,19 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
     
     fullPostPromise.then(function(result){
+        console.log(result);
 
-        for(var i=0; i < result.categoriesIds.length; i++){
-            vc.vm.isLoadingCategories = true;
-            
-            CategoriesApi.getCategoryById(result.categoriesIds[i]).success(function(result){
-                vc.vm.addCategory(result);
-                vc.vm.isLoadingCategories = false;
-            });                        
+        if($Frontpress.apiVersion == "v2"){
+            for(var i=0; i < result.categoriesIds.length; i++){
+                vc.vm.isLoadingCategories = true;
+                
+                CategoriesApi.getCategoryById(result.categoriesIds[i]).success(function(result){
+                    vc.vm.addCategory(result);
+                    vc.vm.isLoadingCategories = false;
+                });                        
+            }            
         }
+
     });
 
 
