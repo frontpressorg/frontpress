@@ -4,7 +4,6 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
 		addCategory: addCategory,
 		categories: [],
-		categoriesIds: null,
 		content: null,
 		date: null,
 		featuredImage: null,
@@ -14,7 +13,6 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 		setContent: setContent,
 		setDate: setDate,
 		setFeaturedImage: setFeaturedImage,
-		setCategoriesIds: setCategoriesIds,
 		setTitle: setTitle,
 		tagNames: null,
 		title: null,
@@ -56,10 +54,6 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 		model.id = id;
 	}
 
-	function setCategoriesIds(categoriesIds){
-		model.categoriesIds = categoriesIds;
-	}
-
 	function loadFullPostById(id){
 		var defer = $q.defer();
 
@@ -78,13 +72,15 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 			
 			switch($Frontpress.apiVersion){
 				case "v2":
-					model.setCategoriesIds(result.categories);
+					var categoriesIds = result.categories;
 
-					for(var i=0; i < model.categoriesIds.length; i++){
+					for(var i=0; i < categoriesIds.length; i++){
 						model.isLoadingCategories = true;
 
-						CategoriesApi.getCategoryById(model.categoriesIds[i]).success(function(result){
-							model.addCategory(result);
+						CategoriesApi.getCategoryById(categoriesIds[i]).success(function(categoryResult){
+							var category = {};
+							category.name = categoryResult.name;
+							model.addCategory(category);
 							model.isLoadingCategories = false;
 						});                        
 					}  					
