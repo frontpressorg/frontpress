@@ -1,7 +1,7 @@
 <div>
-	<a ui-sref='home-pagination({pageNumber:vc.vm.prevPageNumber})' ng-if='vc.vm.prevPageNumber'>&lt;&lt;</a>
+	<a ui-sref="home-pagination({pageNumber:vc.vm.prevPageNumber})" ng-if="vc.vm.prevPageNumber">&lt;&lt;</a>
 	
-	<a ng-repeat='page in vc.vm.pages' ng-bind='page.number' ui-sref='home-pagination({pageNumber:page.number})'></a>		
+	<a ng-repeat="page in vc.vm.pages" ng-bind="page.number" ui-sref="home-pagination({pageNumber:page.number})"></a>		
 
-	<a ui-sref='home-pagination({pageNumber:vc.vm.nextPageNumber})' ng-if='vc.vm.nextPageNumber'>&gt;&gt;</a>
+	<a ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" ng-if="vc.vm.nextPageNumber">&gt;&gt;</a>
 </div>
