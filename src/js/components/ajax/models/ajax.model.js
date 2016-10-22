@@ -1,17 +1,17 @@
-var module = angular.module('frontpress.components.ajax');
+var module = angular.module("frontpress.components.ajax");
 
 function AjaxModel($http) {
 
     function get(url, params) {
-        return request(url, params, 'GET');
+        return request(url, params, "GET");
     }
 
     function post(url, params) {
-        return request(url, params, 'POST');
+        return request(url, params, "POST");
     }
 
     function put(url, params) {
-        return request(url, params, 'PUT');
+        return request(url, params, "PUT");
     }
 
     function request(url, params, method) {
@@ -33,4 +33,4 @@ function AjaxModel($http) {
     };
 }
 
-module.factory('AjaxModel', AjaxModel);
+module.factory("AjaxModel", AjaxModel);

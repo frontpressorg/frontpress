@@ -1,6 +1,6 @@
-angular.module('frontpress.filters').filter('trustAsHtml', TrustAsHtml);
+angular.module("frontpress.filters").filter("trustAsHtml", TrustAsHtml);
 
-TrustAsHtml.$inject = ['$sce'];
+TrustAsHtml.$inject = ["$sce"];
 
 function TrustAsHtml($sce){
 

@@ -1,6 +1,6 @@
-angular.module('frontpress.apis.blog').factory('BlogApi', BlogApi);
+angular.module("frontpress.apis.blog").factory("BlogApi", BlogApi);
 
-BlogApi.$inject = ['AjaxModel', '$Frontpress'];
+BlogApi.$inject = ["AjaxModel", "$Frontpress"];
 
 function BlogApi(AjaxModel, $Frontpress) {
     var baseUrl = $Frontpress.restApiUrl;

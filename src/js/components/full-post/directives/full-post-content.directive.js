@@ -1,8 +1,8 @@
-angular.module('frontpress.components.full-post').directive('fullPostContent', FullPostContentDirective);
+angular.module("frontpress.components.full-post").directive("fullPostContent", FullPostContentDirective);
 
 function FullPostContentDirective($Frontpress){
 	var directive = {
-		restrict: 'E',
+		restrict: "E",
 		scope: {
 			post: "=post"
 		},
@@ -18,8 +18,8 @@ function FullPostContentDirective($Frontpress){
 			}
 			return templateUrl;
 		},	
-		controller: 'FullPostGenericDirectiveController',
-		controllerAs: 'vc',
+		controller: "FullPostGenericDirectiveController",
+		controllerAs: "vc",
 		bindToController: true
 	};
 

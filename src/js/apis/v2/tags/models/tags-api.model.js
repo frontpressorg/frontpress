@@ -1,7 +1,7 @@
-var module = angular.module('frontpress.apis.categories');
+var module = angular.module("frontpress.apis.categories");
 
 function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var tagsBaseUrl = $Frontpress.restApiUrl + '/wp/v2/tags/';
+    var tagsBaseUrl = $Frontpress.restApiUrl + "/wp/v2/tags/";
 
     function getAllTags(configs){
         var tagsListUrl = tagsBaseUrl;
@@ -11,8 +11,8 @@ function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
     }
 
     function getTagById(tagId, configs){
-        var tagUrl = tagsBaseUrl + '<tag-id>';
-        tagUrl = tagUrl.replace('<tag-id>', tagId);
+        var tagUrl = tagsBaseUrl + "<tag-id>";
+        tagUrl = tagUrl.replace("<tag-id>", tagId);
 
         return AjaxModel.get(tagUrl, configs);
     }
@@ -23,6 +23,6 @@ function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
     };
 }
 
-TagsApi.$inject = ['AjaxModel', '$Frontpress', 'ConfigsToParams'];
+TagsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
 
-module.factory('TagsApi', TagsApi);
+module.factory("TagsApi", TagsApi);

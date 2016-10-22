@@ -1,1 +1,1 @@
-angular.module('frontpress.components.pagination', ['frontpress.components.page-head']);
+angular.module("frontpress.components.pagination", ["frontpress.components.page-head"]);

@@ -1,4 +1,4 @@
-var module = angular.module('frontpress.components.page-head');
+var module = angular.module("frontpress.components.page-head");
 
 function PageHeadModel($location){
 	var model = {
@@ -47,9 +47,9 @@ function PageHeadModel($location){
 	}
 
 	function _setPageRobots(){
-    	var isIndexString = model.isIndex ? 'index' : 'noindex';
-    	var isFollowString = model.isFollow ? 'follow' : 'nofollow';
-    	model.pageRobots = '{0}, {1}'.format(isIndexString, isFollowString);
+    	var isIndexString = model.isIndex ? "index" : "noindex";
+    	var isFollowString = model.isFollow ? "follow" : "nofollow";
+    	model.pageRobots = "{0}, {1}".format(isIndexString, isFollowString);
 	}
 
 	function setPageCanonical(pageCanonical){
@@ -64,4 +64,4 @@ function PageHeadModel($location){
 	return model;
 }
 
-module.factory('PageHeadModel', PageHeadModel);
+module.factory("PageHeadModel", PageHeadModel);

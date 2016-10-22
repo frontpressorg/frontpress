@@ -1,4 +1,4 @@
-var module = angular.module('frontpress.views.home');
+var module = angular.module("frontpress.views.home");
 
 function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpress, BlogApi, PageHeadModel, $location, PaginationModel){
     var vc = this;
@@ -41,7 +41,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
 
         _setPageMetaData();
         _setPaginationPages(params.pageNumber);
-        $state.go('home-pagination', {pageNumber: nextPageNumber}, paginationOptions);
+        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
     }
 
     function _setPaginationPages(currentPageNumber){
@@ -58,11 +58,11 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
 
             PageHeadModel.setPageDescription(result.description);
 
-            var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, '');
+            var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
 
             PageHeadModel.setPageCanonical(canonical);
         });
     }
 }
 
-module.controller('HomeDirectiveController', HomeDirectiveController);
+module.controller("HomeDirectiveController", HomeDirectiveController);

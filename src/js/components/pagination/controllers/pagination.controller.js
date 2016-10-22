@@ -1,4 +1,4 @@
-angular.module('frontpress.components.pagination').controller('PaginationController', PaginationController);
+angular.module("frontpress.components.pagination").controller("PaginationController", PaginationController);
 
 function PaginationController(PaginationModel){
 	var vc = this;

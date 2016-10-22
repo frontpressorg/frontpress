@@ -1,1 +1,1 @@
-angular.module('frontpress.views.home', ['ui.router', 'infinite-scroll', 'frontpress.components.list-posts', 'frontpress.components.pagination', 'frontpress.components.page-head', 'frontpress.apis.blog']);
+angular.module("frontpress.views.home", ["ui.router", "infinite-scroll", "frontpress.components.list-posts", "frontpress.components.pagination", "frontpress.components.page-head", "frontpress.apis.blog"]);

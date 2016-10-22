@@ -1,1 +1,1 @@
-angular.module('frontpress.apis.configs-to-params', []);
+angular.module("frontpress.apis.configs-to-params", []);

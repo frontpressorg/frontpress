@@ -1,1 +1,1 @@
-angular.module('frontpress.filters', []);
+angular.module("frontpress.filters", []);

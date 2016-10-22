@@ -1,4 +1,4 @@
-var module = angular.module('frontpress.components.full-post');
+var module = angular.module("frontpress.components.full-post");
 
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
@@ -65,7 +65,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 		model.isLoadingFullPost = true;
 		var configs = {
-			fields: 'ID,title,featured_image,data,categories,content,slug,tags'
+			fields: "ID,title,featured_image,data,categories,content,slug,tags"
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
@@ -127,4 +127,4 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	return model;
 }
 
-module.factory('FullPostModel', FullPostModel);
+module.factory("FullPostModel", FullPostModel);

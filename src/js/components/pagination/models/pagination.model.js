@@ -1,4 +1,4 @@
-angular.module('frontpress.components.pagination').factory('PaginationModel', PaginationModel);
+angular.module("frontpress.components.pagination").factory("PaginationModel", PaginationModel);
 
 function PaginationModel(PageHeadModel){
 	var model = {

@@ -1,4 +1,4 @@
-angular.module('frontpress.apis.configs-to-params').factory('ConfigsToParams', ConfigsToParams);
+angular.module("frontpress.apis.configs-to-params").factory("ConfigsToParams", ConfigsToParams);
 
 function ConfigsToParams(){
 	var model = {
