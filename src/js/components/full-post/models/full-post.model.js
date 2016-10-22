@@ -1,4 +1,4 @@
-angular.module('frontpress.components.full-post').factory('FullPostModel', FullPostModel);
+var module = angular.module('frontpress.components.full-post');
 
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
@@ -69,13 +69,13 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
-		postPromise.success(function(result){			
+		postPromise.success(function(result){
 			model.setTitle(result.title);
 			model.setContent(result.content);
 			model.setFeaturedImage(result.featured_image);
-			model.setDate(result.date);		
-			model.setSlug(result.slug);		
-			
+			model.setDate(result.date);
+			model.setSlug(result.slug);
+
 			switch($Frontpress.apiVersion){
 				case "v2":
 
@@ -88,8 +88,8 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 							category.name = categoryResult.name;
 							model.addCategory(category);
 							model.isLoadingCategories = false;
-						});                        
-					}  					
+						});
+					}
 
 					var tagsIds = result.tags;
 					for(var i=0; i < tagsIds.length; i++){
@@ -100,21 +100,21 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 							tag.name = tagResult.name;
 							model.addTag(tag);
 							model.isLoadingTags = false;
-						});                        
-					}  						
+						});
+					}
 
 					break;
 				case "v1":
 					for (var category in result.categories){
-						model.addCategory(result.categories[category]);						
+						model.addCategory(result.categories[category]);
 					}
 					model.isLoadingCategories = false;
 					for (var tag in result.tags){
-						model.addTag(result.tags[tag]);						
+						model.addTag(result.tags[tag]);
 					}
-					model.isLoadingTags = false;					
-					break;              
-			}    				
+					model.isLoadingTags = false;
+					break;
+			}
 
 			model.isLoadingFullPost = false;
 			defer.resolve(model);
@@ -126,3 +126,5 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 	return model;
 }
+
+module.factory('FullPostModel', FullPostModel);

@@ -1,4 +1,4 @@
-angular.module("frontpress").run(frontpressRun);
+var module = angular.module("frontpress");
 
 function frontpressRun(SlugsMapModel){
 
@@ -79,5 +79,6 @@ function frontpressRun(SlugsMapModel){
 
     extendStringPrototype();
     extendArrayPrototype();
-
 }
+
+module.run(frontpressRun);
