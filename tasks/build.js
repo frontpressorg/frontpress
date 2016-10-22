@@ -1,7 +1,7 @@
-var gulp = require('gulp');
+var gulp = require("gulp");
 
 module.exports = function() {
-    return  gulp.task('build', function() {
-        gulp.start('templateCache', 'copy', 'inject');
+    return  gulp.task("build", function() {
+        gulp.start("templateCache", "copy", "inject");
     })
 }
