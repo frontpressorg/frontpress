@@ -1,4 +1,4 @@
-angular.module('frontpress.components.page-head').factory('PageHeadModel', PageHeadModel);
+var module = angular.module('frontpress.components.page-head');
 
 function PageHeadModel($location){
 	var model = {
@@ -63,3 +63,5 @@ function PageHeadModel($location){
 
 	return model;
 }
+
+module.factory('PageHeadModel', PageHeadModel);

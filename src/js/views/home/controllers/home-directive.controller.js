@@ -1,4 +1,4 @@
-angular.module('frontpress.views.home').controller('HomeDirectiveController', HomeDirectiveController);
+var module = angular.module('frontpress.views.home');
 
 function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpress, BlogApi, PageHeadModel, $location, PaginationModel){
     var vc = this;
@@ -13,14 +13,14 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
     };
 
     var blogInformationPromise = BlogApi.getBlogInformation();
-    var loadPostsPromise = vc.vm.loadPosts(params);   
+    var loadPostsPromise = vc.vm.loadPosts(params);
 
     loadPostsPromise.then(function(loadedPosts){
         var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
-        _setPaginationPages(params.pageNumber); 
+        _setPaginationPages(params.pageNumber);
         if($Frontpress.apiVersion == "v2"){
-            vc.vm.loadExternalFeaturedImages(loadedPosts);            
+            vc.vm.loadExternalFeaturedImages(loadedPosts);
         }
     });
 
@@ -37,7 +37,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
             if($Frontpress.apiVersion == "v2"){
                 vc.vm.loadExternalFeaturedImages(loadedPosts);
             }
-        });        
+        });
 
         _setPageMetaData();
         _setPaginationPages(params.pageNumber);
@@ -64,3 +64,5 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
         });
     }
 }
+
+module.controller('HomeDirectiveController', HomeDirectiveController);

@@ -1,4 +1,4 @@
-angular.module("frontpress").config(frontpressConfig);
+var module = angular.module("frontpress");
 
 function frontpressConfig($interpolateProvider, $httpProvider, $urlRouterProvider, $locationProvider, BlogApiProvider, PostsApiProvider, $FrontpressProvider, $compileProvider){
     $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
@@ -8,3 +8,5 @@ function frontpressConfig($interpolateProvider, $httpProvider, $urlRouterProvide
     $FrontpressProvider.configure.load();
     $compileProvider.debugInfoEnabled(false);
 }
+
+module.config(frontpressConfig);

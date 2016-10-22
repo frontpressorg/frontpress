@@ -1,7 +1,7 @@
-angular.module('frontpress.components.full-post').directive('fullPostCategoriesList', FullPostCategoriesListDirective);
+var module = angular.module('frontpress.components.full-post');
 
 function FullPostCategoriesListDirective(){
-	var directive = {
+	return {
 		restrict: 'E',
 		scope: {},
 		templateUrl: '/js/components/full-post/templates/full-post-categories-list.template.html',
@@ -10,6 +10,6 @@ function FullPostCategoriesListDirective(){
 		bindToController: true,
 		replace: true
 	};
-
-	return directive;
 }
+
+module.directive('fullPostCategoriesList', FullPostCategoriesListDirective);
