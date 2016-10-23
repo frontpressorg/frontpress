@@ -40,6 +40,10 @@ function PageHeadModel($location){
 		_setPageRobots();
 	}
 
+    function setPageCanonical(pageCanonical){
+        model.pageCanonical = pageCanonical;
+    }
+
     model.setIsFollow = setIsFollow;
     model.setPageCanonical = setPageCanonical;
     model.setPageDescription = setPageDescription;
@@ -51,10 +55,6 @@ function PageHeadModel($location){
     	var isIndexString = model.isIndex ? "index" : "noindex";
     	var isFollowString = model.isFollow ? "follow" : "nofollow";
     	model.pageRobots = "{0}, {1}".format(isIndexString, isFollowString);
-	}
-
-	function setPageCanonical(pageCanonical){
-		model.pageCanonical = pageCanonical;
 	}
 
 	function init(){

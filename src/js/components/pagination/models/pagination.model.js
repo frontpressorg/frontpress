@@ -28,7 +28,6 @@ function PaginationModel(PageHeadModel){
         model.lastPageNumber = lastPageNumber;
     }
 
-    model.generatePaginationFromCurrentPageNumber = generatePaginationFromCurrentPageNumber;
     model.setLastPageNumber = setLastPageNumber;
     model.setNextPageNumber = setNextPageNumber;
 
@@ -57,6 +56,8 @@ function PaginationModel(PageHeadModel){
 
         model.pages = paginationPages;
     }
+
+    model.generatePaginationFromCurrentPageNumber = generatePaginationFromCurrentPageNumber;
 
 	return model;
 }

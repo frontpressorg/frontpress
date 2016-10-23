@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.apis.configs-to-params")
+var module = angular.module("frontpress.apis.configs-to-params");
 
 function ConfigsToParams(){
 	function parse(configs){
