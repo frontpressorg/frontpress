@@ -1,4 +1,4 @@
-angular.module("frontpress.components.share").controller("ShareController", ShareController);
+var module = angular.module("frontpress.components.share");
 
 function ShareController($scope, $element, $attrs){
 	var vc = this;
@@ -35,3 +35,5 @@ function ShareController($scope, $element, $attrs){
         return "https://plus.google.com/share?url=" + document.URL + url + "/&amp;t=" + $attrs.title;
     }
 }
+
+module.controller("ShareController", ShareController);

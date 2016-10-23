@@ -1,16 +1,13 @@
-angular.module("frontpress.components.pagination").factory("PaginationModel", PaginationModel);
+var module = angular.module("frontpress.components.pagination");
 
 function PaginationModel(PageHeadModel){
 	var model = {
 		lastPageNumber: null,
 		pages: null,
 		paginationSize: 4,
-		generatePaginationFromCurrentPageNumber: generatePaginationFromCurrentPageNumber,
-		setLastPageNumber: setLastPageNumber,
 		prevPageNumber: null,
-		nextPageNumber: null,
-		setPrevPageNumber: setPrevPageNumber,
-		setNextPageNumber: setNextPageNumber,
+        nextPageNumber: null,
+        setPrevPageNumber: setPrevPageNumber,
 	};
 
 	function setNextPageNumber(nextPageNumber){
@@ -22,6 +19,18 @@ function PaginationModel(PageHeadModel){
 		model.prevPageNumber = prevPageNumber;
 		PageHeadModel.setRelPrevNumber(prevPageNumber);
 	}
+
+    function setPaginationSize(paginationSize){
+        model.paginationSize = paginationSize;
+    }
+
+    function setLastPageNumber(lastPageNumber){
+        model.lastPageNumber = lastPageNumber;
+    }
+
+    model.generatePaginationFromCurrentPageNumber = generatePaginationFromCurrentPageNumber;
+    model.setLastPageNumber = setLastPageNumber;
+    model.setNextPageNumber = setNextPageNumber;
 
     function generatePaginationFromCurrentPageNumber(currentPageNumber){
         var paginationPages = [];
@@ -49,13 +58,7 @@ function PaginationModel(PageHeadModel){
         model.pages = paginationPages;
     }
 
-	function setPaginationSize(paginationSize){
-		model.paginationSize = paginationSize;
-	}
-
-	function setLastPageNumber(lastPageNumber){
-		model.lastPageNumber = lastPageNumber;
-	}
-
 	return model;
 }
+
+module.factory("PaginationModel", PaginationModel);

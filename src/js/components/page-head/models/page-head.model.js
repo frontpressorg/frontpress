@@ -9,13 +9,7 @@ function PageHeadModel($location){
 		pageDescription: null,
 		pageRobots: null,
 		pageTitle: null,
-		setIsFollow: setIsFollow,
 		setIsIndex: setIsIndex,
-		setPageCanonical: setPageCanonical,
-		setPageDescription: setPageDescription,
-		setPageTitle: setPageTitle,
-		setRelPrevNumber: setRelPrevNumber,
-		setRelNextNumber: setRelNextNumber,
 		relNextNumber: null,
 		relPrevNumber: null
 	};
@@ -45,6 +39,13 @@ function PageHeadModel($location){
 		model.isFollow = isFollow;
 		_setPageRobots();
 	}
+
+    model.setIsFollow = setIsFollow;
+    model.setPageCanonical = setPageCanonical;
+    model.setPageDescription = setPageDescription;
+    model.setPageTitle = setPageTitle;
+    model.setRelPrevNumber = setRelPrevNumber;
+    model.setRelNextNumber = setRelNextNumber;
 
 	function _setPageRobots(){
     	var isIndexString = model.isIndex ? "index" : "noindex";

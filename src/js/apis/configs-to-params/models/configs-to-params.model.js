@@ -1,10 +1,6 @@
-angular.module("frontpress.apis.configs-to-params").factory("ConfigsToParams", ConfigsToParams);
+var module = angular.module("frontpress.apis.configs-to-params")
 
 function ConfigsToParams(){
-	var model = {
-		parse: parse
-	};
-
 	function parse(configs){
         var params = {};
 
@@ -14,8 +10,15 @@ function ConfigsToParams(){
             if(configs.context) params.context = configs.context;
             if(configs.fields) params.fields = configs.fields;
         }
-        
+
         return params;
 	}
+
+    var model = {
+        parse: parse
+    };
+
 	return model;
 }
+
+module.factory("ConfigsToParams", ConfigsToParams);

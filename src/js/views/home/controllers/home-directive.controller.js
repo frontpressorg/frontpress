@@ -19,34 +19,10 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
         var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
         _setPaginationPages(params.pageNumber);
-        if($Frontpress.apiVersion == "v2"){
+        if($Frontpress.apiVersion === "v2"){
             vc.vm.loadExternalFeaturedImages(loadedPosts);
         }
     });
-
-    _setPageMetaData();
-
-    function loadMorePostsAndPaginate(){
-        params.pageNumber++;
-        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
-        var paginationOptions = {notify: false};
-        var loadPostsPromise = vc.vm.loadPosts(params);
-
-
-        loadPostsPromise.then(function(loadedPosts){
-            if($Frontpress.apiVersion == "v2"){
-                vc.vm.loadExternalFeaturedImages(loadedPosts);
-            }
-        });
-
-        _setPageMetaData();
-        _setPaginationPages(params.pageNumber);
-        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
-    }
-
-    function _setPaginationPages(currentPageNumber){
-        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
-    }
 
     function _setPageMetaData(){
         blogInformationPromise.success(function(result){
@@ -62,6 +38,30 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
 
             PageHeadModel.setPageCanonical(canonical);
         });
+    }
+
+    _setPageMetaData();
+
+    function loadMorePostsAndPaginate(){
+        params.pageNumber++;
+        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
+        var paginationOptions = {notify: false};
+        var loadPostsPromise = vc.vm.loadPosts(params);
+
+
+        loadPostsPromise.then(function(loadedPosts){
+            if($Frontpress.apiVersion === "v2"){
+                vc.vm.loadExternalFeaturedImages(loadedPosts);
+            }
+        });
+
+        _setPageMetaData();
+        _setPaginationPages(params.pageNumber);
+        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
+    }
+
+    function _setPaginationPages(currentPageNumber){
+        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
     }
 }
 

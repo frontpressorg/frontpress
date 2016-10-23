@@ -5,13 +5,6 @@ TagsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
 function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
     var tagsBaseUrl = $Frontpress.restApiUrl + "/posts/";
 
-    var restApi = {
-        getAllTags: getAllTags,
-        getTagByPostId: getTagByPostId,
-    };
-
-    return restApi;
-
     function getAllTags(configs){
         var tagsListUrl = tagsBaseUrl;
         var params = ConfigsToParams.parse(configs);
@@ -23,5 +16,12 @@ function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
         var params = ConfigsToParams.parse(configs);
         postUrl = postUrl.replace("<post-id>", postId);
         return AjaxModel.get(postUrl, params);
-    }    
+    }
+
+    var restApi = {
+        getAllTags: getAllTags,
+        getTagByPostId: getTagByPostId,
+    };
+
+    return restApi;
 }

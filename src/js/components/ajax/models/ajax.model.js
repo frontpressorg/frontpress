@@ -1,6 +1,17 @@
 var module = angular.module("frontpress.components.ajax");
 
 function AjaxModel($http) {
+    function request(url, params, method) {
+        params = params || {};
+
+        var promise = $http({
+            url: url,
+            method: method,
+            params: params
+        });
+
+        return promise;
+    }
 
     function get(url, params) {
         return request(url, params, "GET");
@@ -12,18 +23,6 @@ function AjaxModel($http) {
 
     function put(url, params) {
         return request(url, params, "PUT");
-    }
-
-    function request(url, params, method) {
-        params = params || {};
-
-        var promise = $http({
-            url: url,
-            method: method,
-            params: params
-        });
-
-        return promise;
     }
 
     return {
