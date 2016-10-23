@@ -2,22 +2,18 @@ var module = angular.module("frontpress.components.full-post");
 
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 	var model = {
-		addCategory: addCategory,
 		addTag: addTag,
-		categories: [],
-		content: null,
-		date: null,
-		featuredImage: null,
-		id: null,
-		isLoadingCategories: null,
-		isLoadingFullPost: false,
-		isLoadingTags: false,
-		loadFullPostById: loadFullPostById,
-		setContent: setContent,
-		setDate: setDate,
-		setFeaturedImage: setFeaturedImage,
-		setId: setId,
-		setSlug: setSlug,
+        categories: [],
+        content: null,
+        date: null,
+        featuredImage: null,
+        id: null,
+        isLoadingCategories: null,
+        isLoadingFullPost: false,
+        isLoadingTags: false,
+        setContent: setContent,
+        setFeaturedImage: setFeaturedImage,
+        setId: setId,
 		setTitle: setTitle,
 		slug: null,
 		tags: [],
@@ -60,6 +56,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 		model.id = id;
 	}
 
+    model.addCategory = addCategory;
+    model.setSlug = setSlug;
+    model.setDate = setDate;
+
 	function loadFullPostById(id){
 		var defer = $q.defer();
 
@@ -92,10 +92,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 					}
 
 					var tagsIds = result.tags;
-					for(var i=0; i < tagsIds.length; i++){
+					for(var j=0; j < tagsIds.length; j++){
 						model.isLoadingTags = true;
 
-						TagsApi.getTagById(tagsIds[i]).success(function(tagResult){
+						TagsApi.getTagById(tagsIds[j]).success(function(tagResult){
 							var tag = {};
 							tag.name = tagResult.name;
 							model.addTag(tag);
@@ -123,6 +123,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 		return defer.promise;
 	}
 
+    model.loadFullPostById = loadFullPostById;
 
 	return model;
 }

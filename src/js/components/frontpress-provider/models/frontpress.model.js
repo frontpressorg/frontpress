@@ -1,4 +1,4 @@
-angular.module("frontpress.components.frontpress-provider").provider("$Frontpress", FrontpressProvider);
+var module = angular.module("frontpress.components.frontpress-provider");
 
 function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 	var configure = {
@@ -48,16 +48,9 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 
         if (angular.isUndefined(FrontpressConfigurationFile.apiVersion)) {
             throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
-        }        
+        }
 
 	}
-
-	var provider = {
-		$get: Frontpress,
-		configure: configure
-	};
-
-	return provider;
 
 	function Frontpress(){
 		var model = {
@@ -69,4 +62,13 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 
 		return model;
 	}
+
+    var provider = {
+        $get: Frontpress,
+        configure: configure
+    };
+
+    return provider;
 }
+
+module.provider("$Frontpress", FrontpressProvider);

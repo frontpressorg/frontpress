@@ -1,4 +1,4 @@
-angular.module("frontpress.components.pagination").directive("pagination", pagination);
+var module = angular.module("frontpress.components.pagination");
 
 function pagination(){
 	var directive = {
@@ -13,3 +13,5 @@ function pagination(){
 
 	return directive;
 }
+
+module.directive("pagination", pagination);

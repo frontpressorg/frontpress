@@ -1,4 +1,4 @@
-angular.module("frontpress.components.full-post").directive("fullPostTagsList", FullPostTagListDirective);
+var module = angular.module("frontpress.components.full-post");
 
 function FullPostTagListDirective(){
 	var directive = {
@@ -12,3 +12,5 @@ function FullPostTagListDirective(){
 
 	return directive;
 }
+
+module.directive("fullPostTagsList", FullPostTagListDirective);

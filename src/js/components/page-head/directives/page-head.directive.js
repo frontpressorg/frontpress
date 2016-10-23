@@ -1,4 +1,4 @@
-angular.module("frontpress.components.page-head").directive("pageHead", pageHead);
+var module = angular.module("frontpress.components.page-head");
 
 function pageHead(){
 	var directive = {
@@ -14,3 +14,5 @@ function pageHead(){
 
 	return directive;
 }
+
+module.directive("pageHead", pageHead);
