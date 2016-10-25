@@ -65,7 +65,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 		model.isLoadingFullPost = true;
 		var configs = {
-			fields: "ID,title,featured_image,data,categories,content,slug,tags"
+			fields: "ID,title,featured_image,date,categories,content,slug,tags"
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
