@@ -1,58 +1,109 @@
-# Frontpress
+<div align="center">
+    <img src="https://github.com/alisonmonteiro/frontpress/blob/master/media/logo-angular.png" height="75">
+    <img src="https://github.com/alisonmonteiro/frontpress/blob/master/media/logo-wordpress.png" height="75">
+    <h3 align="center">FrontPress</h3>
+    <p align="center">A full front-end AngularJS template for WordPress API.<p>
 
-> Oh! It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
+    <p align="center">
+        <a href="https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
+            <img src="https://badges.gitter.im/teles/frontpress.svg" alt="Join the chat at https://gitter.im/teles/frontpress">
+        </a>
+        <a href="https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade">
+            <img src="https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca" alt="Codacy Badge">
+        </a>
+    </p>
+</div>
 
-[![Join the chat at https://gitter.im/teles/frontpress](https://badges.gitter.im/teles/frontpress.svg)](https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+--
+> It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca)](https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade)
+### Table of contents
+- [Download, install and config](#download-install-and-config)
+- [Goals](#goals)
+- [Tests](#tests)
+- [WordPress Rest API](#wordpress-rest-api)
+- [License](#license)
 
-[Github project to grade A on codacy](https://github.com/teles/frontpress/projects/2)
+#### Download, install and config
 
-Full front-end AngularJS template for WordPress API. 
+First of all, make sure you have installed the main dependencies:
 
-## 1. Clone, install and initial configs
+- [Git](https://git-scm.com/downloads)
+- [NodeJS](https://nodejs.org/en/download/)
+- [Bower](https://bower.io/#install-bower)
+- [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#1-install-gulp-globally)
 
-* Clone or fork this repository
-* ```npm i && bower i```
-* The first time you run the app, you'll need to create a ``frontpress.json`` configuration file. 
-Open the project's directory and run the following command:
+```bash
+# Clone or fork this repository. 
+# If you wanna clone, run:
+$ git clone git@github.com:teles/frontpress.git
 
-````bash
-gulp init
-````
+# Install the dependencies
+$ npm i && bower i
+```
 
-**OR** you can copy this repository file ``frontpress.json.sample`` and rename it to ``frontpress.json``.
+##### First time running the app:
 
-You may find more [information about frontpress.json on this wiki page](https://github.com/teles/frontpress/wiki/frontpress.json).
+Just run the command below and we'll create a configuration file called `frontpress.json`.
 
-* ```gulp templateCache```
+You may find more [information about `frontpress.json` here](https://github.com/teles/frontpress/wiki/frontpress.json).
 
-Now, just **run the app**:
+```bash
+$ gulp init
+```
 
-* ``` gulp ```
-* Take a look on [http://localhost:4000/](http://localhost:4000/)
+Run this to use the Angular Template Cache:
 
-## Tests
+```bash
+$ gulp templateCache
+```
 
-### Initial configurations
+##### If you already have a configuration file: :tada:
 
-* [Install nvm](https://github.com/creationix/nvm/blob/master/README.markdown)
-* nvm install 5.0
+If your `fronpress.json` file is already configured, just **run the app**:
 
-### Executing testing suite 
-Run the command ```nvm use 5.0``` a single time when starting to work in a terminal session.
- 
-Then just run the command ```karma start --single-run``` to execute all tests. The _single-run_ parameter is optional, its already set in _karma.conf.js_. 
+```bash
+$ gulp
+```
 
-If you want to run the tests while writing the code, you can do a ```karma start --no-single-run```
+Wait a few, and it will open a new tab on your browser.
 
-> references:
+#### Goals
 
-> https://scotch.io/tutorials/testing-angularjs-with-jasmine-and-karma-part-1
+- [ ] [Grade A on codacy](https://github.com/teles/frontpress/projects/2)
 
-## Wordpress Rest API Documentation
 
-We support the 1.1 and 1.2 version of WordPress Rest API. Supported resources are:
+#### Tests
 
-* [Posts](https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/posts/)
-* [Site](https://developer.wordpress.com/docs/api/1.2/get/sites/%24site/)
+##### Initial configurations
+
+- If your NodeJS version is < 5.0, then [install NVM - Node Version Manager](https://github.com/creationix/nvm/blob/master/README.markdown#installation).
+- Then install a 5.0+ version of NodeJS:
+
+```bash
+# Install a NodeJS version 5.0+ using nvm.
+$ nvm install 5.0
+
+# Using the installed version
+$ nvm use 5.0
+```
+
+- Then, run the command below to execute all the tests.
+
+```bash
+$ karma start
+```
+
+- To run the tests while writing the code, just add the flag `--no-single-run`.
+
+#### Wordpress Rest API
+
+We support these versions of WordPress Rest API.
+
+- [x] 1.1
+- [x] 1.2
+- [x] 2.0
+
+#### License
+
+MIT © [Teles](https://github.com/teles)
