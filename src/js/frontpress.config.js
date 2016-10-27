@@ -6,6 +6,12 @@ function frontpressConfig($interpolateProvider, $httpProvider, $urlRouterProvide
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $locationProvider.html5Mode(true);
     $FrontpressProvider.configure.load();
+    
+    $FrontpressProvider.configure.setTemplateUrl({
+    	"views.home": "/js/views/home/templates/home.template.html",
+    	"views.post": "/js/views/post/templates/post.template.html"
+    });
+
     $compileProvider.debugInfoEnabled(false);
 }
 
