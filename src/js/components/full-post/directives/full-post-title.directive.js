@@ -6,18 +6,7 @@ function FullPostTitleDirective($Frontpress){
 		scope: {
 			post: "=post"
 		},
-		templateUrl: function(){
-			var templateUrl;
-			switch($Frontpress.apiVersion){
-				case "v2":
-				templateUrl = "/js/components/full-post/templates/full-post-title-v2.template.html";
-				break;
-				case "v1":
-				templateUrl = "/js/components/full-post/templates/full-post-title-v1.template.html";
-				break;
-			}
-			return templateUrl;
-		},
+		templateUrl: $Frontpress.getTemplateUrl("components.fullpost.title"),
 		controller: "FullPostGenericDirectiveController",
 		controllerAs: "vc",
 		bindToController: true

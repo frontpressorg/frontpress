@@ -44,6 +44,10 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			apiVersion: configure.setApiVersion,
 			templateUrl: configure.setTemplateUrl
 		};
+		
+		for(var config in configsToFunctions){
+			configsToFunctions[config](FrontpressConfigurationFile[config]);			
+		}		
 
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
@@ -56,19 +60,34 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			"components.share": "/js/components/share/templates/share.template.html"
 		};
 
+		switch(configure.apiVersion){
+			case "v2":
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v2.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v2.template.html";												
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";												
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";												
+			break;
+			case "v1":
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v1.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v1.template.html";												
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";												
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";												
+			break;
+		}
+
 		function _setTemplateUrlAsDefaultIfEmpty(){
-			for(var defaultTemplateUrlKey in defaultTemplateUrlList){
+			for(var defaultTemplateUrlKey in defaultTemplateUrlList){				
 				if(!configure.templateUrl.hasOwnProperty(defaultTemplateUrlKey)){
 					configure.templateUrl[defaultTemplateUrlKey] = defaultTemplateUrlList[defaultTemplateUrlKey];
 				}			
 			}			
 		}
 
-		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontpressConfigurationFile[config]);			
+		if(angular.isUndefined(configure.templateUrl)){
+			configure.templateUrl = defaultTemplateUrlList;
+		} else {			
+			_setTemplateUrlAsDefaultIfEmpty();			
 		}
-
-		_setTemplateUrlAsDefaultIfEmpty();
 
         if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
             throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
