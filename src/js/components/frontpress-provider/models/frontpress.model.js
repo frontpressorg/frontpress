@@ -42,12 +42,33 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			disqusShortname: $disqusProvider.setShortname,
 			overrides: configure.setOverrides,
 			apiVersion: configure.setApiVersion,
-
+			templateUrl: configure.setTemplateUrl
 		};
 
-		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontpressConfigurationFile[config]);
+		var defaultTemplateUrlList = {
+			"views.home": "/js/views/home/templates/home.template.html",
+			"views.post": "/js/views/post/templates/post.template.html",
+			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
+			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
+			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
+			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
+			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
+			"components.share": "/js/components/share/templates/share.template.html"
+		};
+
+		function _setTemplateUrlAsDefaultIfEmpty(){
+			for(var defaultTemplateUrlKey in defaultTemplateUrlList){
+				if(!configure.templateUrl.hasOwnProperty(defaultTemplateUrlKey)){
+					configure.templateUrl[defaultTemplateUrlKey] = defaultTemplateUrlList[defaultTemplateUrlKey];
+				}			
+			}			
 		}
+
+		for(var config in configsToFunctions){
+			configsToFunctions[config](FrontpressConfigurationFile[config]);			
+		}
+
+		_setTemplateUrlAsDefaultIfEmpty();
 
         if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
             throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
@@ -67,7 +88,7 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			apiVersion: configure.apiVersion,
 			templateUrl: configure.templateUrl,
 			getTemplateUrl: getTemplateUrl
-		};
+		};		
 
 		function getTemplateUrl(templateName){
 			return model.templateUrl[templateName];
