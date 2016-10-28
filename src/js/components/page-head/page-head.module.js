@@ -1,1 +1,2 @@
-angular.module("frontpress.components.page-head", []);
+angular.module("frontpress.components.page-head", [
+				"frontpress.components.frontpress-provider"]);

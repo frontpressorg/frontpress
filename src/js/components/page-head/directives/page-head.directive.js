@@ -1,8 +1,8 @@
 var module = angular.module("frontpress.components.page-head");
 
-function pageHead(){
+function pageHead($Frontpress){
 	var directive = {
-		templateUrl: "/js/components/page-head/templates/page-head.template.html",
+		templateUrl: $Frontpress.getTemplateUrl("components.page-head"),
 		scope: {},
 		controllerAs: "vc",
 		controller: "PageHeadController",

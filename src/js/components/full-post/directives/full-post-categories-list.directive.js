@@ -1,10 +1,10 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostCategoriesListDirective(){
+function FullPostCategoriesListDirective($Frontpress){
 	return {
 		restrict: "E",
 		scope: {},
-		templateUrl: "/js/components/full-post/templates/full-post-categories-list.template.html",
+		templateUrl: $Frontpress.getTemplateUrl("components.fullpost.categories"),
 		controller: "FullPostCategoriesListDirectiveController",
 		controllerAs: "vc",
 		bindToController: true,
