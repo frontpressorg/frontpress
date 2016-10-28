@@ -1,4 +1,4 @@
-angular.module('frontpress.components.page-head').factory('PageHeadModel', PageHeadModel);
+var module = angular.module("frontpress.components.page-head");
 
 function PageHeadModel($location){
 	var model = {
@@ -9,13 +9,7 @@ function PageHeadModel($location){
 		pageDescription: null,
 		pageRobots: null,
 		pageTitle: null,
-		setIsFollow: setIsFollow,
 		setIsIndex: setIsIndex,
-		setPageCanonical: setPageCanonical,
-		setPageDescription: setPageDescription,
-		setPageTitle: setPageTitle,
-		setRelPrevNumber: setRelPrevNumber,
-		setRelNextNumber: setRelNextNumber,
 		relNextNumber: null,
 		relPrevNumber: null
 	};
@@ -46,14 +40,21 @@ function PageHeadModel($location){
 		_setPageRobots();
 	}
 
-	function _setPageRobots(){
-    	var isIndexString = model.isIndex ? 'index' : 'noindex';
-    	var isFollowString = model.isFollow ? 'follow' : 'nofollow';
-    	model.pageRobots = '{0}, {1}'.format(isIndexString, isFollowString);
-	}
+    function setPageCanonical(pageCanonical){
+        model.pageCanonical = pageCanonical;
+    }
 
-	function setPageCanonical(pageCanonical){
-		model.pageCanonical = pageCanonical;
+    model.setIsFollow = setIsFollow;
+    model.setPageCanonical = setPageCanonical;
+    model.setPageDescription = setPageDescription;
+    model.setPageTitle = setPageTitle;
+    model.setRelPrevNumber = setRelPrevNumber;
+    model.setRelNextNumber = setRelNextNumber;
+
+	function _setPageRobots(){
+    	var isIndexString = model.isIndex ? "index" : "noindex";
+    	var isFollowString = model.isFollow ? "follow" : "nofollow";
+    	model.pageRobots = "{0}, {1}".format(isIndexString, isFollowString);
 	}
 
 	function init(){
@@ -63,3 +64,5 @@ function PageHeadModel($location){
 
 	return model;
 }
+
+module.factory("PageHeadModel", PageHeadModel);

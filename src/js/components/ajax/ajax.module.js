@@ -1,1 +1,1 @@
-angular.module('frontpress.components.ajax', []);
+angular.module("frontpress.components.ajax", []);

@@ -1,4 +1,4 @@
-angular.module("frontpress").run(frontpressRun);
+var module = angular.module("frontpress");
 
 function frontpressRun(SlugsMapModel){
 
@@ -7,7 +7,7 @@ function frontpressRun(SlugsMapModel){
             String.prototype.format = function() {
                 var args = arguments;
                 return this.replace(/{(\d+)}/g, function(match, number) {
-                    return typeof args[number] != 'undefined' ? args[number] : match;
+                    return typeof args[number] != "undefined" ? args[number] : match;
                 });
             };
         }
@@ -79,5 +79,6 @@ function frontpressRun(SlugsMapModel){
 
     extendStringPrototype();
     extendArrayPrototype();
-
 }
+
+module.run(frontpressRun);

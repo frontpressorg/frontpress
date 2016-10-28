@@ -1,4 +1,4 @@
-angular.module('frontpress.components.list-posts').factory('ListPostsModel', ListPostsModel);
+angular.module("frontpress.components.list-posts").factory("ListPostsModel", ListPostsModel);
 
 function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
     var model = {
@@ -53,7 +53,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         var defer = $q.defer();
 
         var configs = {
-            fields: 'ID,title,date,featured_image,excerpt'
+            fields: "ID,title,date,featured_image,excerpt"
         };           
 
         var postPromises = {
@@ -72,8 +72,8 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         }
 
         postPromises.getAllPostsPromise().then(function(postsResult){
-            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, 'totalPostsNumber'));            
-            var allPosts = ApiManager.getPath(postsResult, 'allPostsPath');
+            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, "totalPostsNumber"));            
+            var allPosts = ApiManager.getPath(postsResult, "allPostsPath");
 
             SlugsMapModel.updateFromPosts(allPosts);      
 

@@ -1,1 +1,1 @@
-angular.module('frontpress.views', ['frontpress.views.home', 'frontpress.views.post']);
+angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post"]);

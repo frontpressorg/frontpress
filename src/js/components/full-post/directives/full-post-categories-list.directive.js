@@ -1,15 +1,15 @@
-angular.module('frontpress.components.full-post').directive('fullPostCategoriesList', FullPostCategoriesListDirective);
+var module = angular.module("frontpress.components.full-post");
 
 function FullPostCategoriesListDirective(){
-	var directive = {
-		restrict: 'E',
+	return {
+		restrict: "E",
 		scope: {},
-		templateUrl: '/js/components/full-post/templates/full-post-categories-list.template.html',
-		controller: 'FullPostCategoriesListDirectiveController',
-		controllerAs: 'vc',
+		templateUrl: "/js/components/full-post/templates/full-post-categories-list.template.html",
+		controller: "FullPostCategoriesListDirectiveController",
+		controllerAs: "vc",
 		bindToController: true,
 		replace: true
 	};
-
-	return directive;
 }
+
+module.directive("fullPostCategoriesList", FullPostCategoriesListDirective);

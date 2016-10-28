@@ -1,13 +1,13 @@
-angular.module('frontpress.views.home').directive('homeView', HomeViewDirective);
+angular.module("frontpress.views.home").directive("homeView", HomeViewDirective);
 
-function HomeViewDirective(){
+function HomeViewDirective($Frontpress){
 	var directive = {
 		scope: {},
-		templateUrl: '/js/views/home/templates/home.template.html',
-		restrict: 'E',
-		controllerAs: 'vc',
+		templateUrl: $Frontpress.getTemplateUrl("views.home"),
+		restrict: "E",
+		controllerAs: "vc",
 		bindToController: true,
-		controller: 'HomeDirectiveController'
+		controller: "HomeDirectiveController"
 	};
 	return directive;
 }

@@ -1,4 +1,4 @@
-angular.module("frontpress.components.api-manager").service('ApiManager', ApiManager);
+angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
 
 function ApiManager(ApiManagerMap){
 	

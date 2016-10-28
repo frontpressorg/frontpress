@@ -1,4 +1,4 @@
-angular.module('frontpress.components.slugs-map').factory('SlugsMapModel', SlugsMapModel);
+angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
 
 SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "$Frontpress"];
 
@@ -52,7 +52,7 @@ function SlugsMapModel($cacheFactory, PostsApi, $Frontpress){
 	}
 
 	function load(pageSize, pageNumber){
-		var promiseParams = {'pageSize': pageSize, 'pageNumber': pageNumber};
+		var promiseParams = {"pageSize": pageSize, "pageNumber": pageNumber};
 		var allPostsPromise = PostsApi.getAllPosts(promiseParams);
 
 		allPostsPromise.success(function(result){

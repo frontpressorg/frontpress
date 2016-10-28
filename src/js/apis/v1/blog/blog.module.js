@@ -1,1 +1,1 @@
-angular.module('frontpress.apis.blog', ['frontpress.components.ajax', 'frontpress.components.frontpress-provider']);
+angular.module("frontpress.apis.blog", ["frontpress.components.ajax", "frontpress.components.frontpress-provider"]);

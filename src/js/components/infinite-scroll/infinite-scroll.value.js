@@ -1,1 +1,1 @@
-angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 1000)
+angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000)

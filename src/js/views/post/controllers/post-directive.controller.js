@@ -1,10 +1,10 @@
-angular.module('frontpress.views.post').controller('PostDirectiveController', PostDirectiveController);
+var module =angular.module("frontpress.views.post");
 
 function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, $Frontpress, CategoriesApi){
 	var vc = this;
     vc.vm = FullPostModel;
     var postSlug = $stateParams.postSlug;
-    var cachedSlugs = SlugsMapModel.getCachedSlugs();	
+    var cachedSlugs = SlugsMapModel.getCachedSlugs();
 
     var idProperty;
     switch($Frontpress.apiVersion){
@@ -13,18 +13,18 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
         break;
         case "v1":
             idProperty = "ID";
-        break;              
-    }           
-    
-    var postId = JSON.search(cachedSlugs, '//*[slug="{0}"]/{1}'.format(postSlug, idProperty))[0]; 
+        break;
+    }
+
+    var postId = JSON.search(cachedSlugs, "//*[slug='{0}']/{1}".format(postSlug, idProperty))[0];
 
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
-    
+
 
     PageHeadModel.init();
 
-    fullPostPromise.then(function(result){        
-        
+    fullPostPromise.then(function(result){
+
         var postTitle;
         switch($Frontpress.apiVersion){
             case "v2":
@@ -32,10 +32,11 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
             break;
             case "v1":
                 postTitle = FullPostModel.title;
-            break;              
-        }                      
+            break;
+        }
         PageHeadModel.setPageTitle(postTitle);
         vc.disqusId = FullPostModel.slug;
 	});
-
 }
+
+module.controller("PostDirectiveController", PostDirectiveController);
