@@ -1,13 +1,13 @@
 angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
 
-function ListPostsDirective(){
+function ListPostsDirective($Frontpress){
 	var directive = {
 		scope: {},
 		restrict: "E",
 		controller: "ListPostsDirectiveController",
 		controllerAs: "vc",
 		bindToController: true,
-		templateUrl: "/js/components/list-posts/templates/list-posts.template.html"
+		templateUrl: $Frontpress.getTemplateUrl("components.listposts")
 	};
 
 	return directive;

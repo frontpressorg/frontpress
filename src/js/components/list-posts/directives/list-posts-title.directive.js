@@ -9,19 +9,7 @@ function ListPostsTitleDirective($Frontpress){
 		controller: "ListPostsGenericDirectiveController",
 		controllerAs: "vc",
 		bindToController: true,
-		templateUrl: function(){
-			var templateUrl;
-			switch($Frontpress.apiVersion){
-				case "v2":
-				templateUrl = "/js/components/list-posts/templates/list-posts-title-v2.template.html";
-				break;
-				case "v1":
-				templateUrl = "/js/components/list-posts/templates/list-posts-title-v1.template.html";
-				break;				
-			}
-			return templateUrl;
-		}
-
+		templateUrl: $Frontpress.getTemplateUrl("components.listposts.title")
 	};
 
 	return directive;
