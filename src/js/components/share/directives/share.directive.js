@@ -4,8 +4,8 @@ function share($Frontpress) {
 	var directive = {
 		restrict: "E",
 		scope: {
-            url: "@url",
-            title: "@title"
+            url: "=url",
+            title: "=title"
         },
 		templateUrl: $Frontpress.getTemplateUrl("components.share"),
 		controller: "ShareController",

@@ -57,6 +57,7 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
 			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
 			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
+			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
 			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
 			"components.share": "/js/components/share/templates/share.template.html"
 		};
