@@ -5,10 +5,11 @@ function ListPostsExcerptDirective($Frontpress){
 		scope: {
 			post: "=post"
 		},
-		restrict: "E",
+		restrict: "AE",
 		controller: "ListPostsGenericDirectiveController",
 		controllerAs: "vc",
 		bindToController: true,
+		replace: true,
 		templateUrl: $Frontpress.getTemplateUrl("components.listposts.excerpt")
 
 	};

@@ -2,7 +2,7 @@ angular.module("frontpress.components.post-date").directive("postDate", PostDate
 
 function PostDateDirective($Frontpress){
 	var directive = {
-		restrict: "E",
+		restrict: "AE",
 		scope: {
 			post: '=post'
 		},

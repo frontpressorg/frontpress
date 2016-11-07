@@ -5,9 +5,10 @@ function ListPostsTitleDirective($Frontpress){
 		scope: {
 			post: "=post"
 		},
-		restrict: "E",
+		restrict: "AE",
 		controller: "ListPostsGenericDirectiveController",
 		controllerAs: "vc",
+		replace: true,
 		bindToController: true,
 		templateUrl: $Frontpress.getTemplateUrl("components.listposts.title")
 	};

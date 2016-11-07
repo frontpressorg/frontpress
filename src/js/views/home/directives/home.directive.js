@@ -4,10 +4,11 @@ function HomeViewDirective($Frontpress){
 	var directive = {
 		scope: {},
 		templateUrl: $Frontpress.getTemplateUrl("views.home"),
-		restrict: "E",
+		restrict: "AE",
 		controllerAs: "vc",
 		bindToController: true,
-		controller: "HomeDirectiveController"
+		controller: "HomeDirectiveController",
+		replace: true
 	};
 	return directive;
 }

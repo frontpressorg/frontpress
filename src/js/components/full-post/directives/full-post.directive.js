@@ -2,12 +2,13 @@ angular.module("frontpress.components.full-post").directive("fullPost", FullPost
 
 function FullPostDirective($Frontpress){
 	var directive = {
-		restrict: "E",
+		restrict: "AE",
 		scope: {},
 		templateUrl: $Frontpress.getTemplateUrl("components.fullpost"),
 		controller: "FullPostDirectiveController",
 		controllerAs: "vc",
-		bindToController: true
+		bindToController: true,
+		replace: true
 	};
 
 	return directive;

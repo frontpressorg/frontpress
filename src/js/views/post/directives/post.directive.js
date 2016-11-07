@@ -4,10 +4,11 @@ function PostViewDirective($Frontpress){
 	var directive = {
 		scope: {},
 		templateUrl: $Frontpress.getTemplateUrl("views.post"),
-		restrict: "E",
+		restrict: "AE",
 		controllerAs: "vc",
 		bindToController: true,
-		controller: "PostDirectiveController"
+		controller: "PostDirectiveController",
+		replace: true
 	};
 	return directive;
 }

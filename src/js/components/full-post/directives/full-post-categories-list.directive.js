@@ -2,7 +2,7 @@ var module = angular.module("frontpress.components.full-post");
 
 function FullPostCategoriesListDirective($Frontpress){
 	return {
-		restrict: "E",
+		restrict: "AE",
 		scope: {
 			post: "=post"
 		},

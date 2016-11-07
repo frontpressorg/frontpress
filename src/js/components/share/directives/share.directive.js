@@ -10,7 +10,8 @@ function share($Frontpress) {
 		templateUrl: $Frontpress.getTemplateUrl("components.share"),
 		controller: "ShareController",
 		controllerAs: "vc",
-		bindToController: true
+		bindToController: true,
+		replace: true
 	};
 
 	return directive;
