@@ -1,10 +1,10 @@
 <div>
-	<p ng-if="vc.vm.isLoadingCategories">carregando categorias...</p>
-	<p ng-if="vc.vm.isLoadingCategories === false">
+	<p ng-if="vc.post.isLoadingCategories">carregando categorias...</p>
+	<p ng-if="vc.post.isLoadingCategories === false">
 		<span><strong>categorias:</strong></span>	
-		<span ng-if="vc.vm.categories.length == 1" rel="tag">{[{vc.vm.categories[0].name}]} </span>		
-		<span ng-if="vc.vm.categories.length > 1" 
-			ng-repeat="category in vc.vm.categories" 
+		<span ng-if="vc.post.categories.length == 1" rel="tag">{[{vc.post.categories[0].name}]} </span>		
+		<span ng-if="vc.post.categories.length > 1" 
+			ng-repeat="category in vc.post.categories" 
 			rel="tag">{[{category.name}]}{{$last ? "" : ", "}}		
 		</span>		
 	</p>

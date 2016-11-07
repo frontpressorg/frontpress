@@ -1,8 +1,7 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostTagsListDirectiveController(FullPostModel){
+function FullPostTagsListDirectiveController(){
 	var vc = this;
-	vc.vm = FullPostModel;
 }
 
 module.controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);

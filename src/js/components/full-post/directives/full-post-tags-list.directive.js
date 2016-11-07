@@ -3,7 +3,9 @@ var module = angular.module("frontpress.components.full-post");
 function FullPostTagListDirective($Frontpress){
 	var directive = {
 		restrict: "E",
-		scope: {},
+		scope: {
+			post: "=post"
+		},
 		templateUrl: $Frontpress.getTemplateUrl("components.fullpost.tags"),
 		controller: "FullPostTagsListDirectiveController",
 		controllerAs: "vc",
