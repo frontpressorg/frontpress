@@ -3,7 +3,7 @@
 	<div ng-repeat="post in vc.vm.postsList">	
 		<list-posts-title post="post"></list-posts-title>	
 		<post-date post="post"></post-date>
-		<img ng-src="{[{post.featured_image}]}" style="max-width: 250px;">
+		<featured-image post="post"></featured-image>	
 		<list-posts-excerpt post="post"></list-posts-excerpt>
         <share url="post.slug" title="post.title"></share>
 	</div>
