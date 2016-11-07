@@ -3,5 +3,7 @@ angular.module("frontpress.components.full-post",
 				"frontpress.apis.tags", 
 				"frontpress.apis.posts", 
 				"frontpress.apis.categories", 
+				"frontpress.apis.media", 
 				"frontpress.components.post-date",
+				"frontpress.components.featured-image",
 				"frontpress.components.frontpress-provider"]);

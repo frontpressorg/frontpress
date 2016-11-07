@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $Frontpress){
 	var model = {
 		addTag: addTag,
         categories: [],
@@ -42,6 +42,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 	function setFeaturedImage(featuredImage){
 		model.featuredImage = featuredImage;
+		model.featured_image = featuredImage;
 	}
 
 	function setCategoryNames(categoryNames){
@@ -65,14 +66,13 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 
 		model.isLoadingFullPost = true;
 		var configs = {
-			fields: "ID,title,featured_image,date,categories,content,slug,tags"
+			fields: "ID,title,featured_image,featured_media,date,categories,content,slug,tags"
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
 		postPromise.success(function(result){
 			model.setTitle(result.title);
 			model.setContent(result.content);
-			model.setFeaturedImage(result.featured_image);
 			model.setDate(result.date);
 			model.setSlug(result.slug);
 
@@ -103,15 +103,27 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, $Frontpress){
 						});
 					}
 
+					var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
+
+					featuredImagesPromise.success(function(result){
+						model.setFeaturedImage(result.source_url);
+					});
+
 					break;
+				
 				case "v1":
+					model.setFeaturedImage(result.featured_image);
+
 					for (var category in result.categories){
 						model.addCategory(result.categories[category]);
 					}
+
 					model.isLoadingCategories = false;
+					
 					for (var tag in result.tags){
 						model.addTag(result.tags[tag]);
 					}
+
 					model.isLoadingTags = false;
 					break;
 			}
