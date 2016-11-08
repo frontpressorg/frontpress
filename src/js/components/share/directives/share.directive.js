@@ -2,10 +2,9 @@ angular.module("frontpress.components.share").directive("share", share);
 
 function share($Frontpress) {
 	var directive = {
-		restrict: "E",
+		restrict: "AE",
 		scope: {
-            url: "=url",
-            title: "=title"
+            post: "=post",
         },
 		templateUrl: $Frontpress.getTemplateUrl("components.share"),
 		controller: "ShareController",
