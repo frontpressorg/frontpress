@@ -7,7 +7,7 @@ function pageHead($Frontpress){
 		controllerAs: "vc",
 		controller: "PageHeadController",
 		bindToController: true,
-		restrict: "AE",
+		restrict: "A",
 		replace: false,
 		transclude: true,
 	};
