@@ -33,6 +33,7 @@ function PaginationModel(PageHeadModel){
 
     function generatePaginationFromCurrentPageNumber(currentPageNumber){
         var paginationPages = [];
+        currentPageNumber = parseInt(currentPageNumber);
 
         if(currentPageNumber > 1){
         	var prevPageNumber = currentPageNumber - 1;
