@@ -1,6 +1,6 @@
 <div align="center">
-    <img src="https://github.com/teles/frontpress/blob/master/media/logo-angular.png" height="75">
-    <img src="https://github.com/teles/frontpress/blob/master/media/logo-wordpress.png" height="75">
+    <img src="https://cdn.rawgit.com/gilbarbara/logos/master/logos/angular-icon.svg" height="75">
+    <img src="https://cdn.rawgit.com/gilbarbara/logos/master/logos/wordpress-icon.svg" height="75">
     <h3 align="center">FrontPress</h3>
     <p align="center">A full front-end AngularJS template for WordPress API.<p>
 
