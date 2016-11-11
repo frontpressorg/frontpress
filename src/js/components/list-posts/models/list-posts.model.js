@@ -77,13 +77,20 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             SlugsMapModel.updateFromPosts(allPosts);      
 
+
             if(model.postsList){
-                model.postsList = model.postsList.concat(allPosts);
+                var isLastPostAlreadyLoaded = ApiManager.getPath(allPosts[allPosts.length-1], "postId") === ApiManager.getPath(model.postsList[model.postsList.length-1], "postId");
+                
+                if(!isLastPostAlreadyLoaded){
+                    model.postsList = model.postsList.concat(allPosts);                    
+                }
+
             } else {
                 model.postsList = allPosts;
             }
 
             defer.resolve(model.postsList);
+            console.log(model.postsList.length);
 
             model.isLoadingPosts = false;
         });

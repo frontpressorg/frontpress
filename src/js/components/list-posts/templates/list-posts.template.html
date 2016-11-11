@@ -1,10 +1,10 @@
 <div>
 	<p ng-if="vc.vm.isLoadingPosts">Carregando posts</p>
 	<div ng-repeat="post in vc.vm.postsList">	
+		
+		{[{$index}]}
+
 		<list-posts-title post="post"></list-posts-title>	
-		<post-date post="post"></post-date>
-		<featured-image post="post"></featured-image>	
-		<list-posts-excerpt post="post"></list-posts-excerpt>
-        <share post="post"></share>
+
 	</div>
 </div>
