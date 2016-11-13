@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.frontpress-provider");
 
-function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
+function FrontPressProvider(FrontpressConfigurationFile, $disqusProvider){
 	var configure = {
 		load: load,
 		overrides: null,
@@ -93,11 +93,11 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 		}
 
         if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
-            throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
+            throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
         if (angular.isUndefined(FrontpressConfigurationFile.apiVersion)) {
-            throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
+            throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
 	}
@@ -127,4 +127,4 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
     return provider;
 }
 
-module.provider("$Frontpress", FrontpressProvider);
+module.provider("$FrontPress", FrontPressProvider);

@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.views.home");
 
-function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpress, BlogApi, PageHeadModel, $location, PaginationModel){
+function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogApi, PageHeadModel, $location, PaginationModel){
     var vc = this;
     vc.vm = ListPostsModel;
     var firstNextPageNumber = 2;
@@ -8,7 +8,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
     PageHeadModel.init();
 
     var params = {
-        pageSize: $Frontpress.pageSize,
+        pageSize: $FrontPress.pageSize,
         pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
     };
 
@@ -16,20 +16,20 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
     var loadPostsPromise = vc.vm.loadPosts(params);
 
     loadPostsPromise.then(function(loadedPosts){
-        var totalPagesNumber = ListPostsModel.totalPostsNumber / $Frontpress.pageSize;
+        var totalPagesNumber = ListPostsModel.totalPostsNumber / $FrontPress.pageSize;
         PaginationModel.setLastPageNumber(totalPagesNumber);
         _setPaginationPages(params.pageNumber);
-        if($Frontpress.apiVersion === "v2"){
+        if($FrontPress.apiVersion === "v2"){
             vc.vm.loadExternalFeaturedImages(loadedPosts);
         }
     });
 
     function _setPageMetaData(){
         blogInformationPromise.success(function(result){
-            if(angular.isUndefined($Frontpress.overrides) || angular.isUndefined($Frontpress.overrides.title)){
+            if(angular.isUndefined($FrontPress.overrides) || angular.isUndefined($FrontPress.overrides.title)){
                 PageHeadModel.setPageTitle(result.name);
             } else {
-                PageHeadModel.setPageTitle($Frontpress.overrides.title);
+                PageHeadModel.setPageTitle($FrontPress.overrides.title);
             }
 
             PageHeadModel.setPageDescription(result.description);
@@ -50,7 +50,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $Frontpre
 
 
         loadPostsPromise.then(function(loadedPosts){
-            if($Frontpress.apiVersion === "v2"){
+            if($FrontPress.apiVersion === "v2"){
                 vc.vm.loadExternalFeaturedImages(loadedPosts);
             }
         });

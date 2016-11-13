@@ -4,6 +4,6 @@
   "pageSize": "5",
   "disqusShortname": "frontpress",
   "overrides": {
-    "title": "Frontpress - This title is overwritten by frontpress.json configuration file."
+    "title": "FrontPress - This title is overwritten by frontpress.json configuration file."
   }
 }

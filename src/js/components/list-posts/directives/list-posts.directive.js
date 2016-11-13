@@ -1,6 +1,6 @@
 angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
 
-function ListPostsDirective($Frontpress){
+function ListPostsDirective($FrontPress){
 	var directive = {
 		scope: {},
 		restrict: "AE",
@@ -8,7 +8,7 @@ function ListPostsDirective($Frontpress){
 		controllerAs: "vc",
 		replace: true,
 		bindToController: true,
-		templateUrl: $Frontpress.getTemplateUrl("components.listposts")
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts")
 	};
 
 	return directive;

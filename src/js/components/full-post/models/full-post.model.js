@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $Frontpress){
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress){
 	var model = {
 		addTag: addTag,
         categories: [],
@@ -76,7 +76,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $Frontpre
 			model.setDate(result.date);
 			model.setSlug(result.slug);
 
-			switch($Frontpress.apiVersion){
+			switch($FrontPress.apiVersion){
 				case "v2":
 
 					var categoriesIds = result.categories;

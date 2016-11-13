@@ -1,12 +1,12 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostContentDirective($Frontpress){
+function FullPostContentDirective($FrontPress){
 	var directive = {
 		restrict: "AE",
 		scope: {
 			post: "=post"
 		},
-		templateUrl: $Frontpress.getTemplateUrl("components.fullpost.content"),
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.content"),
 		controller: "FullPostGenericDirectiveController",
 		controllerAs: "vc",
 		bindToController: true,

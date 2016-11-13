@@ -1,6 +1,6 @@
 angular.module("frontpress.components.list-posts").directive("listPostsExcerpt", ListPostsExcerptDirective);
 
-function ListPostsExcerptDirective($Frontpress){
+function ListPostsExcerptDirective($FrontPress){
 	var directive = {
 		scope: {
 			post: "=post"
@@ -10,7 +10,7 @@ function ListPostsExcerptDirective($Frontpress){
 		controllerAs: "vc",
 		bindToController: true,
 		replace: true,
-		templateUrl: $Frontpress.getTemplateUrl("components.listposts.excerpt")
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts.excerpt")
 
 	};
 

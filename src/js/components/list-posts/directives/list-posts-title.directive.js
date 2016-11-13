@@ -1,6 +1,6 @@
 angular.module("frontpress.components.list-posts").directive("listPostsTitle", ListPostsTitleDirective);
 
-function ListPostsTitleDirective($Frontpress){
+function ListPostsTitleDirective($FrontPress){
 	var directive = {
 		scope: {
 			post: "=post"
@@ -10,7 +10,7 @@ function ListPostsTitleDirective($Frontpress){
 		controllerAs: "vc",
 		replace: true,
 		bindToController: true,
-		templateUrl: $Frontpress.getTemplateUrl("components.listposts.title")
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts.title")
 	};
 
 	return directive;
