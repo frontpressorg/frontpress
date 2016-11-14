@@ -6,7 +6,7 @@ var b2v = require("buffer-to-vinyl");
 module.exports = function() {
 	var json = JSON.parse(fs.readFileSync("./frontpress.json"));
 	var configs = new Object;
-	configs.FrontpressConfigurationFile = json;
+	configs.FrontPressConfigurationFile = json;
 	configs = JSON.stringify(configs);
 
 	var jsFileTemplateWrapper = "// file generated using ngConfig\n\n<%= module %>";

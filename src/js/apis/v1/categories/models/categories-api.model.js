@@ -1,7 +1,7 @@
 var module = angular.module("frontpress.apis.categories");
 
-function CategoriesApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var categoriesBaseUrl = $Frontpress.restApiUrl + "/posts/";
+function CategoriesApi(AjaxModel, $FrontPress, ConfigsToParams){
+    var categoriesBaseUrl = $FrontPress.restApiUrl + "/posts/";
 
     function getAllCategories(configs){
         var categoriesListUrl = categoriesBaseUrl;
@@ -23,6 +23,6 @@ function CategoriesApi(AjaxModel, $Frontpress, ConfigsToParams){
     };
 }
 
-CategoriesApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
+CategoriesApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
 module.factory("CategoriesApi", CategoriesApi);

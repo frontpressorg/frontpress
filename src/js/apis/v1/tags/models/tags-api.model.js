@@ -1,9 +1,9 @@
 angular.module("frontpress.apis.categories").factory("TagsApi", TagsApi);
 
-TagsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
+TagsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
-function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var tagsBaseUrl = $Frontpress.restApiUrl + "/posts/";
+function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
+    var tagsBaseUrl = $FrontPress.restApiUrl + "/posts/";
 
     function getAllTags(configs){
         var tagsListUrl = tagsBaseUrl;

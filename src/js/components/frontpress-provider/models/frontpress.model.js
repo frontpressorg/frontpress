@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.frontpress-provider");
 
-function FrontPressProvider(FrontpressConfigurationFile, $disqusProvider){
+function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 	var configure = {
 		load: load,
 		overrides: null,
@@ -46,7 +46,7 @@ function FrontPressProvider(FrontpressConfigurationFile, $disqusProvider){
 		};
 		
 		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontpressConfigurationFile[config]);			
+			configsToFunctions[config](FrontPressConfigurationFile[config]);			
 		}		
 
 		var defaultTemplateUrlList = {
@@ -92,11 +92,11 @@ function FrontPressProvider(FrontpressConfigurationFile, $disqusProvider){
 			_setTemplateUrlAsDefaultIfEmpty();			
 		}
 
-        if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
+        if (angular.isUndefined(FrontPressConfigurationFile.restApiUrl)) {
             throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
-        if (angular.isUndefined(FrontpressConfigurationFile.apiVersion)) {
+        if (angular.isUndefined(FrontPressConfigurationFile.apiVersion)) {
             throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
