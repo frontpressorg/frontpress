@@ -1,10 +1,13 @@
 angular.module("frontpress.views.post").config(configPost);
 
-configPost.$inject = ["$stateProvider"];
+configPost.$inject = ["$stateProvider", "$FrontPressProvider"];
 
-function configPost($stateProvider){
+function configPost($stateProvider, $FrontPressProvider){
+	$FrontPressProvider.configure.loadRoutes();
+
     var statePost = {
-        url: "/:postSlug",
+        url: $FrontPressProvider.getRoute("post"),
+        url: ":postSlug",
         template: "<post-view></post-view>",
         controller: "PostRouteController as vc"
     };

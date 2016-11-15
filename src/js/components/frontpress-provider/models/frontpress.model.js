@@ -3,6 +3,7 @@ var module = angular.module("frontpress.components.frontpress-provider");
 function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 	var configure = {
 		load: load,
+		loadRoutes: loadRoutes,
 		overrides: null,
 		pageSize: null,
 		restApiUrl: null,
@@ -11,7 +12,9 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		setPageSize: setPageSize,
 		setRestApiUrl: setRestApiUrl,
 		setTemplateUrl: setTemplateUrl,
+		setRoutes: setRoutes,
 		templateUrl: null,
+		routes: null
 	};
 
 	function setPageSize(pageSize){
@@ -34,6 +37,37 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		configure.templateUrl = templateUrl;
 	}
 
+	function setRoutes(routes){
+		configure.routes = routes;
+	}
+
+	function loadRoutes(){
+		
+		if(FrontPressConfigurationFile["routes"]){
+			configure.setRoutes(FrontPressConfigurationFile["routes"]);					
+		}
+		
+		var defaultRoutesList = {
+			"home": "/",
+			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
+			"post": "/:postSlug"
+		};
+
+		function _setRouteAsDefaultIfempty(){
+			for(var defaultRouteKey in defaultRoutesList){				
+				if(!configure.routes.hasOwnProperty(defaultRouteKey)){
+					configure.routes[defaultRouteKey] = defaultRoutesList[defaultRouteKey];
+				}			
+			}					
+		}	
+		if(!configure.routes){
+			configure.routes = defaultRoutesList;
+		}
+		else {
+			_setRouteAsDefaultIfempty();
+		}
+	}
+
 	function load(){
 
 		var configsToFunctions = {
@@ -42,7 +76,8 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			disqusShortname: $disqusProvider.setShortname,
 			overrides: configure.setOverrides,
 			apiVersion: configure.setApiVersion,
-			templateUrl: configure.setTemplateUrl
+			templateUrl: configure.setTemplateUrl,
+			routes: configure.setRoutes
 		};
 		
 		for(var config in configsToFunctions){
@@ -84,7 +119,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 					configure.templateUrl[defaultTemplateUrlKey] = defaultTemplateUrlList[defaultTemplateUrlKey];
 				}			
 			}			
-		}
+		}	
 
 		if(angular.isUndefined(configure.templateUrl)){
 			configure.templateUrl = defaultTemplateUrlList;
@@ -109,7 +144,8 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			overrides: configure.overrides,
 			apiVersion: configure.apiVersion,
 			templateUrl: configure.templateUrl,
-			getTemplateUrl: getTemplateUrl
+			routes: configure.routes,
+			getTemplateUrl: getTemplateUrl,
 		};		
 
 		function getTemplateUrl(templateName){
@@ -121,8 +157,13 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 
     var provider = {
         $get: Frontpress,
-        configure: configure
+        configure: configure,
+		getRoute: getRoute
     };
+
+	function getRoute(routeName){
+		return configure.routes[routeName];
+	}    
 
     return provider;
 }

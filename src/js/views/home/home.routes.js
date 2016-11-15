@@ -1,17 +1,19 @@
 angular.module("frontpress.views.home").config(configHome);
 
-configHome.$inject = ["$stateProvider", "$urlRouterProvider"];
+configHome.$inject = ["$stateProvider", "$urlRouterProvider", "$FrontPressProvider"];
 
-function configHome($stateProvider, $urlRouterProvider){
+function configHome($stateProvider, $urlRouterProvider, $FrontPressProvider){
+
+    $FrontPressProvider.configure.loadRoutes();
 
     var stateHome = {
-        url: "/",
+        url: $FrontPressProvider.getRoute("home"),
         template: "<home-view></home-view>",
         controller: "HomeRouteController as vc"
     };
 
     var stateHomePagination = {
-        url: "/page/{pageNumber:[0-9]{1,}}",
+        url: $FrontPressProvider.getRoute("home.pagination"),
         template: "<home-view></home-view>",
         controller: "HomeRouteController as vc"
     };
