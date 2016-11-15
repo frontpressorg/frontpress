@@ -7,7 +7,6 @@ function configPost($stateProvider, $FrontPressProvider){
 
     var statePost = {
         url: $FrontPressProvider.getRoute("post"),
-        url: ":postSlug",
         template: "<post-view></post-view>",
         controller: "PostRouteController as vc"
     };

@@ -1,4 +1,4 @@
-var module =angular.module("frontpress.views.post");
+var module = angular.module("frontpress.views.post");
 
 function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, $FrontPress, CategoriesApi){
 	var vc = this;
