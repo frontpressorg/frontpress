@@ -16,7 +16,15 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
         break;
     }
 
-    var postId = JSON.search(cachedSlugs, "//*[slug='{0}']/{1}".format(postSlug, idProperty))[0];
+    var postId;
+
+    if($stateParams.postId){
+        postId = $stateParams.postId;
+    }
+    else {
+        postId = JSON.search(cachedSlugs, "//*[slug='{0}']/{1}".format(postSlug, idProperty))[0];
+    }
+
 
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
 
