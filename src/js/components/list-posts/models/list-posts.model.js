@@ -71,10 +71,22 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
             return defer.promise;
         }
 
+
+        function _appendDateInfoToPostsList(postsLists){
+            for(var i=0; i < postsLists.length; i ++){
+                var post = postsLists[i];
+                var dateInfo = post.date.getDateInfo();
+                post.year = dateInfo.year;
+                post.month = dateInfo.month;
+                post.day = dateInfo.day;
+            }
+        }
+
         postPromises.getAllPostsPromise().then(function(postsResult){
             model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, "totalPostsNumber"));
             var allPosts = ApiManager.getPath(postsResult, "allPostsPath");
-
+            
+            _appendDateInfoToPostsList(allPosts);
             SlugsMapModel.updateFromPosts(allPosts);
 
 

@@ -24,6 +24,17 @@ function frontpressRun(SlugsMapModel){
             };                    
         }
 
+        if(!String.prototype.getDateInfo){
+            String.prototype.getDateInfo =  function(){
+                var dateInfo = {};
+                var dateObject = new Date(this);
+                dateInfo.year = dateObject.getFullYear();
+                dateInfo.month = dateObject.getMonth() + 1;
+                dateInfo.day = ('0' + dateObject.getDate()).slice(-2);
+                return dateInfo;
+            }
+        }
+
     }
 
     function extendArrayPrototype(){
