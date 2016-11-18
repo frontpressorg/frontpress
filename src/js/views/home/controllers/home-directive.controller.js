@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.views.home");
 
-function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogApi, PageHeadModel, $location, PaginationModel){
+function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogApi, PageHeadModel, $location, PaginationModel, ApiManager){
     var vc = this;
     vc.vm = ListPostsModel;
     var firstNextPageNumber = 2;
@@ -25,14 +25,22 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
     });
 
     function _setPageMetaData(){
-        blogInformationPromise.success(function(result){
-            if(angular.isUndefined($FrontPress.overrides) || angular.isUndefined($FrontPress.overrides.title)){
-                PageHeadModel.setPageTitle(result.name);
-            } else {
-                PageHeadModel.setPageTitle($FrontPress.overrides.title);
-            }
+        blogInformationPromise.success(function(result){            
 
             PageHeadModel.setPageDescription(result.description);
+            var siteName;
+
+            if((!angular.isUndefined($FrontPress.overrides) && !angular.isUndefined($FrontPress.overrides.siteName))){
+                siteName = $FrontPress.overrides.siteName;
+            } else {
+                siteName = ApiManager.getPath(result, "siteName");
+            }
+
+            var homeReplaceRules = {
+                ":siteName": siteName
+            };
+
+            PageHeadModel.parsePageTitle("home", homeReplaceRules);
 
             var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
 

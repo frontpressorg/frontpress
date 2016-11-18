@@ -16,7 +16,9 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		setTitles: setTitles,
 		templateUrl: null,
 		routes: null,
-		titles: null
+		titles: null,
+		siteName: null,
+		setSiteName: setSiteName
 	};
 
 	function setPageSize(pageSize){
@@ -45,6 +47,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 
 	function setTitles(titles){
 		configure.titles = titles;
+	}
+
+	function setSiteName(siteName){
+		configure.siteName = siteName;
 	}
 
 	function loadRoutes(){
@@ -174,6 +180,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			templateUrl: configure.templateUrl,
 			routes: configure.routes,
 			titles: configure.titles,
+			siteName: configure.siteName,
 			getTemplateUrl: getTemplateUrl,
 		};		
 

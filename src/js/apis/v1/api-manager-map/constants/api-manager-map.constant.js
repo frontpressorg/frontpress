@@ -4,5 +4,6 @@ angular.module("frontpress.apis.api-manager-map")
     "allPostsPath": ["posts"],
     "postTitle": ["title"],    
     "postId": ["ID"],
-    "postDate": ["date"]
+    "postDate": ["date"],
+    "siteName": ["name"]
 });
