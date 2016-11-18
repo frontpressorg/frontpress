@@ -13,8 +13,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		setRestApiUrl: setRestApiUrl,
 		setTemplateUrl: setTemplateUrl,
 		setRoutes: setRoutes,
+		setTitles: setTitles,
 		templateUrl: null,
-		routes: null
+		routes: null,
+		titles: null
 	};
 
 	function setPageSize(pageSize){
@@ -39,6 +41,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 
 	function setRoutes(routes){
 		configure.routes = routes;
+	}
+
+	function setTitles(titles){
+		configure.titles = titles;
 	}
 
 	function loadRoutes(){
@@ -77,7 +83,8 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			overrides: configure.setOverrides,
 			apiVersion: configure.setApiVersion,
 			templateUrl: configure.setTemplateUrl,
-			routes: configure.setRoutes
+			routes: configure.setRoutes,
+			titles: configure.setTitles
 		};
 		
 		for(var config in configsToFunctions){
@@ -96,6 +103,12 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			"components.featuredimage": "/js/components/featured-image/templates/featured-image.template.html",
 			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
 			"components.share": "/js/components/share/templates/share.template.html"
+		};
+
+		var defaultTitlesList = {
+			"home": ":siteName",
+			"home.pagination": ":siteName :pageNumber",
+			"post": ":siteName - :postName",
 		};
 
 		switch(configure.apiVersion){
@@ -121,10 +134,25 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			}			
 		}	
 
+		function _setTitleAsDefaultIfEmpty(){
+			for(var defaultTitleKey in defaultTitlesList){				
+				if(!configure.titles.hasOwnProperty(defaultTitleKey)){
+					configure.titles[defaultTitleKey] = defaultTitlesList[defaultTitleKey];
+				}			
+			}			
+		}			
+
 		if(angular.isUndefined(configure.templateUrl)){
 			configure.templateUrl = defaultTemplateUrlList;
 		} else {			
 			_setTemplateUrlAsDefaultIfEmpty();			
+		}
+
+		if(angular.isUndefined(configure.titles)){
+			configure.titles = defaultTitlesList;
+		}
+		else {
+			_setTitleAsDefaultIfEmpty();
 		}
 
         if (angular.isUndefined(FrontPressConfigurationFile.restApiUrl)) {
@@ -145,6 +173,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			apiVersion: configure.apiVersion,
 			templateUrl: configure.templateUrl,
 			routes: configure.routes,
+			titles: configure.titles,
 			getTemplateUrl: getTemplateUrl,
 		};		
 
