@@ -4,7 +4,7 @@
   "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
   "bin": {
-    "frontpress": "./tasks/frontpress.js"
+    "frontpress": "./scripts/frontpress.js"
   },
   "devDependencies": {
     "bower": "^1.7.9",
