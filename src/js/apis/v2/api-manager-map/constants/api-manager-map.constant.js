@@ -3,5 +3,6 @@ angular.module("frontpress.apis.api-manager-map")
     "totalPostsNumber": ["headers","X-WP-Total"],
     "allPostsPath": ["body"],
     "postTitle": ["title", "rendered"],
-    "postId": ["id"]
+    "postId": ["id"],
+    "postDate": ["date"]
 });

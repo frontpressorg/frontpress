@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.page-head");
 
-function PageHeadModel($location){
+function PageHeadModel($location, $FrontPress){
 	var model = {
 		init: init,
 		isFollow: true,
@@ -11,11 +11,16 @@ function PageHeadModel($location){
 		pageTitle: null,
 		setIsIndex: setIsIndex,
 		relNextNumber: null,
-		relPrevNumber: null
+		relPrevNumber: null,
+		parsePageTitle: parsePageTitle
 	};
 
 	function setPageTitle(pageTitle){
 		model.pageTitle = pageTitle;
+	}
+
+	function parsePageTitle(pageName, replaceRules){
+		model.pageTitle = $FrontPress.titles[pageName].replaceAll(replaceRules);
 	}
 
 	function setPageDescription(pageDescription){

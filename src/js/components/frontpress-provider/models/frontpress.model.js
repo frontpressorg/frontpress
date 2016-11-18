@@ -108,7 +108,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		var defaultTitlesList = {
 			"home": ":siteName",
 			"home.pagination": ":siteName :pageNumber",
-			"post": ":siteName - :postName",
+			"post": ":siteName - :postTitle",
 		};
 
 		switch(configure.apiVersion){
