@@ -1,18 +1,10 @@
-<div align="center">
-    <img src="https://cdn.rawgit.com/gilbarbara/logos/master/logos/angular-icon.svg" height="75">
-    <img src="https://cdn.rawgit.com/gilbarbara/logos/master/logos/wordpress-icon.svg" height="75">
-    <h3 align="center">FrontPress</h3>
-    <p align="center">A full front-end AngularJS template for WordPress API.<p>
 
-    <p align="center">
-        <a href="https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge">
-            <img src="https://badges.gitter.im/teles/frontpress.svg" alt="Join the chat at https://gitter.im/teles/frontpress">
-        </a>
-        <a href="https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade">
-            <img src="https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca" alt="Codacy Badge">
-        </a>
-    </p>
-</div>
+## :zap: FrontPress
+### A full front-end AngularJS template for WordPress API
+
+[![Join the chat at https://gitter.im/teles/frontpress](https://badges.gitter.im/teles/frontpress.svg)](https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![](https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca)](https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade)
 
 --
 > It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
