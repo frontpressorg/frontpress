@@ -1,8 +1,8 @@
 angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
 
-SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "$Frontpress"];
+SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "$FrontPress"];
 
-function SlugsMapModel($cacheFactory, PostsApi, $Frontpress){
+function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
 	var model = {
 		load: load,
 		updateFromPosts: updateFromPosts,
@@ -11,7 +11,7 @@ function SlugsMapModel($cacheFactory, PostsApi, $Frontpress){
 
 	var cache = $cacheFactory("slugsCache");
 	var propertiesToCache;
-	switch($Frontpress.apiVersion){
+	switch($FrontPress.apiVersion){
 		case "v2":
 			propertiesToCache = ["id", "slug"];
 		break;
@@ -29,7 +29,7 @@ function SlugsMapModel($cacheFactory, PostsApi, $Frontpress){
 		
 		var concatenatedCache = originalCache.concat(incrementalCache);
 		var idProperty;
-		switch($Frontpress.apiVersion){
+		switch($FrontPress.apiVersion){
 			case "v2":
 				idProperty = "id";
 			break;

@@ -1,7 +1,7 @@
 var module = angular.module("frontpress.apis.categories");
 
-function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var tagsBaseUrl = $Frontpress.restApiUrl + "/wp/v2/tags/";
+function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
+    var tagsBaseUrl = $FrontPress.restApiUrl + "/wp/v2/tags/";
 
     function getAllTags(configs){
         var tagsListUrl = tagsBaseUrl;
@@ -23,6 +23,6 @@ function TagsApi(AjaxModel, $Frontpress, ConfigsToParams){
     };
 }
 
-TagsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
+TagsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
 module.factory("TagsApi", TagsApi);

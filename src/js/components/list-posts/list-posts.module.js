@@ -4,4 +4,6 @@ angular.module("frontpress.components.list-posts",
 				"frontpress.apis.posts", 
 				"frontpress.apis.media", 
 				"frontpress.components.api-manager", 
+				"frontpress.components.post-date",
+				"frontpress.components.featured-image",
 				"frontpress.components.frontpress-provider"]);

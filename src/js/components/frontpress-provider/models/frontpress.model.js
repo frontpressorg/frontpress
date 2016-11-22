@@ -1,8 +1,9 @@
 var module = angular.module("frontpress.components.frontpress-provider");
 
-function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
+function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 	var configure = {
 		load: load,
+		loadRoutes: loadRoutes,
 		overrides: null,
 		pageSize: null,
 		restApiUrl: null,
@@ -11,7 +12,13 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 		setPageSize: setPageSize,
 		setRestApiUrl: setRestApiUrl,
 		setTemplateUrl: setTemplateUrl,
+		setRoutes: setRoutes,
+		setTitles: setTitles,
 		templateUrl: null,
+		routes: null,
+		titles: null,
+		siteName: null,
+		setSiteName: setSiteName
 	};
 
 	function setPageSize(pageSize){
@@ -34,6 +41,45 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 		configure.templateUrl = templateUrl;
 	}
 
+	function setRoutes(routes){
+		configure.routes = routes;
+	}
+
+	function setTitles(titles){
+		configure.titles = titles;
+	}
+
+	function setSiteName(siteName){
+		configure.siteName = siteName;
+	}
+
+	function loadRoutes(){
+		
+		if(FrontPressConfigurationFile["routes"]){
+			configure.setRoutes(FrontPressConfigurationFile["routes"]);					
+		}
+		
+		var defaultRoutesList = {
+			"home": "/",
+			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
+			"post": "/:postSlug"
+		};
+
+		function _setRouteAsDefaultIfempty(){
+			for(var defaultRouteKey in defaultRoutesList){				
+				if(!configure.routes.hasOwnProperty(defaultRouteKey)){
+					configure.routes[defaultRouteKey] = defaultRoutesList[defaultRouteKey];
+				}			
+			}					
+		}	
+		if(!configure.routes){
+			configure.routes = defaultRoutesList;
+		}
+		else {
+			_setRouteAsDefaultIfempty();
+		}
+	}
+
 	function load(){
 
 		var configsToFunctions = {
@@ -42,11 +88,13 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			disqusShortname: $disqusProvider.setShortname,
 			overrides: configure.setOverrides,
 			apiVersion: configure.setApiVersion,
-			templateUrl: configure.setTemplateUrl
+			templateUrl: configure.setTemplateUrl,
+			routes: configure.setRoutes,
+			titles: configure.setTitles
 		};
 		
 		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontpressConfigurationFile[config]);			
+			configsToFunctions[config](FrontPressConfigurationFile[config]);			
 		}		
 
 		var defaultTemplateUrlList = {
@@ -57,8 +105,16 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
 			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
 			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
+			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
+			"components.featuredimage": "/js/components/featured-image/templates/featured-image.template.html",
 			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
 			"components.share": "/js/components/share/templates/share.template.html"
+		};
+
+		var defaultTitlesList = {
+			"home": ":siteName",
+			"home.pagination": ":siteName :pageNumber",
+			"post": ":siteName - :postTitle",
 		};
 
 		switch(configure.apiVersion){
@@ -82,7 +138,15 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 					configure.templateUrl[defaultTemplateUrlKey] = defaultTemplateUrlList[defaultTemplateUrlKey];
 				}			
 			}			
-		}
+		}	
+
+		function _setTitleAsDefaultIfEmpty(){
+			for(var defaultTitleKey in defaultTitlesList){				
+				if(!configure.titles.hasOwnProperty(defaultTitleKey)){
+					configure.titles[defaultTitleKey] = defaultTitlesList[defaultTitleKey];
+				}			
+			}			
+		}			
 
 		if(angular.isUndefined(configure.templateUrl)){
 			configure.templateUrl = defaultTemplateUrlList;
@@ -90,12 +154,19 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			_setTemplateUrlAsDefaultIfEmpty();			
 		}
 
-        if (angular.isUndefined(FrontpressConfigurationFile.restApiUrl)) {
-            throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
+		if(angular.isUndefined(configure.titles)){
+			configure.titles = defaultTitlesList;
+		}
+		else {
+			_setTitleAsDefaultIfEmpty();
+		}
+
+        if (angular.isUndefined(FrontPressConfigurationFile.restApiUrl)) {
+            throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
-        if (angular.isUndefined(FrontpressConfigurationFile.apiVersion)) {
-            throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontpressProvider in you app config.";
+        if (angular.isUndefined(FrontPressConfigurationFile.apiVersion)) {
+            throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
 	}
@@ -107,7 +178,10 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 			overrides: configure.overrides,
 			apiVersion: configure.apiVersion,
 			templateUrl: configure.templateUrl,
-			getTemplateUrl: getTemplateUrl
+			routes: configure.routes,
+			titles: configure.titles,
+			siteName: configure.siteName,
+			getTemplateUrl: getTemplateUrl,
 		};		
 
 		function getTemplateUrl(templateName){
@@ -119,10 +193,15 @@ function FrontpressProvider(FrontpressConfigurationFile, $disqusProvider){
 
     var provider = {
         $get: Frontpress,
-        configure: configure
+        configure: configure,
+		getRoute: getRoute
     };
+
+	function getRoute(routeName){
+		return configure.routes[routeName];
+	}    
 
     return provider;
 }
 
-module.provider("$Frontpress", FrontpressProvider);
+module.provider("$FrontPress", FrontPressProvider);

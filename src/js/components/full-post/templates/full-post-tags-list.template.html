@@ -1,10 +1,10 @@
 <div>
-	<p ng-if="vc.vm.isLoadingTags">carregando tags...</p>
-	<p ng-if="vc.vm.isLoadingTags === false">
+	<p ng-if="vc.post.isLoadingTags">carregando tags...</p>
+	<p ng-if="vc.post.isLoadingTags === false">
 		<span><strong>tags:</strong></span>	
-		<span ng-if="vc.vm.tags.length == 1" rel="tag">{[{vc.vm.tags[0].name}]} </span>		
-		<span ng-if="vc.vm.tags.length > 1" 
-			ng-repeat="tag in vc.vm.tags" 
+		<span ng-if="vc.post.tags.length == 1" rel="tag">{[{vc.post.tags[0].name}]} </span>		
+		<span ng-if="vc.post.tags.length > 1" 
+			ng-repeat="tag in vc.post.tags" 
 			rel="tag">{[{tag.name}]}{{$last ? "" : ", "}}		
 		</span>		
 	</p>

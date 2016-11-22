@@ -1,9 +1,9 @@
 angular.module("frontpress.apis.posts").factory("PostsApi", PostsApi);
 
-PostsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
+PostsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
-function PostsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var postsBaseUrl = $Frontpress.restApiUrl + "/posts/";
+function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
+    var postsBaseUrl = $FrontPress.restApiUrl + "/posts/";
 
     var restApi = {
         getAllPosts: getAllPosts,

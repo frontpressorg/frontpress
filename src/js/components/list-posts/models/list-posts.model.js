@@ -16,7 +16,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
     function setTotalPostsNumber(totalPostsNumber){
         model.totalPostsNumber = totalPostsNumber;
-    }    
+    }
 
     function loadExternalFeaturedImages(loadedPosts){
         var postPromises = {
@@ -27,12 +27,12 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
             var defer = $q.defer();
 
             var featuredImagesPromise = MediaApi.getMediaById(featuredMediaId);
-            
+
             featuredImagesPromise.success(function(result){
                 defer.resolve(result);
             });
 
-            
+
             return defer.promise;
         }
 
@@ -42,19 +42,19 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
                 for(var j=0; j < model.postsList.length;j++){
                     if(model.postsList[j].featured_media === featuredImagesResult.id){
                         model.postsList[j].featured_image = featuredImagesResult.source_url;
-                    }                
+                    }
                 }
-            });                        
+            });
         }
-    }       
+    }
 
     function loadPosts(params){
-        model.isLoadingPosts = true;        
+        model.isLoadingPosts = true;
         var defer = $q.defer();
 
         var configs = {
             fields: "ID,title,date,featured_image,excerpt"
-        };           
+        };
 
         var postPromises = {
             getAllPostsPromise: getAllPostsPromise,
@@ -65,20 +65,38 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             var allPostsPromise = PostsApi.getAllPosts(params, configs);
 
-            allPostsPromise.success(function(result){                                                        
+            allPostsPromise.success(function(result){
                 defer.resolve(result);
-            });            
+            });
             return defer.promise;
         }
 
-        postPromises.getAllPostsPromise().then(function(postsResult){
-            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, "totalPostsNumber"));            
-            var allPosts = ApiManager.getPath(postsResult, "allPostsPath");
 
-            SlugsMapModel.updateFromPosts(allPosts);      
+        function _appendDateInfoToPostsList(postsLists){
+            for(var i=0; i < postsLists.length; i ++){
+                var post = postsLists[i];
+                var dateInfo = post.date.getDateInfo();
+                post.year = dateInfo.year;
+                post.month = dateInfo.month;
+                post.day = dateInfo.day;
+            }
+        }
+
+        postPromises.getAllPostsPromise().then(function(postsResult){
+            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, "totalPostsNumber"));
+            var allPosts = ApiManager.getPath(postsResult, "allPostsPath");
+            
+            _appendDateInfoToPostsList(allPosts);
+            SlugsMapModel.updateFromPosts(allPosts);
+
 
             if(model.postsList){
-                model.postsList = model.postsList.concat(allPosts);
+                var isLastPostAlreadyLoaded = ApiManager.getPath(allPosts[allPosts.length-1], "postId") === ApiManager.getPath(model.postsList[model.postsList.length-1], "postId");
+
+                if(!isLastPostAlreadyLoaded){
+                    model.postsList = model.postsList.concat(allPosts);
+                }
+
             } else {
                 model.postsList = allPosts;
             }
@@ -90,6 +108,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
         return defer.promise;
 
-        
+
     }
 }

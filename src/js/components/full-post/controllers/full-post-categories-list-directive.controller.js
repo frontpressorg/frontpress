@@ -1,6 +1,5 @@
 angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
 
-function FullPostCategoriesListDirectiveController(FullPostModel){
+function FullPostCategoriesListDirectiveController(){
 	var vc = this;
-	vc.vm = FullPostModel;
 }

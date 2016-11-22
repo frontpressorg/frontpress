@@ -1,11 +1,11 @@
 var module = angular.module("frontpress.components.pagination");
 
-function pagination($Frontpress){
+function pagination($FrontPress){
 	var directive = {
 		restrict: "AE",
 		replace: true,
 		scope: {},
-		templateUrl: $Frontpress.getTemplateUrl("components.pagination"),
+		templateUrl: $FrontPress.getTemplateUrl("components.pagination"),
 		controllerAs: "vc",
 		controller: "PaginationController",
 		bindToController: true,

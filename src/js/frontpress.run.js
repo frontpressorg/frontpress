@@ -11,6 +11,30 @@ function frontpressRun(SlugsMapModel){
                 });
             };
         }
+
+        // stolen from http://stackoverflow.com/a/16577007
+
+        if (!String.prototype.replaceAll) {
+            String.prototype.replaceAll = function(obj) {
+                var retStr = this;
+                for (var x in obj) {
+                    retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+                }
+                return retStr;
+            };                    
+        }
+
+        if(!String.prototype.getDateInfo){
+            String.prototype.getDateInfo =  function(){
+                var dateInfo = {};
+                var dateObject = new Date(this);
+                dateInfo.year = dateObject.getFullYear();
+                dateInfo.month = dateObject.getMonth() + 1;
+                dateInfo.day = ('0' + dateObject.getDate()).slice(-2);
+                return dateInfo;
+            }
+        }
+
     }
 
     function extendArrayPrototype(){

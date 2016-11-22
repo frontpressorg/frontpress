@@ -5,4 +5,5 @@ angular.module("frontpress.views.post",
 				"frontpress.components.page-head", 
 				"ngDisqus", 
 				"frontpress.components.slugs-map", 
+				"frontpress.components.api-manager", 
 				"frontpress.components.frontpress-provider"]);

@@ -1,13 +1,14 @@
 angular.module("frontpress.views.post").directive("postView", PostViewDirective);
 
-function PostViewDirective($Frontpress){
+function PostViewDirective($FrontPress){
 	var directive = {
 		scope: {},
-		templateUrl: $Frontpress.getTemplateUrl("views.post"),
-		restrict: "E",
+		templateUrl: $FrontPress.getTemplateUrl("views.post"),
+		restrict: "AE",
 		controllerAs: "vc",
 		bindToController: true,
-		controller: "PostDirectiveController"
+		controller: "PostDirectiveController",
+		replace: true
 	};
 	return directive;
 }

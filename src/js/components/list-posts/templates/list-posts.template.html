@@ -2,9 +2,9 @@
 	<p ng-if="vc.vm.isLoadingPosts">Carregando posts</p>
 	<div ng-repeat="post in vc.vm.postsList">	
 		<list-posts-title post="post"></list-posts-title>	
-		<p ng-bind="post.date | date :  'dd/MM/y'"></p>
-		<img ng-src="{[{post.featured_image}]}" style="max-width: 250px;">
+		<post-date post="post"></post-date>
+		<featured-image post="post"></featured-image>	
 		<list-posts-excerpt post="post"></list-posts-excerpt>
-        <share url="{{ post.slug }}" title="{{ post.title }}"></share>
+        <share post="post"></share>
 	</div>
 </div>

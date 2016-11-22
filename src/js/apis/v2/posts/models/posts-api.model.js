@@ -1,7 +1,7 @@
 var module = angular.module("frontpress.apis.posts");
 
-function PostsApi(AjaxModel, $Frontpress, ConfigsToParams){
-    var postsBaseUrl = $Frontpress.restApiUrl + "/wp/v2/posts/";
+function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
+    var postsBaseUrl = $FrontPress.restApiUrl + "/wp/v2/posts/";
 
     function getAllPosts(configs){
         var postsListUrl = postsBaseUrl+"?_envelope";
@@ -31,6 +31,6 @@ function PostsApi(AjaxModel, $Frontpress, ConfigsToParams){
     };
 }
 
-PostsApi.$inject = ["AjaxModel", "$Frontpress", "ConfigsToParams"];
+PostsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
 module.factory("PostsApi", PostsApi);

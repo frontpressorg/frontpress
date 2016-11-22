@@ -4,5 +4,6 @@ angular.module("frontpress.views.home",
 				"frontpress.components.list-posts", 
 				"frontpress.components.pagination", 
 				"frontpress.components.page-head", 
+				"frontpress.components.api-manager", 
 				"frontpress.apis.blog", 
 				"frontpress.components.frontpress-provider"]);

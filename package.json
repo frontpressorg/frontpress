@@ -1,16 +1,17 @@
 {
-  "name": "FrontPress",
-  "version": "1.0.0",
+  "name": "frontpress",
+  "version": "1.0.2",
   "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
-  "dependencies": {
-    "bower": "^1.7.9",
-    "buffer-to-vinyl": "^1.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-ng-config": "^1.3.1",
-    "inquirer": "^1.1.2"
+  "bin": {
+    "frontpress": "./scripts/frontpress.js"
   },
   "devDependencies": {
+    "bower": "^1.7.9",
+    "inquirer": "^1.1.2",
+    "gulp-ng-config": "^1.3.1",
+    "gulp-concat": "^2.6.0",
+    "buffer-to-vinyl": "^1.1.0",
     "angular": "^1.5.8",
     "angular-mocks": "^1.5.8",
     "angular-ui-router": "^0.3.1",
@@ -48,7 +49,7 @@
     "url": "git+https://github.com/teles/frontpress.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/teles/frontpress/issues"
   },
