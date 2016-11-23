@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/teles/frontpress.svg?branch=master)](https://travis-ci.org/teles/frontpress) [![Join the chat at https://gitter.im/teles/frontpress](https://badges.gitter.im/teles/frontpress.svg)](https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca)](https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade) [![devDependencies Status](https://david-dm.org/teles/frontpress/dev-status.svg)](https://david-dm.org/teles/frontpress?type=dev)
 
+[![https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/frontpress)
+
 --
 > It's not another WordPress theme! It's a full website using WordPress API! I can't believe, sweet lord!! :raised_hands:
 
