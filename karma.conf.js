@@ -16,8 +16,9 @@ module.exports = function (config) {
             "./node_modules/angular/angular.js",                             // angular
             "./node_modules/angular-ui-router/release/angular-ui-router.js", // ui-router
             "./node_modules/angular-mocks/angular-mocks.js",                 // loads our modules for tests
-            "./src/js/components/ajax/ajax.module.js",
-            "./src/js/components/ajax/models/ajax.model.js",
+            "./src/js/**/*.module.js",
+            "./src/js/**/*.model.js",
+            "./src/js/**/*.filter.js",
             "**/*.tests.js"
         ],
 
@@ -27,7 +28,7 @@ module.exports = function (config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            "./src/js/**/*.js": ["coverage"]
+            "./src/js/**/!(*tests.js)": ["coverage"]
         },
 
         // test results reporter to use
