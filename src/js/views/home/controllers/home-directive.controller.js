@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.views.home");
 
-function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogApi, PageHeadModel, $location, PaginationModel, ApiManager){
+function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
     var vc = this;
     vc.vm = ListPostsModel;
     var firstNextPageNumber = 2;
@@ -12,7 +12,6 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
         pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
     };
 
-    var blogInformationPromise = BlogApi.getBlogInformation();
     var loadPostsPromise = vc.vm.loadPosts(params);
 
     loadPostsPromise.then(function(loadedPosts){
@@ -24,28 +23,20 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
         }
     });
 
-    function _setPageMetaData(){
-        blogInformationPromise.success(function(result){            
+    function _setPageMetaData(){         
 
-            PageHeadModel.setPageDescription(result.description);
-            var siteName;
+        var blogInformationPromise = BlogModel.getInformationPromise();
 
-            if((!angular.isUndefined($FrontPress.overrides) && !angular.isUndefined($FrontPress.overrides.siteName))){
-                siteName = $FrontPress.overrides.siteName;
-            } else {
-                siteName = ApiManager.getPath(result, "siteName");
-            }
-
+        blogInformationPromise.then(function(blogInformation){
             var homeReplaceRules = {
-                ":siteName": siteName
+                ":siteName": blogInformation.name,
+                ":siteDescription": blogInformation.description
             };
-
             PageHeadModel.parsePageTitle("home", homeReplaceRules);
-
-            var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
-
-            PageHeadModel.setPageCanonical(canonical);
-        });
+            
+        })
+        var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
+        PageHeadModel.setPageCanonical(canonical);
     }
 
     _setPageMetaData();

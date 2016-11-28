@@ -5,5 +5,6 @@ angular.module("frontpress.components.full-post",
 				"frontpress.apis.categories", 
 				"frontpress.apis.media", 
 				"frontpress.components.post-date",
+				"frontpress.components.blog",
 				"frontpress.components.featured-image",
 				"frontpress.components.frontpress-provider"]);
