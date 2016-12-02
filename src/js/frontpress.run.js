@@ -60,6 +60,14 @@ function frontpressRun(SlugsMapModel){
             }
         }
 
+        if(!Array.prototype.getObjectByValue){
+            Array.prototype.getObjectByValue = function(propertyName, propertyValue){
+              return this.find(function (objectsArrayElement) {
+                return objectsArrayElement[propertyName] == propertyValue;
+              });                
+            }
+        }
+
         if (!Array.prototype.filterToProperties) {
             Array.prototype.filterToProperties = function() {
 

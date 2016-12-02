@@ -22,7 +22,8 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
         postId = $stateParams.postId;
     }
     else {
-        postId = JSON.search(cachedSlugs, "//*[slug='{0}']/{1}".format(postSlug, idProperty))[0];
+        var slugItem = cachedSlugs.getObjectByValue("slug", postSlug);
+        postId = slugItem[idProperty];
     }
 
     var fullPostPromise = FullPostModel.loadFullPostById(postId);
