@@ -1,7 +1,7 @@
 <div> 
-	<div infinite-scroll="vc.loadMorePostsAndPaginate()" infinite-scroll-immediate-check="false" infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">
+	<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">
 		<list-posts></list-posts>
-		<span ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>
+		<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>
 		<pagination></pagination>
 	</div>
 </div>

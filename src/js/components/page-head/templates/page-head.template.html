@@ -1,10 +1,10 @@
-<title ng-bind="vc.vm.pageTitle"></title>
+<title data-ng-bind="vc.vm.pageTitle"></title>
 <meta name="title" content="{[{vc.vm.pageTitle}]}">
 <meta name="description" content="{[{vc.vm.pageDescription}]}">
 <meta name="robots" content="{[{vc.vm.pageRobots}]}">	
 
 <link rel="canonical" href="{[{vc.vm.pageCanonical}]}">
 
-<link rel="prev" ui-sref="home-pagination({pageNumber:vc.vm.relPrevNumber})" ng-if="vc.vm.relPrevNumber">
-<link rel="next" ui-sref="home-pagination({pageNumber:vc.vm.relNextNumber})" ng-if="vc.vm.relNextNumber">
+<link rel="prev" data-ui-sref="home-pagination({pageNumber:vc.vm.relPrevNumber})" data-ng-if="vc.vm.relPrevNumber">
+<link rel="next" data-ui-sref="home-pagination({pageNumber:vc.vm.relNextNumber})" data-ng-if="vc.vm.relNextNumber">
 <ng-transclude></ng-transclude>
