@@ -22,7 +22,6 @@ First of all, make sure you have installed the main dependencies:
 
 - [Git](https://git-scm.com/downloads)
 - [NodeJS](https://nodejs.org/en/download/)
-- [Bower](https://bower.io/#install-bower)
 - [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md#1-install-gulp-globally)
 
 ```bash
@@ -31,7 +30,7 @@ First of all, make sure you have installed the main dependencies:
 $ git clone git@github.com:teles/frontpress.git
 
 # Install the dependencies
-$ npm i && bower i
+$ npm i
 ```
 
 ##### First time running the app:
