@@ -1,6 +1,6 @@
 var module = angular.module("frontpress");
 
-function frontpressRun(SlugsMapModel){
+function frontpressRun(){
 
     function extendStringPrototype(){
         if (!String.prototype.format) {
