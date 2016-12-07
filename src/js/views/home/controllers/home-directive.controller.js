@@ -5,6 +5,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
     vc.vm = ListPostsModel;
     var firstNextPageNumber = 2;
     vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
+    vc.isInfiniteScrollDisabled = !$FrontPress.infiniteScroll;
     PageHeadModel.init();
 
     var params = {

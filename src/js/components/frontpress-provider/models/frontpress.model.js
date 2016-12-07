@@ -14,6 +14,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		setTemplateUrl: setTemplateUrl,
 		setRoutes: setRoutes,
 		setTitles: setTitles,
+		setInfiniteScroll: setInfiniteScroll,
 		templateUrl: null,
 		routes: null,
 		titles: null,
@@ -53,6 +54,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		configure.siteName = siteName;
 	}
 
+	function setInfiniteScroll(infiniteScroll){
+		configure.infiniteScroll = infiniteScroll;
+	}
+
 	function loadRoutes(){
 		
 		if(FrontPressConfigurationFile["routes"]){
@@ -90,7 +95,8 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			apiVersion: configure.setApiVersion,
 			templateUrl: configure.setTemplateUrl,
 			routes: configure.setRoutes,
-			titles: configure.setTitles
+			titles: configure.setTitles,
+			infiniteScroll: configure.setInfiniteScroll
 		};
 		
 		for(var config in configsToFunctions){
@@ -181,6 +187,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			routes: configure.routes,
 			titles: configure.titles,
 			siteName: configure.siteName,
+			infiniteScroll: configure.infiniteScroll,
 			getTemplateUrl: getTemplateUrl,
 		};		
 
