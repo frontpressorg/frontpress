@@ -2,10 +2,10 @@
 	<p data-ng-if="vc.post.isLoadingTags">carregando tags...</p>
 	<p data-ng-if="vc.post.isLoadingTags === false">
 		<span><strong>tags:</strong></span>	
-		<span data-ng-if="vc.post.tags.length == 1" rel="tag">{[{vc.post.tags[0].name}]} </span>		
+		<span data-ng-if="vc.post.tags.length == 1" rel="tag">{{vc.post.tags[0].name}} </span>		
 		<span data-ng-if="vc.post.tags.length > 1" 
 			data-ng-repeat="tag in vc.post.tags" 
-			rel="tag">{[{tag.name}]}{{$last ? "" : ", "}}		
+			rel="tag">{{tag.name}}{{$last ? "" : ", "}}		
 		</span>		
 	</p>
 </div>

@@ -2,10 +2,10 @@
 	<p data-ng-if="vc.post.isLoadingCategories">carregando categorias...</p>
 	<p data-ng-if="vc.post.isLoadingCategories === false">
 		<span><strong>categorias:</strong></span>	
-		<span data-ng-if="vc.post.categories.length == 1" rel="tag">{[{vc.post.categories[0].name}]} </span>		
+		<span data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </span>		
 		<span data-ng-if="vc.post.categories.length > 1" 
 			data-ng-repeat="category in vc.post.categories" 
-			rel="tag">{[{category.name}]}{{$last ? "" : ", "}}		
+			rel="tag">{{category.name}}{{$last ? "" : ", "}}		
 		</span>		
 	</p>
 </div>
