@@ -10,7 +10,9 @@ module.exports = function() {
     var jsCopy = false;
     var dependenciesCopy = false;
     var javascriptDestFolder = "./build/js";
-    var apiVersion = JSON.parse(fs.readFileSync("./frontpress.json", "utf8")).apiVersion;
+    var parsedConfigFile = JSON.parse(fs.readFileSync("./frontpress.json", "utf8"));
+    var apiVersion = parsedConfigFile.apiVersion;
+    var infiniteScroll = parsedConfigFile.infiniteScroll;
 
     var devFilesList = [
         "./src/js/frontpress.template-cache.js",
@@ -33,12 +35,15 @@ module.exports = function() {
     ];
 
     var dependenciesFiles = [
-        "./assets/angular/angular.js",
-        "./assets/angular-ui-router/release/angular-ui-router.min.js",
-        "./assets/ngInfiniteScroll/build/ng-infinite-scroll.min.js",
-        "./assets/defiant/dist/defiant.min.js",
-        "./assets/angular-disqus/src/angular-disqus.js",
+        "./node_modules/angular/angular.js",
+        "./node_modules/angular-ui-router/release/angular-ui-router.js",
+        "./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js",
+        "./node_modules/angular-disqus/src/angular-disqus.js",
     ];
+
+    // if(parsedConfigFile.infiniteScroll){ #90
+    //     dependenciesFiles.push(""./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js"");
+    // }
 
     dependenciesCopy = gulp.src(dependenciesFiles)
         .pipe(concat("dev/external.js"))
