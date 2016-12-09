@@ -1,9 +1,17 @@
 {
-  "restApiUrl": "https://www.vivadecora.com.br/revista/wp-json",
-  "apiVersion": "v2",
-  "pageSize": "5",
-  "disqusShortname": "frontpress",
-  "overrides": {
-    "title": "FrontPress - This title is overwritten by frontpress.json configuration file."
-  }
+	"restApiUrl": "https://demo.wp-api.org/wp-json",
+	"apiVersion": "v2",
+	"pageSize": "5",
+	"infiniteScroll": true,
+	"routes": {
+		"post": "/:postYear/:postMonth/:postDay/:postSlug",
+		"home.pagination": "/pagina/:pageNumber"
+	},
+	"titles": {
+		"post": ":postTitle - :siteName",
+		"home": "Home - :siteName"
+	},
+	"overrides": {
+		"siteName": "FrontPress Default Template"
+	}
 }
