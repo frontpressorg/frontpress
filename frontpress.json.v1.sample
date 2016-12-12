@@ -1,7 +1,7 @@
 {
 	"restApiUrl": "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com",
 	"apiVersion": "v1",
-	"pageSize": "5",
+	"pageSize": 5,
 	"infiniteScroll": true,
 	"routes": {
 		"post": "/:postYear/:postMonth/:postDay/:postSlug",

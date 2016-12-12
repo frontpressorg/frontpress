@@ -1,7 +1,7 @@
 {
 	"restApiUrl": "https://demo.wp-api.org/wp-json",
 	"apiVersion": "v2",
-	"pageSize": "5",
+	"pageSize": 5,
 	"infiniteScroll": true,
 	"routes": {
 		"post": "/:postYear/:postMonth/:postDay/:postSlug",
