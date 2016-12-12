@@ -21,26 +21,24 @@ fi
 
 # Clone the existing gh-pages for this repo into out/
 # Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
-git clone $REPO out
-cd out
+git clone $REPO frontpress
+cd frontpress
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
 cd ..
 
-# Clean out existing contents
-rm -rf out/**/* || exit 0
 
 # Run our compile script
 ./ci/compile.sh
 
 # Now let's go have some fun with the cloned repo
-cd out
+cd frontpress
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
 git add --all .
-git commit -m "Deploy to GitHub Pages: ${SHA}"
+git commit -m "Deploy to $TARGET_BRANCH: ${SHA}"
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
