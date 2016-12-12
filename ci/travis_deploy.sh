@@ -30,7 +30,7 @@ cd ..
 rm -rf out/**/* || exit 0
 
 # Run our compile script
-./compile.sh
+./ci/compile.sh
 
 # Now let's go have some fun with the cloned repo
 cd out
