@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "ECHOOOOOOO"
+touch "$(date)"
