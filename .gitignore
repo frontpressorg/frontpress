@@ -1,4 +1,5 @@
 deploy_key
+deploy_key.pub
 /assets/
 /build/
 /coverage/
