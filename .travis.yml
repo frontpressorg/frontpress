@@ -1,3 +1,8 @@
 language: node_js
 node_js:
-    - 5.0
+- 5.0
+script: ci/deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "4901db4b206c"
+  - COMMIT_AUTHOR_EMAIL: "frontpress@org.com"
