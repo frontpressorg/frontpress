@@ -54,7 +54,7 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 					if($FrontPress.overrides && informationItem.overrides){
 						informationItem.setFunction(informationItem.overrides);
 					} else {
-						var informationValue = ApiManager.getPath(result, informationItem.getPath);
+						var informationValue = ApiManager.getPath(result["data"], informationItem.getPath);
 						informationItem.setFunction(informationValue);						
 					}
 				});				
