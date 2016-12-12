@@ -28,9 +28,13 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             var featuredImagesPromise = MediaApi.getMediaById(featuredMediaId);
 
-            featuredImagesPromise.success(function(result){
+            featuredImagesPromise.then(function(result){
                 defer.resolve(result);
             });
+
+            featuredImagesPromise.catch(function(error){
+                console.log(error);
+            })
 
 
             return defer.promise;
@@ -65,9 +69,14 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             var allPostsPromise = PostsApi.getAllPosts(params, configs);
 
-            allPostsPromise.success(function(result){
+            allPostsPromise.then(function(result){
                 defer.resolve(result);
             });
+
+            allPostsPromise.catch(function(error){
+                console.log(error);
+            })
+
             return defer.promise;
         }
 
@@ -83,8 +92,8 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         }
 
         postPromises.getAllPostsPromise().then(function(postsResult){
-            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult, "totalPostsNumber"));
-            var allPosts = ApiManager.getPath(postsResult, "allPostsPath");
+            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult["data"], "totalPostsNumber"));
+            var allPosts = ApiManager.getPath(postsResult["data"], "allPostsPath");
             
             _appendDateInfoToPostsList(allPosts);
             SlugsMapModel.updateFromPosts(allPosts);

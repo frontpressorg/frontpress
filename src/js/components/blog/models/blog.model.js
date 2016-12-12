@@ -49,7 +49,7 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 			_setInformation();
 		} else {
 			var blogInformationPromise = BlogApi.getBlogInformation();
-			blogInformationPromise.success(function(result){
+			blogInformationPromise.then(function(result){
 				informationPropertiesMap.forEach(function(informationItem){
 					if($FrontPress.overrides && informationItem.overrides){
 						informationItem.setFunction(informationItem.overrides);
@@ -58,9 +58,11 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 						informationItem.setFunction(informationValue);						
 					}
 				});				
-
 				_setInformation();
 			});					
+			blogInformationPromise.catch(function(error){
+				console.log(error);
+			})
 		}
 
 

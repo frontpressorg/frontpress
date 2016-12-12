@@ -55,10 +55,14 @@ function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
 		var promiseParams = {"pageSize": pageSize, "pageNumber": pageNumber};
 		var allPostsPromise = PostsApi.getAllPosts(promiseParams);
 
-		allPostsPromise.success(function(result){
+		allPostsPromise.then(function(result){
 			var filteredArray = result.posts.filterToProperties(propertiesToCache);
 			_addToCache(filteredArray);		
 		});		
+
+		allPostsPromise.catch(function(error){
+			console.log(error);
+		})
 	}
 
 

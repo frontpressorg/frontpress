@@ -70,7 +70,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 		};
 
 		var postPromise = PostsApi.getPostById(id, configs);
-		postPromise.success(function(result){
+		postPromise.then(function(result){
 			model.setTitle(result.title);
 			model.setContent(result.content);
 			model.setDate(result.date);
@@ -82,12 +82,17 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 					var categoriesIds = result.categories;
 					for(var i=0; i < categoriesIds.length; i++){
 						model.isLoadingCategories = true;
+						var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
 
-						CategoriesApi.getCategoryById(categoriesIds[i]).success(function(categoryResult){
+						categoryByIdPromise.then(function(categoryResult){
 							var category = {};
 							category.name = categoryResult.name;
 							model.addCategory(category);
 							model.isLoadingCategories = false;
+						});
+
+						categoryByIdPromise.catch(function(error){
+							console.log(error);
 						});
 					}
 
@@ -95,19 +100,29 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 					for(var j=0; j < tagsIds.length; j++){
 						model.isLoadingTags = true;
 
-						TagsApi.getTagById(tagsIds[j]).success(function(tagResult){
+						var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
+
+						tagByIdpromise.then(function(tagResult){
 							var tag = {};
 							tag.name = tagResult.name;
 							model.addTag(tag);
 							model.isLoadingTags = false;
 						});
+						
+						tagByIdpromise.catch(function(error){
+							console.log(error);
+						})
 					}
 
 					var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
 
-					featuredImagesPromise.success(function(result){
+					featuredImagesPromise.then(function(result){
 						model.setFeaturedImage(result.source_url);
 					});
+
+					featuredImagesPromise.catch(function(error){
+						console.log(error);
+					})
 
 					break;
 				
@@ -131,6 +146,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 			model.isLoadingFullPost = false;
 			defer.resolve(model);
 		});
+
+		postPromise.catch(function(error){
+			console.log(error);
+		})
 
 		return defer.promise;
 	}
