@@ -3,9 +3,6 @@
   "version": "1.0.4",
   "description": "Full front-end AngularJS template for WordPress API.",
   "main": "index.js",
-  "bin": {
-    "frontpress": "./scripts/frontpress.js"
-  },
   "dependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.2",
@@ -46,12 +43,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teles/frontpress.git"
+    "url": "git+https://github.com/frontpressorg/frontpress.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/teles/frontpress/issues"
+    "url": "https://github.com/frontpressorg/frontpress/issues"
   },
-  "homepage": "https://github.com/teles/frontpress#readme"
+  "homepage": "https://github.com/frontpressorg/frontpress#readme"
 }
