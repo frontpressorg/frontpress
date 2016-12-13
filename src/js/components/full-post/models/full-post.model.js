@@ -71,6 +71,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
 		var postPromise = PostsApi.getPostById(id, configs);
 		postPromise.then(function(result){
+			result = result["data"];
 			model.setTitle(result.title);
 			model.setContent(result.content);
 			model.setDate(result.date);
