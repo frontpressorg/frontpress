@@ -24,14 +24,10 @@ fi
 git clone $REPO frontpress
 cd frontpress
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-cd ..
-
 
 # Run our compile script
 ./ci/compile.sh
 
-# Now let's go have some fun with the cloned repo
-cd frontpress
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
@@ -49,8 +45,6 @@ openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in deploy_key.enc -out 
 chmod 600 deploy_key
 eval `ssh-agent -s`
 ssh-add deploy_key
-
-gulp release
 
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
