@@ -7,10 +7,17 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="master"
+TRAVIS_NAME="Travis CI"
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
+LAST_COMMIT_AUTHOR=$(git log --format="%an" -1)
 
+
+if [ "$LAST_COMMIT_AUTHOR" = "$TRAVIS_NAME" ]; then
+    echo "Cannot build a Travis commit. Exiting"
+    exit 0
+fi
 
 # Pull requests and commits to other branches are ignored.
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
