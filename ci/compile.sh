@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gulp release
+./node_modules/gulp/bin/gulp.js release
