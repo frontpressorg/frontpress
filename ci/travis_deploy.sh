@@ -28,6 +28,7 @@ git config user.email "$COMMIT_AUTHOR_EMAIL"
 git status
 git add .
 git commit -m "Deploy to $TARGET_BRANCH: ${SHA}"
+git status
 
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
 ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
@@ -40,4 +41,4 @@ eval `ssh-agent -s`
 ssh-add deploy_key
 
 # Now that we're all set up, we can push.
-git push $SSH_REPO $TARGET_BRANCH
+git push origin $TARGET_BRANCH
