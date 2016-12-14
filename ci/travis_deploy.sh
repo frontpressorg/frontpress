@@ -29,7 +29,7 @@ eval `ssh-agent -s`
 ssh-add deploy_key
 
 git pull $SSH_REPO $TARGET_BRANCH
-
+git checkout $TARGET_BRANCH
 # Run our compile script
 ./ci/compile.sh
 
