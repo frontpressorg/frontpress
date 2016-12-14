@@ -19,12 +19,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]
 fi
 
 
-# Clone the existing gh-pages for this repo into out/
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
-git clone $REPO frontpress
-cd frontpress
-git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-
 # Run our compile script
 ./ci/compile.sh
 
