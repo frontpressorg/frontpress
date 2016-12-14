@@ -7,7 +7,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="master"
-TRAVIS_NAME="Travis CI"
+TRAVIS_NAME="FrontPress Bot"
 REPO=`git config remote.origin.url`
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
@@ -40,8 +40,8 @@ git checkout $TARGET_BRANCH
 # Run our compile script
 ./ci/compile.sh
 
-git config user.name "Travis CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
+git config user.name "FrontPress Bot"
+git config user.email "frontpressbot@gmail.com"
 
 git status
 git add .
