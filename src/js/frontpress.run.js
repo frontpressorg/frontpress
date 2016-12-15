@@ -109,8 +109,8 @@ function frontpressRun(){
 
     }
 
-    extendArrayPrototype();
     extendStringPrototype();
+    extendArrayPrototype();
 }
 
 module.run(frontpressRun);
