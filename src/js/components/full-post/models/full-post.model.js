@@ -109,7 +109,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 							model.addTag(tag);
 							model.isLoadingTags = false;
 						});
-						
+
 						tagByIdpromise.catch(function(error){
 							console.log(error);
 						})
@@ -126,7 +126,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 					})
 
 					break;
-				
+
 				case "v1":
 					model.setFeaturedImage(result.featured_image);
 
@@ -135,7 +135,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 					}
 
 					model.isLoadingCategories = false;
-					
+
 					for (var tag in result.tags){
 						model.addTag(result.tags[tag]);
 					}
@@ -161,3 +161,4 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 }
 
 module.factory("FullPostModel", FullPostModel);
+FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress"];

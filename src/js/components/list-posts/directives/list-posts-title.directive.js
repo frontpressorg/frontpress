@@ -15,3 +15,4 @@ function ListPostsTitleDirective($FrontPress){
 
 	return directive;
 }
+ListPostsTitleDirective.$inject = ["$FrontPress"];

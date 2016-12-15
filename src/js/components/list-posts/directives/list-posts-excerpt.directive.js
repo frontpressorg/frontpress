@@ -16,3 +16,4 @@ function ListPostsExcerptDirective($FrontPress){
 
 	return directive;
 }
+ListPostsExcerptDirective.$inject = ["$FrontPress"];

@@ -6,3 +6,4 @@ function ShareController(ShareModel){
 }
 
 module.controller("ShareController", ShareController);
+ShareController.$inject = ["ShareModel"];

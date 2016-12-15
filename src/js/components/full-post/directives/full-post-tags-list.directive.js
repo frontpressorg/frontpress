@@ -17,3 +17,4 @@ function FullPostTagListDirective($FrontPress){
 }
 
 module.directive("fullPostTagsList", FullPostTagListDirective);
+FullPostTagListDirective.$inject = ["$FrontPress"];

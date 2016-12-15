@@ -6,7 +6,7 @@ function ShareModel($window, ApiManager){
 	};
 
 	function openShareWindow(networkName, post){
-		var baseUrl = $window.location.origin;	
+		var baseUrl = $window.location.origin;
 
 		var shareUrl = networkShareUrls[networkName].replaceAll({
 			"<site-url>": baseUrl,
@@ -29,3 +29,4 @@ function ShareModel($window, ApiManager){
 }
 
 module.factory("ShareModel", ShareModel);
+ShareModel.$inject = ["$window", "ApiManager"];

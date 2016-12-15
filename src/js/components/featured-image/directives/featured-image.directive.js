@@ -15,3 +15,5 @@ function FeaturedImageDirective($FrontPress){
 
 	return directive;
 }
+
+FeaturedImageDirective.$inject = ["$FrontPress"];

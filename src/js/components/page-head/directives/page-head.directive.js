@@ -16,3 +16,4 @@ function pageHead($FrontPress){
 }
 
 module.directive("pageHead", pageHead);
+pageHead.$inject = ["$FrontPress"];

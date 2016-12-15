@@ -24,7 +24,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
         }
     });
 
-    function _setPageMetaData(){         
+    function _setPageMetaData(){
 
         var blogInformationPromise = BlogModel.getInformationPromise();
 
@@ -34,7 +34,7 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
                 ":siteDescription": blogInformation.description
             };
             PageHeadModel.parsePageTitle("home", homeReplaceRules);
-            
+
         })
         var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
         PageHeadModel.setPageCanonical(canonical);
@@ -66,3 +66,4 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
 }
 
 module.controller("HomeDirectiveController", HomeDirectiveController);
+HomeDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];

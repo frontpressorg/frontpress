@@ -64,3 +64,4 @@ function PaginationModel(PageHeadModel){
 }
 
 module.factory("PaginationModel", PaginationModel);
+PaginationModel.$inject = ["PageHeadModel"];

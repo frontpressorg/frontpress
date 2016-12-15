@@ -32,4 +32,6 @@ function AjaxModel($http) {
     };
 }
 
+AjaxModel.$inject = ["$http"];
+
 module.factory("AjaxModel", AjaxModel);

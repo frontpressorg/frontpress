@@ -1,7 +1,7 @@
 angular.module("frontpress.components.blog").factory("BlogModel", BlogModel);
 
 function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
-	
+
 	var model = {
 		name: null,
 		description: null,
@@ -32,15 +32,15 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 			  "overrides": $FrontPress.overrides ? $FrontPress.overrides.siteName : null,
 			  "setFunction": model.setName,
 			  "getPath": "siteName"
-			},			 
+			},
 		];
 
 		function _setInformation(){
 			var information = {
 				description: model.description,
 				name: model.name
-			};			
-			return deferred.resolve(information);			
+			};
+			return deferred.resolve(information);
 		}
 
 		var isAllInformationLoaded = model.name && model.description;
@@ -55,11 +55,11 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 						informationItem.setFunction(informationItem.overrides);
 					} else {
 						var informationValue = ApiManager.getPath(result["data"], informationItem.getPath);
-						informationItem.setFunction(informationValue);						
+						informationItem.setFunction(informationValue);
 					}
-				});				
+				});
 				_setInformation();
-			});					
+			});
 			blogInformationPromise.catch(function(error){
 				console.log(error);
 			})
@@ -68,6 +68,6 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 
 		return deferred.promise;
 	}
-
-
 }
+
+BlogModel.$inject = ["BlogApi", "$q", "ApiManager", "$FrontPress"];

@@ -4,3 +4,5 @@ function FullPostDirectiveController(FullPostModel, BlogModel){
 	var vc = this;
 	vc.vm = FullPostModel;
 }
+
+FullPostDirectiveController.$inject = ["FullPostModel", "BlogModel"];

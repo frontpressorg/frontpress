@@ -12,3 +12,4 @@ function PostViewDirective($FrontPress){
 	};
 	return directive;
 }
+PostViewDirective.$inject = ["$FrontPress"];

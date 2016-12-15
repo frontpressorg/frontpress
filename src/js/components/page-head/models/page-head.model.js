@@ -71,3 +71,4 @@ function PageHeadModel($location, $FrontPress){
 }
 
 module.factory("PageHeadModel", PageHeadModel);
+PageHeadModel.$inject = ["$location", "$FrontPress"];

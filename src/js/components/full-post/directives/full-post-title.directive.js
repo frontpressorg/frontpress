@@ -17,3 +17,4 @@ function FullPostTitleDirective($FrontPress){
 }
 
 module.directive("fullPostTitle", FullPostTitleDirective);
+FullPostTitleDirective.$inject = ["$FrontPress"];

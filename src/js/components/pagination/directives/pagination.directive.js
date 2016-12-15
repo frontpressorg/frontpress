@@ -15,3 +15,4 @@ function pagination($FrontPress){
 }
 
 module.directive("pagination", pagination);
+pagination.$inject = ["$FrontPress"];

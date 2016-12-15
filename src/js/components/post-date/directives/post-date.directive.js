@@ -15,3 +15,4 @@ function PostDateDirective($FrontPress){
 
 	return directive;
 }
+PostDateDirective.$inject = ["$FrontPress"];

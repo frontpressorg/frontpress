@@ -12,3 +12,4 @@ function HomeViewDirective($FrontPress){
 	};
 	return directive;
 }
+HomeViewDirective.$inject = ["$FrontPress"];

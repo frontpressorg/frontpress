@@ -5,3 +5,4 @@ function PostDateDirectiveController(){
 }
 
 module.controller("PostDateDirectiveController", PostDateDirectiveController);
+PostDateDirectiveController.$inject = [];

@@ -4,3 +4,5 @@ function PageHeadController(PageHeadModel){
 	var vc = this;
 	vc.vm =	PageHeadModel;
 }
+
+PageHeadController.$inject = ["PageHeadModel"];

@@ -15,3 +15,4 @@ function FullPostCategoriesListDirective($FrontPress){
 }
 
 module.directive("fullPostCategoriesList", FullPostCategoriesListDirective);
+FullPostCategoriesListDirective.$inject = ["$FrontPress"];

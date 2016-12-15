@@ -15,3 +15,4 @@ function share($FrontPress) {
 
 	return directive;
 }
+share.$inject = ["$FrontPress"];

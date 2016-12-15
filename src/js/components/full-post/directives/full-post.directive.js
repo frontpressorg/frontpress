@@ -13,3 +13,4 @@ function FullPostDirective($FrontPress){
 
 	return directive;
 }
+FullPostDirective.$inject = ["$FrontPress"];

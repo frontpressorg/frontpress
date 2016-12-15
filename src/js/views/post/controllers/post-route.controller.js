@@ -5,3 +5,4 @@ function PostRouteController(){
 }
 
 module.controller("PostRouteController", PostRouteController);
+PostRouteController.$inject = [];

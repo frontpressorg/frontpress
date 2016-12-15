@@ -4,3 +4,4 @@ function ListPostsDirectiveController(ListPostsModel){
 	var vc = this;
     vc.vm = ListPostsModel;
 }
+ListPostsDirectiveController.$inject = ["ListPostsModel"];

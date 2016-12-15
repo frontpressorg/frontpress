@@ -17,3 +17,4 @@ function FullPostContentDirective($FrontPress){
 }
 
 module.directive("fullPostContent", FullPostContentDirective);
+FullPostContentDirective.$inject = ["$FrontPress"];

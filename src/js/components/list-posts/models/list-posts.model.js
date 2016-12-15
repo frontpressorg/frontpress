@@ -94,7 +94,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         postPromises.getAllPostsPromise().then(function(postsResult){
             model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult["data"], "totalPostsNumber"));
             var allPosts = ApiManager.getPath(postsResult["data"], "allPostsPath");
-            
+
             _appendDateInfoToPostsList(allPosts);
             SlugsMapModel.updateFromPosts(allPosts);
 
@@ -120,3 +120,5 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
     }
 }
+
+ListPostsModel.$inject = ["PostsApi", "MediaApi", "$q", "SlugsMapModel", "ApiManager"];

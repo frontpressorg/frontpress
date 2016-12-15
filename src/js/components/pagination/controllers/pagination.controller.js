@@ -4,3 +4,5 @@ function PaginationController(PaginationModel){
 	var vc = this;
 	vc.vm = PaginationModel;
 }
+
+PaginationController.$inject = ["PaginationModel"];

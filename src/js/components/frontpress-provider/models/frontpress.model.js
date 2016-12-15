@@ -59,11 +59,11 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 	}
 
 	function loadRoutes(){
-		
+
 		if(FrontPressConfigurationFile["routes"]){
-			configure.setRoutes(FrontPressConfigurationFile["routes"]);					
+			configure.setRoutes(FrontPressConfigurationFile["routes"]);
 		}
-		
+
 		var defaultRoutesList = {
 			"home": "/",
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
@@ -71,12 +71,12 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		};
 
 		function _setRouteAsDefaultIfempty(){
-			for(var defaultRouteKey in defaultRoutesList){				
+			for(var defaultRouteKey in defaultRoutesList){
 				if(!configure.routes.hasOwnProperty(defaultRouteKey)){
 					configure.routes[defaultRouteKey] = defaultRoutesList[defaultRouteKey];
-				}			
-			}					
-		}	
+				}
+			}
+		}
 		if(!configure.routes){
 			configure.routes = defaultRoutesList;
 		}
@@ -98,10 +98,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			titles: configure.setTitles,
 			infiniteScroll: configure.setInfiniteScroll
 		};
-		
+
 		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontPressConfigurationFile[config]);			
-		}		
+			configsToFunctions[config](FrontPressConfigurationFile[config]);
+		}
 
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
@@ -126,38 +126,38 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		switch(configure.apiVersion){
 			case "v2":
 				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v2.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v2.template.html";												
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";												
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";												
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v2.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";
 			break;
 			case "v1":
 				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v1.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v1.template.html";												
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";												
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";												
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v1.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";
 			break;
 		}
 
 		function _setTemplateUrlAsDefaultIfEmpty(){
-			for(var defaultTemplateUrlKey in defaultTemplateUrlList){				
+			for(var defaultTemplateUrlKey in defaultTemplateUrlList){
 				if(!configure.templateUrl.hasOwnProperty(defaultTemplateUrlKey)){
 					configure.templateUrl[defaultTemplateUrlKey] = defaultTemplateUrlList[defaultTemplateUrlKey];
-				}			
-			}			
-		}	
+				}
+			}
+		}
 
 		function _setTitleAsDefaultIfEmpty(){
-			for(var defaultTitleKey in defaultTitlesList){				
+			for(var defaultTitleKey in defaultTitlesList){
 				if(!configure.titles.hasOwnProperty(defaultTitleKey)){
 					configure.titles[defaultTitleKey] = defaultTitlesList[defaultTitleKey];
-				}			
-			}			
-		}			
+				}
+			}
+		}
 
 		if(angular.isUndefined(configure.templateUrl)){
 			configure.templateUrl = defaultTemplateUrlList;
-		} else {			
-			_setTemplateUrlAsDefaultIfEmpty();			
+		} else {
+			_setTemplateUrlAsDefaultIfEmpty();
 		}
 
 		if(angular.isUndefined(configure.titles)){
@@ -189,11 +189,11 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			siteName: configure.siteName,
 			infiniteScroll: configure.infiniteScroll,
 			getTemplateUrl: getTemplateUrl,
-		};		
+		};
 
 		function getTemplateUrl(templateName){
 			return model.templateUrl[templateName];
-		}		
+		}
 
 		return model;
 	}
@@ -206,9 +206,11 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 
 	function getRoute(routeName){
 		return configure.routes[routeName];
-	}    
+	}
 
     return provider;
 }
 
 module.provider("$FrontPress", FrontPressProvider);
+
+FrontPressProvider.$inject = ["FrontPressConfigurationFile", "$disqusProvider"];

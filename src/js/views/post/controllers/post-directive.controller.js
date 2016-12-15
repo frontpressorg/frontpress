@@ -34,10 +34,10 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 
     var promises = [fullPostPromise, blogInformationPromise];
     $q.all(promises).then(function(result){
-        
+
         var fullPostResult = result[0];
         var blogInformationResult = result[1];
-        
+
         var postTitle = ApiManager.getPath(fullPostResult, "postTitle");
         var postDateInfo = ApiManager.getPath(fullPostResult, "postDate").getDateInfo();
 
@@ -57,3 +57,4 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 }
 
 module.controller("PostDirectiveController", PostDirectiveController);
+PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "$FrontPress", "CategoriesApi", "ApiManager", "BlogModel", "$q"];
