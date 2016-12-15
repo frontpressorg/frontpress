@@ -45,13 +45,13 @@ module.exports = function() {
     var v1FileList = dependenciesFiles.concat(devFilesList).concat(v1DevFileList);
     var v2FileList = dependenciesFiles.concat(devFilesList).concat(v2DevFileList);
 
-    v1ConcatAndMinify = gulp.src(dependenciesFiles)
+    v1ConcatAndMinify = gulp.src(v1FileList)
         .pipe(concat("frontpress.v1.min.js"))
         .pipe(gulp.dest(javascriptDestFolder))
         .pipe(uglify())
         .pipe(gulp.dest(javascriptDestFolder));
 
-    v2ConcatAndMinify = gulp.src(dependenciesFiles)
+    v2ConcatAndMinify = gulp.src(v2FileList)
         .pipe(concat("frontpress.min.js"))
         .pipe(gulp.dest(javascriptDestFolder))
         .pipe(uglify())

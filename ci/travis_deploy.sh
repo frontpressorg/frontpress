@@ -9,10 +9,12 @@ SOURCE_BRANCH="master"
 TARGET_BRANCH="master"
 TRAVIS_NAME="FrontPress Bot"
 REPO=`git config remote.origin.url`
+LAST_COMMIT_MESSAGE=$(git log --format=%B -n 1)
 SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 LAST_COMMIT_AUTHOR=$(git log --format="%an" -1)
-
+green=`tput setaf 2`
+reset=`tput sgr0`
 
 if [ "$LAST_COMMIT_AUTHOR" = "$TRAVIS_NAME" ]; then
     echo "Cannot build a Travis commit. Exiting"
@@ -37,15 +39,29 @@ ssh-add deploy_key
 
 git pull $SSH_REPO $TARGET_BRANCH
 git checkout $TARGET_BRANCH
+
 # Run our compile script
 ./ci/compile.sh
 
 git config user.name "FrontPress Bot"
 git config user.email "frontpressbot@gmail.com"
-
 git status
-git add .
-git commit -m "Deploy to $TARGET_BRANCH: ${SHA}"
+
+if [ $(echo "${LAST_COMMIT_MESSAGE}" | grep -c "\[\?#[0-9]*\]\?" ) -gt 0 ]; then
+    ISSUE_NUMBER=$(echo "${LAST_COMMIT_MESSAGE}" | grep -o "\[\?#[0-9]*\]\?")
+else
+    ISSUE_NUMBER="no-issue-specified"
+fi    
+
+if [ -n "$(git status --porcelain)" ]; then 
+    git add .
+    git commit -m "${ISSUE_NUMBER} - rebuild release files." -m "Build generated for ${SHA}." 
+    git push $SSH_REPO $TARGET_BRANCH
+    exit 0
+else   
+    echo "${green}Release files didn't change. Exiting.${reset}"
+    exit 0
+fi
 
 # Now that we're all set up, we can push.
 git push $SSH_REPO $TARGET_BRANCH
