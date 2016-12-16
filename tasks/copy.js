@@ -64,16 +64,15 @@ module.exports = function() {
         .pipe(gulp.dest(javascriptDestFolder));
     }
 
-    var imagesCopy = gulp.src([
-        "./src/images/**/*.*"
-    ])
-    .pipe(gulp.dest("./build/images"));
-
     var othersCopy = gulp.src([
         "./src/js/**/*.html",
-        "./src/js/**/*.css"
     ])
     .pipe(gulp.dest("./build/js"));
 
-    return merge(dependenciesCopy, imagesCopy, othersCopy, jsCopy);
+    var releaseCopy = gulp.src([
+        "./release/**/*.js"
+    ])
+    .pipe(gulp.dest("./build/release"));
+
+    return merge(dependenciesCopy, othersCopy, jsCopy, releaseCopy);
 };
