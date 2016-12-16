@@ -3,7 +3,8 @@ var templateCache = require("gulp-angular-templatecache");
 
 module.exports = function() {
 	var templateCacheOptions = {
-		templateHeader: "angular.module(\"frontpress.template-cache\", []);\nangular.module(\"frontpress.template-cache\").run([\"$templateCache\", function($templateCache) {"
+		templateHeader: "angular.module(\"frontpress.template-cache\", []);\nangular.module(\"frontpress.template-cache\").run([\"$templateCache\", function($templateCache) {",
+		root: "/js/"		
 	};
     return  gulp.task("templateCache", function() {
 	  return gulp.src("./src/js/**/*.html")
