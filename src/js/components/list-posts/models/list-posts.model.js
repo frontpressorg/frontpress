@@ -29,7 +29,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
             var featuredImagesPromise = MediaApi.getMediaById(featuredMediaId);
 
             featuredImagesPromise.then(function(result){
-                defer.resolve(result);
+                defer.resolve(result.data);
             });
 
             featuredImagesPromise.catch(function(error){

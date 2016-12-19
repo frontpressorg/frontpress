@@ -86,6 +86,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 						var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
 
 						categoryByIdPromise.then(function(categoryResult){
+							categoryResult = categoryResult.data;
 							var category = {};
 							category.name = categoryResult.name;
 							model.addCategory(category);
@@ -104,6 +105,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 						var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
 
 						tagByIdpromise.then(function(tagResult){
+							tagResult = tagResult.data;
 							var tag = {};
 							tag.name = tagResult.name;
 							model.addTag(tag);
@@ -117,8 +119,9 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
 					var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
 
-					featuredImagesPromise.then(function(result){
-						model.setFeaturedImage(result.source_url);
+					featuredImagesPromise.then(function(featuredImageResult){
+						featuredImageResult = featuredImageResult.data;
+						model.setFeaturedImage(featuredImageResult.source_url);
 					});
 
 					featuredImagesPromise.catch(function(error){
