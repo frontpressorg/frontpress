@@ -6,7 +6,7 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     var postSlug = $stateParams.postSlug;
     var cachedSlugs = SlugsMapModel.getCachedSlugs();
 
-    var idProperty = ApiManagerMap.postId;
+    var idProperty = ApiManagerMap.postId[0];
     var cachedPostIdSlug = cachedSlugs && cachedSlugs.getObjectByValue("slug", postSlug) ? cachedSlugs.getObjectByValue("slug", postSlug) : undefined;
     var fullPostPromise;
     var postId;
@@ -18,8 +18,11 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     else if(!$stateParams.postId && cachedPostIdSlug){
         postId = cachedPostIdSlug[idProperty];
         fullPostPromise = FullPostModel.loadFullPostById(postId);
-    } else {
+    } else if(postSlug){
         fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);
+    }
+    else {
+        console.error("Error: [$FrontPress configuration error: empty id and slug for post route.] You should provide :postSlug or :postId as route parameter.");
     }
 
     var blogInformationPromise = BlogModel.getInformationPromise();
