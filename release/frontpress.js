@@ -38156,27 +38156,6 @@ module.factory("ConfigsToParams", ConfigsToParams);
 angular.module("frontpress.filters", []);
 
 angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post"]);
-angular.module("frontpress.views.home", 
-				["ui.router", 
-				"infinite-scroll", 
-				"frontpress.components.list-posts", 
-				"frontpress.components.pagination", 
-				"frontpress.components.page-head", 
-				"frontpress.components.api-manager", 
-				"frontpress.components.blog", 
-				"frontpress.components.frontpress-provider"]);
-
-angular.module("frontpress.views.post", 
-				["frontpress.components.full-post", 
-				"frontpress.components.share", 
-				"ui.router", 
-				"frontpress.components.page-head", 
-				"frontpress.components.blog", 
-				"ngDisqus", 
-				"frontpress.components.slugs-map", 
-				"frontpress.components.api-manager", 
-				"frontpress.components.frontpress-provider"]);
-
 angular.module("frontpress.components.ajax", []);
 
 angular.module("frontpress.components.api-manager", ["frontpress.apis.api-manager-map"]);
@@ -38190,13 +38169,14 @@ angular.module("frontpress.components.featured-image",
 
 angular.module("frontpress.components.frontpress-provider", ["ngDisqus"]);
 
-angular.module("frontpress.components.full-post", 
-				["frontpress.filters", 
-				"frontpress.apis.tags", 
-				"frontpress.apis.posts", 
-				"frontpress.apis.categories", 
-				"frontpress.apis.media", 
+angular.module("frontpress.components.full-post",
+				["frontpress.filters",
+				"frontpress.apis.tags",
+				"frontpress.apis.posts",
+				"frontpress.apis.categories",
+				"frontpress.apis.media",
 				"frontpress.components.post-date",
+                "frontpress.apis.api-manager-map",
 				"frontpress.components.blog",
 				"frontpress.components.featured-image",
 				"frontpress.components.frontpress-provider"]);
@@ -38226,38 +38206,28 @@ angular.module("frontpress.components.share", [
 				"frontpress.apis.api-manager-map",
 				"frontpress.components.frontpress-provider"]);
 
-angular.module("frontpress.components.slugs-map", ["frontpress.apis.posts", "frontpress.components.frontpress-provider"]);
-angular.module("frontpress.views.home").directive("homeView", HomeViewDirective);
+angular.module("frontpress.components.slugs-map", ["frontpress.apis.posts", "frontpress.apis.api-manager-map"]);
 
-function HomeViewDirective($FrontPress){
-	var directive = {
-		scope: {},
-		templateUrl: $FrontPress.getTemplateUrl("views.home"),
-		restrict: "AE",
-		controllerAs: "vc",
-		bindToController: true,
-		controller: "HomeDirectiveController",
-		replace: true
-	};
-	return directive;
-}
-HomeViewDirective.$inject = ["$FrontPress"];
+angular.module("frontpress.views.home", 
+				["ui.router", 
+				"infinite-scroll", 
+				"frontpress.components.list-posts", 
+				"frontpress.components.pagination", 
+				"frontpress.components.page-head", 
+				"frontpress.components.api-manager", 
+				"frontpress.components.blog", 
+				"frontpress.components.frontpress-provider"]);
 
-angular.module("frontpress.views.post").directive("postView", PostViewDirective);
-
-function PostViewDirective($FrontPress){
-	var directive = {
-		scope: {},
-		templateUrl: $FrontPress.getTemplateUrl("views.post"),
-		restrict: "AE",
-		controllerAs: "vc",
-		bindToController: true,
-		controller: "PostDirectiveController",
-		replace: true
-	};
-	return directive;
-}
-PostViewDirective.$inject = ["$FrontPress"];
+angular.module("frontpress.views.post", 
+				["frontpress.components.full-post", 
+				"frontpress.components.share", 
+				"ui.router", 
+				"frontpress.components.page-head", 
+				"frontpress.components.blog", 
+				"ngDisqus", 
+				"frontpress.components.slugs-map", 
+				"frontpress.components.api-manager", 
+				"frontpress.components.frontpress-provider"]);
 
 angular.module("frontpress.components.featured-image").directive("featuredImage", FeaturedImageDirective);
 
@@ -38278,82 +38248,6 @@ function FeaturedImageDirective($FrontPress){
 }
 
 FeaturedImageDirective.$inject = ["$FrontPress"];
-
-angular.module("frontpress.components.list-posts").directive("listPostsExcerpt", ListPostsExcerptDirective);
-
-function ListPostsExcerptDirective($FrontPress){
-	var directive = {
-		scope: {
-			post: "=post"
-		},
-		restrict: "AE",
-		controller: "ListPostsGenericDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true,
-		templateUrl: $FrontPress.getTemplateUrl("components.listposts.excerpt")
-
-	};
-
-	return directive;
-}
-ListPostsExcerptDirective.$inject = ["$FrontPress"];
-
-angular.module("frontpress.components.list-posts").directive("listPostsTitle", ListPostsTitleDirective);
-
-function ListPostsTitleDirective($FrontPress){
-	var directive = {
-		scope: {
-			post: "=post"
-		},
-		restrict: "AE",
-		controller: "ListPostsGenericDirectiveController",
-		controllerAs: "vc",
-		replace: true,
-		bindToController: true,
-		templateUrl: $FrontPress.getTemplateUrl("components.listposts.title")
-	};
-
-	return directive;
-}
-ListPostsTitleDirective.$inject = ["$FrontPress"];
-
-angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
-
-function ListPostsDirective($FrontPress){
-	var directive = {
-		scope: {},
-		restrict: "AE",
-		controller: "ListPostsDirectiveController",
-		controllerAs: "vc",
-		replace: true,
-		bindToController: true,
-		templateUrl: $FrontPress.getTemplateUrl("components.listposts")
-	};
-
-	return directive;
-}
-ListPostsDirective.$inject = ["$FrontPress"];
-
-var module = angular.module("frontpress.components.page-head");
-
-function pageHead($FrontPress){
-	var directive = {
-		templateUrl: $FrontPress.getTemplateUrl("components.pagehead"),
-		scope: {},
-		controllerAs: "vc",
-		controller: "PageHeadController",
-		bindToController: true,
-		restrict: "A",
-		replace: false,
-		transclude: true,
-	};
-
-	return directive;
-}
-
-module.directive("pageHead", pageHead);
-pageHead.$inject = ["$FrontPress"];
 
 var module = angular.module("frontpress.components.full-post");
 
@@ -38454,6 +38348,82 @@ function FullPostDirective($FrontPress){
 }
 FullPostDirective.$inject = ["$FrontPress"];
 
+angular.module("frontpress.components.list-posts").directive("listPostsExcerpt", ListPostsExcerptDirective);
+
+function ListPostsExcerptDirective($FrontPress){
+	var directive = {
+		scope: {
+			post: "=post"
+		},
+		restrict: "AE",
+		controller: "ListPostsGenericDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true,
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts.excerpt")
+
+	};
+
+	return directive;
+}
+ListPostsExcerptDirective.$inject = ["$FrontPress"];
+
+angular.module("frontpress.components.list-posts").directive("listPostsTitle", ListPostsTitleDirective);
+
+function ListPostsTitleDirective($FrontPress){
+	var directive = {
+		scope: {
+			post: "=post"
+		},
+		restrict: "AE",
+		controller: "ListPostsGenericDirectiveController",
+		controllerAs: "vc",
+		replace: true,
+		bindToController: true,
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts.title")
+	};
+
+	return directive;
+}
+ListPostsTitleDirective.$inject = ["$FrontPress"];
+
+angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
+
+function ListPostsDirective($FrontPress){
+	var directive = {
+		scope: {},
+		restrict: "AE",
+		controller: "ListPostsDirectiveController",
+		controllerAs: "vc",
+		replace: true,
+		bindToController: true,
+		templateUrl: $FrontPress.getTemplateUrl("components.listposts")
+	};
+
+	return directive;
+}
+ListPostsDirective.$inject = ["$FrontPress"];
+
+var module = angular.module("frontpress.components.page-head");
+
+function pageHead($FrontPress){
+	var directive = {
+		templateUrl: $FrontPress.getTemplateUrl("components.pagehead"),
+		scope: {},
+		controllerAs: "vc",
+		controller: "PageHeadController",
+		bindToController: true,
+		restrict: "A",
+		replace: false,
+		transclude: true,
+	};
+
+	return directive;
+}
+
+module.directive("pageHead", pageHead);
+pageHead.$inject = ["$FrontPress"];
+
 var module = angular.module("frontpress.components.pagination");
 
 function pagination($FrontPress){
@@ -38511,6 +38481,38 @@ function share($FrontPress) {
 }
 share.$inject = ["$FrontPress"];
 
+angular.module("frontpress.views.home").directive("homeView", HomeViewDirective);
+
+function HomeViewDirective($FrontPress){
+	var directive = {
+		scope: {},
+		templateUrl: $FrontPress.getTemplateUrl("views.home"),
+		restrict: "AE",
+		controllerAs: "vc",
+		bindToController: true,
+		controller: "HomeDirectiveController",
+		replace: true
+	};
+	return directive;
+}
+HomeViewDirective.$inject = ["$FrontPress"];
+
+angular.module("frontpress.views.post").directive("postView", PostViewDirective);
+
+function PostViewDirective($FrontPress){
+	var directive = {
+		scope: {},
+		templateUrl: $FrontPress.getTemplateUrl("views.post"),
+		restrict: "AE",
+		controllerAs: "vc",
+		bindToController: true,
+		controller: "PostDirectiveController",
+		replace: true
+	};
+	return directive;
+}
+PostViewDirective.$inject = ["$FrontPress"];
+
 angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000)
 
 angular.module("frontpress.filters").filter("trustAsHtml", TrustAsHtml);
@@ -38564,153 +38566,6 @@ function configPost($stateProvider, $FrontPressProvider){
 
     $stateProvider.state("post", statePost);
 }
-
-var module = angular.module("frontpress.views.home");
-
-function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
-    var vc = this;
-    vc.vm = ListPostsModel;
-    var firstNextPageNumber = 2;
-    vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
-    vc.isInfiniteScrollDisabled = !$FrontPress.infiniteScroll;
-    PageHeadModel.init();
-
-    var params = {
-        pageSize: $FrontPress.pageSize,
-        pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
-    };
-
-    var loadPostsPromise = vc.vm.loadPosts(params);
-
-    loadPostsPromise.then(function(loadedPosts){
-        var totalPagesNumber = ListPostsModel.totalPostsNumber / $FrontPress.pageSize;
-        PaginationModel.setLastPageNumber(totalPagesNumber);
-        _setPaginationPages(params.pageNumber);
-        if($FrontPress.apiVersion === "v2"){
-            vc.vm.loadExternalFeaturedImages(loadedPosts);
-        }
-    });
-
-    function _setPageMetaData(){
-
-        var blogInformationPromise = BlogModel.getInformationPromise();
-
-        blogInformationPromise.then(function(blogInformation){
-            var homeReplaceRules = {
-                ":siteName": blogInformation.name,
-                ":siteDescription": blogInformation.description
-            };
-            PageHeadModel.parsePageTitle("home", homeReplaceRules);
-
-        })
-        var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
-        PageHeadModel.setPageCanonical(canonical);
-    }
-
-    _setPageMetaData();
-
-    function loadMorePostsAndPaginate(){
-        params.pageNumber++;
-        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
-        var paginationOptions = {notify: false};
-        var loadPostsPromise = vc.vm.loadPosts(params);
-
-
-        loadPostsPromise.then(function(loadedPosts){
-            if($FrontPress.apiVersion === "v2"){
-                vc.vm.loadExternalFeaturedImages(loadedPosts);
-            }
-        });
-
-        _setPageMetaData();
-        _setPaginationPages(params.pageNumber);
-        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
-    }
-
-    function _setPaginationPages(currentPageNumber){
-        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
-    }
-}
-
-module.controller("HomeDirectiveController", HomeDirectiveController);
-HomeDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];
-
-angular.module("frontpress.views.home").controller("HomeRouteController", HomeRouteController);
-
-function HomeRouteController(){
-    var vc = this;
-}
-HomeRouteController.$inject = [];
-
-var module = angular.module("frontpress.views.post");
-
-function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, $FrontPress, CategoriesApi, ApiManager, BlogModel, $q){
-	var vc = this;
-    vc.vm = FullPostModel;
-    var postSlug = $stateParams.postSlug;
-    var cachedSlugs = SlugsMapModel.getCachedSlugs();
-
-    var idProperty;
-    switch($FrontPress.apiVersion){
-        case "v2":
-            idProperty = "id";
-        break;
-        case "v1":
-            idProperty = "ID";
-        break;
-    }
-
-    var postId;
-
-    if($stateParams.postId){
-        postId = $stateParams.postId;
-    }
-    else {
-        var slugItem = cachedSlugs.getObjectByValue("slug", postSlug);
-        postId = slugItem[idProperty];
-    }
-
-    var fullPostPromise = FullPostModel.loadFullPostById(postId);
-    var blogInformationPromise = BlogModel.getInformationPromise();
-
-    PageHeadModel.init();
-
-
-    var promises = [fullPostPromise, blogInformationPromise];
-    $q.all(promises).then(function(result){
-
-        var fullPostResult = result[0];
-        var blogInformationResult = result[1];
-
-        var postTitle = ApiManager.getPath(fullPostResult, "postTitle");
-        var postDateInfo = ApiManager.getPath(fullPostResult, "postDate").getDateInfo();
-
-        var titleReplaceRules = {
-            ":postTitle": postTitle,
-            ":year": postDateInfo.year,
-            ":month": postDateInfo.month,
-            ":day": postDateInfo.day,
-            ":siteName": blogInformationResult.name,
-            ":siteDescription": blogInformationResult.description,
-        };
-
-        PageHeadModel.parsePageTitle("post", titleReplaceRules);
-        vc.disqusId = FullPostModel.slug;
-
-    })
-}
-
-module.controller("PostDirectiveController", PostDirectiveController);
-PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "$FrontPress", "CategoriesApi", "ApiManager", "BlogModel", "$q"];
-
-var module = angular.module("frontpress.views.post")
-
-function PostRouteController(){
-	var vc = this;
-}
-
-module.controller("PostRouteController", PostRouteController);
-PostRouteController.$inject = [];
 
 var module = angular.module("frontpress.components.ajax");
 
@@ -39073,9 +38928,40 @@ module.provider("$FrontPress", FrontPressProvider);
 
 FrontPressProvider.$inject = ["FrontPressConfigurationFile", "$disqusProvider"];
 
+angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
+
+function FullPostCategoriesListDirectiveController(){
+	var vc = this;
+}
+
+angular.module("frontpress.components.full-post").controller("FullPostDirectiveController", FullPostDirectiveController);
+
+function FullPostDirectiveController(FullPostModel, BlogModel){
+	var vc = this;
+	vc.vm = FullPostModel;
+}
+
+FullPostDirectiveController.$inject = ["FullPostModel", "BlogModel"];
+
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress){
+function FullPostGenericDirectiveController(){
+	var vc = this;
+}
+
+module.controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);
+
+var module = angular.module("frontpress.components.full-post");
+
+function FullPostTagsListDirectiveController(){
+	var vc = this;
+}
+
+module.controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);
+
+var module = angular.module("frontpress.components.full-post");
+
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress, ApiManagerMap){
 	var model = {
 		addTag: addTag,
         categories: [],
@@ -39136,110 +39022,123 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
     model.setSlug = setSlug;
     model.setDate = setDate;
 
-	function loadFullPostById(id){
-		var defer = $q.defer();
+    function _loadFullPostByPromise(postPromise){
+        var defer = $q.defer();
 
+        postPromise.then(function(result){
+            result = result["data"];
+            model.setTitle(result.title);
+            model.setContent(result.content);
+            model.setDate(result.date);
+            model.setSlug(result.slug);
+            model.setId(result[ApiManagerMap.postId]);
+
+            switch($FrontPress.apiVersion){
+                case "v2":
+
+                    var categoriesIds = result.categories;
+                    for(var i=0; i < categoriesIds.length; i++){
+                        model.isLoadingCategories = true;
+                        var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
+
+                        categoryByIdPromise.then(function(categoryResult){
+                            categoryResult = categoryResult.data;
+                            var category = {};
+                            category.name = categoryResult.name;
+                            model.addCategory(category);
+                            model.isLoadingCategories = false;
+                        });
+
+                        categoryByIdPromise.catch(function(error){
+                            console.log(error);
+                        });
+                    }
+
+                    var tagsIds = result.tags;
+                    for(var j=0; j < tagsIds.length; j++){
+                        model.isLoadingTags = true;
+
+                        var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
+
+                        tagByIdpromise.then(function(tagResult){
+                            tagResult = tagResult.data;
+                            var tag = {};
+                            tag.name = tagResult.name;
+                            model.addTag(tag);
+                            model.isLoadingTags = false;
+                        });
+
+                        tagByIdpromise.catch(function(error){
+                            console.log(error);
+                        })
+                    }
+
+                    var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
+
+                    featuredImagesPromise.then(function(featuredImageResult){
+                        featuredImageResult = featuredImageResult.data;
+                        model.setFeaturedImage(featuredImageResult.source_url);
+                    });
+
+                    featuredImagesPromise.catch(function(error){
+                        console.log(error);
+                    })
+
+                    break;
+
+                case "v1":
+                    model.setFeaturedImage(result.featured_image);
+
+                    for (var category in result.categories){
+                        model.addCategory(result.categories[category]);
+                    }
+
+                    model.isLoadingCategories = false;
+
+                    for (var tag in result.tags){
+                        model.addTag(result.tags[tag]);
+                    }
+
+                    model.isLoadingTags = false;
+                    break;
+            }
+
+            model.isLoadingFullPost = false;
+            defer.resolve(model);
+        });
+
+        postPromise.catch(function(error){
+            console.log(error);
+        })
+
+        return defer.promise;
+    }
+
+    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0}".format(ApiManagerMap.postId[0]);
+    var promiseConfigs = {
+        fields: fieldsFilterList
+    };
+
+    function loadFullPostBySlug(postSlug){
+        model.isLoadingFullPost = true;
+        var postPromise = PostsApi.getPostBySlug(postSlug, promiseConfigs);
+        return _loadFullPostByPromise(postPromise);
+    }
+
+	function loadFullPostById(postId){
 		model.isLoadingFullPost = true;
-		var configs = {
-			fields: "ID,title,featured_image,featured_media,date,categories,content,slug,tags"
-		};
-
-		var postPromise = PostsApi.getPostById(id, configs);
-		postPromise.then(function(result){
-			result = result["data"];
-			model.setTitle(result.title);
-			model.setContent(result.content);
-			model.setDate(result.date);
-			model.setSlug(result.slug);
-
-			switch($FrontPress.apiVersion){
-				case "v2":
-
-					var categoriesIds = result.categories;
-					for(var i=0; i < categoriesIds.length; i++){
-						model.isLoadingCategories = true;
-						var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
-
-						categoryByIdPromise.then(function(categoryResult){
-							categoryResult = categoryResult.data;
-							var category = {};
-							category.name = categoryResult.name;
-							model.addCategory(category);
-							model.isLoadingCategories = false;
-						});
-
-						categoryByIdPromise.catch(function(error){
-							console.log(error);
-						});
-					}
-
-					var tagsIds = result.tags;
-					for(var j=0; j < tagsIds.length; j++){
-						model.isLoadingTags = true;
-
-						var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
-
-						tagByIdpromise.then(function(tagResult){
-							tagResult = tagResult.data;
-							var tag = {};
-							tag.name = tagResult.name;
-							model.addTag(tag);
-							model.isLoadingTags = false;
-						});
-
-						tagByIdpromise.catch(function(error){
-							console.log(error);
-						})
-					}
-
-					var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
-
-					featuredImagesPromise.then(function(featuredImageResult){
-						featuredImageResult = featuredImageResult.data;
-						model.setFeaturedImage(featuredImageResult.source_url);
-					});
-
-					featuredImagesPromise.catch(function(error){
-						console.log(error);
-					})
-
-					break;
-
-				case "v1":
-					model.setFeaturedImage(result.featured_image);
-
-					for (var category in result.categories){
-						model.addCategory(result.categories[category]);
-					}
-
-					model.isLoadingCategories = false;
-
-					for (var tag in result.tags){
-						model.addTag(result.tags[tag]);
-					}
-
-					model.isLoadingTags = false;
-					break;
-			}
-
-			model.isLoadingFullPost = false;
-			defer.resolve(model);
-		});
-
-		postPromise.catch(function(error){
-			console.log(error);
-		})
-
-		return defer.promise;
+		var postPromise = PostsApi.getPostById(postId, promiseConfigs);
+        return _loadFullPostByPromise(postPromise);
 	}
 
     model.loadFullPostById = loadFullPostById;
+    model.loadFullPostBySlug = loadFullPostBySlug;
 
 	return model;
 }
 
 module.factory("FullPostModel", FullPostModel);
-FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress"];
+FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress", "ApiManagerMap"];
 
 angular.module("frontpress.components.list-posts").controller("ListPostsDirectiveController", ListPostsDirectiveController);
 
@@ -39381,37 +39280,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 }
 
 ListPostsModel.$inject = ["PostsApi", "MediaApi", "$q", "SlugsMapModel", "ApiManager"];
-
-angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
-
-function FullPostCategoriesListDirectiveController(){
-	var vc = this;
-}
-
-angular.module("frontpress.components.full-post").controller("FullPostDirectiveController", FullPostDirectiveController);
-
-function FullPostDirectiveController(FullPostModel, BlogModel){
-	var vc = this;
-	vc.vm = FullPostModel;
-}
-
-FullPostDirectiveController.$inject = ["FullPostModel", "BlogModel"];
-
-var module = angular.module("frontpress.components.full-post");
-
-function FullPostGenericDirectiveController(){
-	var vc = this;
-}
-
-module.controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);
-
-var module = angular.module("frontpress.components.full-post");
-
-function FullPostTagsListDirectiveController(){
-	var vc = this;
-}
-
-module.controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);
 
 angular.module("frontpress.components.page-head").controller("PageHeadController", PageHeadController);
 
@@ -39628,45 +39496,31 @@ ShareModel.$inject = ["$window", "ApiManager"];
 
 angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
 
-SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "$FrontPress"];
+SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "ApiManagerMap"];
 
-function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
+function SlugsMapModel($cacheFactory, PostsApi, ApiManagerMap){
 	var model = {
+        addToCache: addToCache,
 		load: load,
 		updateFromPosts: updateFromPosts,
 		getCachedSlugs: getCachedSlugs
 	};
 
 	var cache = $cacheFactory("slugsCache");
-	var propertiesToCache;
-	switch($FrontPress.apiVersion){
-		case "v2":
-			propertiesToCache = ["id", "slug"];
-		break;
-		case "v1":
-			propertiesToCache = ["ID", "slug"];
-		break;				
-	}		
+	var propertiesToCache = ["slug"];
+    propertiesToCache.push(ApiManagerMap.postId);
 
-	function _addToCache(incrementalCache){
+	function addToCache(incrementalCache){
 		var originalCache = cache.get("slugs");
-		
+
 		if(typeof originalCache === "undefined"){
 			originalCache = [];
 		}
-		
+
 		var concatenatedCache = originalCache.concat(incrementalCache);
-		var idProperty;
-		switch($FrontPress.apiVersion){
-			case "v2":
-				idProperty = "id";
-			break;
-			case "v1":
-				idProperty = "ID";
-			break;				
-		}			
+		var idProperty = ApiManagerMap.postId;
 		concatenatedCache = concatenatedCache.removeDuplicatedObjectsByField(idProperty);
-		cache.put("slugs", concatenatedCache);	
+		cache.put("slugs", concatenatedCache);
 	}
 
 	function getCachedSlugs(){
@@ -39674,9 +39528,9 @@ function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
 		return cachedSlugs;
 	}
 
-	function updateFromPosts(postsArray){	
+	function updateFromPosts(postsArray){
 		var filteredArray = postsArray.filterToProperties(propertiesToCache);
-		_addToCache(filteredArray);		
+		model.addToCache(filteredArray);
 	}
 
 	function load(pageSize, pageNumber){
@@ -39685,8 +39539,8 @@ function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
 
 		allPostsPromise.then(function(result){
 			var filteredArray = result.posts.filterToProperties(propertiesToCache);
-			_addToCache(filteredArray);		
-		});		
+			model.addToCache(filteredArray);
+		});
 
 		allPostsPromise.catch(function(error){
 			console.log(error);
@@ -39696,6 +39550,145 @@ function SlugsMapModel($cacheFactory, PostsApi, $FrontPress){
 
 	return model;
 }
+
+var module = angular.module("frontpress.views.home");
+
+function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
+    var vc = this;
+    vc.vm = ListPostsModel;
+    var firstNextPageNumber = 2;
+    vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
+    vc.isInfiniteScrollDisabled = !$FrontPress.infiniteScroll;
+    PageHeadModel.init();
+
+    var params = {
+        pageSize: $FrontPress.pageSize,
+        pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
+    };
+
+    var loadPostsPromise = vc.vm.loadPosts(params);
+
+    loadPostsPromise.then(function(loadedPosts){
+        var totalPagesNumber = ListPostsModel.totalPostsNumber / $FrontPress.pageSize;
+        PaginationModel.setLastPageNumber(totalPagesNumber);
+        _setPaginationPages(params.pageNumber);
+        if($FrontPress.apiVersion === "v2"){
+            vc.vm.loadExternalFeaturedImages(loadedPosts);
+        }
+    });
+
+    function _setPageMetaData(){
+
+        var blogInformationPromise = BlogModel.getInformationPromise();
+
+        blogInformationPromise.then(function(blogInformation){
+            var homeReplaceRules = {
+                ":siteName": blogInformation.name,
+                ":siteDescription": blogInformation.description
+            };
+            PageHeadModel.parsePageTitle("home", homeReplaceRules);
+
+        })
+        var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
+        PageHeadModel.setPageCanonical(canonical);
+    }
+
+    _setPageMetaData();
+
+    function loadMorePostsAndPaginate(){
+        params.pageNumber++;
+        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
+        var paginationOptions = {notify: false};
+        var loadPostsPromise = vc.vm.loadPosts(params);
+
+
+        loadPostsPromise.then(function(loadedPosts){
+            if($FrontPress.apiVersion === "v2"){
+                vc.vm.loadExternalFeaturedImages(loadedPosts);
+            }
+        });
+
+        _setPageMetaData();
+        _setPaginationPages(params.pageNumber);
+        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
+    }
+
+    function _setPaginationPages(currentPageNumber){
+        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
+    }
+}
+
+module.controller("HomeDirectiveController", HomeDirectiveController);
+HomeDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];
+
+angular.module("frontpress.views.home").controller("HomeRouteController", HomeRouteController);
+
+function HomeRouteController(){
+    var vc = this;
+}
+HomeRouteController.$inject = [];
+
+var module = angular.module("frontpress.views.post");
+
+function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, CategoriesApi, ApiManager, ApiManagerMap, BlogModel, $q){
+	var vc = this;
+    vc.vm = FullPostModel;
+    var postSlug = $stateParams.postSlug;
+    var cachedSlugs = SlugsMapModel.getCachedSlugs();
+
+    var idProperty = ApiManagerMap.postId;
+
+    var postId;
+
+    if($stateParams.postId){
+        postId = $stateParams.postId;
+    }
+    else {
+        var slugItem = cachedSlugs.getObjectByValue("slug", postSlug);
+        postId = slugItem[idProperty];
+    }
+
+    var fullPostPromise = FullPostModel.loadFullPostById(postId);
+    var blogInformationPromise = BlogModel.getInformationPromise();
+
+    PageHeadModel.init();
+
+    var promises = [fullPostPromise, blogInformationPromise];
+    $q.all(promises).then(function(result){
+
+        var fullPostResult = result[0];
+        var blogInformationResult = result[1];
+
+        var postTitle = ApiManager.getPath(fullPostResult, "postTitle");
+        var postDateInfo = ApiManager.getPath(fullPostResult, "postDate").getDateInfo();
+
+        var titleReplaceRules = {
+            ":postTitle": postTitle,
+            ":year": postDateInfo.year,
+            ":month": postDateInfo.month,
+            ":day": postDateInfo.day,
+            ":siteName": blogInformationResult.name,
+            ":siteDescription": blogInformationResult.description,
+        };
+
+        PageHeadModel.parsePageTitle("post", titleReplaceRules);
+        vc.disqusId = FullPostModel.slug;
+
+    })
+}
+
+module.controller("PostDirectiveController", PostDirectiveController);
+PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "CategoriesApi", "ApiManager", "ApiManagerMap", "BlogModel", "$q"];
+
+var module = angular.module("frontpress.views.post")
+
+function PostRouteController(){
+	var vc = this;
+}
+
+module.controller("PostRouteController", PostRouteController);
+PostRouteController.$inject = [];
+
 angular.module("frontpress.apis.api-manager-map", []);
 angular.module("frontpress.apis.blog", ["frontpress.components.ajax", "frontpress.components.frontpress-provider"]);
 
@@ -39797,7 +39790,7 @@ function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
     }
 
     function getPostBySlug(postSlug, configs){
-        var postUrl = postsBaseUrl + "slug:<post-slug>";
+        var postUrl = postsBaseUrl + "?filter[name]=\"<post-slug>\"";
         postUrl = postUrl.replace("<post-slug>", postSlug);
 
         return AjaxModel.get(postUrl, configs);
