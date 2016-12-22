@@ -39637,18 +39637,21 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
     var cachedSlugs = SlugsMapModel.getCachedSlugs();
 
     var idProperty = ApiManagerMap.postId;
-
+    var cachedPostIdSlug = cachedSlugs && cachedSlugs.getObjectByValue("slug", postSlug) ? cachedSlugs.getObjectByValue("slug", postSlug) : undefined;
+    var fullPostPromise;
     var postId;
 
     if($stateParams.postId){
         postId = $stateParams.postId;
+        fullPostPromise = FullPostModel.loadFullPostById(postId);
     }
-    else {
-        var slugItem = cachedSlugs.getObjectByValue("slug", postSlug);
-        postId = slugItem[idProperty];
+    else if(!$stateParams.postId && cachedPostIdSlug){
+        postId = cachedPostIdSlug[idProperty];
+        fullPostPromise = FullPostModel.loadFullPostById(postId);
+    } else {
+        fullPostPromise = FullPostModel.loadFullPostBySlug(postSlug);
     }
 
-    var fullPostPromise = FullPostModel.loadFullPostById(postId);
     var blogInformationPromise = BlogModel.getInformationPromise();
 
     PageHeadModel.init();
