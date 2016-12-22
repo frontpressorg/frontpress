@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.full-post");
 
-function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress){
+function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress, ApiManagerMap){
 	var model = {
 		addTag: addTag,
         categories: [],
@@ -61,107 +61,120 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
     model.setSlug = setSlug;
     model.setDate = setDate;
 
-	function loadFullPostById(id){
-		var defer = $q.defer();
+    function _loadFullPostByPromise(postPromise){
+        var defer = $q.defer();
 
+        postPromise.then(function(result){
+            result = result["data"];
+            model.setTitle(result.title);
+            model.setContent(result.content);
+            model.setDate(result.date);
+            model.setSlug(result.slug);
+            model.setId(result[ApiManagerMap.postId]);
+
+            switch($FrontPress.apiVersion){
+                case "v2":
+
+                    var categoriesIds = result.categories;
+                    for(var i=0; i < categoriesIds.length; i++){
+                        model.isLoadingCategories = true;
+                        var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
+
+                        categoryByIdPromise.then(function(categoryResult){
+                            categoryResult = categoryResult.data;
+                            var category = {};
+                            category.name = categoryResult.name;
+                            model.addCategory(category);
+                            model.isLoadingCategories = false;
+                        });
+
+                        categoryByIdPromise.catch(function(error){
+                            console.log(error);
+                        });
+                    }
+
+                    var tagsIds = result.tags;
+                    for(var j=0; j < tagsIds.length; j++){
+                        model.isLoadingTags = true;
+
+                        var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
+
+                        tagByIdpromise.then(function(tagResult){
+                            tagResult = tagResult.data;
+                            var tag = {};
+                            tag.name = tagResult.name;
+                            model.addTag(tag);
+                            model.isLoadingTags = false;
+                        });
+
+                        tagByIdpromise.catch(function(error){
+                            console.log(error);
+                        })
+                    }
+
+                    var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
+
+                    featuredImagesPromise.then(function(featuredImageResult){
+                        featuredImageResult = featuredImageResult.data;
+                        model.setFeaturedImage(featuredImageResult.source_url);
+                    });
+
+                    featuredImagesPromise.catch(function(error){
+                        console.log(error);
+                    })
+
+                    break;
+
+                case "v1":
+                    model.setFeaturedImage(result.featured_image);
+
+                    for (var category in result.categories){
+                        model.addCategory(result.categories[category]);
+                    }
+
+                    model.isLoadingCategories = false;
+
+                    for (var tag in result.tags){
+                        model.addTag(result.tags[tag]);
+                    }
+
+                    model.isLoadingTags = false;
+                    break;
+            }
+
+            model.isLoadingFullPost = false;
+            defer.resolve(model);
+        });
+
+        postPromise.catch(function(error){
+            console.log(error);
+        })
+
+        return defer.promise;
+    }
+
+    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0}".format(ApiManagerMap.postId[0]);
+    var promiseConfigs = {
+        fields: fieldsFilterList
+    };
+
+    function loadFullPostBySlug(postSlug){
+        model.isLoadingFullPost = true;
+        var postPromise = PostsApi.getPostBySlug(postSlug, promiseConfigs);
+        return _loadFullPostByPromise(postPromise);
+    }
+
+	function loadFullPostById(postId){
 		model.isLoadingFullPost = true;
-		var configs = {
-			fields: "ID,title,featured_image,featured_media,date,categories,content,slug,tags"
-		};
-
-		var postPromise = PostsApi.getPostById(id, configs);
-		postPromise.then(function(result){
-			result = result["data"];
-			model.setTitle(result.title);
-			model.setContent(result.content);
-			model.setDate(result.date);
-			model.setSlug(result.slug);
-
-			switch($FrontPress.apiVersion){
-				case "v2":
-
-					var categoriesIds = result.categories;
-					for(var i=0; i < categoriesIds.length; i++){
-						model.isLoadingCategories = true;
-						var categoryByIdPromise = CategoriesApi.getCategoryById(categoriesIds[i]);
-
-						categoryByIdPromise.then(function(categoryResult){
-							categoryResult = categoryResult.data;
-							var category = {};
-							category.name = categoryResult.name;
-							model.addCategory(category);
-							model.isLoadingCategories = false;
-						});
-
-						categoryByIdPromise.catch(function(error){
-							console.log(error);
-						});
-					}
-
-					var tagsIds = result.tags;
-					for(var j=0; j < tagsIds.length; j++){
-						model.isLoadingTags = true;
-
-						var tagByIdpromise = TagsApi.getTagById(tagsIds[j]);
-
-						tagByIdpromise.then(function(tagResult){
-							tagResult = tagResult.data;
-							var tag = {};
-							tag.name = tagResult.name;
-							model.addTag(tag);
-							model.isLoadingTags = false;
-						});
-
-						tagByIdpromise.catch(function(error){
-							console.log(error);
-						})
-					}
-
-					var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
-
-					featuredImagesPromise.then(function(featuredImageResult){
-						featuredImageResult = featuredImageResult.data;
-						model.setFeaturedImage(featuredImageResult.source_url);
-					});
-
-					featuredImagesPromise.catch(function(error){
-						console.log(error);
-					})
-
-					break;
-
-				case "v1":
-					model.setFeaturedImage(result.featured_image);
-
-					for (var category in result.categories){
-						model.addCategory(result.categories[category]);
-					}
-
-					model.isLoadingCategories = false;
-
-					for (var tag in result.tags){
-						model.addTag(result.tags[tag]);
-					}
-
-					model.isLoadingTags = false;
-					break;
-			}
-
-			model.isLoadingFullPost = false;
-			defer.resolve(model);
-		});
-
-		postPromise.catch(function(error){
-			console.log(error);
-		})
-
-		return defer.promise;
+		var postPromise = PostsApi.getPostById(postId, promiseConfigs);
+        return _loadFullPostByPromise(postPromise);
 	}
 
     model.loadFullPostById = loadFullPostById;
+    model.loadFullPostBySlug = loadFullPostBySlug;
 
 	return model;
 }
 
 module.factory("FullPostModel", FullPostModel);
-FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress"];
+FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress", "ApiManagerMap"];

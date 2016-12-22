@@ -23,7 +23,6 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 
     PageHeadModel.init();
 
-
     var promises = [fullPostPromise, blogInformationPromise];
     $q.all(promises).then(function(result){
 
