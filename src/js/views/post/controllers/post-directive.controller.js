@@ -1,20 +1,12 @@
 var module = angular.module("frontpress.views.post");
 
-function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, $FrontPress, CategoriesApi, ApiManager, BlogModel, $q){
+function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, CategoriesApi, ApiManager, ApiManagerMap, BlogModel, $q){
 	var vc = this;
     vc.vm = FullPostModel;
     var postSlug = $stateParams.postSlug;
     var cachedSlugs = SlugsMapModel.getCachedSlugs();
 
-    var idProperty;
-    switch($FrontPress.apiVersion){
-        case "v2":
-            idProperty = "id";
-        break;
-        case "v1":
-            idProperty = "ID";
-        break;
-    }
+    var idProperty = ApiManagerMap.postId;
 
     var postId;
 
@@ -57,4 +49,4 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 }
 
 module.controller("PostDirectiveController", PostDirectiveController);
-PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "$FrontPress", "CategoriesApi", "ApiManager", "BlogModel", "$q"];
+PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "CategoriesApi", "ApiManager", "ApiManagerMap", "BlogModel", "$q"];
