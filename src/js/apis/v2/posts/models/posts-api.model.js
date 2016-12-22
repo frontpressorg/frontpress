@@ -11,7 +11,7 @@ function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
     }
 
     function getPostBySlug(postSlug, configs){
-        var postUrl = postsBaseUrl + "slug:<post-slug>";
+        var postUrl = postsBaseUrl + "?filter[name]=\"<post-slug>\"";
         postUrl = postUrl.replace("<post-slug>", postSlug);
 
         return AjaxModel.get(postUrl, configs);
