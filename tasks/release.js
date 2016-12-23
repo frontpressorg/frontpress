@@ -30,7 +30,7 @@ module.exports = function() {
         "!**/*.tests.js",
         "!./src/js/sample-blog.module.js",
         "!./src/js/sample-blog.config.js",
-        "!./src/js/sample-blog-main.controller.js"
+        "!./src/js/sample-blog-main.controller.js",
         "./src/js/{components,filters,views}/**/*.js"
     ];
 
