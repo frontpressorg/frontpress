@@ -6784,7 +6784,10 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 
         PageHeadModel.parsePageTitle("post", titleReplaceRules);
         vc.disqusId = FullPostModel.slug;
+    })
 
+    $q.all(promises).catch(function(error){
+        console.error(error);
     })
 }
 
