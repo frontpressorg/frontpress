@@ -4,7 +4,8 @@ var argv = process.argv;
 
 module.exports = function() {
 	var staticFilesList = [
-		"./build/css/**/*.css",
+        "./build/js/angular.min.js",
+        "./build/js/dev/sample-blog.js",
 		"!gulpfile.js",
 		"!./tasks/*.js",
 	];

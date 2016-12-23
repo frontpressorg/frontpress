@@ -9,7 +9,6 @@ module.exports = function() {
     var javascriptDestFolder = "./release";
 
     var dependenciesFiles = [
-        // "./node_modules/angular/angular.js",
         "./node_modules/angular-ui-router/release/angular-ui-router.js",
         "./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js",
         "./node_modules/angular-disqus/src/angular-disqus.js"
@@ -17,7 +16,8 @@ module.exports = function() {
 
     var devFilesList = [
         "./src/js/frontpress.template-cache.js",
-        "./src/js/frontpress.js",
+        "./src/js/frontpress.module.js",
+        "./src/js/frontpress.config.js",
         "./src/js/frontpress.run.js",
         "./src/js/apis/configs-to-params/**/*.module.js",
         "./src/js/apis/configs-to-params/**/*.js",
@@ -28,7 +28,9 @@ module.exports = function() {
         "./src/js/{components,filters,views}/**/*.value.js",
         "./src/js/{components,filters,views}/**/*.constant.js",
         "!**/*.tests.js",
-        "!./src/js/frontpress.config.js",
+        "!./src/js/sample-blog.module.js",
+        "!./src/js/sample-blog.config.js",
+        "!./src/js/sample-blog-main.controller.js"
         "./src/js/{components,filters,views}/**/*.js"
     ];
 

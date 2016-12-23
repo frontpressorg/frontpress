@@ -1,7 +1,6 @@
 var module = angular.module("frontpress");
 
-function FrontPressConfig($FrontPressProvider, $qProvider){
-    $FrontPressProvider.configure.load();    
+function FrontPressConfig($qProvider){
     $qProvider.errorOnUnhandledRejections(false);
 }
 

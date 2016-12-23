@@ -8,22 +8,24 @@ var argv = process.argv;
 
 module.exports = function() {
     var jsCopy = false;
-    var dependenciesCopy = false;
+    var angularCopy = false;
+    var otherDependenciesCopy = false;
     var javascriptDestFolder = "./build/js";
+    var sampleBlogFiles = false;
+    var sampleBlogCopy  = false;
     var parsedConfigFile = JSON.parse(fs.readFileSync("./frontpress.json", "utf8"));
     var apiVersion = parsedConfigFile.apiVersion;
     var infiniteScroll = parsedConfigFile.infiniteScroll;
 
     var devFilesList = [
         "./src/js/frontpress.template-cache.js",
-        "./src/js/frontpress.js",
+        "./src/js/frontpress.module.js",
         "./src/js/frontpress.run.js",
         "./src/js/frontpress.config.js",
-        "./src/js/frontpress.controller.js",
         "./src/js/apis/configs-to-params/**/*.module.js",
-        "./src/js/apis/configs-to-params/**/*.js",          
+        "./src/js/apis/configs-to-params/**/*.js",
         "./src/js/apis/"+apiVersion+"/**/*.module.js",
-        "./src/js/apis/"+apiVersion+"/**/*.js",        
+        "./src/js/apis/"+apiVersion+"/**/*.js",
         "./src/js/{components,filters,views}/**/*.module.js",
         "./src/js/{components,filters,views}/**/*.run.js",
         "./src/js/{components,filters,views}/**/*.factory.js",
@@ -35,17 +37,21 @@ module.exports = function() {
     ];
 
     var dependenciesFiles = [
-        "./node_modules/angular/angular.js",
         "./node_modules/angular-ui-router/release/angular-ui-router.js",
         "./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js",
         "./node_modules/angular-disqus/src/angular-disqus.js",
     ];
 
-    // if(parsedConfigFile.infiniteScroll){ #90
-    //     dependenciesFiles.push(""./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js"");
-    // }
+    var sampleBlogFiles = [
+        "./src/js/sample-blog.module.js",
+        "./src/js/sample-blog.config.js",
+        "./src/js/sample-blog-main.controller.js"
+    ];
 
-    dependenciesCopy = gulp.src(dependenciesFiles)
+    angularCopy = gulp.src(["./node_modules/angular/angular.min.js"])
+        .pipe(gulp.dest(javascriptDestFolder));
+
+    otherDependenciesCopy = gulp.src(dependenciesFiles)
         .pipe(concat("dev/external.js"))
         .pipe(gulp.dest(javascriptDestFolder));
 
@@ -64,6 +70,10 @@ module.exports = function() {
         .pipe(gulp.dest(javascriptDestFolder));
     }
 
+    sampleBlogCopy = gulp.src(sampleBlogFiles)
+        .pipe(concat("dev/sample-blog.js"))
+        .pipe(gulp.dest(javascriptDestFolder));
+
     var othersCopy = gulp.src([
         "./src/js/**/*.html",
     ])
@@ -74,5 +84,5 @@ module.exports = function() {
     ])
     .pipe(gulp.dest("./build/release"));
 
-    return merge(dependenciesCopy, othersCopy, jsCopy, releaseCopy);
+    return merge(angularCopy, otherDependenciesCopy, othersCopy, jsCopy, sampleBlogCopy, releaseCopy);
 };
