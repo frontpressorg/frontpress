@@ -5233,8 +5233,8 @@ function frontpressRun(){
 
     }
 
-    extendStringPrototype();
     extendArrayPrototype();
+    extendStringPrototype();
 }
 
 module.run(frontpressRun);
