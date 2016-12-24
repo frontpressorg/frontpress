@@ -5120,6 +5120,8 @@ function FrontPressConfig($qProvider){
     $qProvider.errorOnUnhandledRejections(false);
 }
 
+FrontPressConfig.$inject = ["$qProvider"];
+
 module.config(FrontPressConfig);
 
 var module = angular.module("frontpress");
