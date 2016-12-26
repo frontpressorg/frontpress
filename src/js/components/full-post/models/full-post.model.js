@@ -64,9 +64,8 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
     function _loadFullPostByPromise(postPromise){
         var defer = $q.defer();
 
-        postPromise.then(function(result){
-            var result;
-            if(result.data.isArray()){
+        postPromise.then(function(result){            
+            if(Array.isArray(result.data)){
                 result = result.data[0];                
             } else {
                 result = result.data;                                
