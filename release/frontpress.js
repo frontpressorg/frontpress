@@ -5233,6 +5233,12 @@ function frontpressRun(){
             }
         }
 
+        if (!Array.prototype.isArray) {
+          Array.prototype.isArray = function(arg) {
+            return Object.prototype.toString.call(arg) === '[object Array]';
+          };
+        }
+
     }
 
     extendArrayPrototype();
@@ -6141,7 +6147,13 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
         var defer = $q.defer();
 
         postPromise.then(function(result){
-            result = result["data"];
+            var result;
+            if(result.data.isArray()){
+                result = result.data[0];                
+            } else {
+                result = result.data;                                
+            }
+
             model.setTitle(result.title);
             model.setContent(result.content);
             model.setDate(result.date);
