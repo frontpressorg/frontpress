@@ -7,7 +7,8 @@ function AjaxModel($http) {
         var promise = $http({
             url: url,
             method: method,
-            params: params
+            params: params,
+            cache: true
         });
 
         return promise;
