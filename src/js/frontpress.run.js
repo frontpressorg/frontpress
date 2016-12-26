@@ -107,6 +107,12 @@ function frontpressRun(){
             }
         }
 
+        if (!Array.prototype.isArray) {
+          Array.prototype.isArray = function(arg) {
+            return Object.prototype.toString.call(arg) === '[object Array]';
+          };
+        }
+
     }
 
     extendArrayPrototype();
