@@ -5088,6 +5088,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
 
 angular.module("frontpress.template-cache", []);
 angular.module("frontpress.template-cache").run(["$templateCache", function($templateCache) {$templateCache.put('/js/components/featured-image/templates/featured-image.template.html','<img data-ng-src="{{vc.post.featured_image}}">');
+$templateCache.put('/js/components/full-post/templates/full-post-author-name.template.html','<span data-ng-bind="vc.post.authorName"></span>');
 $templateCache.put('/js/components/full-post/templates/full-post-categories-list.template.html','<div>\n\t<p data-ng-if="vc.post.isLoadingCategories">carregando categorias...</p>\n\t<p data-ng-if="vc.post.isLoadingCategories === false">\n\t\t<span><strong>categorias:</strong></span>\t\n\t\t<span data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </span>\t\t\n\t\t<span data-ng-if="vc.post.categories.length > 1" \n\t\t\tdata-ng-repeat="category in vc.post.categories" \n\t\t\trel="tag">{{category.name}}{{$last ? "" : ", "}}\t\t\n\t\t</span>\t\t\n\t</p>\n</div>');
 $templateCache.put('/js/components/full-post/templates/full-post-content-v1.template.html','<div data-ng-bind-html="vc.post.content | trustAsHtml"></div>');
 $templateCache.put('/js/components/full-post/templates/full-post-content-v2.template.html','<div data-ng-bind-html="vc.post.content.rendered | trustAsHtml"></div>');
@@ -5369,6 +5370,27 @@ function FeaturedImageDirective($FrontPress){
 }
 
 FeaturedImageDirective.$inject = ["$FrontPress"];
+
+var module = angular.module("frontpress.components.full-post");
+
+function FullPostAuthorNameDirective($FrontPress){
+	var directive = {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.authorname"),
+		controller: "FullPostGenericDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+
+	return directive;
+}
+
+module.directive("fullPostAuthorName", FullPostAuthorNameDirective);
+FullPostAuthorNameDirective.$inject = ["$FrontPress"];
 
 var module = angular.module("frontpress.components.full-post");
 
@@ -5944,6 +5966,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
 			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
+			"components.fullpost.authorname": "/js/components/full-post/templates/full-post-author-name.template.html",
 			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
 			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
 			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
@@ -6098,6 +6121,8 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
         setFeaturedImage: setFeaturedImage,
         setId: setId,
 		setTitle: setTitle,
+        authorName: null,
+        setAuthorName: setAuthorName,
 		slug: null,
 		tags: [],
 		title: null,
@@ -6106,6 +6131,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 	function addCategory(category){
 		model.categories.push(category);
 	}
+
+    function setAuthorName(authorName){
+        model.authorName = authorName;
+    }
 
 	function addTag(tag){
 		model.tags.push(tag);
@@ -6215,6 +6244,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
                 case "v1":
                     model.setFeaturedImage(result.featured_image);
+                    model.setAuthorName(result.author.name);
 
                     for (var category in result.categories){
                         model.addCategory(result.categories[category]);
@@ -6241,7 +6271,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
         return defer.promise;
     }
 
-    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0}".format(ApiManagerMap.postId[0]);
+    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0},author".format(ApiManagerMap.postId[0]);
     var promiseConfigs = {
         fields: fieldsFilterList
     };
@@ -6342,7 +6372,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         var defer = $q.defer();
 
         var configs = {
-            fields: "ID,title,date,featured_image,excerpt"
+            fields: "ID,title,date,featured_image,excerpt,author"
         };
 
         var postPromises = {
