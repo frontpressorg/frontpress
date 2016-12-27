@@ -57,7 +57,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         var defer = $q.defer();
 
         var configs = {
-            fields: "ID,title,date,featured_image,excerpt"
+            fields: "ID,title,date,featured_image,excerpt,author"
         };
 
         var postPromises = {

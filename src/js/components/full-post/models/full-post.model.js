@@ -15,6 +15,8 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
         setFeaturedImage: setFeaturedImage,
         setId: setId,
 		setTitle: setTitle,
+        authorName: null,
+        setAuthorName: setAuthorName,
 		slug: null,
 		tags: [],
 		title: null,
@@ -23,6 +25,10 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 	function addCategory(category){
 		model.categories.push(category);
 	}
+
+    function setAuthorName(authorName){
+        model.authorName = authorName;
+    }
 
 	function addTag(tag){
 		model.tags.push(tag);
@@ -132,6 +138,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
                 case "v1":
                     model.setFeaturedImage(result.featured_image);
+                    model.setAuthorName(result.author.name);
 
                     for (var category in result.categories){
                         model.addCategory(result.categories[category]);
@@ -158,7 +165,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
         return defer.promise;
     }
 
-    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0}".format(ApiManagerMap.postId[0]);
+    var fieldsFilterList = "title,featured_image,featured_media,date,categories,content,slug,tags,{0},author".format(ApiManagerMap.postId[0]);
     var promiseConfigs = {
         fields: fieldsFilterList
     };

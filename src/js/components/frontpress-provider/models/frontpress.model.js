@@ -109,6 +109,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
 			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
+			"components.fullpost.authorname": "/js/components/full-post/templates/full-post-author-name.template.html",
 			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
 			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
 			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
