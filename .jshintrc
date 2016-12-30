@@ -1,0 +1,22 @@
+{
+  "globalstrict": true,
+  "trailing": true,
+  "globals": {
+    "angular": false,
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "module": false,
+    "inject": false,
+    "event":false,
+    "window":false,
+    "$":false,
+    "document": false,
+    "setTimeout":false,
+    "element":false,
+    "KeyboardEvent": false,
+    "MouseEvent": false
+  }
+}
