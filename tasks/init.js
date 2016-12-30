@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require("gulp");
 var inquirer = require("inquirer");
 var fs = require("fs");
@@ -29,7 +31,7 @@ module.exports = function() {
 
     function processResponses(responses) {
         var file = "./frontpress.json";
-        response = JSON.stringify(responses);
+        var response = JSON.stringify(responses);
 
         fs.writeFile(file, response, { overwrite: true }, function(err) {
           if (err) throw err;
@@ -39,10 +41,9 @@ module.exports = function() {
     var task = gulp.task("init", function(done) {
         inquirer.prompt(questions).then(function(responses){
             processResponses(responses);
-            apiVersion = responses.apiVersion;
             done();
         });
     });
 
     return task;
-}
+};

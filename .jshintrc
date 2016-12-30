@@ -17,6 +17,10 @@
     "setTimeout":false,
     "element":false,
     "KeyboardEvent": false,
-    "MouseEvent": false
+    "MouseEvent": false,
+    "require": false,
+    "process": false,
+    "apiVersion": false,
+    "Buffer": false
   }
 }

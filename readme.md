@@ -16,6 +16,11 @@ We support these versions of WordPress Rest API.
 - [x] 1.2
 - [x] 2.0
 
+### Enviroment
+* brew install node
+* sudo npm i gulp -g
+* sudo npm install -g jshint
+
 #### License
 
 MIT © [Teles](https://github.com/teles)

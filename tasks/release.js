@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require("gulp");
 var merge = require("merge-stream");
 var concat = require("gulp-concat");
@@ -47,25 +49,25 @@ module.exports = function() {
     var v1FileList = dependenciesFiles.concat(devFilesList).concat(v1DevFileList);
     var v2FileList = dependenciesFiles.concat(devFilesList).concat(v2DevFileList);
 
-    v1Concat = gulp.src(v1FileList)
-        .pipe(concat("frontpress.v1.js"))
-        .pipe(gulp.dest(javascriptDestFolder))
+    var v1Concat = gulp.src(v1FileList)
+            .pipe(concat("frontpress.v1.js"))
+            .pipe(gulp.dest(javascriptDestFolder));
 
-    v2Concat = gulp.src(v2FileList)
-        .pipe(concat("frontpress.js"))
-        .pipe(gulp.dest(javascriptDestFolder))
+    var v2Concat = gulp.src(v2FileList)
+            .pipe(concat("frontpress.js"))
+            .pipe(gulp.dest(javascriptDestFolder));
 
-    v1ConcatAndMinify = gulp.src(v1FileList)
-        .pipe(concat("frontpress.v1.min.js"))
-        .pipe(gulp.dest(javascriptDestFolder))
-        .pipe(uglify())
-        .pipe(gulp.dest(javascriptDestFolder));
+    var v1ConcatAndMinify = gulp.src(v1FileList)
+            .pipe(concat("frontpress.v1.min.js"))
+            .pipe(gulp.dest(javascriptDestFolder))
+            .pipe(uglify())
+            .pipe(gulp.dest(javascriptDestFolder));
 
-    v2ConcatAndMinify = gulp.src(v2FileList)
-        .pipe(concat("frontpress.min.js"))
-        .pipe(gulp.dest(javascriptDestFolder))
-        .pipe(uglify())
-        .pipe(gulp.dest(javascriptDestFolder));
+    var v2ConcatAndMinify = gulp.src(v2FileList)
+            .pipe(concat("frontpress.min.js"))
+            .pipe(gulp.dest(javascriptDestFolder))
+            .pipe(uglify())
+            .pipe(gulp.dest(javascriptDestFolder));
 
     return merge(v1ConcatAndMinify, v2ConcatAndMinify);
 };

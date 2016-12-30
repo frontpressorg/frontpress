@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require("gulp");
 var fs = require("fs");
 var merge = require("merge-stream");
@@ -11,7 +13,6 @@ module.exports = function() {
     var angularCopy = false;
     var otherDependenciesCopy = false;
     var javascriptDestFolder = "./build/js";
-    var sampleBlogFiles = false;
     var sampleBlogCopy  = false;
     var parsedConfigFile = JSON.parse(fs.readFileSync("./frontpress.json", "utf8"));
     var apiVersion = parsedConfigFile.apiVersion;
