@@ -5,6 +5,6 @@ var runSequence = require("run-sequence");
 
 module.exports = function() {
 	return gulp.task("default", function() {
-	    runSequence("pre-commit", "ngConfig", "templateCache", "copy", "inject", "connect", "watch");
+	    runSequence("pre-commit", "ngConfig", "release", "templateCache", "copy", "inject", "connect", "watch");
 	});
 };

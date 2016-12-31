@@ -1,7 +1,13 @@
-var module = angular.module("sample-blog");
+(function(){
+	
+	"use strict";
+	
+	angular.module("sample-blog").controller("SampleBlogMainController", SampleBlogMainController);
 
-function SampleBlogMainController(){
-    var vc = this;
-}
+	function SampleBlogMainController(){
+	    var vc = this;
+	}
 
-module.controller("SampleBlogMainController", SampleBlogMainController);
+	
+})();
+

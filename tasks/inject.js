@@ -3,18 +3,46 @@ var inject = require("gulp-inject");
 var argv = process.argv;
 
 module.exports = function() {
-	var staticFilesList = [
-        "./build/js/angular.min.js",
+
+	var argvToString = argv.join(" ");
+	
+	var argsToFrontPressFilesMap = {
+		"--min": "frontpress.min.js" ,
+		"--v1": "frontpress.v1.js" ,
+		"--min --v1": "frontpress.v1.min.js"		
+	};
+	
+	var argsToAngularFilesMap = {
+		"--min": "angular.min.js"
+	};
+
+	function _parseArgsToFilePath(argsToFilesMap, defaultFilePath){
+	    var filePath;
+	    for(argumentKey in argsToFilesMap){
+	    	var argumentKeyList = argumentKey.split(" ");
+	        var argumentKeyReversed = argumentKeyList.length == 2 ? [argumentKeyList[1],argumentKeyList[0]].join(" ") : argumentKey;
+	        if(argvToString.indexOf(argumentKey) != -1 || argvToString.indexOf(argumentKeyReversed) != -1){
+	        	filePath = argsToFilesMap[argumentKey];
+	        }
+	    }    
+	    if(!filePath){
+	    	filePath = defaultFilePath;
+	    }		
+    	console.log("Injected file: " + filePath);
+    	return filePath;
+	}
+
+	var frontPressFilePath = _parseArgsToFilePath(argsToFrontPressFilesMap, "frontpress.js"); 
+	var angularFilePath = _parseArgsToFilePath(argsToAngularFilesMap, "angular.js"); 
+
+    var staticFilesList = [    
+        "./build/js/"+angularFilePath,
+        "./build/js/release/"+frontPressFilePath,
+        "./build/js/dev/frontpress.constant.js",
         "./build/js/dev/sample-blog.js",
-		"!gulpfile.js",
-		"!./tasks/*.js",
 	];
 
-    if (argv.indexOf("--production") !== -1) {
-        staticFilesList.push("./build/js/main.js")
-    } else {
-        staticFilesList.push("./build/js/dev/external.js", "./build/js/dev/main.js");
-    }
+	console.log(staticFilesList);
 
 	var injectOptions = {
 		ignorePath: "build/"
