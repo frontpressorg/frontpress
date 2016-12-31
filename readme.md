@@ -8,6 +8,58 @@
 
 --
 
+## Getting Started
+
+
+* Install it using npm: `npm install frontpress` 
+* Import angular and frontpress to your project.
+
+```html
+<script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="/node_modules/frontpress/release/frontpress.min.js"></script>
+```
+
+* Add `frontpress` to your required modules list:
+
+```javascript
+angular.module('myBlog', ['frontpress']);
+```
+
+* Configure your module using `$FrontPressProvider`  !
+
+```javascript
+angular.module('myBlog').config(function($FrontPressProvider){
+
+	$FrontPressProvider.configure.load({
+		"restApiUrl": "https://demo.wp-api.org/wp-json",
+		"apiVersion": "v2",
+		"pageSize": 5,
+		"infiniteScroll": true,
+		"routes": {
+			"post": "/:postYear/:postMonth/:postDay/:postSlug",
+			"home.pagination": "/page/:pageNumber"
+		},
+		"titles": {
+			"post": ":postTitle - :siteName",
+			"home": "Home - :siteName"
+		},
+		"overrides": {
+			"siteName": "FrontPress Default Template"
+		}
+	});
+	
+});
+
+```
+
+* [How can I discover my restApiUrl?](https://github.com/frontpressorg/frontpress/wiki)
+* [How to use FrontPress for Wordpress api version 1?](https://github.com/frontpressorg/frontpress/wiki)
+* [What configuration is required?](https://github.com/frontpressorg/frontpress/wiki)
+* [All configuration options](https://github.com/frontpressorg/frontpress/wiki)
+* [Readme for FrontPress core developers](https://github.com/frontpressorg/frontpress/wiki)
+
+
+
 #### Wordpress Rest API
 
 We support these versions of WordPress Rest API.
@@ -15,11 +67,6 @@ We support these versions of WordPress Rest API.
 - [x] 1.1
 - [x] 1.2
 - [x] 2.0
-
-### Enviroment
-* brew install node
-* sudo npm i gulp -g
-* sudo npm install -g jshint
 
 #### License
 
