@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var inject = require("gulp-inject");
 var argv = process.argv;
+var gutil = require('gulp-util');
 
 module.exports = function() {
 
@@ -28,7 +29,7 @@ module.exports = function() {
 	    if(!filePath){
 	    	filePath = defaultFilePath;
 	    }		
-    	console.log("Injected file: " + filePath);
+		gutil.log("Injected file on index: " + gutil.colors.magenta("'" +filePath+ "'"));	    
     	return filePath;
 	}
 
@@ -41,8 +42,6 @@ module.exports = function() {
         "./build/js/dev/frontpress.constant.js",
         "./build/js/dev/sample-blog.js",
 	];
-
-	console.log(staticFilesList);
 
 	var injectOptions = {
 		ignorePath: "build/"
