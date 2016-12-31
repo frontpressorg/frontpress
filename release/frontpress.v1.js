@@ -5289,7 +5289,7 @@ angular.module("frontpress.components.blog", [
 angular.module("frontpress.components.featured-image", 
 				["frontpress.components.frontpress-provider"]);
 
-angular.module("frontpress.components.frontpress-provider", ["ngDisqus"]);
+angular.module("frontpress.components.frontpress-provider", ["ngDisqus", "frontpress.components.frontpress-provider-constant"]);
 
 angular.module("frontpress.components.full-post",
 				["frontpress.filters",
@@ -5658,6 +5658,10 @@ PostViewDirective.$inject = ["$FrontPress"];
 
 angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000)
 
+// this file is empty but you can override it using https://github.com/frontpressorg/frontpress-cli
+
+angular.module("frontpress.components.frontpress-provider-constant", []).constant("FrontPressConfigurationFile", {});
+
 angular.module("frontpress.filters").filter("trustAsHtml", TrustAsHtml);
 
 function TrustAsHtml($sce){
@@ -5669,46 +5673,6 @@ function TrustAsHtml($sce){
 }
 
 TrustAsHtml.$inject = ["$sce"];
-
-angular.module("frontpress.views.home").config(configHome);
-
-configHome.$inject = ["$stateProvider", "$urlRouterProvider", "$FrontPressProvider"];
-
-function configHome($stateProvider, $urlRouterProvider, $FrontPressProvider){
-
-    $FrontPressProvider.configure.loadRoutes();
-
-    var stateHome = {
-        url: $FrontPressProvider.getRoute("home"),
-        template: "<home-view></home-view>",
-        controller: "HomeRouteController as vc"
-    };
-
-    var stateHomePagination = {
-        url: $FrontPressProvider.getRoute("home.pagination"),
-        template: "<home-view></home-view>",
-        controller: "HomeRouteController as vc"
-    };
-
-    $stateProvider.state("home", stateHome);
-    $stateProvider.state("home-pagination", stateHomePagination);
-}
-
-angular.module("frontpress.views.post").config(configPost);
-
-configPost.$inject = ["$stateProvider", "$FrontPressProvider"];
-
-function configPost($stateProvider, $FrontPressProvider){
-	$FrontPressProvider.configure.loadRoutes();
-
-    var statePost = {
-        url: $FrontPressProvider.getRoute("post"),
-        template: "<post-view></post-view>",
-        controller: "PostRouteController as vc"
-    };
-
-    $stateProvider.state("post", statePost);
-}
 
 var module = angular.module("frontpress.components.ajax");
 
@@ -5857,10 +5821,10 @@ module.controller("FeaturedImageDirectiveController", FeaturedImageDirectiveCont
 
 var module = angular.module("frontpress.components.frontpress-provider");
 
-function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
+function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigurationFile){
 	var configure = {
 		load: load,
-		loadRoutes: loadRoutes,
+		loadFromFile: loadFromFile,
 		overrides: null,
 		pageSize: null,
 		restApiUrl: null,
@@ -5915,10 +5879,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		configure.infiniteScroll = infiniteScroll;
 	}
 
-	function loadRoutes(){
+	function _loadRoutes(configurationObject){
 
-		if(FrontPressConfigurationFile["routes"]){
-			configure.setRoutes(FrontPressConfigurationFile["routes"]);
+		if(configurationObject["routes"]){
+			configure.setRoutes(configurationObject["routes"]);
 		}
 
 		var defaultRoutesList = {
@@ -5941,8 +5905,12 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			_setRouteAsDefaultIfempty();
 		}
 	}
+    
+	function loadFromFile(){
+		configure.load(FrontPressConfigurationFile);
+	}
 
-	function load(){
+	function load(configurationObject){
 
 		var configsToFunctions = {
 			restApiUrl: configure.setRestApiUrl,
@@ -5957,7 +5925,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 		};
 
 		for(var config in configsToFunctions){
-			configsToFunctions[config](FrontPressConfigurationFile[config]);
+			configsToFunctions[config](configurationObject[config]);
 		}
 
 		var defaultTemplateUrlList = {
@@ -6025,15 +5993,48 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 			_setTitleAsDefaultIfEmpty();
 		}
 
-        if (angular.isUndefined(FrontPressConfigurationFile.restApiUrl)) {
+        if (angular.isUndefined(configurationObject.restApiUrl)) {
             throw "[frontpress missing variable]: restApiUrl is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
-        if (angular.isUndefined(FrontPressConfigurationFile.apiVersion)) {
+        if (angular.isUndefined(configurationObject.apiVersion)) {
             throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
+        _loadRoutes(configurationObject);
+        _setHomeStates();
+		_setPostStates();
+
 	}
+
+	function _setHomeStates(){
+	    var stateHome = {
+	        url: configure.routes["home"],
+	        template: "<home-view></home-view>",
+	        controller: "HomeRouteController as vc"
+	    };
+
+	    var stateHomePagination = {
+	        url: configure.routes["home.pagination"],
+	        template: "<home-view></home-view>",
+	        controller: "HomeRouteController as vc"
+	    };
+
+	    $stateProvider.state("home", stateHome);
+	    $stateProvider.state("home-pagination", stateHomePagination);		
+	}
+
+	function _setPostStates(){
+
+	    var statePost = {
+	        url: configure.routes["post"],
+	        template: "<post-view></post-view>",
+	        controller: "PostRouteController as vc"
+	    };
+
+	    $stateProvider.state("post", statePost);		
+	}
+
 
 	function Frontpress(){
 		var model = {
@@ -6071,7 +6072,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider){
 
 module.provider("$FrontPress", FrontPressProvider);
 
-FrontPressProvider.$inject = ["FrontPressConfigurationFile", "$disqusProvider"];
+FrontPressProvider.$inject = ["$disqusProvider", "$stateProvider", "FrontPressConfigurationFile"];
 
 angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
 
