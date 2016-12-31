@@ -4,6 +4,7 @@ var concat = require("gulp-concat");
 
 module.exports = function() {
     var angularCopy = false;
+    var frontpressConstantCopy = false;
     var javascriptDestFolder = "./build/js";
     var sampleBlogFiles = false;
     var sampleBlogCopy  = false;    
@@ -13,6 +14,11 @@ module.exports = function() {
         "./src/js/sample-blog.config.js",
         "./src/js/sample-blog-main.controller.js"
     ];
+
+    var frontPressConstantFile = ["./src/js/components/frontpress-provider/constants/frontpress.constant.js"];
+
+    frontpressConstantCopy = gulp.src(frontPressConstantFile)
+        .pipe(gulp.dest(javascriptDestFolder+"/dev"));
 
     angularCopy = gulp.src(["./node_modules/angular/angular.min.js", "./node_modules/angular/angular.js"])
         .pipe(gulp.dest(javascriptDestFolder));
@@ -27,5 +33,5 @@ module.exports = function() {
     ])
     .pipe(gulp.dest("./build/js/release"));    
 
-    return merge(angularCopy, releaseCopy, sampleBlogCopy);
+    return merge(angularCopy, releaseCopy, frontpressConstantCopy, sampleBlogCopy);
 };

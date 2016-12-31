@@ -1,6 +1,6 @@
 var module = angular.module("frontpress.components.frontpress-provider");
 
-function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider, $stateProvider){
+function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigurationFile){
 	var configure = {
 		load: load,
 		loadFromFile: loadFromFile,
@@ -58,10 +58,10 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider, $state
 		configure.infiniteScroll = infiniteScroll;
 	}
 
-	function _loadRoutes(){
+	function _loadRoutes(configurationObject){
 
-		if(FrontPressConfigurationFile["routes"]){
-			configure.setRoutes(FrontPressConfigurationFile["routes"]);
+		if(configurationObject["routes"]){
+			configure.setRoutes(configurationObject["routes"]);
 		}
 
 		var defaultRoutesList = {
@@ -84,7 +84,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider, $state
 			_setRouteAsDefaultIfempty();
 		}
 	}
-
+    
 	function loadFromFile(){
 		configure.load(FrontPressConfigurationFile);
 	}
@@ -180,7 +180,7 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider, $state
             throw "[frontpress missing variable]: apiVersion is mandatory. You should provide this variable using frontpress.json file or $FrontPressProvider in you app config.";
         }
 
-        _loadRoutes();
+        _loadRoutes(configurationObject);
         _setHomeStates();
 		_setPostStates();
 
@@ -251,4 +251,4 @@ function FrontPressProvider(FrontPressConfigurationFile, $disqusProvider, $state
 
 module.provider("$FrontPress", FrontPressProvider);
 
-FrontPressProvider.$inject = ["FrontPressConfigurationFile", "$disqusProvider", "$stateProvider"];
+FrontPressProvider.$inject = ["$disqusProvider", "$stateProvider", "FrontPressConfigurationFile"];

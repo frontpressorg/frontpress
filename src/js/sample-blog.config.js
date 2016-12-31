@@ -24,7 +24,7 @@
 			}
 		};
 
-		$FrontPressProvider.configure.load();  
+		$FrontPressProvider.configure.load(frontPressConfiguration);  
 	}
 
 })();

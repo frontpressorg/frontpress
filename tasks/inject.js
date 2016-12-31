@@ -16,7 +16,6 @@ module.exports = function() {
 		"--min": "angular.min.js"
 	};
 
-
 	function _parseArgsToFilePath(argsToFilesMap, defaultFilePath){
 	    var filePath;
 	    for(argumentKey in argsToFilesMap){
@@ -39,6 +38,7 @@ module.exports = function() {
     var staticFilesList = [    
         "./build/js/"+angularFilePath,
         "./build/js/release/"+frontPressFilePath,
+        "./build/js/dev/frontpress.constant.js",
         "./build/js/dev/sample-blog.js",
 	];
 
