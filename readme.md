@@ -6,12 +6,15 @@
 
 [![https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/frontpress)
 
---
-
 ## Getting Started
 
 
-* Install it using npm: `npm install frontpress` 
+* Install FrontPress using npm: 
+
+```shell 
+npm install frontpress
+``` 
+
 * Import angular and frontpress to your project.
 
 ```html
@@ -44,7 +47,7 @@ angular.module('myBlog').config(function($FrontPressProvider){
 			"home": "Home - :siteName"
 		},
 		"overrides": {
-			"siteName": "FrontPress Default Template"
+			"siteName": "My Awesome SPA Blog"
 		}
 	});
 	
@@ -52,22 +55,17 @@ angular.module('myBlog').config(function($FrontPressProvider){
 
 ```
 
+**It's done!**
+
+## Further relevant informations
+
 * [How can I discover my restApiUrl?](https://github.com/frontpressorg/frontpress/wiki)
 * [How to use FrontPress for Wordpress api version 1?](https://github.com/frontpressorg/frontpress/wiki)
 * [What configuration is required?](https://github.com/frontpressorg/frontpress/wiki)
 * [All configuration options](https://github.com/frontpressorg/frontpress/wiki)
+* [What is a SPA and why you should care about it?](https://github.com/frontpressorg/frontpress/wiki)
 * [Readme for FrontPress core developers](https://github.com/frontpressorg/frontpress/wiki)
 
-
-
-#### Wordpress Rest API
-
-We support these versions of WordPress Rest API.
-
-- [x] 1.1
-- [x] 1.2
-- [x] 2.0
-
-#### License
+## License
 
 MIT © [Teles](https://github.com/teles)
