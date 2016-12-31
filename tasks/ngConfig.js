@@ -14,13 +14,13 @@ module.exports = function() {
 	var ngConfigOptions = {
 		pretty: 4,
 		wrap: jsFileTemplateWrapper,
-		createModule: false,
+		createModule: true,
 		type: "constant"
 	};
 
 	var task = gulp.task("ngConfig", function () {
 		b2v.stream(new Buffer(configs), "frontpress.constant.js")
-    		.pipe(gulpNgConfig("frontpress.components.frontpress-provider",ngConfigOptions))
+    		.pipe(gulpNgConfig("frontpress.components.frontpress-provider-constant",ngConfigOptions))
     		.pipe(gulp.dest("./src/js/components/frontpress-provider/constants/"))
 	});
 
