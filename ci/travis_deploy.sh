@@ -54,8 +54,10 @@ else
 fi    
 
 if [ -n "$(git status --porcelain)" ]; then 
-    git add .
+    sed -i -e '/\/release\//d' .gitignore
+    git add release/
     git commit -m "${ISSUE_NUMBER} - rebuild release files." -m "Build generated for ${SHA}." 
+    git checkout .gitignore
     git push $SSH_REPO $TARGET_BRANCH
     exit 0
 else   
