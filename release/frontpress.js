@@ -5365,10 +5365,10 @@ angular.module("frontpress.components.slugs-map", ["frontpress.apis.posts", "fro
 angular.module("frontpress.views.home",
 				["ui.router",
 				"infinite-scroll",
-				"frontpress.components.list-posts",
-				"frontpress.components.pagination",
-				"frontpress.components.page-head",
 				"frontpress.components.api-manager",
+				"frontpress.components.pagination",
+				"frontpress.components.list-posts",
+				"frontpress.components.page-head",
 				"frontpress.components.blog",
 				"frontpress.components.frontpress-provider"]);
 
