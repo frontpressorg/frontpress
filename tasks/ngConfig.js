@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require("gulp");
 var gulpNgConfig = require("gulp-ng-config");
 var fs = require("fs");
@@ -18,11 +20,7 @@ module.exports = function() {
 		type: "constant"
 	};
 
-	var task = gulp.task("ngConfig", function () {
-		b2v.stream(new Buffer(configs), "frontpress.constant.js")
-    		.pipe(gulpNgConfig("frontpress.components.frontpress-provider-constant",ngConfigOptions))
-    		.pipe(gulp.dest("./src/js/components/frontpress-provider/constants/"))
-	});
-
-	return task;
-}
+	return b2v.stream(new Buffer(configs), "frontpress.constant.js")
+		.pipe(gulpNgConfig("frontpress.components.frontpress-provider-constant", ngConfigOptions))
+		.pipe(gulp.dest("./src/js/components/frontpress-provider/constants/"))
+};

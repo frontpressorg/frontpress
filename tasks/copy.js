@@ -1,3 +1,5 @@
+"use strict";
+
 var gulp = require("gulp");
 var merge = require("merge-stream");
 var concat = require("gulp-concat");
@@ -7,7 +9,8 @@ module.exports = function() {
     var frontpressConstantCopy = false;
     var javascriptDestFolder = "./build/js";
     var sampleBlogFiles = false;
-    var sampleBlogCopy  = false;    
+    var sampleBlogCopy  = false;
+    var releaseCopy = false;
 
     var sampleBlogFiles = [
         "./src/js/sample-blog.module.js",
@@ -28,10 +31,8 @@ module.exports = function() {
         .pipe(gulp.dest(javascriptDestFolder));
 
 
-    var releaseCopy = gulp.src([
-        "./release/**/*.js"
-    ])
-    .pipe(gulp.dest("./build/js/release"));    
+    releaseCopy = gulp.src(["./release/**/*.js"])
+        .pipe(gulp.dest("./build/js/release"));
 
     return merge(angularCopy, releaseCopy, frontpressConstantCopy, sampleBlogCopy);
 };

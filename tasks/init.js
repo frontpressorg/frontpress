@@ -38,12 +38,10 @@ module.exports = function() {
         });
     }
 
-    var task = gulp.task("init", function(done) {
-        inquirer.prompt(questions).then(function(responses){
+    return gulp.task("init", function(done) {
+        return inquirer.prompt(questions).then(function(responses){
             processResponses(responses);
             done();
         });
     });
-
-    return task;
 };
