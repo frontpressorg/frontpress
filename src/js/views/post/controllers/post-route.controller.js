@@ -1,8 +1,8 @@
-var module = angular.module("frontpress.views.post")
+"use strict";
 
 function PostRouteController(){
 	var vc = this;
 }
 
-module.controller("PostRouteController", PostRouteController);
+angular.module("frontpress.views.post").controller("PostRouteController", PostRouteController);
 PostRouteController.$inject = [];

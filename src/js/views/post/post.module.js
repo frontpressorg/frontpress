@@ -1,10 +1,12 @@
-angular.module("frontpress.views.post", 
-				["frontpress.components.full-post", 
-				"frontpress.components.share", 
-				"ui.router", 
-				"frontpress.components.page-head", 
-				"frontpress.components.blog", 
-				"ngDisqus", 
-				"frontpress.components.slugs-map", 
-				"frontpress.components.api-manager", 
+"use strict";
+
+angular.module("frontpress.views.post",
+				["frontpress.components.full-post",
+				"frontpress.components.share",
+				"ui.router",
+				"frontpress.components.page-head",
+				"frontpress.components.blog",
+				"ngDisqus",
+				"frontpress.components.slugs-map",
+				"frontpress.components.api-manager",
 				"frontpress.components.frontpress-provider"]);

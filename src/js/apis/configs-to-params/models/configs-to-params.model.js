@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.apis.configs-to-params");
+"use strict";
 
 function ConfigsToParams(){
 	function parse(configs){
@@ -21,4 +21,4 @@ function ConfigsToParams(){
 	return model;
 }
 
-module.factory("ConfigsToParams", ConfigsToParams);
+angular.module("frontpress.apis.configs-to-params").factory("ConfigsToParams", ConfigsToParams);

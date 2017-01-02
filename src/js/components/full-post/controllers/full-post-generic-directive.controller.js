@@ -1,7 +1,7 @@
-var module = angular.module("frontpress.components.full-post");
+"use strict";
 
 function FullPostGenericDirectiveController(){
 	var vc = this;
 }
 
-module.controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);
+angular.module("frontpress.components.full-post").controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);

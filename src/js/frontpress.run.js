@@ -1,4 +1,4 @@
-var module = angular.module("frontpress");
+"use strict";
 
 function frontpressRun(){
 
@@ -21,7 +21,7 @@ function frontpressRun(){
                     retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
                 }
                 return retStr;
-            };                    
+            };
         }
 
         if(!String.prototype.getDateInfo){
@@ -32,7 +32,7 @@ function frontpressRun(){
                 dateInfo.month = dateObject.getMonth() + 1;
                 dateInfo.day = ('0' + dateObject.getDate()).slice(-2);
                 return dateInfo;
-            }
+            };
         }
 
     }
@@ -57,15 +57,15 @@ function frontpressRun(){
                     return b;
                 }, []);
                 return u;
-            }
+            };
         }
 
         if(!Array.prototype.getObjectByValue){
             Array.prototype.getObjectByValue = function(propertyName, propertyValue){
               return this.find(function (objectsArrayElement) {
                 return objectsArrayElement[propertyName] == propertyValue;
-              });                
-            }
+              });
+            };
         }
 
         if (!Array.prototype.filterToProperties) {
@@ -104,7 +104,7 @@ function frontpressRun(){
                     }
                 }
                 return out;
-            }
+            };
         }
 
         if (!Array.prototype.isArray) {
@@ -119,4 +119,4 @@ function frontpressRun(){
     extendStringPrototype();
 }
 
-module.run(frontpressRun);
+angular.module("frontpress").run(frontpressRun);

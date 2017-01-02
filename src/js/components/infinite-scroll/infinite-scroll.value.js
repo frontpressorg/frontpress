@@ -1,1 +1,3 @@
-angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000)
+"use strict";
+
+angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000);

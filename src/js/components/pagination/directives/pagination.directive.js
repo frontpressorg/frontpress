@@ -1,6 +1,6 @@
-var module = angular.module("frontpress.components.pagination");
+"use strict";
 
-function pagination($FrontPress){
+function Pagination($FrontPress){
 	var directive = {
 		restrict: "AE",
 		replace: true,
@@ -14,5 +14,5 @@ function pagination($FrontPress){
 	return directive;
 }
 
-module.directive("pagination", pagination);
-pagination.$inject = ["$FrontPress"];
+angular.module("frontpress.components.pagination").directive("pagination", Pagination);
+Pagination.$inject = ["$FrontPress"];

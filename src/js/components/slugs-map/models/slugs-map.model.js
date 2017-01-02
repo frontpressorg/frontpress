@@ -1,6 +1,4 @@
-angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
-
-SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "ApiManagerMap"];
+"use strict";
 
 function SlugsMapModel($cacheFactory, PostsApi, ApiManagerMap){
 	var model = {
@@ -48,9 +46,12 @@ function SlugsMapModel($cacheFactory, PostsApi, ApiManagerMap){
 
 		allPostsPromise.catch(function(error){
 			console.log(error);
-		})
+		});
 	}
-
 
 	return model;
 }
+
+angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
+SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "ApiManagerMap"];
+

@@ -1,7 +1,7 @@
-var module = angular.module("frontpress.components.list-posts");
+"use strict";
 
 function ListPostsGenericDirectiveController(){
 	var vc = this;
 }
 
-module.controller("ListPostsGenericDirectiveController", ListPostsGenericDirectiveController);
+angular.module("frontpress.components.list-posts").controller("ListPostsGenericDirectiveController", ListPostsGenericDirectiveController);

@@ -1,16 +1,18 @@
-angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
+"use strict";
 
 function ListPostsDirective($FrontPress){
-	var directive = {
-		scope: {},
-		restrict: "AE",
-		controller: "ListPostsDirectiveController",
-		controllerAs: "vc",
-		replace: true,
-		bindToController: true,
-		templateUrl: $FrontPress.getTemplateUrl("components.listposts")
-	};
+    var directive = {
+        scope: {},
+        restrict: "AE",
+        controller: "ListPostsDirectiveController",
+        controllerAs: "vc",
+        replace: true,
+        bindToController: true,
+        templateUrl: $FrontPress.getTemplateUrl("components.listposts")
+    };
 
-	return directive;
+    return directive;
 }
+
+angular.module("frontpress.components.list-posts").directive("listPosts", ListPostsDirective);
 ListPostsDirective.$inject = ["$FrontPress"];

@@ -1,7 +1,7 @@
-var module = angular.module("frontpress.components.full-post");
+"use strict";
 
 function FullPostTagsListDirectiveController(){
 	var vc = this;
 }
 
-module.controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);
+angular.module("frontpress.components.full-post").controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);

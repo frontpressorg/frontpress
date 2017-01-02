@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module("frontpress", [
     "frontpress.views",
 	"frontpress.apis.blog",

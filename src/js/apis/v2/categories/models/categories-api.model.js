@@ -1,6 +1,4 @@
-angular.module("frontpress.apis.categories").factory("CategoriesApi", CategoriesApi);
-
-CategoriesApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
+"use strict";
 
 function CategoriesApi(AjaxModel, $FrontPress, ConfigsToParams){
     var categoriesBaseUrl = $FrontPress.restApiUrl + "/wp/v2/categories/";
@@ -24,3 +22,6 @@ function CategoriesApi(AjaxModel, $FrontPress, ConfigsToParams){
         getCategoryById: getCategoryById
     };
 }
+
+angular.module("frontpress.apis.categories").factory("CategoriesApi", CategoriesApi);
+CategoriesApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];

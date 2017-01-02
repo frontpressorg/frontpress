@@ -1,3 +1,5 @@
+"use strict";
+
 describe("Ajax tests", function () {
 
     var AjaxModel, $httpBackend;

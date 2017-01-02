@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.ajax");
+"use strict";
 
 function AjaxModel($http) {
     function request(url, params, method) {
@@ -33,6 +33,6 @@ function AjaxModel($http) {
     };
 }
 
+angular.module("frontpress.components.ajax").factory("AjaxModel", AjaxModel);
 AjaxModel.$inject = ["$http"];
 
-module.factory("AjaxModel", AjaxModel);

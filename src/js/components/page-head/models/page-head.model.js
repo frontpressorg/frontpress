@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.page-head");
+"use strict";
 
 function PageHeadModel($location, $FrontPress){
 	var model = {
@@ -70,5 +70,5 @@ function PageHeadModel($location, $FrontPress){
 	return model;
 }
 
-module.factory("PageHeadModel", PageHeadModel);
+angular.module("frontpress.components.page-head").factory("PageHeadModel", PageHeadModel);
 PageHeadModel.$inject = ["$location", "$FrontPress"];

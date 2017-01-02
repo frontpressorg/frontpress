@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.apis.posts");
+"use strict";
 
 function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
     var postsBaseUrl = $FrontPress.restApiUrl + "/wp/v2/posts/";
@@ -31,6 +31,6 @@ function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
     };
 }
 
+angular.module("frontpress.apis.posts").factory("PostsApi", PostsApi);
 PostsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
-module.factory("PostsApi", PostsApi);

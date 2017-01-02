@@ -1,4 +1,5 @@
-angular.module("frontpress.components.list-posts").factory("ListPostsModel", ListPostsModel);
+/* jshint loopfunc:true */
+"use strict";
 
 function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
     var model = {
@@ -10,7 +11,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         totalPostsNumber: null,
         setTotalPostsNumber: setTotalPostsNumber,
         loadExternalFeaturedImages: loadExternalFeaturedImages
-    }
+    };
 
     return model;
 
@@ -34,15 +35,13 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             featuredImagesPromise.catch(function(error){
                 console.log(error);
-            })
-
+            });
 
             return defer.promise;
         }
 
         for(var i=0; i < loadedPosts.length; i++){
             postPromises.appendFeaturedImagesToPostsPromise(loadedPosts[i].featured_media).then(function(featuredImagesResult){
-
                 for(var j=0; j < model.postsList.length;j++){
                     if(model.postsList[j].featured_media === featuredImagesResult.id){
                         model.postsList[j].featured_image = featuredImagesResult.source_url;
@@ -61,7 +60,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         };
 
         var postPromises = {
-            getAllPostsPromise: getAllPostsPromise,
+            getAllPostsPromise: getAllPostsPromise
         };
 
         function getAllPostsPromise(){
@@ -75,7 +74,7 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
 
             allPostsPromise.catch(function(error){
                 console.log(error);
-            })
+            });
 
             return defer.promise;
         }
@@ -92,12 +91,11 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         }
 
         postPromises.getAllPostsPromise().then(function(postsResult){
-            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult["data"], "totalPostsNumber"));
-            var allPosts = ApiManager.getPath(postsResult["data"], "allPostsPath");
+            model.totalPostsNumber = parseInt(ApiManager.getPath(postsResult.data, "totalPostsNumber"));
+            var allPosts = ApiManager.getPath(postsResult.data, "allPostsPath");
 
             _appendDateInfoToPostsList(allPosts);
             SlugsMapModel.updateFromPosts(allPosts);
-
 
             if(model.postsList){
                 var isLastPostAlreadyLoaded = ApiManager.getPath(allPosts[allPosts.length-1], "postId") === ApiManager.getPath(model.postsList[model.postsList.length-1], "postId");
@@ -105,7 +103,6 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
                 if(!isLastPostAlreadyLoaded){
                     model.postsList = model.postsList.concat(allPosts);
                 }
-
             } else {
                 model.postsList = allPosts;
             }
@@ -116,9 +113,8 @@ function ListPostsModel(PostsApi, MediaApi, $q, SlugsMapModel, ApiManager){
         });
 
         return defer.promise;
-
-
     }
 }
 
+angular.module("frontpress.components.list-posts").factory("ListPostsModel", ListPostsModel);
 ListPostsModel.$inject = ["PostsApi", "MediaApi", "$q", "SlugsMapModel", "ApiManager"];

@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.full-post");
+"use strict";
 
 function FullPostCategoriesListDirective($FrontPress){
 	return {
@@ -14,5 +14,5 @@ function FullPostCategoriesListDirective($FrontPress){
 	};
 }
 
-module.directive("fullPostCategoriesList", FullPostCategoriesListDirective);
+angular.module("frontpress.components.full-post").directive("fullPostCategoriesList", FullPostCategoriesListDirective);
 FullPostCategoriesListDirective.$inject = ["$FrontPress"];

@@ -1,4 +1,5 @@
-var module = angular.module("frontpress.components.full-post");
+/* jshint loopfunc:true */
+"use strict";
 
 function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPress, ApiManagerMap){
 	var model = {
@@ -70,11 +71,11 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
     function _loadFullPostByPromise(postPromise){
         var defer = $q.defer();
 
-        postPromise.then(function(result){            
+        postPromise.then(function(result){
             if(Array.isArray(result.data)){
-                result = result.data[0];                
+                result = result.data[0];
             } else {
-                result = result.data;                                
+                result = result.data;
             }
 
             model.setTitle(result.title);
@@ -120,7 +121,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
                         tagByIdpromise.catch(function(error){
                             console.log(error);
-                        })
+                        });
                     }
 
                     var featuredImagesPromise = MediaApi.getMediaById(result.featured_media);
@@ -132,7 +133,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
                     featuredImagesPromise.catch(function(error){
                         console.log(error);
-                    })
+                    });
 
                     break;
 
@@ -160,7 +161,7 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 
         postPromise.catch(function(error){
             console.log(error);
-        })
+        });
 
         return defer.promise;
     }
@@ -188,5 +189,5 @@ function FullPostModel(PostsApi, TagsApi, CategoriesApi, $q, MediaApi, $FrontPre
 	return model;
 }
 
-module.factory("FullPostModel", FullPostModel);
+angular.module("frontpress.components.full-post").factory("FullPostModel", FullPostModel);
 FullPostModel.$inject = ["PostsApi", "TagsApi","CategoriesApi", "$q", "MediaApi", "$FrontPress", "ApiManagerMap"];

@@ -1,6 +1,4 @@
-angular.module("frontpress.apis.posts").factory("PostsApi", PostsApi);
-
-PostsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
+"use strict";
 
 function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
     var postsBaseUrl = $FrontPress.restApiUrl + "/posts/";
@@ -29,5 +27,8 @@ function PostsApi(AjaxModel, $FrontPress, ConfigsToParams){
         var postUrl = postsBaseUrl + "<post-id>";
         postUrl = postUrl.replace("<post-id>", postId);
         return AjaxModel.get(postUrl, configs);
-    }    
+    }
 }
+
+angular.module("frontpress.apis.posts").factory("PostsApi", PostsApi);
+PostsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];

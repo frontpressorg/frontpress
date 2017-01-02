@@ -1,7 +1,7 @@
-var module = angular.module("frontpress.components.featured-image");
+"use strict";
 
 function FeaturedImageDirectiveController(){
 	var vc = this;
 }
 
-module.controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
+angular.module("frontpress.components.featured-image").controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
