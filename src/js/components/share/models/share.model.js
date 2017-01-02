@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.share");
+"use strict";
 
 function ShareModel($window, ApiManager){
 	var model = {
@@ -15,7 +15,6 @@ function ShareModel($window, ApiManager){
 		});
 
 		$window.open(shareUrl, networkName + "-share", "width=550,height=235");
-
 	}
 
 	var networkShareUrls = {
@@ -28,5 +27,5 @@ function ShareModel($window, ApiManager){
 	return model;
 }
 
-module.factory("ShareModel", ShareModel);
+angular.module("frontpress.components.share").factory("ShareModel", ShareModel);
 ShareModel.$inject = ["$window", "ApiManager"];

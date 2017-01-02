@@ -8,15 +8,13 @@ module.exports = function() {
     var angularCopy = false;
     var frontpressConstantCopy = false;
     var javascriptDestFolder = "./build/js";
-    var sampleBlogFiles = false;
     var sampleBlogCopy  = false;
-    var releaseCopy = false;
-
     var sampleBlogFiles = [
         "./src/js/sample-blog.module.js",
         "./src/js/sample-blog.config.js",
         "./src/js/sample-blog-main.controller.js"
     ];
+    var releaseCopy = false;
 
     var frontPressConstantFile = ["./src/js/components/frontpress-provider/constants/frontpress.constant.js"];
 

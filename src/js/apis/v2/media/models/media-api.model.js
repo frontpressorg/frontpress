@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.apis.media");
+"use strict";
 
 function MediaApi(AjaxModel, $FrontPress, ConfigsToParams){
     var mediaBaseUrl = $FrontPress.restApiUrl + "/wp/v2/media/";
@@ -15,6 +15,6 @@ function MediaApi(AjaxModel, $FrontPress, ConfigsToParams){
     };
 }
 
+angular.module("frontpress.apis.media").factory("MediaApi", MediaApi);
 MediaApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
-module.factory("MediaApi", MediaApi);

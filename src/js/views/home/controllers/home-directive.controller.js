@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.views.home");
+"use strict";
 
 function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
     var vc = this;
@@ -35,7 +35,8 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
             };
             PageHeadModel.parsePageTitle("home", homeReplaceRules);
 
-        })
+        });
+
         var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
         PageHeadModel.setPageCanonical(canonical);
     }
@@ -65,5 +66,5 @@ function HomeDirectiveController($stateParams, ListPostsModel, $state, $FrontPre
     }
 }
 
-module.controller("HomeDirectiveController", HomeDirectiveController);
+angular.module("frontpress.views.home").controller("HomeDirectiveController", HomeDirectiveController);
 HomeDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];

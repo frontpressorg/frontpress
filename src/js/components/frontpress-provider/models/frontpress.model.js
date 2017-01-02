@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.frontpress-provider");
+"use strict";
 
 function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigurationFile){
 	var configure = {
@@ -60,8 +60,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 	function _loadRoutes(configurationObject){
 
-		if(configurationObject["routes"]){
-			configure.setRoutes(configurationObject["routes"]);
+		if(configurationObject.routes){
+			configure.setRoutes(configurationObject.routes);
 		}
 
 		var defaultRoutesList = {
@@ -84,7 +84,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			_setRouteAsDefaultIfempty();
 		}
 	}
-    
+
 	function loadFromFile(){
 		configure.load(FrontPressConfigurationFile);
 	}
@@ -188,7 +188,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 	function _setHomeStates(){
 	    var stateHome = {
-	        url: configure.routes["home"],
+	        url: configure.routes.home,
 	        template: "<home-view></home-view>",
 	        controller: "HomeRouteController as vc"
 	    };
@@ -200,18 +200,18 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 	    };
 
 	    $stateProvider.state("home", stateHome);
-	    $stateProvider.state("home-pagination", stateHomePagination);		
+	    $stateProvider.state("home-pagination", stateHomePagination);
 	}
 
 	function _setPostStates(){
 
 	    var statePost = {
-	        url: configure.routes["post"],
+	        url: configure.routes.post,
 	        template: "<post-view></post-view>",
 	        controller: "PostRouteController as vc"
 	    };
 
-	    $stateProvider.state("post", statePost);		
+	    $stateProvider.state("post", statePost);
 	}
 
 
@@ -249,6 +249,5 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
     return provider;
 }
 
-module.provider("$FrontPress", FrontPressProvider);
-
+angular.module("frontpress.components.frontpress-provider").provider("$FrontPress", FrontPressProvider);
 FrontPressProvider.$inject = ["$disqusProvider", "$stateProvider", "FrontPressConfigurationFile"];

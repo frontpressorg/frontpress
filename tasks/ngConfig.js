@@ -22,5 +22,5 @@ module.exports = function() {
 
 	return b2v.stream(new Buffer(configs), "frontpress.constant.js")
 		.pipe(gulpNgConfig("frontpress.components.frontpress-provider-constant", ngConfigOptions))
-		.pipe(gulp.dest("./src/js/components/frontpress-provider/constants/"))
+		.pipe(gulp.dest("./src/js/components/frontpress-provider/constants/"));
 };

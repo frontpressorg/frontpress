@@ -1,8 +1,8 @@
-var module = angular.module("frontpress.components.post-date");
+"use strict";
 
 function PostDateDirectiveController(){
 	var vc = this;
 }
 
-module.controller("PostDateDirectiveController", PostDateDirectiveController);
+angular.module("frontpress.components.post-date").controller("PostDateDirectiveController", PostDateDirectiveController);
 PostDateDirectiveController.$inject = [];

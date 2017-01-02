@@ -1,6 +1,7 @@
 {
   "globalstrict": true,
   "trailing": true,
+  "devel": true,
   "globals": {
     "angular": false,
     "describe": false,

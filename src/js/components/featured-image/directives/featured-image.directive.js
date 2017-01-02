@@ -1,19 +1,20 @@
-angular.module("frontpress.components.featured-image").directive("featuredImage", FeaturedImageDirective);
+"use strict";
 
 function FeaturedImageDirective($FrontPress){
-	var directive = {
-		restrict: "E",
-		scope: {
-			post: '=post'
-		},
-		replace: true,
-		templateUrl: $FrontPress.getTemplateUrl("components.featuredimage"),
-		controller: "FeaturedImageDirectiveController",
-		controllerAs: "vc",
-		bindToController: true
-	};
+    var directive = {
+        restrict: "E",
+        scope: {
+            post: '=post'
+        },
+        replace: true,
+        templateUrl: $FrontPress.getTemplateUrl("components.featuredimage"),
+        controller: "FeaturedImageDirectiveController",
+        controllerAs: "vc",
+        bindToController: true
+    };
 
-	return directive;
+    return directive;
 }
 
+angular.module("frontpress.components.featured-image").directive("featuredImage", FeaturedImageDirective);
 FeaturedImageDirective.$inject = ["$FrontPress"];

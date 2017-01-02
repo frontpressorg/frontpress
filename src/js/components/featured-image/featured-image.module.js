@@ -1,2 +1,3 @@
-angular.module("frontpress.components.featured-image", 
-				["frontpress.components.frontpress-provider"]);
+"use strict";
+
+angular.module("frontpress.components.featured-image", ["frontpress.components.frontpress-provider"]);

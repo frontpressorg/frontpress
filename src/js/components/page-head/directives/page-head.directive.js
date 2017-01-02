@@ -1,6 +1,6 @@
-var module = angular.module("frontpress.components.page-head");
+"use strict";
 
-function pageHead($FrontPress){
+function PageHead($FrontPress){
 	var directive = {
 		templateUrl: $FrontPress.getTemplateUrl("components.pagehead"),
 		scope: {},
@@ -15,5 +15,5 @@ function pageHead($FrontPress){
 	return directive;
 }
 
-module.directive("pageHead", pageHead);
-pageHead.$inject = ["$FrontPress"];
+angular.module("frontpress.components.page-head").directive("pageHead", PageHead);
+PageHead.$inject = ["$FrontPress"];

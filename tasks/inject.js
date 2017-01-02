@@ -1,7 +1,7 @@
 "use strict";
 
 var gulp = require("gulp");
-var inject = require("gulp-inject");
+var _inject = require("gulp-inject");
 var argv = process.argv;
 var gutil = require('gulp-util');
 
@@ -54,6 +54,6 @@ module.exports = function() {
     var injectFiles = gulp.src(staticFilesList, {read: true});
 
 	return gulp.src("src/index.html")
-		.pipe(inject(injectFiles, injectOptions))
+		.pipe(_inject(injectFiles, injectOptions))
 		.pipe(gulp.dest("./build"));
 };

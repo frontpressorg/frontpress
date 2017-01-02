@@ -1,15 +1,17 @@
-angular.module("frontpress.views.home").directive("homeView", HomeViewDirective);
+"use strict";
 
 function HomeViewDirective($FrontPress){
-	var directive = {
-		scope: {},
-		templateUrl: $FrontPress.getTemplateUrl("views.home"),
-		restrict: "AE",
-		controllerAs: "vc",
-		bindToController: true,
-		controller: "HomeDirectiveController",
-		replace: true
-	};
-	return directive;
+    var directive = {
+        scope: {},
+        templateUrl: $FrontPress.getTemplateUrl("views.home"),
+        restrict: "AE",
+        controllerAs: "vc",
+        bindToController: true,
+        controller: "HomeDirectiveController",
+        replace: true
+    };
+    return directive;
 }
+
+angular.module("frontpress.views.home").directive("homeView", HomeViewDirective);
 HomeViewDirective.$inject = ["$FrontPress"];

@@ -41,7 +41,7 @@
   },
   "scripts": {
     "test": "karma start --browsers PhantomJS && cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/codacy-coverage",
-    "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
+    "jshint": "jshint -c .jshintrc --exclude-path .jshintignore .",
   },
   "pre-commit": ["jshint"],
   "repository": {

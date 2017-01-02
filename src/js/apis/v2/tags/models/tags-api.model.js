@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.apis.categories");
+"use strict";
 
 function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
     var tagsBaseUrl = $FrontPress.restApiUrl + "/wp/v2/tags/";
@@ -23,6 +23,6 @@ function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
     };
 }
 
+angular.module("frontpress.apis.categories").factory("TagsApi", TagsApi);
 TagsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
-module.factory("TagsApi", TagsApi);

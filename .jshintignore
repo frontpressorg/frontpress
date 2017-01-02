@@ -1,2 +1,6 @@
-node_modules
-release
+/node_modules
+/build
+/release
+/src/js/components/frontpress-provider/constants/frontpress.constant.js
+/src/js/frontpress.template-cache.js
+/karma.conf.js

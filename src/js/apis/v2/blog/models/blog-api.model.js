@@ -1,6 +1,4 @@
-angular.module("frontpress.apis.blog").factory("BlogApi", BlogApi);
-
-BlogApi.$inject = ["AjaxModel", "$FrontPress"];
+"use strict";
 
 function BlogApi(AjaxModel, $FrontPress) {
     var baseUrl = $FrontPress.restApiUrl;
@@ -15,3 +13,7 @@ function BlogApi(AjaxModel, $FrontPress) {
         return AjaxModel.get(baseUrl);
     }
 }
+
+angular.module("frontpress.apis.blog").factory("BlogApi", BlogApi);
+BlogApi.$inject = ["AjaxModel", "$FrontPress"];
+

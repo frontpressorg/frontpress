@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.components.pagination");
+"use strict";
 
 function PaginationModel(PageHeadModel){
 	var model = {
@@ -63,5 +63,5 @@ function PaginationModel(PageHeadModel){
 	return model;
 }
 
-module.factory("PaginationModel", PaginationModel);
+angular.module("frontpress.components.pagination").factory("PaginationModel", PaginationModel);
 PaginationModel.$inject = ["PageHeadModel"];

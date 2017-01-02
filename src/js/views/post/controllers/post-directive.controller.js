@@ -1,4 +1,4 @@
-var module = angular.module("frontpress.views.post");
+"use strict";
 
 function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, SlugsMapModel, CategoriesApi, ApiManager, ApiManagerMap, BlogModel, $q){
 	var vc = this;
@@ -49,12 +49,12 @@ function PostDirectiveController(FullPostModel, $stateParams, PageHeadModel, Slu
 
         PageHeadModel.parsePageTitle("post", titleReplaceRules);
         vc.disqusId = FullPostModel.slug;
-    })
+    });
 
     $q.all(promises).catch(function(error){
         console.error(error);
-    })
+    });
 }
 
-module.controller("PostDirectiveController", PostDirectiveController);
+angular.module("frontpress.views.post").controller("PostDirectiveController", PostDirectiveController);
 PostDirectiveController.$inject = ["FullPostModel", "$stateParams", "PageHeadModel", "SlugsMapModel", "CategoriesApi", "ApiManager", "ApiManagerMap", "BlogModel", "$q"];
