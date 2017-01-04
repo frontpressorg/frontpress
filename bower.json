@@ -1,0 +1,26 @@
+{
+  "name": "frontpress",
+  "description": "Full front-end AngularJS template for WordPress API.",
+  "main": "index.js",
+  "authors": [
+    ""
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angularjs",
+    "angular",
+    "javascript",
+    "wordpress",
+    "wordprssapi",
+    "restfull",
+    "rest"
+  ],
+  "homepage": "https://github.com/frontpressorg/frontpress",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
