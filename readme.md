@@ -9,7 +9,7 @@
 
 ## Getting Started
 
-* Install FrontPress using NPM: 
+### Install FrontPress using NPM: 
 
 ```shell 
 npm install frontpress --save
@@ -22,7 +22,7 @@ npm install frontpress --save
 <script type="text/javascript" src="/node_modules/frontpress/release/frontpress.min.js"></script>
 ```
 
-* Install FrontPress using Bower: 
+### Install FrontPress using Bower: 
 
 ```shell 
 bower install frontpress --save
@@ -37,6 +37,7 @@ bower install frontpress --save
 <script type="text/javascript" src="/bower_components/frontpress/release/frontpress.min.js"></script>
 ```
 
+## Configure your project to use FrontPress
 
 * Add `frontpress` to your required modules list:
 
