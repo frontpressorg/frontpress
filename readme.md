@@ -6,13 +6,13 @@
 
 [![https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/frontpress)
 
+
 ## Getting Started
 
-
-* Install FrontPress using npm: 
+* Install FrontPress using NPM: 
 
 ```shell 
-npm install frontpress
+npm install frontpress --save
 ``` 
 
 * Import angular and frontpress to your project.
@@ -21,6 +21,22 @@ npm install frontpress
 <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
 <script type="text/javascript" src="/node_modules/frontpress/release/frontpress.min.js"></script>
 ```
+
+* Install FrontPress using Bower: 
+
+```shell 
+bower install frontpress --save
+``` 
+
+* Import angular and frontpress to your project.
+
+:warning: remember to install [angular 1.x](https://angularjs.org/).
+
+```html
+<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="/bower_components/frontpress/release/frontpress.min.js"></script>
+```
+
 
 * Add `frontpress` to your required modules list:
 
