@@ -8,11 +8,16 @@
 
 ## Getting Started
 
-
-* Install FrontPress using npm: 
+* Install FrontPress using NPM: 
 
 ```shell 
-npm install frontpress
+npm install frontpress --save
+``` 
+
+* Install FrontPress using Bower: 
+
+```shell 
+bower install frontpress --save
 ``` 
 
 * Import angular and frontpress to your project.
