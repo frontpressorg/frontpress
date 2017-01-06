@@ -1,6 +1,6 @@
+![frontpress-logo-horizontal](https://cloud.githubusercontent.com/assets/762639/21735541/ca6f11ce-d451-11e6-88ae-291b3f82c931.png)
 
-## :zap: FrontPress
-### A full front-end AngularJS template for WordPress API
+    A full front-end AngularJS template for WordPress Rest API.
 
 [![Build Status](https://travis-ci.org/frontpressorg/frontpress.svg?branch=master)](https://travis-ci.org/frontpressorg/frontpress) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/da783fc5da8c4f0e98d6f0a18d01dc0b)](https://www.codacy.com/app/frontpress/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Coverage) [![Join the chat at https://gitter.im/teles/frontpress](https://badges.gitter.im/teles/frontpress.svg)](https://gitter.im/teles/frontpress?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![](https://api.codacy.com/project/badge/Grade/8da469f973d143189c352cdd852d23ca)](https://www.codacy.com/app/josetelesmaciel/frontpress?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teles/frontpress&amp;utm_campaign=Badge_Grade) [![Github Issues](http://githubbadges.herokuapp.com/teles/frontpress/issues.svg)](https://github.com/teles/frontpress/issues) [![dependencies Status](https://david-dm.org/teles/frontpress/status.svg)](https://david-dm.org/teles/frontpress) [![devDependencies Status](https://david-dm.org/teles/frontpress/dev-status.svg)](https://david-dm.org/teles/frontpress?type=dev)
 
