@@ -2,7 +2,7 @@
   "name": "frontpress",
   "version": "1.0.6",
   "description": "Full front-end AngularJS template for WordPress API.",
-  "main": "index.js",
+  "main": "release/frontpress.min.js",
   "dependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.1",
