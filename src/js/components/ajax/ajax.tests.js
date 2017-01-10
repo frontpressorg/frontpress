@@ -24,7 +24,9 @@ describe("Ajax tests", function () {
 
     it("HTTP GET method is working", function () {
         var callbackCalled = false;
-        AjaxModel.get("/test").success(function(data){
+
+        AjaxModel.get("/test").then(function(result){
+            var data = result.data;
             expect(data.calledMethod).toEqual("GET");
             callbackCalled = true;
         });
@@ -35,7 +37,8 @@ describe("Ajax tests", function () {
 
     it("HTTP POST method is working", function () {
         var callbackCalled = false;
-        AjaxModel.post("/test").success(function(data){
+        AjaxModel.post("/test").then(function(result){
+            var data = result.data;
             expect(data.calledMethod).toEqual("POST");
             callbackCalled = true;
         });
@@ -46,7 +49,8 @@ describe("Ajax tests", function () {
 
     it("HTTP PUT method is working", function () {
         var callbackCalled = false;
-        AjaxModel.put("/test").success(function(data){
+        AjaxModel.put("/test").then(function(result){
+            var data = result.data;
             expect(data.calledMethod).toEqual("PUT");
             callbackCalled = true;
         });
