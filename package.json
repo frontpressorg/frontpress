@@ -1,8 +1,8 @@
 {
   "name": "frontpress",
-  "version": "1.0.6",
-  "description": "Full front-end AngularJS template for WordPress API.",
-  "main": "release/frontpress.min.js",
+  "version": "1.0.7",
+  "description": "Full front-end AngularJS template for WordPress Rest API.",
+  "main": "index.js",
   "dependencies": {
     "angular": "^1.5.8",
     "angular-ui-router": "^0.3.1",
@@ -46,8 +46,17 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frontpressorg/frontpress.git"
-  },
-  "author": "",
+  },  
+  "author": "Jota Teles",
+  "npmName": "frontpress",
+  "npmFileMap": [
+    {
+      "basePath": "release",
+      "files": [
+        "**/frontpress.*.js"
+      ]
+    }
+  ],  
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/frontpressorg/frontpress/issues"
