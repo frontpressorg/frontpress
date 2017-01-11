@@ -1,7 +1,40 @@
-<div> 
-	<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">
-		<list-posts></list-posts>
-		<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>
-		<pagination></pagination>
+<div>
+<div class="container">
+<nav class="nav">
+  <div class="nav-left">
+    <a class="nav-item">
+      Blog name
+    </a>
+  </div>
+  
+  <span class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+
+  <!-- This "nav-menu" is hidden on mobile -->
+  <!-- Add the modifier "is-active" to display it on mobile -->
+  <div class="nav-right nav-menu">
+    <a class="nav-item">
+      Page 1
+    </a>
+    <a class="nav-item">
+      Page 2
+    </a>
+    <a class="nav-item">
+      Page 3
+    </a>
+  </div>
+</nav>
+</div>
+
+<div class="container"> 
+	<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled" class="columns is-multiline section">		
+		<list-posts class="column is-9"></list-posts>		
 	</div>
+	<div class="section">
+		<pagination></pagination>			
+	</div>
+</div>
 </div>

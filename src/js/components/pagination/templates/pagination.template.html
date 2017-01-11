@@ -1,8 +1,11 @@
-<div>
+<nav class="pagination">
 	<a 	data-ui-sref="home-pagination({pageNumber:vc.vm.prevPageNumber})" 
-		data-ng-if="vc.vm.prevPageNumber">&lt;&lt;</a>
-	
-	<a data-ng-repeat="page in vc.vm.pages" data-ng-bind="page.number" data-ui-sref="home-pagination({pageNumber:page.number})"></a>		
+		data-ng-if="vc.vm.prevPageNumber" class="pagination-previous">&lt;&lt;</a>
+	<ul class="pagination-list">
+		<li data-ng-repeat="page in vc.vm.pages">
+			<a data-ng-bind="page.number" data-ui-sref="home-pagination({pageNumber:page.number})" class="pagination-link"></a>	
+		</li>
+	</ul>
 
-	<a data-ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" data-ng-if="vc.vm.nextPageNumber">&gt;&gt;</a>
-</div>
+	<a data-ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" data-ng-if="vc.vm.nextPageNumber" class="pagination-next">&gt;&gt;</a>
+</nav>

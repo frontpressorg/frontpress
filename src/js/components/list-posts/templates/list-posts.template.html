@@ -1,10 +1,12 @@
-<div>
-	<p data-ng-if="vc.vm.isLoadingPosts">Carregando posts</p>
-	<div data-ng-repeat="post in vc.vm.postsList">	
+<div class="columns is-multiline">
+	<div data-ng-if="vc.vm.isLoadingPosts">Loading</div>
+	<div data-ng-repeat="post in vc.vm.postsList" class="column is-half">	
 		<list-posts-title data-post="post"></list-posts-title>	
 		<post-date data-post="post"></post-date>
 		<featured-image data-post="post"></featured-image>	
-		<list-posts-excerpt data-post="post"></list-posts-excerpt>
-        <share data-post="post"></share>
+		<div class="section">
+			<list-posts-excerpt data-post="post"></list-posts-excerpt>
+        	<share data-post="post"></share>
+        </div>
 	</div>
 </div>
