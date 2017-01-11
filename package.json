@@ -1,6 +1,6 @@
 {
   "name": "frontpress",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Full front-end AngularJS template for WordPress Rest API.",
   "main": "index.js",
   "dependencies": {
