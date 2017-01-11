@@ -1,4 +1,5 @@
 ![frontpress-logo-horizontal](https://cloud.githubusercontent.com/assets/762639/21735541/ca6f11ce-d451-11e6-88ae-291b3f82c931.png)
+
 ### A full front-end AngularJS template for WordPress Rest API.
 -
 
