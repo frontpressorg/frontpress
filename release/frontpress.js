@@ -5731,6 +5731,30 @@ TrustAsHtml.$inject = ["$sce"];
 
 "use strict";
 
+function ApiManager(ApiManagerMap){
+    var service = {
+        getPath: getPath
+    };
+
+    return service;
+
+    function getPath(object, pathName){
+        var result = object;
+        var path = ApiManagerMap[pathName];
+
+        for(var i=0; i < path.length; i++){
+            result = result[path[i]];
+        }
+
+        return result;
+    }
+}
+
+angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
+ApiManager.$inject = ["ApiManagerMap"];
+
+"use strict";
+
 function AjaxModel($http) {
     function request(url, params, method) {
         params = params || {};
@@ -5767,30 +5791,6 @@ function AjaxModel($http) {
 angular.module("frontpress.components.ajax").factory("AjaxModel", AjaxModel);
 AjaxModel.$inject = ["$http"];
 
-
-"use strict";
-
-function ApiManager(ApiManagerMap){
-    var service = {
-        getPath: getPath
-    };
-
-    return service;
-
-    function getPath(object, pathName){
-        var result = object;
-        var path = ApiManagerMap[pathName];
-
-        for(var i=0; i < path.length; i++){
-            result = result[path[i]];
-        }
-
-        return result;
-    }
-}
-
-angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
-ApiManager.$inject = ["ApiManagerMap"];
 
 "use strict";
 
