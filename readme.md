@@ -8,9 +8,7 @@
 [![https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/frontpress.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/frontpress)
 
 
-## Getting Started
-
-### Install FrontPress using NPM: 
+## Install FrontPress using NPM: 
 
 ```shell 
 npm install frontpress --save
@@ -18,33 +16,44 @@ npm install frontpress --save
 
 * Import angular and frontpress to your project.
 
-```html
-<script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
-<script type="text/javascript" src="/node_modules/frontpress/release/frontpress.min.js"></script>
-```
-
-### Install FrontPress using Bower: 
-
-```shell 
-bower install frontpress --save
-``` 
-
-* Import angular and frontpress to your project.
-
-:warning: remember to install [angular 1.x](https://angularjs.org/).
+AngularJS is the only FrontPress dependency you will need to import.
 
 ```html
-<script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="/bower_components/frontpress/release/frontpress.min.js"></script>
+<script type="text/javascript" src="/path/to/angular.min.js"></script>
+<script type="text/javascript" src="/path/to/frontpress/release/frontpress.min.js"></script>
 ```
 
-## Configure your project to use FrontPress
+*You may install FrontPress using [bower](https://github.com/frontpressorg/frontpress/wiki/Installation#bower-package) or import it directly from cdn using [cdnjs](https://github.com/frontpressorg/frontpress/wiki/Installation#cdn-js)*
+
+## Usage
 
 * Add `frontpress` to your required modules list:
 
 ```javascript
 angular.module('myBlog', ['frontpress']);
 ```
+
+## Make your index.html
+
+Your minimal index.html can be just like that.
+
+```html
+<!DOCTYPE html>
+<html>
+   <!-- include FrontPress page-head attribute directive if you want-->
+   <head page-head>
+       <script type="text/javascript" src="/path/to/angular.min.js"></script>
+       <script type="text/javascript" src="/path/to/frontpress/release/frontpress.min.js"></script>   
+       <script type="text/javascript" src="/path/to/my/blog/javascript.js"></script>
+   </head>
+   <body ng-app="myBlog">
+       <!-- ui-view directive is required -->
+       <ui-view></ui-view>
+   </body>
+</html>
+```
+
+## Configure your javascript
 
 * Configure your module using `$FrontPressProvider`  !
 
@@ -74,6 +83,7 @@ angular.module('myBlog').config(function($FrontPressProvider){
 ```
 
 **It's done!**
+**Disclaimer: By default as any SPA FrontPress homepage will run on a /#!/ route!** 
 
 ## Further relevant informations
 
