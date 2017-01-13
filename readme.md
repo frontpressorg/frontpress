@@ -21,7 +21,7 @@ AngularJS is the only FrontPress dependency you will need to import.
 <script type="text/javascript" src="/path/to/frontpress/release/frontpress.min.js"></script>
 ```
 
-*You may install FrontPress using [bower](https://github.com/frontpressorg/frontpress/wiki/Installation#bower-package) or import it directly from cdn using [cdnjs](https://github.com/frontpressorg/frontpress/wiki/Installation#cdn-js)*
+*You may install FrontPress using [bower](https://github.com/frontpressorg/frontpress/wiki/Installation#bower-package) or import it directly from cdn using [cdnjs](https://github.com/frontpressorg/frontpress/wiki/Installation#cdn-js)*.
 
 ## Usage
 
@@ -37,14 +37,14 @@ Your minimal index.html can be just like that.
 
 ```html
 <!DOCTYPE html>
-<html>
+<html ng-app="myBlog">
    <!-- include FrontPress page-head attribute directive if you want-->
    <head page-head>
        <script type="text/javascript" src="/path/to/angular.min.js"></script>
        <script type="text/javascript" src="/path/to/frontpress/release/frontpress.min.js"></script>   
        <script type="text/javascript" src="/path/to/my/blog/javascript.js"></script>
    </head>
-   <body ng-app="myBlog">
+   <body>
        <!-- ui-view directive is required -->
        <ui-view></ui-view>
    </body>
