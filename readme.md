@@ -14,8 +14,6 @@
 npm install frontpress --save
 ``` 
 
-* Import angular and frontpress to your project.
-
 AngularJS is the only FrontPress dependency you will need to import.
 
 ```html
@@ -83,6 +81,7 @@ angular.module('myBlog').config(function($FrontPressProvider){
 ```
 
 **It's done!**
+
 **Disclaimer: By default as any SPA FrontPress homepage will run on a /#!/ route!** 
 
 ## Further relevant informations
