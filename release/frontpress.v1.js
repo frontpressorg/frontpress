@@ -5105,6 +5105,7 @@ $templateCache.put('/js/components/page-head/templates/page-head.template.html',
 $templateCache.put('/js/components/pagination/templates/pagination.template.html','<div>\n\t<a \tdata-ui-sref="home-pagination({pageNumber:vc.vm.prevPageNumber})" \n\t\tdata-ng-if="vc.vm.prevPageNumber">&lt;&lt;</a>\n\t\n\t<a data-ng-repeat="page in vc.vm.pages" data-ng-bind="page.number" data-ui-sref="home-pagination({pageNumber:page.number})"></a>\t\t\n\n\t<a data-ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" data-ng-if="vc.vm.nextPageNumber">&gt;&gt;</a>\n</div>');
 $templateCache.put('/js/components/post-date/templates/post-date.template.html','<p data-ng-bind="vc.post.date | date :  \'dd/MM/y\' "></p>');
 $templateCache.put('/js/components/share/templates/share.template.html','<div>\n    Share:\n    <span data-ng-click="vc.vm.openShareWindow(\'twitter\', vc.post)">Twitter</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'facebook\', vc.post)">Facebook</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'gplus\', vc.post)">Google+</span>\n</div>\n');
+$templateCache.put('/js/views/category/templates/category.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
 $templateCache.put('/js/views/home/templates/home.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
 $templateCache.put('/js/views/post/templates/post.template.html','<div>\n\t<full-post></full-post>\n</div>');}]);
 "use strict";
@@ -5359,6 +5360,18 @@ angular.module("frontpress.components.share", [
 "use strict";
 
 angular.module("frontpress.components.slugs-map", ["frontpress.apis.posts", "frontpress.apis.api-manager-map"]);
+
+"use strict";
+
+angular.module("frontpress.views.category",
+				["ui.router",
+				"infinite-scroll",
+				"frontpress.components.api-manager",
+				"frontpress.components.pagination",
+				"frontpress.components.list-posts",
+				"frontpress.components.page-head",
+				"frontpress.components.blog",
+				"frontpress.components.frontpress-provider"]);
 
 "use strict";
 
@@ -5673,6 +5686,24 @@ Share.$inject = ["$FrontPress"];
 
 "use strict";
 
+function CategoryViewDirective($FrontPress){
+    var directive = {
+        scope: {},
+        templateUrl: $FrontPress.getTemplateUrl("views.category"),
+        restrict: "AE",
+        controllerAs: "vc",
+        bindToController: true,
+        controller: "CategoryDirectiveController",
+        replace: true
+    };
+    return directive;
+}
+
+angular.module("frontpress.views.category").directive("categoryView", CategoryViewDirective);
+CategoryViewDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
 function HomeViewDirective($FrontPress){
     var directive = {
         scope: {},
@@ -5942,6 +5973,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultRoutesList = {
 			"home": "/",
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
+			"category": "/category/{categoryName}",
+			"category.pagination": "/category/{categoryName}/page/{pageNumber:[0-9]{1,}}",
 			"post": "/:postSlug"
 		};
 
@@ -5984,6 +6017,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
+			"views.category": "/js/views/category/templates/category.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
@@ -6765,6 +6799,86 @@ function SlugsMapModel($cacheFactory, PostsApi, ApiManagerMap){
 angular.module("frontpress.components.slugs-map").factory("SlugsMapModel", SlugsMapModel);
 SlugsMapModel.$inject = ["$cacheFactory", "PostsApi", "ApiManagerMap"];
 
+
+"use strict";
+
+function CategoryDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
+    var vc = this;
+    vc.vm = ListPostsModel;
+    var firstNextPageNumber = 2;
+    vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
+    vc.isInfiniteScrollDisabled = !$FrontPress.infiniteScroll;
+    PageHeadModel.init();
+
+    var params = {
+        pageSize: $FrontPress.pageSize,
+        pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
+    };
+
+    var loadPostsPromise = vc.vm.loadPosts(params);
+
+    loadPostsPromise.then(function(loadedPosts){
+        var totalPagesNumber = ListPostsModel.totalPostsNumber / $FrontPress.pageSize;
+        PaginationModel.setLastPageNumber(totalPagesNumber);
+        _setPaginationPages(params.pageNumber);
+        if($FrontPress.apiVersion === "v2"){
+            vc.vm.loadExternalFeaturedImages(loadedPosts);
+        }
+    });
+
+    function _setPageMetaData(){
+
+        var blogInformationPromise = BlogModel.getInformationPromise();
+
+        blogInformationPromise.then(function(blogInformation){
+            var homeReplaceRules = {
+                ":siteName": blogInformation.name,
+                ":siteDescription": blogInformation.description
+            };
+            PageHeadModel.parsePageTitle("home", homeReplaceRules);
+
+        });
+
+        var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
+        PageHeadModel.setPageCanonical(canonical);
+    }
+
+    _setPageMetaData();
+
+    function loadMorePostsAndPaginate(){
+        params.pageNumber++;
+        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
+        var paginationOptions = {notify: false};
+        var loadPostsPromise = vc.vm.loadPosts(params);
+
+
+        loadPostsPromise.then(function(loadedPosts){
+            if($FrontPress.apiVersion === "v2"){
+                vc.vm.loadExternalFeaturedImages(loadedPosts);
+            }
+        });
+
+        _setPageMetaData();
+        _setPaginationPages(params.pageNumber);
+        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
+    }
+
+    function _setPaginationPages(currentPageNumber){
+        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
+    }
+}
+
+angular.module("frontpress.views.category").controller("CategoryDirectiveController", CategoryDirectiveController);
+CategoryDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];
+
+"use strict";
+
+function CategoryRouteController(){
+    var vc = this;
+}
+
+angular.module("frontpress.views.category").controller("CategoryRouteController", CategoryRouteController);
+CategoryRouteController.$inject = [];
 
 "use strict";
 

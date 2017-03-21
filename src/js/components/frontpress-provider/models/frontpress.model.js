@@ -67,6 +67,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultRoutesList = {
 			"home": "/",
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
+			"category": "/category/{categoryName}",
+			"category.pagination": "/category/{categoryName}/page/{pageNumber:[0-9]{1,}}",
 			"post": "/:postSlug"
 		};
 
@@ -109,6 +111,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
+			"views.category": "/js/views/category/templates/category.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
