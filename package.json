@@ -40,13 +40,15 @@
   },
   "scripts": {
     "test": "karma start --browsers PhantomJS && cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/codacy-coverage",
-    "jshint": "jshint -c .jshintrc --exclude-path .jshintignore ."
+    "jshint": "jshint -c .jshintrc --exclude-path .jshintignore .",
+    "dev": "gulp build connect",
+    "watch": "gulp watch"
   },
   "pre-commit": ["jshint"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frontpressorg/frontpress.git"
-  },  
+  },
   "author": "Jota Teles",
   "npmName": "frontpress",
   "npmFileMap": [
@@ -56,7 +58,7 @@
         "**/frontpress.*.js"
       ]
     }
-  ],  
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/frontpressorg/frontpress/issues"

@@ -3,5 +3,5 @@
 var gulp = require("gulp");
 
 module.exports = function() {
-    return gulp.start("pre-commit", "templateCache", "copy", "inject");
+    return gulp.start("templateCache", "copy", "inject");
 };
