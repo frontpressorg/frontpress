@@ -79,6 +79,16 @@ angular.module('myBlog').config(function($FrontPressProvider){
 
 ```
 
+## CONTRIBUTING
+
+If you want to contribute to FrontPress main code, start by running a build version of the code:
+
+```bash
+$ npm run dev
+```
+
+More info on [CONTRIBUTING.md](CONTRIBUTING.md).
+
 **It's done!**
 
 **Disclaimer: By default as any SPA FrontPress homepage will run on a /#!/ route!** 
