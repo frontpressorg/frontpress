@@ -31,24 +31,16 @@ Just run the command below and we'll create a configuration file called `frontpr
 You may find more [information about `frontpress.json` here](https://github.com/teles/frontpress/wiki/frontpress.json).
 
 ```bash
-$ gulp init
+$ npm run dev
 ```
 
-Run this to use the Angular Template Cache:
+Run this to use the watch code modifications and rebuild:
 
 ```bash
-$ gulp templateCache
+$ npm run watch
 ```
 
-##### If you already have a configuration file: :tada:
-
-If your `fronpress.json` file is already configured, just **run the app**:
-
-```bash
-$ gulp
-```
-
-Wait a few, and it will open a new tab on your browser.
+Wait a few, and it will open a [new tab on your browser](http://localhost:4000).
 
 #### Goals
 
