@@ -5107,7 +5107,8 @@ $templateCache.put('/js/components/post-date/templates/post-date.template.html',
 $templateCache.put('/js/components/share/templates/share.template.html','<div>\n    Share:\n    <span data-ng-click="vc.vm.openShareWindow(\'twitter\', vc.post)">Twitter</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'facebook\', vc.post)">Facebook</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'gplus\', vc.post)">Google+</span>\n</div>\n');
 $templateCache.put('/js/views/category/templates/category.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
 $templateCache.put('/js/views/home/templates/home.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
-$templateCache.put('/js/views/post/templates/post.template.html','<div>\n\t<full-post></full-post>\n</div>');}]);
+$templateCache.put('/js/views/post/templates/post.template.html','<div>\n\t<full-post></full-post>\n</div>');
+$templateCache.put('/js/views/tags/templates/tag.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');}]);
 "use strict";
 
 angular.module("frontpress", [
@@ -5792,30 +5793,6 @@ TrustAsHtml.$inject = ["$sce"];
 
 "use strict";
 
-function ApiManager(ApiManagerMap){
-    var service = {
-        getPath: getPath
-    };
-
-    return service;
-
-    function getPath(object, pathName){
-        var result = object;
-        var path = ApiManagerMap[pathName];
-
-        for(var i=0; i < path.length; i++){
-            result = result[path[i]];
-        }
-
-        return result;
-    }
-}
-
-angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
-ApiManager.$inject = ["ApiManagerMap"];
-
-"use strict";
-
 function AjaxModel($http) {
     function request(url, params, method) {
         params = params || {};
@@ -5855,11 +5832,27 @@ AjaxModel.$inject = ["$http"];
 
 "use strict";
 
-function FeaturedImageDirectiveController(){
-	var vc = this;
+function ApiManager(ApiManagerMap){
+    var service = {
+        getPath: getPath
+    };
+
+    return service;
+
+    function getPath(object, pathName){
+        var result = object;
+        var path = ApiManagerMap[pathName];
+
+        for(var i=0; i < path.length; i++){
+            result = result[path[i]];
+        }
+
+        return result;
+    }
 }
 
-angular.module("frontpress.components.featured-image").controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
+angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
+ApiManager.$inject = ["ApiManagerMap"];
 
 "use strict";
 
@@ -5933,6 +5926,14 @@ function BlogModel(BlogApi, $q, ApiManager, $FrontPress){
 
 angular.module("frontpress.components.blog").factory("BlogModel", BlogModel);
 BlogModel.$inject = ["BlogApi", "$q", "ApiManager", "$FrontPress"];
+
+"use strict";
+
+function FeaturedImageDirectiveController(){
+	var vc = this;
+}
+
+angular.module("frontpress.components.featured-image").controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
 
 "use strict";
 
@@ -7330,7 +7331,7 @@ function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
 
     var restApi = {
         getAllTags: getAllTags,
-        getTagByPostId: getTagByPostId,
+        getTagByPostId: getTagByPostId
     };
 
     return restApi;
