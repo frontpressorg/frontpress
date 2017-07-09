@@ -69,6 +69,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
 			"category": "/category/{categoryName}",
 			"category.pagination": "/category/{categoryName}/page/{pageNumber:[0-9]{1,}}",
+            "tag": "/tag/{categoryName}",
+            "tag.pagination": "/tag/{categoryName}/page/{pageNumber:[0-9]{1,}}",
 			"post": "/:postSlug"
 		};
 
@@ -112,6 +114,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
 			"views.category": "/js/views/category/templates/category.template.html",
+            "views.tag": "/js/views/category/templates/tag.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
@@ -128,7 +131,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultTitlesList = {
 			"home": ":siteName",
 			"home.pagination": ":siteName :pageNumber",
-			"post": ":siteName - :postTitle",
+			"post": ":siteName - :postTitle"
 		};
 
 		switch(configure.apiVersion){
@@ -187,7 +190,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
         _setHomeStates();
 		_setPostStates();
 		_setCategoryStates();
-
+        _setTagStates();
 	}
 
 	function _setHomeStates(){
@@ -220,13 +223,24 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
     function _setCategoryStates(){
 
-        var statePost = {
+        var stateCategory = {
             url: configure.routes.category,
             template: "<category-view></category-view>",
             controller: "CategoryRouteController as vc"
         };
 
-        $stateProvider.state("category", statePost);
+        $stateProvider.state("category", stateCategory);
+    }
+
+    function _setTagStates(){
+
+        var stateTag = {
+            url: configure.routes.tag,
+            template: "<tag-view></tag-view>",
+            controller: "TagRouteController as vc"
+        };
+
+        $stateProvider.state("tag", stateTag);
     }
 
 

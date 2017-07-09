@@ -1,3 +1,3 @@
 "use strict";
 
-angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post", "frontpress.views.category"]);
+angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post", "frontpress.views.category", "frontpress.views.tag"]);

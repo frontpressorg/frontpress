@@ -18,7 +18,7 @@ function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
 
     var restApi = {
         getAllTags: getAllTags,
-        getTagByPostId: getTagByPostId,
+        getTagByPostId: getTagByPostId
     };
 
     return restApi;

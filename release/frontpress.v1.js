@@ -5285,7 +5285,7 @@ angular.module("frontpress.filters", []);
 
 "use strict";
 
-angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post", "frontpress.views.category"]);
+angular.module("frontpress.views", ["frontpress.views.home", "frontpress.views.post", "frontpress.views.category", "frontpress.views.tag"]);
 
 "use strict";
 
@@ -5396,6 +5396,18 @@ angular.module("frontpress.views.post",
 				"ngDisqus",
 				"frontpress.components.slugs-map",
 				"frontpress.components.api-manager",
+				"frontpress.components.frontpress-provider"]);
+
+"use strict";
+
+angular.module("frontpress.views.tag",
+				["ui.router",
+				"infinite-scroll",
+				"frontpress.components.api-manager",
+				"frontpress.components.pagination",
+				"frontpress.components.list-posts",
+				"frontpress.components.page-head",
+				"frontpress.components.blog",
 				"frontpress.components.frontpress-provider"]);
 
 "use strict";
@@ -5740,6 +5752,24 @@ PostViewDirective.$inject = ["$FrontPress"];
 
 "use strict";
 
+function TagViewDirective($FrontPress){
+    var directive = {
+        scope: {},
+        templateUrl: $FrontPress.getTemplateUrl("views.tag"),
+        restrict: "AE",
+        controllerAs: "vc",
+        bindToController: true,
+        controller: "TagDirectiveController",
+        replace: true
+    };
+    return directive;
+}
+
+angular.module("frontpress.views.tag").directive("tagView", TagViewDirective);
+TagViewDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
 angular.module("infinite-scroll").value("THROTTLE_MILLISECONDS", 1000);
 
 // this file is empty but you can override it using https://github.com/frontpressorg/frontpress-cli
@@ -5759,6 +5789,30 @@ function TrustAsHtml($sce){
 
 angular.module("frontpress.filters").filter("trustAsHtml", TrustAsHtml);
 TrustAsHtml.$inject = ["$sce"];
+
+"use strict";
+
+function ApiManager(ApiManagerMap){
+    var service = {
+        getPath: getPath
+    };
+
+    return service;
+
+    function getPath(object, pathName){
+        var result = object;
+        var path = ApiManagerMap[pathName];
+
+        for(var i=0; i < path.length; i++){
+            result = result[path[i]];
+        }
+
+        return result;
+    }
+}
+
+angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
+ApiManager.$inject = ["ApiManagerMap"];
 
 "use strict";
 
@@ -5801,27 +5855,11 @@ AjaxModel.$inject = ["$http"];
 
 "use strict";
 
-function ApiManager(ApiManagerMap){
-    var service = {
-        getPath: getPath
-    };
-
-    return service;
-
-    function getPath(object, pathName){
-        var result = object;
-        var path = ApiManagerMap[pathName];
-
-        for(var i=0; i < path.length; i++){
-            result = result[path[i]];
-        }
-
-        return result;
-    }
+function FeaturedImageDirectiveController(){
+	var vc = this;
 }
 
-angular.module("frontpress.components.api-manager").service("ApiManager", ApiManager);
-ApiManager.$inject = ["ApiManagerMap"];
+angular.module("frontpress.components.featured-image").controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
 
 "use strict";
 
@@ -5898,14 +5936,6 @@ BlogModel.$inject = ["BlogApi", "$q", "ApiManager", "$FrontPress"];
 
 "use strict";
 
-function FeaturedImageDirectiveController(){
-	var vc = this;
-}
-
-angular.module("frontpress.components.featured-image").controller("FeaturedImageDirectiveController", FeaturedImageDirectiveController);
-
-"use strict";
-
 function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigurationFile){
 	var configure = {
 		load: load,
@@ -5975,6 +6005,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
 			"category": "/category/{categoryName}",
 			"category.pagination": "/category/{categoryName}/page/{pageNumber:[0-9]{1,}}",
+            "tag": "/tag/{categoryName}",
+            "tag.pagination": "/tag/{categoryName}/page/{pageNumber:[0-9]{1,}}",
 			"post": "/:postSlug"
 		};
 
@@ -6018,6 +6050,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
 			"views.category": "/js/views/category/templates/category.template.html",
+            "views.tag": "/js/views/category/templates/tag.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
@@ -6034,7 +6067,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultTitlesList = {
 			"home": ":siteName",
 			"home.pagination": ":siteName :pageNumber",
-			"post": ":siteName - :postTitle",
+			"post": ":siteName - :postTitle"
 		};
 
 		switch(configure.apiVersion){
@@ -6093,7 +6126,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
         _setHomeStates();
 		_setPostStates();
 		_setCategoryStates();
-
+        _setTagStates();
 	}
 
 	function _setHomeStates(){
@@ -6126,13 +6159,24 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
     function _setCategoryStates(){
 
-        var statePost = {
+        var stateCategory = {
             url: configure.routes.category,
             template: "<category-view></category-view>",
             controller: "CategoryRouteController as vc"
         };
 
-        $stateProvider.state("category", statePost);
+        $stateProvider.state("category", stateCategory);
+    }
+
+    function _setTagStates(){
+
+        var stateTag = {
+            url: configure.routes.tag,
+            template: "<tag-view></tag-view>",
+            controller: "TagRouteController as vc"
+        };
+
+        $stateProvider.state("tag", stateTag);
     }
 
 
@@ -7041,6 +7085,86 @@ function PostRouteController(){
 
 angular.module("frontpress.views.post").controller("PostRouteController", PostRouteController);
 PostRouteController.$inject = [];
+
+"use strict";
+
+function TagDirectiveController($stateParams, ListPostsModel, $state, $FrontPress, BlogModel, PageHeadModel, $location, PaginationModel){
+    var vc = this;
+    vc.vm = ListPostsModel;
+    var firstNextPageNumber = 2;
+    vc.loadMorePostsAndPaginate = loadMorePostsAndPaginate;
+    vc.isInfiniteScrollDisabled = !$FrontPress.infiniteScroll;
+    PageHeadModel.init();
+
+    var params = {
+        pageSize: $FrontPress.pageSize,
+        pageNumber: $stateParams.pageNumber ? $stateParams.pageNumber : 1
+    };
+
+    var loadPostsPromise = vc.vm.loadPosts(params);
+
+    loadPostsPromise.then(function(loadedPosts){
+        var totalPagesNumber = ListPostsModel.totalPostsNumber / $FrontPress.pageSize;
+        PaginationModel.setLastPageNumber(totalPagesNumber);
+        _setPaginationPages(params.pageNumber);
+        if($FrontPress.apiVersion === "v2"){
+            vc.vm.loadExternalFeaturedImages(loadedPosts);
+        }
+    });
+
+    function _setPageMetaData(){
+
+        var blogInformationPromise = BlogModel.getInformationPromise();
+
+        blogInformationPromise.then(function(blogInformation){
+            var homeReplaceRules = {
+                ":siteName": blogInformation.name,
+                ":siteDescription": blogInformation.description
+            };
+            PageHeadModel.parsePageTitle("home", homeReplaceRules);
+
+        });
+
+        var canonical = $location.absUrl().replace(/\/page\/[0-9]{1,}\/?/, "");
+        PageHeadModel.setPageCanonical(canonical);
+    }
+
+    _setPageMetaData();
+
+    function loadMorePostsAndPaginate(){
+        params.pageNumber++;
+        var nextPageNumber = params.pageNumber ? params.pageNumber : firstNextPageNumber;
+        var paginationOptions = {notify: false};
+        var loadPostsPromise = vc.vm.loadPosts(params);
+
+
+        loadPostsPromise.then(function(loadedPosts){
+            if($FrontPress.apiVersion === "v2"){
+                vc.vm.loadExternalFeaturedImages(loadedPosts);
+            }
+        });
+
+        _setPageMetaData();
+        _setPaginationPages(params.pageNumber);
+        $state.go("home-pagination", {pageNumber: nextPageNumber}, paginationOptions);
+    }
+
+    function _setPaginationPages(currentPageNumber){
+        PaginationModel.generatePaginationFromCurrentPageNumber(currentPageNumber);
+    }
+}
+
+angular.module("frontpress.views.tag").controller("TagDirectiveController", TagDirectiveController);
+TagDirectiveController.$inject = ["$stateParams", "ListPostsModel", "$state", "$FrontPress", "BlogModel", "PageHeadModel", "$location", "PaginationModel"];
+
+"use strict";
+
+function TagRouteController(){
+    var vc = this;
+}
+
+angular.module("frontpress.views.tag").controller("CategoryRouteController", TagRouteController);
+TagRouteController.$inject = [];
 
 "use strict";
 

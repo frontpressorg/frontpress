@@ -19,10 +19,10 @@ function TagsApi(AjaxModel, $FrontPress, ConfigsToParams){
 
     return {
         getAllTags: getAllTags,
-        getTagById: getTagById,
+        getTagById: getTagById
     };
 }
 
-angular.module("frontpress.apis.categories").factory("TagsApi", TagsApi);
+angular.module("frontpress.apis.tags").factory("TagsApi", TagsApi);
 TagsApi.$inject = ["AjaxModel", "$FrontPress", "ConfigsToParams"];
 
