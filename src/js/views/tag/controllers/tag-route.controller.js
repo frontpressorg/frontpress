@@ -4,5 +4,5 @@ function TagRouteController(){
     var vc = this;
 }
 
-angular.module("frontpress.views.tag").controller("CategoryRouteController", TagRouteController);
+angular.module("frontpress.views.tag").controller("TagRouteController", TagRouteController);
 TagRouteController.$inject = [];

@@ -69,8 +69,8 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			"home.pagination": "/page/{pageNumber:[0-9]{1,}}",
 			"category": "/category/{categoryName}",
 			"category.pagination": "/category/{categoryName}/page/{pageNumber:[0-9]{1,}}",
-            "tag": "/tag/{categoryName}",
-            "tag.pagination": "/tag/{categoryName}/page/{pageNumber:[0-9]{1,}}",
+            "tag": "/tag/{tagName}",
+            "tag.pagination": "/tag/{tagName}/page/{pageNumber:[0-9]{1,}}",
 			"post": "/:postSlug"
 		};
 
@@ -114,7 +114,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		var defaultTemplateUrlList = {
 			"views.home": "/js/views/home/templates/home.template.html",
 			"views.category": "/js/views/category/templates/category.template.html",
-            "views.tag": "/js/views/category/templates/tag.template.html",
+            "views.tag": "/js/views/tag/templates/tag.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
 			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
@@ -255,7 +255,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			titles: configure.titles,
 			siteName: configure.siteName,
 			infiniteScroll: configure.infiniteScroll,
-			getTemplateUrl: getTemplateUrl,
+			getTemplateUrl: getTemplateUrl
 		};
 
 		function getTemplateUrl(templateName){

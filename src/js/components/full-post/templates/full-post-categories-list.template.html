@@ -1,11 +1,13 @@
 <div>
 	<p data-ng-if="vc.post.isLoadingCategories">carregando categorias...</p>
 	<p data-ng-if="vc.post.isLoadingCategories === false">
-		<span><strong>categorias:</strong></span>	
-		<span data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </span>		
-		<span data-ng-if="vc.post.categories.length > 1" 
-			data-ng-repeat="category in vc.post.categories" 
-			rel="tag">{{category.name}}{{$last ? "" : ", "}}		
-		</span>		
+		<span><strong>categorias:</strong></span>
+		<a ui-sref="category({categoryName: vc.post.categories[0].name})" data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </a>
+
+        <a  ui-sref="category({categoryName: category.name})"
+            data-ng-if="vc.post.categories.length > 1"
+			data-ng-repeat="category in vc.post.categories"
+			rel="tag">{{category.name}}{{$last ? "" : ", "}}
+		</a>
 	</p>
 </div>
