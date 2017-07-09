@@ -186,6 +186,7 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
         _loadRoutes(configurationObject);
         _setHomeStates();
 		_setPostStates();
+		_setCategoryStates();
 
 	}
 
@@ -216,6 +217,17 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 	    $stateProvider.state("post", statePost);
 	}
+
+    function _setCategoryStates(){
+
+        var statePost = {
+            url: configure.routes.category,
+            template: "<category-view></category-view>",
+            controller: "CategoryRouteController as vc"
+        };
+
+        $stateProvider.state("category", statePost);
+    }
 
 
 	function Frontpress(){
