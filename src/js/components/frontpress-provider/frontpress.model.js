@@ -116,14 +116,14 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			"views.category": "/js/views/category/templates/category.template.html",
             "views.tag": "/js/views/tag/templates/tag.template.html",
 			"views.post": "/js/views/post/templates/post.template.html",
-			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
-			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
-			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
-			"components.fullpost.authorname": "/js/components/full-post/templates/full-post-author-name.template.html",
+			"components.fullpost": "/js/components/full-post/full-post.template.html",
+			"components.fullpost.categories": "/js/components/full-post/categories-list/full-post-categories-list.template.html",
+			"components.fullpost.tags": "/js/components/full-post/tags-list/full-post-tags-list.template.html",
+			"components.fullpost.authorname": "/js/components/full-post/content/full-post-author-name.template.html",
 			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
 			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
 			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
-			"components.featuredimage": "/js/components/featured-image/templates/featured-image.template.html",
+			"components.featuredimage": "/js/components/featured-image/featured-image.template.html",
 			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
 			"components.share": "/js/components/share/templates/share.template.html"
 		};
@@ -136,14 +136,14 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 		switch(configure.apiVersion){
 			case "v2":
-				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v2.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v2.template.html";
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v2.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v2.template.html";
 				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";
 				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";
 			break;
 			case "v1":
-				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v1.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v1.template.html";
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v1.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v1.template.html";
 				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";
 				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";
 			break;
