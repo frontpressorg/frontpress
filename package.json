@@ -41,7 +41,7 @@
   "scripts": {
     "test": "karma start --browsers PhantomJS && cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/codacy-coverage",
     "jshint": "jshint -c .jshintrc --exclude-path .jshintignore .",
-    "dev": "gulp build connect",
+    "dev": "gulp release && gulp build connect",
     "watch": "gulp watch"
   },
   "pre-commit": ["jshint"],
