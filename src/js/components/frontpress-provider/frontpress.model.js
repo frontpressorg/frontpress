@@ -112,20 +112,20 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		}
 
 		var defaultTemplateUrlList = {
-			"views.home": "/js/views/home/templates/home.template.html",
-			"views.category": "/js/views/category/templates/category.template.html",
-            "views.tag": "/js/views/tag/templates/tag.template.html",
-			"views.post": "/js/views/post/templates/post.template.html",
+			"views.home": "/js/views/home/home.template.html",
+			"views.category": "/js/views/category/category.template.html",
+            "views.tag": "/js/views/tag/tag.template.html",
+			"views.post": "/js/views/post/post.template.html",
 			"components.fullpost": "/js/components/full-post/full-post.template.html",
 			"components.fullpost.categories": "/js/components/full-post/categories-list/full-post-categories-list.template.html",
 			"components.fullpost.tags": "/js/components/full-post/tags-list/full-post-tags-list.template.html",
 			"components.fullpost.authorname": "/js/components/full-post/content/full-post-author-name.template.html",
-			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
-			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
-			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
+			"components.listposts": "/js/components/list-posts/list-posts.template.html",
+			"components.pagehead": "/js/components/page-head/page-head.template.html",
+			"components.postdate": "/js/components/post-date/post-date.template.html",
 			"components.featuredimage": "/js/components/featured-image/featured-image.template.html",
-			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
-			"components.share": "/js/components/share/templates/share.template.html"
+			"components.pagination": "/js/components/pagination/pagination.template.html",
+			"components.share": "/js/components/share/share.template.html"
 		};
 
 		var defaultTitlesList = {
@@ -138,14 +138,14 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 			case "v2":
 				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v2.template.html";
 				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v2.template.html";
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/excerpt/list-posts-excerpt-v2.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/title/list-posts-title-v2.template.html";
 			break;
 			case "v1":
 				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v1.template.html";
 				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v1.template.html";
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/excerpt/list-posts-excerpt-v1.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/title/list-posts-title-v1.template.html";
 			break;
 		}
 
