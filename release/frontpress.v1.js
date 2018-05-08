@@ -5087,28 +5087,28 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
 })(angular, this);
 
 angular.module("frontpress.template-cache", []);
-angular.module("frontpress.template-cache").run(["$templateCache", function($templateCache) {$templateCache.put('/js/components/featured-image/templates/featured-image.template.html','<img data-ng-src="{{vc.post.featured_image}}">');
-$templateCache.put('/js/components/full-post/templates/full-post-author-name.template.html','<span data-ng-bind="vc.post.authorName"></span>');
-$templateCache.put('/js/components/full-post/templates/full-post-categories-list.template.html','<div>\n\t<p data-ng-if="vc.post.isLoadingCategories">carregando categorias...</p>\n\t<p data-ng-if="vc.post.isLoadingCategories === false">\n\t\t<span><strong>categorias:</strong></span>\n\t\t<a ui-sref="category({categoryName: vc.post.categories[0].name})" data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </a>\n\n        <a  ui-sref="category({categoryName: category.name})"\n            data-ng-if="vc.post.categories.length > 1"\n\t\t\tdata-ng-repeat="category in vc.post.categories"\n\t\t\trel="tag">{{category.name}}{{$last ? "" : ", "}}\n\t\t</a>\n\t</p>\n</div>\n');
-$templateCache.put('/js/components/full-post/templates/full-post-content-v1.template.html','<div data-ng-bind-html="vc.post.content | trustAsHtml"></div>');
-$templateCache.put('/js/components/full-post/templates/full-post-content-v2.template.html','<div data-ng-bind-html="vc.post.content.rendered | trustAsHtml"></div>');
-$templateCache.put('/js/components/full-post/templates/full-post-tags-list.template.html','<div>\n\t<p data-ng-if="vc.post.isLoadingTags">carregando tags...</p>\n\t<p data-ng-if="vc.post.isLoadingTags === false">\n\t\t<span><strong>tags:</strong></span>\n\n        <a ui-sref="tag({tagName: vc.post.tags[0].name})" data-ng-if="vc.post.tags.length == 1" rel="tag">{{vc.post.tags[0].name}} </a>\n\n        <a  ui-sref="tag({tagName: tag.name})"\n            data-ng-if="vc.post.tags.length > 1"\n\t\t\tdata-ng-repeat="tag in vc.post.tags"\n\t\t\trel="tag">{{tag.name}}{{$last ? "" : ", "}}\n\t\t</a>\n\t</p>\n</div>\n');
-$templateCache.put('/js/components/full-post/templates/full-post-title-v1.template.html','<h1 data-ng-bind-html="vc.post.title | trustAsHtml"></h1>');
-$templateCache.put('/js/components/full-post/templates/full-post-title-v2.template.html','<h1 data-ng-bind="vc.post.title.rendered"></h1>');
-$templateCache.put('/js/components/full-post/templates/full-post.template.html','<div>\t\n\t<p data-ng-if="vc.vm.isLoadingFullPost">carregando...</p>\n\t<div data-ng-if="vc.vm.isLoadingFullPost === false">\t\t\n\t\t<full-post-title data-post="vc.vm"></full-post-title>\t\t\t\t\n\t\t<post-date data-post="vc.vm"></post-date>\t\t\n\t\t<featured-image data-post="vc.vm"></featured-image>\t\t\t\t\n\t\t<full-post-content data-post="vc.vm"></full-post-content>\t\t                \n\t\t<share data-post="vc.vm"></share>\n\t\t<full-post-categories-list data-post="vc.vm"></full-post-categories-list>        \n\t\t<full-post-tags-list data-post="vc.vm"></full-post-tags-list>       \n\t</div>\n</div>');
-$templateCache.put('/js/components/list-posts/templates/list-posts-excerpt-v1.template.html','<p data-ng-bind-html="vc.post.excerpt | trustAsHtml "></p>');
-$templateCache.put('/js/components/list-posts/templates/list-posts-excerpt-v2.template.html','<p data-ng-bind-html="vc.post.excerpt.rendered | trustAsHtml "></p>');
-$templateCache.put('/js/components/list-posts/templates/list-posts-title-v1.template.html','<h2><a data-ng-bind-html="vc.post.title | trustAsHtml " data-ui-sref="post({postSlug:vc.post.slug, postYear: vc.post.year, postMonth: vc.post.month, postDay: vc.post.day, postId: vc.post.ID})"></a></h2>');
-$templateCache.put('/js/components/list-posts/templates/list-posts-title-v2.template.html','<h2><a data-ng-bind="vc.post.title.rendered" data-ui-sref="post({postSlug:vc.post.slug, postYear: vc.post.year, postMonth: vc.post.month, postDay: vc.post.day, postId: vc.post.id})"></a></h2>');
-$templateCache.put('/js/components/list-posts/templates/list-posts.template.html','<div>\n\t<p data-ng-if="vc.vm.isLoadingPosts">Carregando posts</p>\n\t<div data-ng-repeat="post in vc.vm.postsList">\t\n\t\t<list-posts-title data-post="post"></list-posts-title>\t\n\t\t<post-date data-post="post"></post-date>\n\t\t<featured-image data-post="post"></featured-image>\t\n\t\t<list-posts-excerpt data-post="post"></list-posts-excerpt>\n        <share data-post="post"></share>\n\t</div>\n</div>\n');
-$templateCache.put('/js/components/page-head/templates/page-head.template.html','<title data-ng-bind="vc.vm.pageTitle"></title>\n<meta name="title" content="{{vc.vm.pageTitle}}">\n<meta name="description" content="{{vc.vm.pageDescription}}">\n<meta name="robots" content="{{vc.vm.pageRobots}}">\t\n\n<link rel="canonical" href="{{vc.vm.pageCanonical}}">\n\n<link rel="prev" data-ui-sref="home-pagination({pageNumber:vc.vm.relPrevNumber})" data-ng-if="vc.vm.relPrevNumber">\n<link rel="next" data-ui-sref="home-pagination({pageNumber:vc.vm.relNextNumber})" data-ng-if="vc.vm.relNextNumber">\n<ng-transclude></ng-transclude>');
-$templateCache.put('/js/components/pagination/templates/pagination.template.html','<div>\n\t<a \tdata-ui-sref="home-pagination({pageNumber:vc.vm.prevPageNumber})" \n\t\tdata-ng-if="vc.vm.prevPageNumber">&lt;&lt;</a>\n\t\n\t<a data-ng-repeat="page in vc.vm.pages" data-ng-bind="page.number" data-ui-sref="home-pagination({pageNumber:page.number})"></a>\t\t\n\n\t<a data-ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" data-ng-if="vc.vm.nextPageNumber">&gt;&gt;</a>\n</div>');
-$templateCache.put('/js/components/post-date/templates/post-date.template.html','<p data-ng-bind="vc.post.date | date :  \'dd/MM/y\' "></p>');
-$templateCache.put('/js/components/share/templates/share.template.html','<div>\n    Share:\n    <span data-ng-click="vc.vm.openShareWindow(\'twitter\', vc.post)">Twitter</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'facebook\', vc.post)">Facebook</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'gplus\', vc.post)">Google+</span>\n</div>\n');
-$templateCache.put('/js/views/category/templates/category.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
-$templateCache.put('/js/views/home/templates/home.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
-$templateCache.put('/js/views/post/templates/post.template.html','<div>\n\t<full-post></full-post>\n</div>');
-$templateCache.put('/js/views/tag/templates/tag.template.html','<div>\n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>\n');}]);
+angular.module("frontpress.template-cache").run(["$templateCache", function($templateCache) {$templateCache.put('/js/components/featured-image/featured-image.template.html','<img data-ng-src="{{vc.post.featured_image}}">');
+$templateCache.put('/js/components/full-post/full-post.template.html','<div>\t\n\t<p data-ng-if="vc.vm.isLoadingFullPost">carregando...</p>\n\t<div data-ng-if="vc.vm.isLoadingFullPost === false">\t\t\n\t\t<full-post-title data-post="vc.vm"></full-post-title>\t\t\t\t\n\t\t<post-date data-post="vc.vm"></post-date>\t\t\n\t\t<featured-image data-post="vc.vm"></featured-image>\t\t\t\t\n\t\t<full-post-content data-post="vc.vm"></full-post-content>\t\t                \n\t\t<share data-post="vc.vm"></share>\n\t\t<full-post-categories-list data-post="vc.vm"></full-post-categories-list>        \n\t\t<full-post-tags-list data-post="vc.vm"></full-post-tags-list>       \n\t</div>\n</div>');
+$templateCache.put('/js/components/list-posts/list-posts.template.html','<div>\n\t<p data-ng-if="vc.vm.isLoadingPosts">Carregando posts</p>\n\t<div data-ng-repeat="post in vc.vm.postsList">\t\n\t\t<list-posts-title data-post="post"></list-posts-title>\t\n\t\t<post-date data-post="post"></post-date>\n\t\t<featured-image data-post="post"></featured-image>\t\n\t\t<list-posts-excerpt data-post="post"></list-posts-excerpt>\n        <share data-post="post"></share>\n\t</div>\n</div>\n');
+$templateCache.put('/js/components/page-head/page-head.template.html','<title data-ng-bind="vc.vm.pageTitle"></title>\n<meta name="title" content="{{vc.vm.pageTitle}}">\n<meta name="description" content="{{vc.vm.pageDescription}}">\n<meta name="robots" content="{{vc.vm.pageRobots}}">\t\n\n<link rel="canonical" href="{{vc.vm.pageCanonical}}">\n\n<link rel="prev" data-ui-sref="home-pagination({pageNumber:vc.vm.relPrevNumber})" data-ng-if="vc.vm.relPrevNumber">\n<link rel="next" data-ui-sref="home-pagination({pageNumber:vc.vm.relNextNumber})" data-ng-if="vc.vm.relNextNumber">\n<ng-transclude></ng-transclude>');
+$templateCache.put('/js/components/pagination/pagination.template.html','<div>\n\t<a \tdata-ui-sref="home-pagination({pageNumber:vc.vm.prevPageNumber})" \n\t\tdata-ng-if="vc.vm.prevPageNumber">&lt;&lt;</a>\n\t\n\t<a data-ng-repeat="page in vc.vm.pages" data-ng-bind="page.number" data-ui-sref="home-pagination({pageNumber:page.number})"></a>\t\t\n\n\t<a data-ui-sref="home-pagination({pageNumber:vc.vm.nextPageNumber})" data-ng-if="vc.vm.nextPageNumber">&gt;&gt;</a>\n</div>');
+$templateCache.put('/js/components/post-date/post-date.template.html','<p data-ng-bind="vc.post.date | date :  \'dd/MM/y\' "></p>');
+$templateCache.put('/js/components/share/share.template.html','<div>\n    Share:\n    <span data-ng-click="vc.vm.openShareWindow(\'twitter\', vc.post)">Twitter</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'facebook\', vc.post)">Facebook</span>\n    <span data-ng-click="vc.vm.openShareWindow(\'gplus\', vc.post)">Google+</span>\n</div>\n');
+$templateCache.put('/js/views/category/category.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
+$templateCache.put('/js/views/home/home.template.html','<div> \n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>');
+$templateCache.put('/js/views/post/post.template.html','<div>\n\t<full-post></full-post>\n</div>');
+$templateCache.put('/js/views/tag/tag.template.html','<div>\n\t<div data-infinite-scroll="vc.loadMorePostsAndPaginate()" data-infinite-scroll-immediate-check="false" data-infinite-scroll-disabled="vc.vm.isLoadingPosts || vc.isInfiniteScrollDisabled">\n\t\t<list-posts></list-posts>\n\t\t<span data-ng-if="vc.vm.isLoadingPosts">Carregando posts novos ...</span>\n\t\t<pagination></pagination>\n\t</div>\n</div>\n');
+$templateCache.put('/js/components/full-post/categories-list/full-post-categories-list.template.html','<div>\n\t<p data-ng-if="vc.post.isLoadingCategories">carregando categorias...</p>\n\t<p data-ng-if="vc.post.isLoadingCategories === false">\n\t\t<span><strong>categorias:</strong></span>\n\t\t<a ui-sref="category({categoryName: vc.post.categories[0].name})" data-ng-if="vc.post.categories.length == 1" rel="tag">{{vc.post.categories[0].name}} </a>\n\n        <a  ui-sref="category({categoryName: category.name})"\n            data-ng-if="vc.post.categories.length > 1"\n\t\t\tdata-ng-repeat="category in vc.post.categories"\n\t\t\trel="tag">{{category.name}}{{$last ? "" : ", "}}\n\t\t</a>\n\t</p>\n</div>\n');
+$templateCache.put('/js/components/full-post/content/full-post-author-name.template.html','<span data-ng-bind="vc.post.authorName"></span>');
+$templateCache.put('/js/components/full-post/content/full-post-content-v1.template.html','<div data-ng-bind-html="vc.post.content | trustAsHtml"></div>');
+$templateCache.put('/js/components/full-post/content/full-post-content-v2.template.html','<div data-ng-bind-html="vc.post.content.rendered | trustAsHtml"></div>');
+$templateCache.put('/js/components/full-post/content/full-post-title-v1.template.html','<h1 data-ng-bind-html="vc.post.title | trustAsHtml"></h1>');
+$templateCache.put('/js/components/full-post/content/full-post-title-v2.template.html','<h1 data-ng-bind="vc.post.title.rendered"></h1>');
+$templateCache.put('/js/components/full-post/tags-list/full-post-tags-list.template.html','<div>\n\t<p data-ng-if="vc.post.isLoadingTags">carregando tags...</p>\n\t<p data-ng-if="vc.post.isLoadingTags === false">\n\t\t<span><strong>tags:</strong></span>\n\n        <a ui-sref="tag({tagName: vc.post.tags[0].name})" data-ng-if="vc.post.tags.length == 1" rel="tag">{{vc.post.tags[0].name}} </a>\n\n        <a  ui-sref="tag({tagName: tag.name})"\n            data-ng-if="vc.post.tags.length > 1"\n\t\t\tdata-ng-repeat="tag in vc.post.tags"\n\t\t\trel="tag">{{tag.name}}{{$last ? "" : ", "}}\n\t\t</a>\n\t</p>\n</div>\n');
+$templateCache.put('/js/components/list-posts/excerpt/list-posts-excerpt-v1.template.html','<p data-ng-bind-html="vc.post.excerpt | trustAsHtml "></p>');
+$templateCache.put('/js/components/list-posts/excerpt/list-posts-excerpt-v2.template.html','<p data-ng-bind-html="vc.post.excerpt.rendered | trustAsHtml "></p>');
+$templateCache.put('/js/components/list-posts/title/list-posts-title-v1.template.html','<h2><a data-ng-bind-html="vc.post.title | trustAsHtml " data-ui-sref="post({postSlug:vc.post.slug, postYear: vc.post.year, postMonth: vc.post.month, postDay: vc.post.day, postId: vc.post.ID})"></a></h2>');
+$templateCache.put('/js/components/list-posts/title/list-posts-title-v2.template.html','<h2><a data-ng-bind="vc.post.title.rendered" data-ui-sref="post({postSlug:vc.post.slug, postYear: vc.post.year, postMonth: vc.post.month, postDay: vc.post.day, postId: vc.post.id})"></a></h2>');}]);
 "use strict";
 
 angular.module("frontpress", [
@@ -5434,109 +5434,6 @@ FeaturedImageDirective.$inject = ["$FrontPress"];
 
 "use strict";
 
-function FullPostAuthorNameDirective($FrontPress){
-	var directive = {
-		restrict: "AE",
-		scope: {
-			post: "=post"
-		},
-		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.authorname"),
-		controller: "FullPostGenericDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true
-	};
-
-	return directive;
-}
-
-angular.module("frontpress.components.full-post").directive("fullPostAuthorName", FullPostAuthorNameDirective);
-FullPostAuthorNameDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function FullPostCategoriesListDirective($FrontPress){
-	return {
-		restrict: "AE",
-		scope: {
-			post: "=post"
-		},
-		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.categories"),
-		controller: "FullPostCategoriesListDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true
-	};
-}
-
-angular.module("frontpress.components.full-post").directive("fullPostCategoriesList", FullPostCategoriesListDirective);
-FullPostCategoriesListDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function FullPostContentDirective($FrontPress){
-	var directive = {
-		restrict: "AE",
-		scope: {
-			post: "=post"
-		},
-		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.content"),
-		controller: "FullPostGenericDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true
-	};
-
-	return directive;
-}
-
-angular.module("frontpress.components.full-post").directive("fullPostContent", FullPostContentDirective);
-FullPostContentDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function FullPostTagListDirective($FrontPress){
-	var directive = {
-		restrict: "AE",
-		scope: {
-			post: "=post"
-		},
-		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.tags"),
-		controller: "FullPostTagsListDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true
-	};
-
-	return directive;
-}
-
-angular.module("frontpress.components.full-post").directive("fullPostTagsList", FullPostTagListDirective);
-FullPostTagListDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function FullPostTitleDirective($FrontPress){
-	var directive = {
-		restrict: "AE",
-		scope: {
-			post: "=post"
-		},
-		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.title"),
-		controller: "FullPostGenericDirectiveController",
-		controllerAs: "vc",
-		bindToController: true,
-		replace: true
-	};
-
-	return directive;
-}
-
-angular.module("frontpress.components.full-post").directive("fullPostTitle", FullPostTitleDirective);
-FullPostTitleDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
 function FullPostDirective($FrontPress){
     var directive = {
         restrict: "AE",
@@ -5553,49 +5450,6 @@ function FullPostDirective($FrontPress){
 
 angular.module("frontpress.components.full-post").directive("fullPost", FullPostDirective);
 FullPostDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function ListPostsExcerptDirective($FrontPress){
-    var directive = {
-        scope: {
-            post: "=post"
-        },
-        restrict: "AE",
-        controller: "ListPostsGenericDirectiveController",
-        controllerAs: "vc",
-        bindToController: true,
-        replace: true,
-        templateUrl: $FrontPress.getTemplateUrl("components.listposts.excerpt")
-
-    };
-
-    return directive;
-}
-
-angular.module("frontpress.components.list-posts").directive("listPostsExcerpt", ListPostsExcerptDirective);
-ListPostsExcerptDirective.$inject = ["$FrontPress"];
-
-"use strict";
-
-function ListPostsTitleDirective($FrontPress){
-    var directive = {
-        scope: {
-            post: "=post"
-        },
-        restrict: "AE",
-        controller: "ListPostsGenericDirectiveController",
-        controllerAs: "vc",
-        replace: true,
-        bindToController: true,
-        templateUrl: $FrontPress.getTemplateUrl("components.listposts.title")
-    };
-
-    return directive;
-}
-
-angular.module("frontpress.components.list-posts").directive("listPostsTitle", ListPostsTitleDirective);
-ListPostsTitleDirective.$inject = ["$FrontPress"];
 
 "use strict";
 
@@ -5768,6 +5622,152 @@ function TagViewDirective($FrontPress){
 
 angular.module("frontpress.views.tag").directive("tagView", TagViewDirective);
 TagViewDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function FullPostCategoriesListDirective($FrontPress){
+	return {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.categories"),
+		controller: "FullPostCategoriesListDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+}
+
+angular.module("frontpress.components.full-post").directive("fullPostCategoriesList", FullPostCategoriesListDirective);
+FullPostCategoriesListDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function FullPostAuthorNameDirective($FrontPress){
+	var directive = {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.authorname"),
+		controller: "FullPostGenericDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+
+	return directive;
+}
+
+angular.module("frontpress.components.full-post").directive("fullPostAuthorName", FullPostAuthorNameDirective);
+FullPostAuthorNameDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function FullPostContentDirective($FrontPress){
+	var directive = {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.content"),
+		controller: "FullPostGenericDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+
+	return directive;
+}
+
+angular.module("frontpress.components.full-post").directive("fullPostContent", FullPostContentDirective);
+FullPostContentDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function FullPostTitleDirective($FrontPress){
+	var directive = {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.title"),
+		controller: "FullPostGenericDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+
+	return directive;
+}
+
+angular.module("frontpress.components.full-post").directive("fullPostTitle", FullPostTitleDirective);
+FullPostTitleDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function FullPostTagListDirective($FrontPress){
+	var directive = {
+		restrict: "AE",
+		scope: {
+			post: "=post"
+		},
+		templateUrl: $FrontPress.getTemplateUrl("components.fullpost.tags"),
+		controller: "FullPostTagsListDirectiveController",
+		controllerAs: "vc",
+		bindToController: true,
+		replace: true
+	};
+
+	return directive;
+}
+
+angular.module("frontpress.components.full-post").directive("fullPostTagsList", FullPostTagListDirective);
+FullPostTagListDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function ListPostsExcerptDirective($FrontPress){
+    var directive = {
+        scope: {
+            post: "=post"
+        },
+        restrict: "AE",
+        controller: "ListPostsGenericDirectiveController",
+        controllerAs: "vc",
+        bindToController: true,
+        replace: true,
+        templateUrl: $FrontPress.getTemplateUrl("components.listposts.excerpt")
+
+    };
+
+    return directive;
+}
+
+angular.module("frontpress.components.list-posts").directive("listPostsExcerpt", ListPostsExcerptDirective);
+ListPostsExcerptDirective.$inject = ["$FrontPress"];
+
+"use strict";
+
+function ListPostsTitleDirective($FrontPress){
+    var directive = {
+        scope: {
+            post: "=post"
+        },
+        restrict: "AE",
+        controller: "ListPostsGenericDirectiveController",
+        controllerAs: "vc",
+        replace: true,
+        bindToController: true,
+        templateUrl: $FrontPress.getTemplateUrl("components.listposts.title")
+    };
+
+    return directive;
+}
+
+angular.module("frontpress.components.list-posts").directive("listPostsTitle", ListPostsTitleDirective);
+ListPostsTitleDirective.$inject = ["$FrontPress"];
 
 "use strict";
 
@@ -6049,20 +6049,20 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 		}
 
 		var defaultTemplateUrlList = {
-			"views.home": "/js/views/home/templates/home.template.html",
-			"views.category": "/js/views/category/templates/category.template.html",
-            "views.tag": "/js/views/tag/templates/tag.template.html",
-			"views.post": "/js/views/post/templates/post.template.html",
-			"components.fullpost": "/js/components/full-post/templates/full-post.template.html",
-			"components.fullpost.categories": "/js/components/full-post/templates/full-post-categories-list.template.html",
-			"components.fullpost.tags": "/js/components/full-post/templates/full-post-tags-list.template.html",
-			"components.fullpost.authorname": "/js/components/full-post/templates/full-post-author-name.template.html",
-			"components.listposts": "/js/components/list-posts/templates/list-posts.template.html",
-			"components.pagehead": "/js/components/page-head/templates/page-head.template.html",
-			"components.postdate": "/js/components/post-date/templates/post-date.template.html",
-			"components.featuredimage": "/js/components/featured-image/templates/featured-image.template.html",
-			"components.pagination": "/js/components/pagination/templates/pagination.template.html",
-			"components.share": "/js/components/share/templates/share.template.html"
+			"views.home": "/js/views/home/home.template.html",
+			"views.category": "/js/views/category/category.template.html",
+            "views.tag": "/js/views/tag/tag.template.html",
+			"views.post": "/js/views/post/post.template.html",
+			"components.fullpost": "/js/components/full-post/full-post.template.html",
+			"components.fullpost.categories": "/js/components/full-post/categories-list/full-post-categories-list.template.html",
+			"components.fullpost.tags": "/js/components/full-post/tags-list/full-post-tags-list.template.html",
+			"components.fullpost.authorname": "/js/components/full-post/content/full-post-author-name.template.html",
+			"components.listposts": "/js/components/list-posts/list-posts.template.html",
+			"components.pagehead": "/js/components/page-head/page-head.template.html",
+			"components.postdate": "/js/components/post-date/post-date.template.html",
+			"components.featuredimage": "/js/components/featured-image/featured-image.template.html",
+			"components.pagination": "/js/components/pagination/pagination.template.html",
+			"components.share": "/js/components/share/share.template.html"
 		};
 
 		var defaultTitlesList = {
@@ -6073,16 +6073,16 @@ function FrontPressProvider($disqusProvider, $stateProvider, FrontPressConfigura
 
 		switch(configure.apiVersion){
 			case "v2":
-				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v2.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v2.template.html";
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v2.template.html";
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v2.template.html";
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v2.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v2.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/excerpt/list-posts-excerpt-v2.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/title/list-posts-title-v2.template.html";
 			break;
 			case "v1":
-				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/templates/full-post-content-v1.template.html";
-				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/templates/full-post-title-v1.template.html";
-				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/templates/list-posts-excerpt-v1.template.html";
-				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/templates/list-posts-title-v1.template.html";
+				defaultTemplateUrlList["components.fullpost.content"] = "/js/components/full-post/content/full-post-content-v1.template.html";
+				defaultTemplateUrlList["components.fullpost.title"] = "/js/components/full-post/content/full-post-title-v1.template.html";
+				defaultTemplateUrlList["components.listposts.excerpt"] = "/js/components/list-posts/excerpt/list-posts-excerpt-v1.template.html";
+				defaultTemplateUrlList["components.listposts.title"] = "/js/components/list-posts/title/list-posts-title-v1.template.html";
 			break;
 		}
 
@@ -6220,14 +6220,6 @@ FrontPressProvider.$inject = ["$disqusProvider", "$stateProvider", "FrontPressCo
 
 "use strict";
 
-function FullPostCategoriesListDirectiveController(){
-    var vc = this;
-}
-
-angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
-
-"use strict";
-
 function FullPostDirectiveController(FullPostModel, BlogModel){
     var vc = this;
     vc.vm = FullPostModel;
@@ -6235,22 +6227,6 @@ function FullPostDirectiveController(FullPostModel, BlogModel){
 
 angular.module("frontpress.components.full-post").controller("FullPostDirectiveController", FullPostDirectiveController);
 FullPostDirectiveController.$inject = ["FullPostModel", "BlogModel"];
-
-"use strict";
-
-function FullPostGenericDirectiveController(){
-	var vc = this;
-}
-
-angular.module("frontpress.components.full-post").controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);
-
-"use strict";
-
-function FullPostTagsListDirectiveController(){
-	var vc = this;
-}
-
-angular.module("frontpress.components.full-post").controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);
 
 /* jshint loopfunc:true */
 "use strict";
@@ -7166,6 +7142,30 @@ function TagRouteController(){
 
 angular.module("frontpress.views.tag").controller("TagRouteController", TagRouteController);
 TagRouteController.$inject = [];
+
+"use strict";
+
+function FullPostCategoriesListDirectiveController(){
+    var vc = this;
+}
+
+angular.module("frontpress.components.full-post").controller("FullPostCategoriesListDirectiveController", FullPostCategoriesListDirectiveController);
+
+"use strict";
+
+function FullPostGenericDirectiveController(){
+	var vc = this;
+}
+
+angular.module("frontpress.components.full-post").controller("FullPostGenericDirectiveController", FullPostGenericDirectiveController);
+
+"use strict";
+
+function FullPostTagsListDirectiveController(){
+	var vc = this;
+}
+
+angular.module("frontpress.components.full-post").controller("FullPostTagsListDirectiveController", FullPostTagsListDirectiveController);
 
 "use strict";
 
