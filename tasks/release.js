@@ -30,6 +30,8 @@ module.exports = function() {
         "./src/js/{components,filters,views}/**/*.value.js",
         "./src/js/{components,filters,views}/**/*.constant.js",
         "!**/*.tests.js",
+        "!**/*.esm.js",
+        "!src/js/frontpress.esm.js",
         "!./src/js/components/frontpress-provider/constants/frontpress.constant.js",
         "!./src/js/sample-blog.module.js",
         "!./src/js/sample-blog.config.js",
