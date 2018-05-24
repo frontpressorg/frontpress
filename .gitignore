@@ -5,6 +5,7 @@ deploy_key.pub
 /coverage/
 /node_modules/
 npm-debug.log
+frontpress-es6.js
 frontpress.sublime-workspace
 /src/js/components/frontpress-provider/constants/frontpress.constant.js
 frontpress.json
