@@ -15,10 +15,6 @@ module.exports = function() {
 		"--min --v1": "frontpress.v1.min.js"
 	};
 
-	var argsToAngularFilesMap = {
-		"--min": "angular.min.js"
-	};
-
 	function _parseArgsToFilePath(argsToFilesMap, defaultFilePath){
 	    var filePath;
         var argumentKey;
@@ -38,10 +34,9 @@ module.exports = function() {
 	}
 
 	var frontPressFilePath = _parseArgsToFilePath(argsToFrontPressFilesMap, "frontpress.js");
-	var angularFilePath = _parseArgsToFilePath(argsToAngularFilesMap, "angular.js");
 
     var staticFilesList = [
-        "./build/js/"+angularFilePath,
+        "./build/js/release/frontpress.es6.js",
         "./build/js/release/"+frontPressFilePath,
         "./build/js/dev/frontpress.constant.js",
         "./build/js/dev/sample-blog.js",

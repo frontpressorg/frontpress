@@ -13,6 +13,7 @@
         "angular-mocks": "1.5.8",
         "babel-cli": "6.26.0",
         "babel-core": "6.26.3",
+        "babel-loader": "^7.1.4",
         "babel-preset-env": "1.6.1",
         "babel-preset-es2015": "6.24.1",
         "babel-preset-stage-0": "6.24.1",
@@ -49,7 +50,7 @@
     "scripts": {
         "test": "karma start --browsers PhantomJS && cat ./coverage/report-lcov/lcov.info | ./node_modules/.bin/codacy-coverage",
         "jshint": "jshint -c .jshintrc --exclude-path .jshintignore .",
-        "dev": "gulp release && gulp build connect",
+        "dev": "npm run prebuild && gulp release && gulp build connect",
         "watch": "gulp watch",
         "prebuild": "webpack --config webpack.config.js"
     },
